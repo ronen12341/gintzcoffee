@@ -44,7 +44,6 @@ export default function MachinesPage() {
                 key={m.id}
                 name={m.name}
                 description={m.description}
-                priceRange={m.priceRange}
                 features={m.features}
                 image={m.image}
                 ctaHref="#contact"

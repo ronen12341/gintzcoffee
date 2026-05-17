@@ -54,11 +54,7 @@ export default function ProductCard({
           </ul>
         )}
 
-        {priceRange && (
-          <p className="text-gold font-semibold text-sm mb-4">{priceRange}</p>
-        )}
-
-        <a
+        <
           href={ctaHref}
           className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
         >

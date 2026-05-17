@@ -54,7 +54,6 @@ export default function BargainsPage() {
                 key={m.id}
                 name={m.name}
                 description={m.description}
-                priceRange={m.price}
                 image={m.image}
                 badge="מציאון"
                 ctaHref="#contact"
