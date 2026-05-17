@@ -38,13 +38,13 @@ export interface UsedMachine {
 export const coffeeMachines: Machine[] = [
   {
     id: "jura-z10",
-    name: "JURA Z10 – פרימיום ביתי-עסקי",
+    name: "JURA Z10 דור 2",
     description:
-      "מכונת הדגל של JURA. מכינה 38 משקאות חמים וקרים בלחיצת כפתור, עם טוחנת P.R.G. המתאימה את הטחינה אוטומטית לכל משקה. עיצוב אלומיניום יוקרתי.",
-    priceRange: "₪7,500 – ₪9,500",
-    features: ["38 משקאות חמים וקרים", "טוחנת P.R.G. חכמה", "מסך מגע 4.3 אינץ'", "Wi-Fi מובנה"],
+      "51 התמחויות – חם, קל, קר ומתוק. מכונת הדגל של JURA עם מטחנת P.R.G.2+ המתאימה את הטחינה אוטומטית לכל משקה. מערכת קוורטט חכמה: Coffee Timer, Caffeine Regulator, Milk Assistant ו-Quality Assistant. שימוש מומלץ עד 50 ספלים ביום.",
+    priceRange: "₪13,500",
+    features: ["51 התמחויות", "מטחנת P.R.G.2+", "עד 50 ספלים ביום", "Wi-Fi + אפליקציית J.O.E."],
     featured: true,
-    image: "https://api.jura.com/media/global/images/home-products/z-line/z10/Z10-Aluminium-White-EA-15348/Z10_Alu_White_EA_15348_packshot.jpg?cb=247293",
+    image: "https://www.jura.co.il/wp-content/uploads/2026/05/Z10_1.webp",
   },
   {
     id: "jura-x10",
