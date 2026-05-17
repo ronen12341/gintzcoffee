@@ -48,7 +48,7 @@ export const coffeeMachines: Machine[] = [
   },
   {
     id: "jura-x10",
-    name: "JURA X10 – מקצועי לעסקים",
+    name: "ג'ורה X10 – מקצועי לעסקים",
     description:
       "המכונה המקצועית של JURA לסביבת עבודה. מתאימה ל-100 כוסות ביום, 34 משקאות כולל Cold Brew. ממשק נוח עם מסך ולחצנים פיזיים.",
     priceRange: "₪9,000 – ₪12,000",
@@ -58,7 +58,7 @@ export const coffeeMachines: Machine[] = [
   },
   {
     id: "jura-e8",
-    name: "JURA E8 אוטומטית",
+    name: "ג'ורה E8 אוטומטית",
     description:
       "מכונת קפה אוטומטית מלאה לעסקים קטנים ובינוניים. מכינה אספרסו, קפה, קפוצ'ינו ועוד. קלה לניקוי ותחזוקה.",
     priceRange: "₪4,200 – ₪5,500",

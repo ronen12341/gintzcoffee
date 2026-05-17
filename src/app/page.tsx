@@ -30,6 +30,9 @@ export default function HomePage() {
         />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold mb-4 font-heebo">
+            קפה גינץ
+          </h2>
           <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-4">
             Gintz Coffee · Since 2005
           </p>
