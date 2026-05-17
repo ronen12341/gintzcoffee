@@ -47,10 +47,10 @@ export const coffeeMachines: Machine[] = [
     id: "jura-x10",
     name: "JURA X10 – מקצועי לעסקים",
     description:
-      "המכונה המקצועית של JURA לסביבת עבודה. מתאימה ל-100 כוסות ביום, 34 משקאות כולל Cold Brew. ממשק נוח עם מסך ולחצנים פיזיים.",
-    features: ["100 כוסות ביום", "34 משקאות כולל Cold Brew", "ניהול טלמטרי", "תשלום חכם"],
+      "המכונה המקצועית למשקאות קפה חמים וקרים — רב תכליתית, חזקה ואמינה. ה-X10 מציעה 35 סוגים שונים של משקאות קפה, מתוכם 9 בחליטה קרה (Cold Brew) אוטומטית לחלוטין. מטחנת P.A.G.2+, מסך צבעוני 3.5 אינץ' עם מקשים פיזיים, ופונקציית One Touch Lungo. מתאימה למשרדים, חנויות, עסקים גדולים וקייטרינג. שימוש ממוצע מומלץ עד 100 ספלים ביום.",
+    features: ["35 משקאות (9 Cold Brew)", "מטחנת P.A.G.2+", "עד 100 ספלים ביום", "מסך 3.5 אינץ' + מקשים פיזיים", "תמיכה בתשלום חכם (MDB)"],
     featured: true,
-    image: "https://us.jura.com/-/media/global/images/professional-products/x-line/X10-EB-SB/Website_Overview_X10_DaIn_pss2_900x990px.jpg",
+    image: "https://www.jura.co.il/wp-content/uploads/2024/06/X10Main.webp",
   },
   {
     id: "jura-e8",
