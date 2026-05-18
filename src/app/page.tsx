@@ -13,12 +13,33 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden"
-        style={{
-          background:
-            "linear-gradient(135deg, #2A1506 0%, #3B1F0A 45%, #5C3015 75%, #3B1F0A 100%)",
-        }}
         aria-label="כותרת ראשית"
       >
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        >
+          <source
+            src="https://videos.pexels.com/video-files/5946087/5946087-hd_1920_1080_25fps.mp4"
+            type="video/mp4"
+          />
+        </video>
+
+        {/* Dark gradient overlay to keep text readable */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(135deg, rgba(42,21,6,0.85) 0%, rgba(59,31,10,0.80) 45%, rgba(92,48,21,0.75) 75%, rgba(59,31,10,0.85) 100%)",
+          }}
+          aria-hidden="true"
+        />
+
         {/* Decorative rings */}
         <div
           className="absolute -top-32 -end-32 w-96 h-96 rounded-full border border-gold/10 opacity-50"
@@ -29,7 +50,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
           <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold mb-4 font-heebo">
             קפה גינץ
           </h2>
