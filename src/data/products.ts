@@ -109,7 +109,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "הטבעת החותם האישי של בית העסק שלכם. כוסות עם הלוגו שלכם — שיווק חכם בכל כוס קפה.",
     minQuantity: 500,
-    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1572490122747-3e9b923dc887?w=600&q=80",
   },
   {
     id: "disposable-cups",
@@ -117,7 +117,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות חד פעמיות איכותיות לשיווק מקצועי ושמירה על איכות הסביבה. במגוון גדלים לכל שימוש.",
     minQuantity: 200,
-    image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1585494156145-1c60a4fe952b?w=600&q=80",
   },
   {
     id: "event-cups",
@@ -125,7 +125,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות מעוצבות לאירועים עסקיים וכנסים — שמירה על סטטוס גבוה, איכות ויוקרה. עיצוב מותאם אישית.",
     minQuantity: 200,
-    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?w=600&q=80",
   },
   {
     id: "printing-service",
@@ -133,7 +133,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "הדפסה איכותית בטכנולוגיה מתקדמת. עד 4 צבעים, עמיד בחום ולחות. מושלם לקידום מכירות.",
     minQuantity: 1000,
-    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1610889556528-9a770e32642f?w=600&q=80",
   },
   {
     id: "restaurant-cups",
@@ -141,7 +141,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות נייר מעוצבות למסעדות ודוכני מזון — שיווק קל ונטול מאמץ. שילוב פרקטיות עם קידום מכירות.",
     minQuantity: 500,
-    image: "https://images.unsplash.com/photo-1507133750040-4a8f57021571?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80",
   },
   {
     id: "birthday-cups",
@@ -149,7 +149,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות מעוצבות לימי הולדת — נגיעה אישית ומקורית לכל אירוע חגיגי. מושלם להפעלות ולאירועים.",
     minQuantity: 200,
-    image: "https://images.unsplash.com/photo-1464349095431-e9a21285b19b?w=600&q=80",
+    image: "https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?w=600&q=80",
   },
 ];
 
