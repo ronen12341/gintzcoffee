@@ -19,6 +19,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.jura.co.il",
       },
+      {
+        protocol: "https",
+        hostname: "www.coffeeman.co.il",
+      },
     ],
   },
 };
