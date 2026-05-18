@@ -125,7 +125,7 @@ export default function ContactPage() {
               {/* Google Maps embed */}
               <div className="mt-6 rounded-xl overflow-hidden shadow-sm" style={{ height: 220 }}>
                 <iframe
-                  src="https://maps.google.com/maps?q=הירקון+39,+בני+ברק&output=embed&hl=iw"
+                  src="https://maps.google.com/maps?q=32.0968866,34.8281619&z=17&output=embed&hl=iw"
                   width="100%"
                   height="220"
                   style={{ border: 0 }}
