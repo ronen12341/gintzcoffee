@@ -123,7 +123,7 @@ export default function RootLayout({
               },
               sameAs: [
                 "https://wa.me/97239600550",
-                "https://www.facebook.com/share/1BocDeD4Xd/",
+                "https://www.facebook.com/gintzcoffee",
                 "https://www.instagram.com/gintzcoffee",
               ],
             }),

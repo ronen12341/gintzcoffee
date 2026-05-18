@@ -30,7 +30,7 @@ export default function Footer() {
             {/* Social */}
             <div className="flex gap-3">
               <a
-                href="https://www.facebook.com/share/1BocDeD4Xd/"
+                href="https://www.facebook.com/gintzcoffee"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="קפה גינץ בפייסבוק"
