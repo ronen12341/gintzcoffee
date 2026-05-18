@@ -109,7 +109,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "הטבעת החותם האישי של בית העסק שלכם. כוסות עם הלוגו שלכם — שיווק חכם בכל כוס קפה.",
     minQuantity: 500,
-    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p2-o99j4goxcd8ildi4jpiwiaql0fxid3faieo3677dfc.jpg",
+    image: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?w=600&q=80",
   },
   {
     id: "disposable-cups",
@@ -117,7 +117,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות חד פעמיות איכותיות לשיווק מקצועי ושמירה על איכות הסביבה. במגוון גדלים לכל שימוש.",
     minQuantity: 200,
-    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p1-o99j4jifwvcdk7e138qs7s0ysljm06qhismjm136wo.jpg",
+    image: "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=600&q=80",
   },
   {
     id: "event-cups",
@@ -125,7 +125,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות מעוצבות לאירועים עסקיים וכנסים — שמירה על סטטוס גבוה, איכות ויוקרה. עיצוב מותאם אישית.",
     minQuantity: 200,
-    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p5-o99j47ajg0vnd9vs2lgmtd3z2l7u84dz5458dflb5k.jpg",
+    image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=600&q=80",
   },
   {
     id: "printing-service",
@@ -133,7 +133,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "הדפסה איכותית בטכנולוגיה מתקדמת. עד 4 צבעים, עמיד בחום ולחות. מושלם לקידום מכירות.",
     minQuantity: 1000,
-    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p3-o99j4cxkl13daxnl5nwe8boqmwg1ib0d5w2593cy48.jpg",
+    image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600&q=80",
   },
   {
     id: "restaurant-cups",
@@ -141,7 +141,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות נייר מעוצבות למסעדות ודוכני מזון — שיווק קל ונטול מאמץ. שילוב פרקטיות עם קידום מכירות.",
     minQuantity: 500,
-    image: "https://www.gilcups.com/wp-content/uploads/2019/06/p6.jpg",
+    image: "https://images.unsplash.com/photo-1507133750040-4a8f57021571?w=600&q=80",
   },
   {
     id: "birthday-cups",
@@ -149,7 +149,7 @@ export const cupCategories: CupCategory[] = [
     description:
       "כוסות מעוצבות לימי הולדת — נגיעה אישית ומקורית לכל אירוע חגיגי. מושלם להפעלות ולאירועים.",
     minQuantity: 200,
-    image: "https://www.gilcups.com/wp-content/uploads/2019/06/p4.jpg",
+    image: "https://images.unsplash.com/photo-1464349095431-e9a21285b19b?w=600&q=80",
   },
 ];
 
