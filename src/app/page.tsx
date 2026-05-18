@@ -135,20 +135,23 @@ export default function HomePage() {
                 Boutique Roastery
               </span>
               <h2 id="roastery-heading" className="text-3xl font-bold text-brown mb-5 leading-tight">
-                הקפה נקלה אצלנו —<br />
-                <span className="text-gold">בדיוק לפי הטעם שלכם</span>
+                הקפה הוא הלב הפועם
+                <span className="block text-gold mt-1">של כל עסק</span>
               </h2>
-              <p className="text-brown/70 text-base leading-relaxed mb-6">
-                קפה גינץ הוא לא ספק — אנחנו בית קלייה בוטיק. אנחנו קולים את הפולים בעצמנו, בהתאמה אישית לכל לקוח: רמת קלייה, מיזוג מוצאות ועוצמת ארומה — הכל לפי הטעם של העסק שלכם.
+              <p className="text-brown/70 text-base leading-relaxed mb-4">
+                בקפה גינץ אנחנו מאמינים שהקפה הוא הלב הפועם של כל עסק. כבית קלייה בוטיק, אנו מתמחים בקלייה קפדנית של פולי קפה איכותיים ביותר, המגיעים ממקורות מכל רחבי העולם.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <p className="text-brown/70 text-base leading-relaxed mb-6">
+                תהליך הקלייה המיוחד שלנו מבטיח לכם כוס קפה עשירה, ארומטית ובעלת טעם שאין לו מתחרים. הקפה מגיע אליכם טרי — <strong className="text-brown">עד 10 ימים בלבד מיום הקלייה</strong> — כדי שתוכלו ליהנות מחוויה מושלמת בכל לגימה.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
                 <div className="flex items-start gap-3">
                   <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center text-gold flex-shrink-0">
                     <Flame className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-brown font-bold text-sm mb-1">קלייה טרייה</h3>
-                    <p className="text-brown/60 text-xs leading-relaxed">כל אצווה נקלית לפני האספקה</p>
+                    <h3 className="text-brown font-bold text-sm mb-1">קלייה קפדנית</h3>
+                    <p className="text-brown/60 text-xs leading-relaxed">כל אצווה נקלית בדיוק ובאהבה</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -165,11 +168,12 @@ export default function HomePage() {
                     <Leaf className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-brown font-bold text-sm mb-1">מוצא איכותי</h3>
+                    <h3 className="text-brown font-bold text-sm mb-1">מוצא עולמי</h3>
                     <p className="text-brown/60 text-xs leading-relaxed">פולים ממיטב מטעי העולם</p>
                   </div>
                 </div>
               </div>
+              <p className="text-gold font-bold text-base">נשמח לצרף אתכם למשפחת הקפה שלנו ☕</p>
             </div>
             <div className="flex-1 relative rounded-2xl overflow-hidden aspect-[4/3] w-full max-w-lg shadow-lg">
               <Image
