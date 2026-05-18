@@ -81,6 +81,7 @@ export const coffeeBeans: Bean[] = [
     origin: "ברזיל, קולומביה, אתיופיה",
     roast: "קלייה בינונית",
     featured: true,
+    image: "/coffee-bag.jpg.jpg",
   },
   {
     id: "single-origin-ethiopia",
@@ -90,6 +91,7 @@ export const coffeeBeans: Bean[] = [
     origin: "אתיופיה",
     roast: "קלייה בינונית",
     featured: true,
+    image: "/coffee-bag.jpg.jpg",
   },
   {
     id: "office-blend",
@@ -99,6 +101,7 @@ export const coffeeBeans: Bean[] = [
     origin: "ברזיל, הודו",
     roast: "קלייה בינונית",
     featured: false,
+    image: "/coffee-bag.jpg.jpg",
   },
 ];
 
