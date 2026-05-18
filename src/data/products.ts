@@ -107,29 +107,49 @@ export const cupCategories: CupCategory[] = [
     id: "branded-cups",
     name: "כוסות ממותגות לעסקים",
     description:
-      "הדפסת הלוגו שלכם על כוסות קפה חד פעמיות. פרסום שוטף בכל כוס. מינימום 500 יחידות.",
+      "הטבעת החותם האישי של בית העסק שלכם. כוסות עם הלוגו שלכם — שיווק חכם בכל כוס קפה.",
     minQuantity: 500,
+    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p2-o99j4goxcd8ildi4jpiwiaql0fxid3faieo3677dfc.jpg",
   },
   {
     id: "disposable-cups",
     name: "כוסות חד פעמיות",
     description:
-      "כוסות קפה חד פעמיות איכותיות במגוון גדלים (4, 6, 8, 12 אונקיות). מתאימות לעסקים ואירועים.",
+      "כוסות חד פעמיות איכותיות לשיווק מקצועי ושמירה על איכות הסביבה. במגוון גדלים לכל שימוש.",
     minQuantity: 200,
-  },
-  {
-    id: "printing-service",
-    name: "הדפסה על כוסות",
-    description:
-      "הדפסה איכותית בטכנולוגיה מתקדמת. עמידה בחום ולחות. עד 4 צבעים בהדפסה.",
-    minQuantity: 1000,
+    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p1-o99j4jifwvcdk7e138qs7s0ysljm06qhismjm136wo.jpg",
   },
   {
     id: "event-cups",
-    name: "כוסות לאירועים",
+    name: "כוסות לאירועים וכנסים",
     description:
-      "כוסות מיוחדות לאירועים עסקיים, כנסים וחגיגות. עיצוב מותאם אישית לכל אירוע.",
+      "כוסות מעוצבות לאירועים עסקיים וכנסים — שמירה על סטטוס גבוה, איכות ויוקרה. עיצוב מותאם אישית.",
     minQuantity: 200,
+    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p5-o99j47ajg0vnd9vs2lgmtd3z2l7u84dz5458dflb5k.jpg",
+  },
+  {
+    id: "printing-service",
+    name: "הדפסה על כוסות נייר",
+    description:
+      "הדפסה איכותית בטכנולוגיה מתקדמת. עד 4 צבעים, עמיד בחום ולחות. מושלם לקידום מכירות.",
+    minQuantity: 1000,
+    image: "https://www.gilcups.com/wp-content/uploads/elementor/thumbs/p3-o99j4cxkl13daxnl5nwe8boqmwg1ib0d5w2593cy48.jpg",
+  },
+  {
+    id: "restaurant-cups",
+    name: "כוסות למסעדות ודוכני מזון",
+    description:
+      "כוסות נייר מעוצבות למסעדות ודוכני מזון — שיווק קל ונטול מאמץ. שילוב פרקטיות עם קידום מכירות.",
+    minQuantity: 500,
+    image: "https://www.gilcups.com/wp-content/uploads/2019/06/p6.jpg",
+  },
+  {
+    id: "birthday-cups",
+    name: "כוסות לימי הולדת",
+    description:
+      "כוסות מעוצבות לימי הולדת — נגיעה אישית ומקורית לכל אירוע חגיגי. מושלם להפעלות ולאירועים.",
+    minQuantity: 200,
+    image: "https://www.gilcups.com/wp-content/uploads/2019/06/p4.jpg",
   },
 ];
 

@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CupsQuoteForm from "@/components/CupsQuoteForm";
 import { cupCategories } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "כוסות ממותגות לעסקים",
+  title: "כוסות ממותגות לעסקים | הדפסה על כוסות נייר",
   description:
-    "כוסות חד פעמיות ממותגות עם לוגו העסק שלכם. הדפסה איכותית, מינימום 200 יחידות.",
+    "כוסות נייר ממותגות לעסקים, אירועים, מסעדות וימי הולדת. הדפסה איכותית עד 4 צבעים עם הלוגו שלכם. Gil Cups — אספגיל.",
 };
 
 export default function CupsPage() {
@@ -19,15 +20,15 @@ export default function CupsPage() {
         aria-labelledby="cups-heading"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gil Cups · Branded Solutions
+            <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
+            Gil Cups · אספגיל
           </p>
           <h1 id="cups-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             כוסות ממותגות לעסקים
           </h1>
-          <p className="text-cream/70 text-lg leading-relaxed">
-            הפכו כל כוס קפה לכלי שיווקי. כוסות חד פעמיות איכותיות עם הלוגו שלכם —
-            מינימום 200 יחידות, משלוח לכל הארץ.
+          <p className="text-cream/70 text-lg leading-relaxed max-w-2xl mx-auto">
+            הדפסת כוסות נייר מעוצבות בהתאמה אישית ללקוחות עסקיים ופרטיים.
+            הפכו כל כוס קפה לכלי שיווקי — משלוח לכל הארץ.
           </p>
         </div>
       </section>
@@ -36,30 +37,39 @@ export default function CupsPage() {
       <section className="py-14 bg-cream" aria-labelledby="cups-cats-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="cups-cats-heading" className="text-2xl font-bold text-brown mb-8">
-            קטגוריות
+            הקטלוג שלנו
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {cupCategories.map((cat) => (
               <article
                 key={cat.id}
-                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col"
               >
-                {cat.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={cat.image}
-                    alt={cat.name}
-                    className="w-full aspect-square object-cover"
-                  />
-                ) : (
-                  <ImagePlaceholder label="הוסף תמונה" width={300} height={300} />
-                )}
-                <div className="p-5">
+                <div className="relative w-full aspect-square">
+                  {cat.image ? (
+                    <Image
+                      src={cat.image}
+                      alt={cat.name}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <ImagePlaceholder label="הוסף תמונה" width={300} height={300} />
+                  )}
+                </div>
+                <div className="p-5 flex flex-col flex-1">
                   <span className="text-xs text-gold font-semibold mb-1 block">
                     מינ׳ {cat.minQuantity.toLocaleString("he-IL")} יחידות
                   </span>
                   <h3 className="text-brown font-bold text-base mb-2">{cat.name}</h3>
-                  <p className="text-brown/65 text-xs leading-relaxed">{cat.description}</p>
+                  <p className="text-brown/65 text-sm leading-relaxed flex-1">{cat.description}</p>
+                  <a
+                    href="#contact"
+                    className="mt-4 block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2 px-4 rounded-lg transition-colors text-sm"
+                  >
+                    לפרטים והצעת מחיר
+                  </a>
                 </div>
               </article>
             ))}

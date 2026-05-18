@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.coffeeman.co.il",
       },
+      {
+        protocol: "https",
+        hostname: "www.gilcups.com",
+      },
     ],
   },
 };
