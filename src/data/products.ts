@@ -62,30 +62,6 @@ export const coffeeMachines: Machine[] = [
     image: "https://www.jura.co.il/wp-content/uploads/2026/05/E8_MS1.webp",
   },
   {
-    id: "delonghi-dinamica",
-    name: "דה לונגי דינמיקה פלוס",
-    description:
-      "מכונת קפה משרדית פופולרית עם מגרסת פולים מובנית ואפשרויות הכנה מגוונות. שקטה ואמינה.",
-    features: ["מגרסה מובנית", "6 משקאות מוגדרים", "שקט במיוחד"],
-    featured: false,
-  },
-  {
-    id: "franke-a400",
-    name: "פרנקה A400 מקצועית",
-    description:
-      "מכונת קפה מסחרית לעסקים בינוניים וגדולים. מתאימה ל-50 כוסות ביום ומעלה. חיבור ישיר לצינור מים.",
-    features: ["50+ כוסות ביום", "ממשק מסחרי", "חיבור ישיר למים"],
-    featured: false,
-  },
-  {
-    id: "saeco-aulika",
-    name: "סאקו אוליקה פוקוס",
-    description:
-      "מכונת קפה אוטומטית עמידה במיוחד, מתאימה לסביבת עבודה תובענית. כוללת מסנן מים.",
-    features: ["קיבולת גבוהה", "תוכנת ניהול", "מסנן מים כלול"],
-    featured: false,
-  },
-  {
     id: "melitta-solo-silver",
     name: "Melitta Caffeo Solo Pure Silver",
     description:
@@ -93,14 +69,6 @@ export const coffeeMachines: Machine[] = [
     features: ["15 בר לחץ", "3 רמות ארומה", "מיכל מים 1.2 ליטר", "מיכל פולים 125 גרם", "שפיכה מתכווננת עד 135 מ\"מ"],
     featured: false,
     image: "https://www.coffeeman.co.il/images/itempics/900602_05042025131742.jpg",
-  },
-  {
-    id: "wega-concept",
-    name: "וגה קונספט ידנית",
-    description:
-      "מכונת קפה ידנית מקצועית לאנשי קפה שאוהבים שליטה מלאה על ההכנה. 2 גרופות.",
-    features: ["בקרת לחץ ידנית", "עיצוב ייחודי", "2 גרופות"],
-    featured: false,
   },
 ];
 
