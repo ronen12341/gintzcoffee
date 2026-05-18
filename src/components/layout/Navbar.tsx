@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Phone, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -26,13 +27,23 @@ export default function Navbar() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex flex-col leading-none focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-brown rounded"
+            className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-brown rounded"
             aria-label="קפה גינץ – דף הבית"
           >
-            <span className="text-gold font-bold text-xl font-heebo">קפה גינץ</span>
-            <span className="text-cream/60 text-[10px] font-montserrat tracking-widest uppercase">
-              Gintz Coffee
-            </span>
+            <Image
+              src="/logo.png"
+              alt="לוגו קפה גינץ"
+              width={48}
+              height={48}
+              className="rounded-full object-contain bg-white"
+              priority
+            />
+            <div className="flex flex-col leading-none">
+              <span className="text-gold font-bold text-xl font-heebo">קפה גינץ</span>
+              <span className="text-cream/60 text-[10px] font-montserrat tracking-widest uppercase">
+                Gintz Coffee
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav */}
