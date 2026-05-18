@@ -116,7 +116,7 @@ export const cupCategories: CupCategory[] = [
     name: "כוסות חד פעמיות",
     description:
       "כוסות חד פעמיות איכותיות לשיווק מקצועי ושמירה על איכות הסביבה. במגוון גדלים לכל שימוש.",
-    minQuantity: 200,
+    minQuantity: 500,
     image: "/cups/disposable-cups.svg",
   },
   {
@@ -124,7 +124,7 @@ export const cupCategories: CupCategory[] = [
     name: "כוסות לאירועים וכנסים",
     description:
       "כוסות מעוצבות לאירועים עסקיים וכנסים — שמירה על סטטוס גבוה, איכות ויוקרה. עיצוב מותאם אישית.",
-    minQuantity: 200,
+    minQuantity: 500,
     image: "/cups/event-cups.svg",
   },
   {
@@ -148,7 +148,7 @@ export const cupCategories: CupCategory[] = [
     name: "כוסות לימי הולדת",
     description:
       "כוסות מעוצבות לימי הולדת — נגיעה אישית ומקורית לכל אירוע חגיגי. מושלם להפעלות ולאירועים.",
-    minQuantity: 200,
+    minQuantity: 500,
     image: "/cups/birthday-cups.svg",
   },
 ];
@@ -178,5 +178,5 @@ export const usedMachines: UsedMachine[] = [
 ];
 
 export const quantityOptions = [
-  200, 500, 1000, 2000, 3000, 5000, 10000, 20000, 50000, 100000,
+  500, 1000, 2000, 3000, 5000, 10000, 20000, 50000, 100000,
 ];
