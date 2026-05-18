@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Coffee, Package, Award, Zap, DollarSign, HeartHandshake } from "lucide-react";
+import { Coffee, Package, Award, Zap, DollarSign, HeartHandshake, Flame, Sliders, Leaf } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import ProductCard from "@/components/ProductCard";
 import { coffeeMachines } from "@/data/products";
@@ -56,15 +56,15 @@ export default function HomePage() {
             קפה גינץ
           </h2>
           <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-4">
-            Gintz Coffee · Since 2005
+            Boutique Coffee Roastery · Since 2005
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-cream leading-tight mb-4">
-            פתרונות קפה
-            <span className="block text-gold mt-1">לעסקים</span>
+            בית קלייה בוטיק
+            <span className="block text-gold mt-1">לפי הטעם שלכם</span>
           </h1>
           <p className="text-cream/75 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            מכונות קפה, פולים טריים וכוסות ממותגות — הכל ממקור אחד,
-            בשירות אישי ומחיר שמשתלם לעסק שלכם.
+            אנחנו קולים את הקפה בעצמנו — בהתאם לטעם האישי של כל לקוח.
+            פולים טריים, מכונות מקצועיות וכוסות ממותגות, הכל ממקור אחד.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
@@ -126,15 +126,84 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Boutique Roastery Story ── */}
+      <section className="py-16 bg-cream" aria-labelledby="roastery-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1">
+              <span className="text-gold text-sm font-montserrat tracking-widest uppercase mb-3 block">
+                Boutique Roastery
+              </span>
+              <h2 id="roastery-heading" className="text-3xl font-bold text-brown mb-5 leading-tight">
+                הקפה נקלה אצלנו —<br />
+                <span className="text-gold">בדיוק לפי הטעם שלכם</span>
+              </h2>
+              <p className="text-brown/70 text-base leading-relaxed mb-6">
+                קפה גינץ הוא לא ספק — אנחנו בית קלייה בוטיק. אנחנו קולים את הפולים בעצמנו, בהתאמה אישית לכל לקוח: רמת קלייה, מיזוג מוצאות ועוצמת ארומה — הכל לפי הטעם של העסק שלכם.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center text-gold flex-shrink-0">
+                    <Flame className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-brown font-bold text-sm mb-1">קלייה טרייה</h3>
+                    <p className="text-brown/60 text-xs leading-relaxed">כל אצווה נקלית לפני האספקה</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center text-gold flex-shrink-0">
+                    <Sliders className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-brown font-bold text-sm mb-1">התאמה אישית</h3>
+                    <p className="text-brown/60 text-xs leading-relaxed">מיזוג ורמת קלייה לפי בחירתכם</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-full bg-gold/15 flex items-center justify-center text-gold flex-shrink-0">
+                    <Leaf className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-brown font-bold text-sm mb-1">מוצא איכותי</h3>
+                    <p className="text-brown/60 text-xs leading-relaxed">פולים ממיטב מטעי העולם</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="flex-1 relative rounded-2xl overflow-hidden aspect-[4/3] w-full max-w-lg shadow-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80"
+                alt="קלייה בוטיק של פולי קפה טריים"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brown/40 to-transparent" />
+              <div className="absolute bottom-5 start-5">
+                <span className="bg-gold text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                  קולים מאז 2005
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Services ── */}
       <section className="py-16 bg-cream-dark" aria-labelledby="services-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            id="services-heading"
-            className="text-3xl font-bold text-brown text-center mb-12"
-          >
-            מה אנחנו מציעים
-          </h2>
+          <div className="text-center mb-12">
+            <h2
+              id="services-heading"
+              className="text-3xl font-bold text-brown mb-3"
+            >
+              מה אנחנו מציעים
+            </h2>
+            <p className="text-brown/60 text-base max-w-xl mx-auto">
+              בניגוד לספקים רגילים — אנחנו בית קלייה. הקפה נולד אצלנו, ומגיע אליכם טרי ומותאם אישית.
+            </p>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <ServiceCard
               icon={<Coffee className="w-8 h-8" />}
@@ -144,8 +213,8 @@ export default function HomePage() {
             />
             <ServiceCard
               icon={<Package className="w-8 h-8" />}
-              title="פולי קפה"
-              description="תערובות פרימיום וממוצא יחיד, קלוייה טרייה ומסופקת ישירות לעסק שלכם."
+              title="קלייה בוטיק לפי הזמנה"
+              description="קולים עבורכם בדיוק לפי הטעם שלכם — רמת קלייה, מיזוג ומוצא הפולים. כל אצווה טרייה."
               href="/beans"
             />
             <ServiceCard
@@ -165,22 +234,27 @@ export default function HomePage() {
         aria-labelledby="whyus-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            id="whyus-heading"
-            className="text-3xl font-bold text-gold text-center mb-14"
-          >
-            למה לבחור בנו?
-          </h2>
+          <div className="text-center mb-14">
+            <h2
+              id="whyus-heading"
+              className="text-3xl font-bold text-gold mb-3"
+            >
+              למה לבחור בנו?
+            </h2>
+            <p className="text-cream/55 text-base max-w-xl mx-auto">
+              אנחנו לא מפיצים — אנחנו היצרן. הקפה שלכם נקלה אצלנו, לפי הטעם שלכם, ומגיע ישירות אליכם.
+            </p>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <WhyCard
               icon={<Award className="w-8 h-8" />}
-              title="טרי"
-              description="קפה שנקלה בשבילכם ומסופק ישירות"
+              title="בוטיק"
+              description="קלייה אומנותית בהתאמה אישית לכל לקוח"
             />
             <WhyCard
               icon={<Zap className="w-8 h-8" />}
-              title="מהיר"
-              description="אספקה תוך 24–48 שעות לכל הארץ"
+              title="טרי תמיד"
+              description="אספקה תוך 24–48 שעות מהקלייה ישירות אליכם"
             />
             <WhyCard
               icon={<DollarSign className="w-8 h-8" />}
@@ -189,8 +263,8 @@ export default function HomePage() {
             />
             <WhyCard
               icon={<HeartHandshake className="w-8 h-8" />}
-              title="שירות"
-              description="שירות אישי ותמיכה טכנית מהירה"
+              title="שירות אישי"
+              description="מלווים אתכם מבחירת הפולים עד הכוס האחרונה"
             />
           </div>
         </div>
