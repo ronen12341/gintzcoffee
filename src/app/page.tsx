@@ -21,7 +21,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-contain brightness-110 saturate-125"
+          className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-125 scale-75"
           aria-hidden="true"
         >
           <source
