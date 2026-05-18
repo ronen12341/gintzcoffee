@@ -118,23 +118,7 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs text-brown/50 mb-2">שעות פעילות</p>
-                  <table className="text-sm text-brown/80 w-full">
-                    <tbody>
-                      <tr>
-                        <td className="pb-1 pe-6 font-medium">ראשון – חמישי</td>
-                        <td dir="ltr">08:00 – 17:00</td>
-                      </tr>
-                      <tr>
-                        <td className="pb-1 pe-6 font-medium">שישי</td>
-                        <td dir="ltr">08:00 – 13:00</td>
-                      </tr>
-                      <tr>
-                        <td className="pe-6 font-medium">שבת</td>
-                        <td className="text-brown/40">סגור</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <p className="text-xs text-gold font-medium mt-3">* יש לתאם הגעה מראש</p>
+                  <p className="text-xs text-gold font-medium mt-1">* יש לתאם הגעה מראש</p>
                 </div>
               </div>
 
