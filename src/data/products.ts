@@ -103,6 +103,96 @@ export const coffeeBeans: Bean[] = [
     featured: false,
     image: "/coffee-bag.jpg.jpg",
   },
+  {
+    id: "brazil-cerrado",
+    name: "ברזיל סרדו",
+    description:
+      "פולים ממוצא יחיד מאזור סרדו בברזיל. טעם מתוק עם נגיעות אגוז ושוקולד חלב, גוף מלא ומאוזן.",
+    origin: "ברזיל",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "colombia-supremo",
+    name: "קולומביה סופרמו",
+    description:
+      "פולים ממוצא יחיד מקולומביה. ארומה עשירה עם טעמי פירות יבשים, חמיצות מאוזנת וסיומת ארוכה.",
+    origin: "קולומביה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "costa-rica",
+    name: "קוסטה ריקה",
+    description:
+      "פולים ממוצא יחיד מקוסטה ריקה. טעם נקי ומובהק עם נגיעות דבש ותפוז, חמיצות עדינה ומרעננת.",
+    origin: "קוסטה ריקה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "guatemala",
+    name: "גואטמלה אנטיגואה",
+    description:
+      "פולי קפה מובחרים מאזור אנטיגואה. פרופיל ארומטי מורכב עם טעמי קקאו, קרמל ועשן עדין.",
+    origin: "גואטמלה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "kenya-aa",
+    name: "קניה AA",
+    description:
+      "דרגת הפולים הגבוהה ביותר מקניה. חמיצות בהירה ופירותית, ארומה פרחונית וגוף מלא ועשיר.",
+    origin: "קניה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "india-monsoon",
+    name: "הודו מונסון",
+    description:
+      "פולים ייחודיים שעברו תהליך ייבוש מונסוני. גוף כבד ועשיר, טעמי עץ ותבלינים, חמיצות נמוכה.",
+    origin: "הודו",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "platinum-blend",
+    name: "תערובת PLATINUM",
+    description:
+      "תערובת יוקרתית מפולים נבחרים בעלי אופי חזק ועמוק. מתאימה לאספרסו ולמכונות אוטומטיות.",
+    origin: "ברזיל, קולומביה, קניה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "decaf",
+    name: "נטול קפאין",
+    description:
+      "פולים נטולי קפאין בתהליך טבעי. שומר על מלוא הארומה והטעם ללא הקפאין. מתאים לכל שעות היום.",
+    origin: "ברזיל, קולומביה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
+  {
+    id: "silver-blend",
+    name: "תערובת SILVER",
+    description:
+      "תערובת עדינה ומאוזנת לשתיינים המחפשים קפה נעים ולא חזק מדי. מתאימה לכל שעות היום.",
+    origin: "ברזיל, הודו, קולומביה",
+    roast: "קלייה בינונית",
+    featured: false,
+    image: "/coffee-bag.jpg.jpg",
+  },
 ];
 
 export const cupCategories: CupCategory[] = [
