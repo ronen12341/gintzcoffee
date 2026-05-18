@@ -122,18 +122,19 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Map placeholder */}
-              <div
-                className="mt-6 bg-[#D1D5DB] rounded-xl border-2 border-dashed border-gray-400 flex items-center justify-center"
-                style={{ height: 220 }}
-                role="img"
-                aria-label="מפה — רחוב הירקון 39, בני ברק"
-              >
-                <div className="text-center text-gray-500">
-                  <MapPin className="w-8 h-8 mx-auto mb-2" aria-hidden="true" />
-                  <p className="text-sm">הטמע Google Maps כאן</p>
-                  <p className="text-xs mt-1">רחוב הירקון 39, בני ברק</p>
-                </div>
+              {/* Google Maps embed */}
+              <div className="mt-6 rounded-xl overflow-hidden shadow-sm" style={{ height: 220 }}>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3379.2!2d34.8337!3d32.0853!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z15DXqdeX16Qg15TXmNeo16rXlSAzOSwg16DouNXXnyDXkNeS16c!5e0!3m2!1siw!2sil!4v1234567890!5m2!1siw!2sil&q=הירקון+39+בני+ברק"
+                  width="100%"
+                  height="220"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="מיקום קפה גינץ — רחוב הירקון 39, בני ברק"
+                  aria-label="מפה — רחוב הירקון 39, בני ברק"
+                />
               </div>
             </div>
 
