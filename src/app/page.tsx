@@ -22,7 +22,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-200 saturate-200 contrast-125"
+          className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-110"
           aria-hidden="true"
         >
           <source
@@ -36,7 +36,7 @@ export default function HomePage() {
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(100,55,15,0.15) 0%, rgba(120,65,20,0.10) 45%, rgba(150,85,30,0.08) 75%, rgba(120,65,20,0.15) 100%)",
+              "linear-gradient(135deg, rgba(42,21,6,0.55) 0%, rgba(59,31,10,0.50) 45%, rgba(92,48,21,0.45) 75%, rgba(59,31,10,0.55) 100%)",
           }}
           aria-hidden="true"
         />
