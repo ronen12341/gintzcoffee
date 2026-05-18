@@ -7,7 +7,7 @@ import { cupCategories } from "@/data/products";
 export const metadata: Metadata = {
   title: "כוסות ממותגות לעסקים | הדפסה על כוסות נייר",
   description:
-    "כוסות נייר ממותגות לעסקים, אירועים, מסעדות וימי הולדת. הדפסה איכותית עד 4 צבעים עם הלוגו שלכם. Gil Cups — אספגיל.",
+    "כוסות נייר ממותגות לעסקים, אירועים, מסעדות וימי הולדת. הדפסה איכותית עד 4 צבעים עם הלוגו שלכם. Gil Cups — קפה גינץ.",
 };
 
 export default function CupsPage() {
@@ -21,7 +21,7 @@ export default function CupsPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
             <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gil Cups · אספגיל
+            Gil Cups · קפה גינץ
           </p>
           <h1 id="cups-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             כוסות ממותגות לעסקים
@@ -72,6 +72,60 @@ export default function CupsPage() {
                   </a>
                 </div>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* About Aspagil / Factory section */}
+      <section className="py-16 bg-white" aria-labelledby="cups-about-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-gold text-sm font-montserrat tracking-widest uppercase text-center mb-3">Gil Cups · קפה גינץ</p>
+          <h2 id="cups-about-heading" className="text-3xl font-bold text-brown text-center mb-10">
+            הדפסה על כוסות — שיווק חכם בכל לגימה
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+            <div>
+              <h3 className="text-xl font-bold text-brown mb-3">למה כוסות ממותגות?</h3>
+              <p className="text-brown/70 leading-relaxed">
+                כוסות נייר הן מצרך פרקטי המצוי כמעט בכל בית, ארגון, חברה או אירוע. למה לא לנצל את קיומן ההכרחי והשימושי ולהפיק מהן ערך מוסף — שיווק, פרסום וקידום מכירות?
+              </p>
+              <p className="text-brown/70 leading-relaxed mt-4">
+                כאשר נכנסים למשרד ומכינים שתייה חמה, ונתקלים בכוס נייר מושקעת שהודפסה בהתאמה אישית — הכוס הופכת באופן אוטומטי לבעלת ערך. היא אינה עוד כוס סתמית, אלא מוצר ייחודי שהחברה נטמעת בתודעה תוך השארת רושם חיובי.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-bold text-brown mb-3">המפעל שלנו</h3>
+              <p className="text-brown/70 leading-relaxed">
+                &quot;קפה גינץ&quot; מצוידת במיטב המכשור והציוד המקצועי, מה שמאפשר לה לספק מוצר איכותי ומעוצב ברמה גבוהה. אנו מציעים הדפסה על כוסות בהתאם לצרכים ולדרישות של כל לקוח — החל מהזמנות קטנות ועד להזמנות בנפחים גדולים.
+              </p>
+              <p className="text-brown/70 leading-relaxed mt-4">
+                הדפסה על כוסות נייר מבית &quot;קפה גינץ&quot; משלבת חומר משובח ומתכלה — חשוב בעידן שבו שמירה על הסביבה היא ערך — לבין הדפסה איכותית ומקצועית של לוגו, כיתוב או ציור.
+              </p>
+            </div>
+          </div>
+
+          {/* Value props */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              {
+                title: "כוסות נייר עם לוגו",
+                body: "הדפסת לוגו, כיתוב או ציור הופכת את המוצר הפשוט לאלמנט שיווקי המציג את החברה באור רציני ומכובד.",
+              },
+              {
+                title: "לאירועים וכנסים",
+                body: "כוסות ייחודיות לכנסים, ועידות, ישיבות וימי הולדת — בידול מכל כוס נייר אחרת ויצירת רושם מתמשך.",
+              },
+              {
+                title: "ידידותי לסביבה",
+                body: "חומר מתכלה ואיכותי — שיווק חכם שמכבד גם את הסביבה. חשוב בעידן המודרני.",
+              },
+            ].map(({ title, body }) => (
+              <div key={title} className="bg-cream rounded-2xl p-6">
+                <h4 className="font-bold text-brown mb-2">{title}</h4>
+                <p className="text-brown/65 text-sm leading-relaxed">{body}</p>
+              </div>
             ))}
           </div>
         </div>
