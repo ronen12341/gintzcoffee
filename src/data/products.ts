@@ -75,7 +75,7 @@ export const coffeeMachines: Machine[] = [
 export const coffeeBeans: Bean[] = [
   {
     id: "espresso-blend",
-    name: "תערובת אספרסו קלאסיק",
+    name: "תערובת GOLD",
     description:
       "תערובת פולים קלוייה בדרגה עמוקה עם טעמי שוקולד, קרמל וחמיצות נעימה. מושלמת לאספרסו וקפוצ'ינו.",
     origin: "ברזיל, קולומביה, אתיופיה",
