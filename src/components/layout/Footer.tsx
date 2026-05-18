@@ -28,15 +28,15 @@ export default function Footer() {
               בשירות אישי ומחיר משתלם.
             </p>
             {/* Social */}
-            <div className="flex gap-3">
+            <div className="flex gap-4 mt-1">
               <a
                 href="https://www.facebook.com/gintzcoffee"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="קפה גינץ בפייסבוק"
-                className="w-9 h-9 rounded-full bg-cream/10 hover:bg-gold flex items-center justify-center transition-colors"
+                className="w-12 h-12 rounded-full bg-blue-600 hover:bg-blue-500 flex items-center justify-center transition-colors shadow-lg hover:scale-110 hover:shadow-xl transition-all"
               >
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-white" aria-hidden="true">
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
                 </svg>
               </a>
@@ -45,12 +45,13 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="קפה גינץ באינסטגרם"
-                className="w-9 h-9 rounded-full bg-cream/10 hover:bg-gold flex items-center justify-center transition-colors"
+                className="w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl transition-all"
+                style={{ background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%)" }}
               >
-                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2" aria-hidden="true">
+                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-none stroke-white stroke-2" aria-hidden="true">
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
                   <circle cx="12" cy="12" r="4" />
-                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none" />
                 </svg>
               </a>
             </div>
