@@ -21,7 +21,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-125"
           aria-hidden="true"
         >
           <source
@@ -30,12 +30,12 @@ export default function HomePage() {
           />
         </video>
 
-        {/* Dark gradient overlay to keep text readable */}
+        {/* Lighter overlay so video is clearly visible */}
         <div
           className="absolute inset-0"
           style={{
             background:
-              "linear-gradient(135deg, rgba(42,21,6,0.85) 0%, rgba(59,31,10,0.80) 45%, rgba(92,48,21,0.75) 75%, rgba(59,31,10,0.85) 100%)",
+              "linear-gradient(135deg, rgba(80,40,10,0.50) 0%, rgba(100,55,15,0.45) 45%, rgba(130,70,25,0.40) 75%, rgba(100,55,15,0.50) 100%)",
           }}
           aria-hidden="true"
         />
