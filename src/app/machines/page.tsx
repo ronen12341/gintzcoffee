@@ -48,6 +48,7 @@ export default function MachinesPage() {
                 image={m.image}
                 ctaHref="#contact"
                 ctaLabel="לפרטים והצעת מחיר"
+                imageContain={m.id === "melitta-solo-silver"}
               />
             ))}
           </div>

@@ -10,6 +10,7 @@ interface ProductCardProps {
   ctaLabel?: string;
   ctaHref?: string;
   features?: string[];
+  imageContain?: boolean;
 }
 
 export default function ProductCard({
@@ -21,6 +22,7 @@ export default function ProductCard({
   ctaLabel = "לפרטים והצעת מחיר",
   ctaHref = "#contact",
   features,
+  imageContain = false,
 }: ProductCardProps) {
   return (
     <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
@@ -31,8 +33,13 @@ export default function ProductCard({
           </span>
         )}
         {image ? (
-          <div className="relative w-full aspect-[4/3]">
-            <Image src={image} alt={name} fill className="object-cover" />
+          <div className={`relative w-full aspect-[4/3] ${imageContain ? "bg-gray-50 p-6" : ""}`}>
+            <Image
+              src={image}
+              alt={name}
+              fill
+              className={imageContain ? "object-contain" : "object-cover"}
+            />
           </div>
         ) : (
           <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
