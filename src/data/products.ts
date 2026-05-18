@@ -84,7 +84,7 @@ export const coffeeBeans: Bean[] = [
   },
   {
     id: "single-origin-ethiopia",
-    name: "אתיופיה יירגצ'ף",
+    name: "HOUSE BLEND",
     description:
       "פולי קפה ממוצא יחיד מאתיופיה. פרופיל ארומטי עשיר – פרחוני, פירותי ועם חמיצות עדינה.",
     origin: "אתיופיה",
