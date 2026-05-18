@@ -13,6 +13,7 @@ export default function HomePage() {
       {/* ── Hero ── */}
       <section
         className="relative overflow-hidden"
+        style={{ backgroundColor: "#2A1506" }}
         aria-label="כותרת ראשית"
       >
         {/* Background video */}
