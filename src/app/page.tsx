@@ -25,7 +25,7 @@ export default function HomePage() {
           aria-hidden="true"
         >
           <source
-            src="/coffee-roasting.mp4"
+            src="/coffee-roasting.mp4.mp4"
             type="video/mp4"
           />
         </video>
