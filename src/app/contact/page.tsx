@@ -81,7 +81,7 @@ export default function ContactPage() {
                 </a>
 
                 <a
-                  href="mailto:info@gintzcoffee.co.il"
+                  href="mailto:sales@aspagil.com"
                   className="flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow group focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
                 >
                   <span className="w-12 h-12 rounded-full bg-gold/15 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-white transition-colors flex-shrink-0">
@@ -90,7 +90,7 @@ export default function ContactPage() {
                   <div>
                     <p className="text-xs text-brown/50 mb-0.5">אימייל</p>
                     <p className="font-bold text-brown" dir="ltr">
-                      info@gintzcoffee.co.il
+                      sales@aspagil.com
                     </p>
                   </div>
                 </a>
@@ -134,6 +134,7 @@ export default function ContactPage() {
                       </tr>
                     </tbody>
                   </table>
+                  <p className="text-xs text-gold font-medium mt-3">* יש לתאם הגעה מראש</p>
                 </div>
               </div>
 

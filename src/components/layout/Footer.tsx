@@ -66,11 +66,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@gintzcoffee.co.il"
+                  href="mailto:sales@aspagil.com"
                   className="flex items-center gap-2.5 text-cream/65 hover:text-gold text-sm transition-colors"
                 >
                   <Mail className="w-4 h-4 text-gold flex-shrink-0" aria-hidden="true" />
-                  <span dir="ltr">info@gintzcoffee.co.il</span>
+                  <span dir="ltr">sales@aspagil.com</span>
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-cream/65 text-sm">
