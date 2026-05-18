@@ -23,10 +23,37 @@ export default function Footer() {
                 Gintz Coffee
               </span>
             </div>
-            <p className="text-cream/65 text-sm leading-relaxed">
+            <p className="text-cream/65 text-sm leading-relaxed mb-5">
               פתרונות קפה מלאים לעסקים. מכונות, פולים וכוסות ממותגות — הכל ממקום אחד,
               בשירות אישי ומחיר משתלם.
             </p>
+            {/* Social */}
+            <div className="flex gap-3">
+              <a
+                href="https://www.facebook.com/share/1BocDeD4Xd/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="קפה גינץ בפייסבוק"
+                className="w-9 h-9 rounded-full bg-cream/10 hover:bg-gold flex items-center justify-center transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" />
+                </svg>
+              </a>
+              <a
+                href="https://www.instagram.com/gintzcoffee"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="קפה גינץ באינסטגרם"
+                className="w-9 h-9 rounded-full bg-cream/10 hover:bg-gold flex items-center justify-center transition-colors"
+              >
+                <svg viewBox="0 0 24 24" className="w-4 h-4 fill-none stroke-current stroke-2" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
+            </div>
           </div>
 
           {/* Quick links */}
