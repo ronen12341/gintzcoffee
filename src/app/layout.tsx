@@ -25,12 +25,45 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "קפה גינץ | פתרונות קפה לעסקים",
+    default: "קפה גינץ | פתרונות קפה למשרד ולעסק",
     template: "%s | קפה גינץ",
   },
   description:
-    "מכונות קפה לעסקים, פולי קפה איכותיים וכוסות ממותגות. קפה גינץ — שותף הקפה שלכם.",
-  keywords: ["מכונות קפה", "פולי קפה", "כוסות ממותגות", "קפה לעסקים", "גינץ קפה"],
+    "קפה גינץ — בית קלייה בוטיק מאז 2005. פתרונות קפה למשרד ולעסק: מכונת קפה למשרד, פולי קפה טריים וכוסות ממותגות. קפה לעסק בהתאמה אישית, אספקה תוך 48 שעות.",
+  keywords: [
+    "פתרונות קפה למשרד",
+    "פתרונות קפה לעסק",
+    "קפה למשרד",
+    "קפה לעסק",
+    "מכונת קפה למשרד",
+    "מכונות קפה לעסקים",
+    "בית קלייה בוטיק",
+    "פולי קפה טריים",
+    "קפה גינץ",
+    "כוסות ממותגות",
+    "קפה בני ברק",
+  ],
+  metadataBase: new URL("https://www.gintz.co.il"),
+  alternates: {
+    canonical: "https://www.gintz.co.il",
+  },
+  openGraph: {
+    type: "website",
+    locale: "he_IL",
+    url: "https://www.gintz.co.il",
+    siteName: "קפה גינץ",
+    title: "קפה גינץ | פתרונות קפה למשרד ולעסק",
+    description:
+      "בית קלייה בוטיק מאז 2005. מכונת קפה למשרד, פולי קפה טריים וכוסות ממותגות. קפה לעסק בהתאמה אישית.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -45,6 +78,55 @@ export default function RootLayout({
       className={`${heebo.variable} ${playfair.variable} ${montserrat.variable}`}
     >
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              name: "קפה גינץ",
+              alternateName: "Gintz Coffee",
+              description:
+                "בית קלייה בוטיק מאז 2005. פתרונות קפה למשרד ולעסק: מכונות קפה, פולי קפה טריים וכוסות ממותגות בהתאמה אישית.",
+              url: "https://www.gintz.co.il",
+              telephone: "+97239600550",
+              email: "sales@aspagil.com",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "הירקון 39",
+                addressLocality: "בני ברק",
+                addressCountry: "IL",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 32.0853,
+                longitude: 34.8337,
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+                  opens: "08:00",
+                  closes: "17:00",
+                },
+              ],
+              priceRange: "$$",
+              servesCuisine: "קפה",
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "פתרונות קפה לעסקים",
+                itemListElement: [
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "מכונת קפה למשרד" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "פולי קפה טריים לעסקים" } },
+                  { "@type": "Offer", itemOffered: { "@type": "Service", name: "כוסות ממותגות לעסקים" } },
+                ],
+              },
+              sameAs: [
+                "https://wa.me/97239600550",
+              ],
+            }),
+          }}
+        />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:start-4 focus:z-50 focus:bg-gold focus:text-white focus:px-4 focus:py-2 focus:rounded"

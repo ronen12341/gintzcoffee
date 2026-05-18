@@ -4,8 +4,17 @@ import LeadForm from "@/components/LeadForm";
 import { coffeeBeans } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "פולי קפה",
-  description: "פולי קפה פרימיום לעסקים. תערובות קלויות טרייה ומסופקות ישירות אליכם.",
+  title: "פולי קפה טריים לעסק ולמשרד | בית קלייה בוטיק",
+  description:
+    "פולי קפה טריים לעסק ולמשרד מבית קלייה גינץ. קלייה בוטיק בהתאמה אישית לפי הטעם שלכם. קפה לעסק שמגיע טרי עד 10 ימים מהקלייה.",
+  keywords: [
+    "פולי קפה לעסק",
+    "קפה למשרד",
+    "פתרונות קפה למשרד",
+    "בית קלייה בוטיק",
+    "קפה טרי לעסקים",
+    "קלייה בהתאמה אישית",
+  ],
 };
 
 export default function BeansPage() {
