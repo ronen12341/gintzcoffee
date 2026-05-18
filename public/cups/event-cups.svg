@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F5F0E8"/>
+  <!-- Elegant event setting: two tall cups with decorative elements -->
+  <!-- Left cup -->
+  <path d="M90 110 L185 110 L168 310 L107 310 Z" fill="#fff" stroke="#D4A857" stroke-width="2"/>
+  <rect x="84" y="99" width="107" height="15" rx="7.5" fill="#2A1506"/>
+  <!-- Sleeve left -->
+  <path d="M99 185 L176 185 L169 235 L106 235 Z" fill="#2A1506"/>
+  <text x="137" y="213" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#D4A857">קפה גינץ</text>
+  <!-- Decorative line left -->
+  <path d="M104 165 L172 165" stroke="#D4A857" stroke-width="1" opacity="0.4"/>
+  <!-- Right cup -->
+  <path d="M215 110 L310 110 L293 310 L232 310 Z" fill="#fff" stroke="#D4A857" stroke-width="2"/>
+  <rect x="209" y="99" width="107" height="15" rx="7.5" fill="#2A1506"/>
+  <!-- Sleeve right -->
+  <path d="M224 185 L301 185 L294 235 L231 235 Z" fill="#2A1506"/>
+  <text x="262" y="213" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#D4A857">קפה גינץ</text>
+  <!-- Decorative line right -->
+  <path d="M229 165 L297 165" stroke="#D4A857" stroke-width="1" opacity="0.4"/>
+  <!-- Steam left cup -->
+  <path d="M125 78 Q130 63 125 48" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M145 73 Q150 58 145 43" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <!-- Steam right cup -->
+  <path d="M250 78 Q255 63 250 48" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M270 73 Q275 58 270 43" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <!-- Star sparkles for event feel -->
+  <polygon points="200,22 202,28 208,28 203,32 205,38 200,34 195,38 197,32 192,28 198,28" fill="#D4A857" opacity="0.8"/>
+  <polygon points="60,200 61.5,204.5 66,204.5 62.5,207 64,211.5 60,209 56,211.5 57.5,207 54,204.5 58.5,204.5" fill="#D4A857" opacity="0.5"/>
+  <polygon points="340,200 341.5,204.5 346,204.5 342.5,207 344,211.5 340,209 336,211.5 337.5,207 334,204.5 338.5,204.5" fill="#D4A857" opacity="0.5"/>
+  <!-- Bottom ellipses -->
+  <ellipse cx="137" cy="310" rx="30" ry="6" fill="#e8ddd0"/>
+  <ellipse cx="262" cy="310" rx="30" ry="6" fill="#e8ddd0"/>
+</svg>

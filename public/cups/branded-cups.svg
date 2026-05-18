@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F5F0E8"/>
+  <!-- Cup body -->
+  <path d="M130 100 L270 100 L245 320 L155 320 Z" fill="#fff" stroke="#D4A857" stroke-width="2"/>
+  <!-- Cup top rim -->
+  <rect x="125" y="90" width="150" height="18" rx="9" fill="#2A1506"/>
+  <!-- Cup sleeve -->
+  <path d="M140 180 L260 180 L252 240 L148 240 Z" fill="#2A1506"/>
+  <!-- Logo area on sleeve -->
+  <text x="200" y="218" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="14" fill="#D4A857">קפה גינץ</text>
+  <text x="200" y="234" text-anchor="middle" font-family="Arial" font-size="9" fill="#D4A857">GINTZ COFFEE</text>
+  <!-- Cup design lines -->
+  <path d="M145 160 L255 160" stroke="#D4A857" stroke-width="1" opacity="0.4"/>
+  <path d="M148 250 L252 250" stroke="#D4A857" stroke-width="1" opacity="0.4"/>
+  <!-- Steam -->
+  <path d="M170 70 Q175 55 170 40" fill="none" stroke="#D4A857" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M200 65 Q205 48 200 33" fill="none" stroke="#D4A857" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <path d="M230 70 Q235 55 230 40" fill="none" stroke="#D4A857" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+  <!-- Bottom -->
+  <ellipse cx="200" cy="320" rx="45" ry="8" fill="#e8ddd0"/>
+  <!-- Stars decoration -->
+  <circle cx="155" cy="140" r="3" fill="#D4A857" opacity="0.5"/>
+  <circle cx="245" cy="140" r="3" fill="#D4A857" opacity="0.5"/>
+  <circle cx="160" cy="270" r="2" fill="#D4A857" opacity="0.4"/>
+  <circle cx="240" cy="270" r="2" fill="#D4A857" opacity="0.4"/>
+</svg>

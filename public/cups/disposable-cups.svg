@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F5F0E8"/>
+  <!-- Three cups -->
+  <!-- Cup 1 (back left) -->
+  <path d="M80 130 L170 130 L155 300 L95 300 Z" fill="#e8ddd0" stroke="#c4a882" stroke-width="1.5"/>
+  <rect x="75" y="120" width="100" height="14" rx="7" fill="#5C3015"/>
+  <path d="M88 195 L162 195 L156 235 L94 235 Z" fill="#5C3015"/>
+  <text x="125" y="220" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#D4A857">גינץ</text>
+  <!-- Cup 2 (back right) -->
+  <path d="M230 120 L330 120 L313 300 L247 300 Z" fill="#e8ddd0" stroke="#c4a882" stroke-width="1.5"/>
+  <rect x="225" y="110" width="110" height="14" rx="7" fill="#5C3015"/>
+  <path d="M238 185 L320 185 L312 228 L246 228 Z" fill="#5C3015"/>
+  <text x="280" y="211" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#D4A857">גינץ</text>
+  <!-- Cup 3 (front center) -->
+  <path d="M140 90 L270 90 L248 300 L162 300 Z" fill="#fff" stroke="#D4A857" stroke-width="2"/>
+  <rect x="134" y="78" width="142" height="18" rx="9" fill="#2A1506"/>
+  <path d="M150 175 L260 175 L251 230 L159 230 Z" fill="#2A1506"/>
+  <text x="205" y="206" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="13" fill="#D4A857">קפה גינץ</text>
+  <text x="205" y="221" text-anchor="middle" font-family="Arial" font-size="8" fill="#D4A857">GINTZ COFFEE</text>
+  <path d="M155 155 L255 155" stroke="#D4A857" stroke-width="1" opacity="0.3"/>
+  <path d="M158 245 L252 245" stroke="#D4A857" stroke-width="1" opacity="0.3"/>
+  <!-- Steam front cup -->
+  <path d="M185 60 Q190 45 185 30" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M205 55 Q210 40 205 25" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+  <path d="M225 60 Q230 45 225 30" fill="none" stroke="#D4A857" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+</svg>

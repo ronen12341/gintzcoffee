@@ -45,13 +45,13 @@ export default function CupsPage() {
                 key={cat.id}
                 className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all flex flex-col"
               >
-                <div className="relative w-full aspect-square">
+                <div className="relative w-full aspect-square bg-[#F5F0E8]">
                   {cat.image ? (
                     <Image
                       src={cat.image}
                       alt={cat.name}
                       fill
-                      className="object-cover"
+                      className="object-contain p-4"
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
