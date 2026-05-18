@@ -57,7 +57,7 @@ export default function BeansPage() {
                   <img
                     src={bean.image}
                     alt={bean.name}
-                    className="w-full h-52 object-cover bg-white"
+                    className="w-full h-52 object-contain bg-white"
                   />
                 ) : (
                   <ImagePlaceholder label="הוסף תמונה" width={300} height={400} />
