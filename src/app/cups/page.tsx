@@ -56,9 +56,6 @@ export default function CupsPage() {
                   )}
                 </div>
                 <div className="p-5 flex flex-col flex-1">
-                  <span className="text-xs text-gold font-semibold mb-1 block">
-                    מינ׳ {cat.minQuantity.toLocaleString("he-IL")} יחידות
-                  </span>
                   <h3 className="text-brown font-bold text-base mb-2">{cat.name}</h3>
                   <p className="text-brown/65 text-sm leading-relaxed flex-1">{cat.description}</p>
                   <a
