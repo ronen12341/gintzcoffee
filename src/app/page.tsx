@@ -51,7 +51,7 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 text-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
           <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold mb-4 font-heebo">
             קפה גינץ
           </h2>
