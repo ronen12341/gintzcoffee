@@ -20,9 +20,6 @@ export default function CupsPage() {
         aria-labelledby="cups-heading"
       >
         <div className="max-w-3xl mx-auto px-4">
-            <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gil Cups · קפה גינץ
-          </p>
           <h1 id="cups-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             כוסות ממותגות לעסקים
           </h1>
