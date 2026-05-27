@@ -61,6 +61,8 @@ export const coffeeMachines: Machine[] = [
     features: ["35 משקאות (9 Cold Brew)", "מטחנת P.A.G.2+", "עד 100 ספלים ביום", "מסך 3.5 אינץ' + מקשים פיזיים", "תמיכה בתשלום חכם (MDB)"],
     featured: true,
     image: "https://www.jura.co.il/wp-content/uploads/2024/06/X10Main.webp",
+    price: "11,250 ש\"ח",
+    priceNumeric: 11250,
   },
   {
     id: "jura-e8",
@@ -92,6 +94,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: true,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "single-origin-ethiopia",
@@ -102,6 +106,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: true,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "office-blend",
@@ -112,6 +118,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "brazil-cerrado",
@@ -122,6 +130,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "colombia-supremo",
@@ -132,6 +142,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "costa-rica",
@@ -142,6 +154,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "guatemala",
@@ -152,6 +166,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "kenya-aa",
@@ -162,6 +178,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "india-monsoon",
@@ -172,6 +190,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "platinum-blend",
@@ -182,6 +202,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "decaf",
@@ -192,6 +214,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "silver-blend",
@@ -202,6 +226,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
 ];
 
