@@ -302,6 +302,13 @@ export const usedMachines: UsedMachine[] = [
     condition: "אחרי שיפוץ",
   },
   {
+    id: "used-bezzera-arcadia-2gr",
+    name: "Bezzera ARCADIA DE PID 2GR – מכונה מקצועית",
+    description:
+      "מכונת אספרסו מקצועית של בזרה האיטלקית, דגם ARCADIA עם 2 ראשי הכנה (2GR). מתאימה לבתי קפה, מסעדות ועסקים בעלי תפוקה גבוהה. בקרת טמפרטורה PID, חימום מהיר ויציבות מעולה. חיבור ישיר למים (DE).",
+    condition: "מצב טוב מאוד",
+  },
+  {
     id: "used-saeco-royal",
     name: "סאקו רויאל – מכונות יד2",
     description:
