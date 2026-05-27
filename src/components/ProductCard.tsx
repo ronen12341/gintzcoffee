@@ -7,6 +7,8 @@ interface ProductCardProps {
   name: string;
   description: string;
   priceRange?: string;
+  /** Strike-through original price shown next to the current price (e.g. for sales/used items) */
+  originalPrice?: string;
   image?: string;
   badge?: string;
   ctaLabel?: string;
@@ -21,6 +23,7 @@ export default function ProductCard({
   name,
   description,
   priceRange,
+  originalPrice,
   image,
   badge,
   ctaLabel = "לפרטים והצעת מחיר",
@@ -56,8 +59,13 @@ export default function ProductCard({
         <p className="text-brown/65 text-sm mb-3 leading-relaxed flex-1">{description}</p>
 
         {priceRange && (
-          <div className="mb-3 flex items-baseline gap-2">
+          <div className="mb-3 flex items-baseline gap-2 flex-wrap">
             <span className="text-gold font-bold text-xl">{priceRange}</span>
+            {originalPrice && (
+              <span className="text-brown/50 text-sm line-through decoration-red-500 decoration-2">
+                {originalPrice}
+              </span>
+            )}
             <span className="text-brown/50 text-xs">מחיר לקנייה</span>
           </div>
         )}

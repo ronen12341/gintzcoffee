@@ -39,6 +39,12 @@ export interface UsedMachine {
   description: string;
   condition: string;
   image?: string;
+  /** Our selling price (display string) */
+  price?: string;
+  /** Numeric price in NIS for cart totals */
+  priceNumeric?: number;
+  /** Original / new-machine price — shown with strike-through */
+  originalPrice?: string;
 }
 
 export const coffeeMachines: Machine[] = [
@@ -307,6 +313,9 @@ export const usedMachines: UsedMachine[] = [
     description:
       "מכונת אספרסו מקצועית של בזרה האיטלקית, דגם ARCADIA עם 2 ראשי הכנה (2GR). מתאימה לבתי קפה, מסעדות ועסקים בעלי תפוקה גבוהה. בקרת טמפרטורה PID, חימום מהיר ויציבות מעולה. חיבור ישיר למים (DE).",
     condition: "מצב טוב מאוד",
+    price: "6,500 ש\"ח",
+    priceNumeric: 6500,
+    originalPrice: "14,990 ש\"ח",
   },
   {
     id: "used-saeco-royal",

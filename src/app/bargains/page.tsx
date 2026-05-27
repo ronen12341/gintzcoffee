@@ -59,6 +59,16 @@ export default function BargainsPage() {
                 ctaHref="#contact"
                 ctaLabel="לפרטים ורכישה"
                 features={[`מצב: ${m.condition}`]}
+                priceRange={m.price}
+                originalPrice={m.originalPrice}
+                cartItem={{
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  priceNumeric: m.priceNumeric,
+                  category: "used",
+                  image: m.image,
+                }}
               />
             ))}
           </div>
