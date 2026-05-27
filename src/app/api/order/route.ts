@@ -229,7 +229,7 @@ export async function POST(req: NextRequest) {
   try {
     const { error } = await resend.emails.send({
       from: "קפה גינץ <onboarding@resend.dev>",
-      to: "salesaspagil@gmail.com",
+      to: "ronen@aspagil.com",
       replyTo: body.customer.email || undefined,
       subject,
       html,
@@ -249,21 +249,11 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Secondary recipient — Ronen's personal inbox. Fire-and-forget; failures
-  // (e.g., Resend free-tier restriction on unverified addresses) shouldn't
-  // block the order.
-  resend.emails
-    .send({
-      from: "קפה גינץ <onboarding@resend.dev>",
-      to: "ronen12341@gmail.com",
-      replyTo: body.customer.email || undefined,
-      subject,
-      html,
-    })
-    .then((res) => {
-      if (res.error) console.error("Secondary email failed:", res.error);
-    })
-    .catch((err) => console.error("Secondary email exception:", err));
+  // NOTE: Secondary recipient (e.g., ronen12341@gmail.com or
+  // salesaspagil@gmail.com) was removed because Resend's free tier with the
+  // shared sender domain (onboarding@resend.dev) only allows sending to the
+  // account owner's verified address. To enable additional recipients, verify
+  // a custom domain in Resend (Settings → Domains) and switch `from:` to use it.
 
   // Fire-and-forget WhatsApp
   sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
