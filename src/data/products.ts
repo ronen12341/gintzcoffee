@@ -5,6 +5,7 @@ export interface Machine {
   features: string[];
   featured?: boolean;
   image?: string;
+  price?: string;
 }
 
 export interface Bean {
@@ -42,6 +43,7 @@ export const coffeeMachines: Machine[] = [
     features: ["51 התמחויות", "מטחנת P.R.G.2+", "עד 50 ספלים ביום", "Wi-Fi + אפליקציית J.O.E."],
     featured: true,
     image: "https://www.jura.co.il/wp-content/uploads/2026/05/Z10_1.webp",
+    price: "11,200 ש\"ח",
   },
   {
     id: "jura-x10",

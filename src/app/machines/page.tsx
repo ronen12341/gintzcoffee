@@ -54,6 +54,7 @@ export default function MachinesPage() {
                 description={m.description}
                 features={m.features}
                 image={m.image}
+                priceRange={m.price}
                 ctaHref="#contact"
                 ctaLabel="לפרטים והצעת מחיר"
                 imageContain={m.id === "melitta-solo-silver"}

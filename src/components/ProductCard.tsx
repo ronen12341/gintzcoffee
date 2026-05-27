@@ -50,6 +50,13 @@ export default function ProductCard({
         <h3 className="text-brown font-bold text-lg mb-2 leading-snug">{name}</h3>
         <p className="text-brown/65 text-sm mb-3 leading-relaxed flex-1">{description}</p>
 
+        {priceRange && (
+          <div className="mb-3 flex items-baseline gap-2">
+            <span className="text-gold font-bold text-xl">{priceRange}</span>
+            <span className="text-brown/50 text-xs">מחיר לקנייה</span>
+          </div>
+        )}
+
         {features && features.length > 0 && (
           <ul className="mb-3 space-y-1">
             {features.map((f) => (
