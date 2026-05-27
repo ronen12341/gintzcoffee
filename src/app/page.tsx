@@ -297,6 +297,7 @@ export default function HomePage() {
                 description={m.description}
                 features={m.features}
                 image={m.image}
+                priceRange={m.price}
                 ctaHref="#contact"
               />
             ))}
