@@ -72,6 +72,8 @@ export const coffeeMachines: Machine[] = [
     features: ["27 משקאות מיוחדים", "מטחנת P.A.G.2", "עד 40 ספלים ביום", "מסך צבעוני 3.5 אינץ'", "תמיכה ב-J.O.E.® App"],
     featured: true,
     image: "https://www.jura.co.il/wp-content/uploads/2026/05/E8_MS1.webp",
+    price: "6,300 ש\"ח",
+    priceNumeric: 6300,
   },
   {
     id: "melitta-solo-silver",
@@ -81,6 +83,8 @@ export const coffeeMachines: Machine[] = [
     features: ["15 בר לחץ", "3 רמות ארומה", "מיכל מים 1.2 ליטר", "מיכל פולים 125 גרם", "שפיכה מתכווננת עד 135 מ\"מ"],
     featured: false,
     image: "https://www.coffeeman.co.il/images/itempics/900602_05042025131742.jpg",
+    price: "1,880 ש\"ח",
+    priceNumeric: 1880,
   },
 ];
 
