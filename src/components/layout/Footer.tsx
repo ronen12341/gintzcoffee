@@ -6,7 +6,7 @@ const links = [
   { href: "/machines", label: "מכונות קפה" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/cups", label: "כוסות ממותגות" },
-  { href: "/bargains", label: "מציאון" },
+  { href: "/bargains", label: "מכונות יד2" },
   { href: "/contact", label: "צור קשר" },
 ];
 

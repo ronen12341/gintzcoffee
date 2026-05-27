@@ -4,7 +4,7 @@ import LeadForm from "@/components/LeadForm";
 import { usedMachines } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "מציאון – מכונות קפה משומשות",
+  title: "מכונות יד2 – מכונות קפה משומשות",
   description:
     "מכונות קפה יד שנייה ומשופצות במחירים מיוחדים. מגיעות עם בדיקה ואחריות.",
 };
@@ -20,10 +20,10 @@ export default function BargainsPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · מציאון
+            Gintz Coffee · מכונות יד2
           </p>
           <h1 id="bargains-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מציאון — מכונות משומשות
+            מכונות יד2 — מכונות משומשות
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
             מכונות קפה איכותיות יד שנייה, מבודקות ומשופצות. הזדמנות מצוינת לעסקים שרוצים
@@ -36,7 +36,7 @@ export default function BargainsPage() {
       <div className="bg-gold/10 border-b border-gold/20 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 justify-center text-sm text-brown/70">
           <span className="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
-            מציאון
+            מכונות יד2
           </span>
           <span>כל המכונות עברו בדיקה טכנית ומגיעות עם אחריות מינימום 3 חודשים</span>
         </div>
@@ -55,7 +55,7 @@ export default function BargainsPage() {
                 name={m.name}
                 description={m.description}
                 image={m.image}
-                badge="מציאון"
+                badge="מכונות יד2"
                 ctaHref="#contact"
                 ctaLabel="לפרטים ורכישה"
                 features={[`מצב: ${m.condition}`]}

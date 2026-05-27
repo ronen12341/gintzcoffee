@@ -303,7 +303,7 @@ export const usedMachines: UsedMachine[] = [
   },
   {
     id: "used-saeco-royal",
-    name: "סאקו רויאל – מציאון",
+    name: "סאקו רויאל – מכונות יד2",
     description:
       "מכונת תצוגה. שימוש מינימלי. כמו חדשה. ללא קופסה מקורית.",
     condition: "כמו חדש",
