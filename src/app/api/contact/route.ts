@@ -51,7 +51,7 @@ export async function POST(req: NextRequest) {
   try {
     const { error } = await resend.emails.send({
       from: "קפה גינץ <onboarding@resend.dev>",
-      to: "sales@aspagil.com",
+      to: "salesaspagil@gmail.com",
       replyTo: email || undefined,
       subject,
       html,

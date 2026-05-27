@@ -91,7 +91,7 @@ export default function RootLayout({
                 "בית קלייה בוטיק מאז 2005. פתרונות קפה למשרד ולעסק: מכונות קפה, פולי קפה טריים וכוסות ממותגות בהתאמה אישית.",
               url: "https://www.gintz.co.il",
               telephone: "+97239600550",
-              email: "sales@aspagil.com",
+              email: "salesaspagil@gmail.com",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "הירקון 39",
