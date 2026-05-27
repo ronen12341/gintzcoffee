@@ -235,9 +235,9 @@ export default function CheckoutPage() {
             </ul>
             {totalPrice > 0 && (
               <div className="border-t-2 border-brown pt-3 flex justify-between items-baseline">
-                <span className="font-bold text-brown">סה"כ:</span>
+                <span className="font-bold text-brown">{'סה"כ:'}</span>
                 <span className="text-2xl font-bold text-gold">
-                  {totalPrice.toLocaleString("he-IL")} ש"ח
+                  {`${totalPrice.toLocaleString("he-IL")} ש"ח`}
                 </span>
               </div>
             )}

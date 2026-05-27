@@ -79,7 +79,7 @@ export default function BeansPage() {
                   {bean.price && (
                     <div className="mt-3 mb-1 flex items-baseline gap-2">
                       <span className="text-gold font-bold text-xl">{bean.price}</span>
-                      <span className="text-brown/50 text-xs">לק"ג</span>
+                      <span className="text-brown/50 text-xs">{'לק"ג'}</span>
                     </div>
                   )}
                   <div className="mt-5 flex flex-col gap-2">
