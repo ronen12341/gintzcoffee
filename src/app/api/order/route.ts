@@ -224,39 +224,48 @@ export async function POST(req: NextRequest) {
   const waText = buildWhatsAppText(orderId, body);
   const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name}`;
 
-  // Recipients — send separately so a single failure (e.g., Resend free-tier
-  // restriction on unverified addresses) doesn't kill the whole order.
-  const recipients = ["sales@aspagil.com", "ronen12341@gmail.com"];
-
-  const results = await Promise.allSettled(
-    recipients.map((to) =>
-      resend.emails.send({
-        from: "קפה גינץ <onboarding@resend.dev>",
-        to,
-        replyTo: body.customer.email || undefined,
-        subject,
-        html,
-      })
-    )
-  );
-
-  const successCount = results.filter(
-    (r) => r.status === "fulfilled" && !r.value.error
-  ).length;
-
-  results.forEach((r, i) => {
-    if (r.status === "rejected") {
-      console.error(`Email to ${recipients[i]} rejected:`, r.reason);
-    } else if (r.value.error) {
-      console.error(`Email to ${recipients[i]} failed:`, r.value.error);
+  // Primary recipient — known-verified address that works on Resend's free
+  // tier. Must succeed for the order to be considered submitted.
+  try {
+    const { error } = await resend.emails.send({
+      from: "קפה גינץ <onboarding@resend.dev>",
+      to: "sales@aspagil.com",
+      replyTo: body.customer.email || undefined,
+      subject,
+      html,
+    });
+    if (error) {
+      console.error("Primary email send failed:", error);
+      return NextResponse.json(
+        { ok: false, error: "email failed", detail: error.message },
+        { status: 500 }
+      );
     }
-  });
-
-  if (successCount === 0) {
-    return NextResponse.json({ ok: false, error: "email failed" }, { status: 500 });
+  } catch (err) {
+    console.error("Primary email exception:", err);
+    return NextResponse.json(
+      { ok: false, error: "email exception" },
+      { status: 500 }
+    );
   }
 
-  // Fire-and-forget WhatsApp (don't block)
+  // Secondary recipient — Ronen's personal inbox. Fire-and-forget; failures
+  // (e.g., Resend free-tier restriction on unverified addresses) shouldn't
+  // block the order.
+  resend.emails
+    .send({
+      from: "קפה גינץ <onboarding@resend.dev>",
+      to: "ronen12341@gmail.com",
+      replyTo: body.customer.email || undefined,
+      subject,
+      html,
+    })
+    .then((res) => {
+      if (res.error) console.error("Secondary email failed:", res.error);
+    })
+    .catch((err) => console.error("Secondary email exception:", err));
+
+  // Fire-and-forget WhatsApp
   sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
 
   return NextResponse.json({ ok: true, orderId });
