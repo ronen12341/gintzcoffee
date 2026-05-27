@@ -313,9 +313,10 @@ export const usedMachines: UsedMachine[] = [
     description:
       "מכונת אספרסו מקצועית של בזרה האיטלקית, דגם ARCADIA עם 2 ראשי הכנה (2GR). מתאימה לבתי קפה, מסעדות ועסקים בעלי תפוקה גבוהה. בקרת טמפרטורה PID, חימום מהיר ויציבות מעולה. חיבור ישיר למים (DE).",
     condition: "מצב טוב מאוד",
-    price: "6,500 ש\"ח",
-    priceNumeric: 6500,
-    originalPrice: "14,990 ש\"ח",
+    image: "/bezzera-arcadia.jpg.jpg",
+    price: "8,500 ש\"ח",
+    priceNumeric: 8500,
+    originalPrice: "24,900 ש\"ח",
   },
   {
     id: "used-saeco-royal",
