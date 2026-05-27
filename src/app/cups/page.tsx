@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CupsQuoteForm from "@/components/CupsQuoteForm";
+import AddToCartButton from "@/components/AddToCartButton";
 import { cupCategories } from "@/data/products";
 
 export const metadata: Metadata = {
@@ -58,12 +59,28 @@ export default function CupsPage() {
                 <div className="p-5 flex flex-col flex-1">
                   <h3 className="text-brown font-bold text-base mb-2">{cat.name}</h3>
                   <p className="text-brown/65 text-sm leading-relaxed flex-1">{cat.description}</p>
-                  <a
-                    href="#contact"
-                    className="mt-4 block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2 px-4 rounded-lg transition-colors text-sm"
-                  >
-                    לפרטים והצעת מחיר
-                  </a>
+                  <p className="text-xs text-brown/55 mt-2">
+                    כמות מינימום: {cat.minQuantity.toLocaleString("he-IL")} יחידות
+                  </p>
+                  <div className="mt-4 flex flex-col gap-2">
+                    <AddToCartButton
+                      item={{
+                        id: cat.id,
+                        name: cat.name,
+                        price: cat.price,
+                        priceNumeric: cat.priceNumeric,
+                        category: "cup",
+                        image: cat.image,
+                        note: `כמות מינימום: ${cat.minQuantity.toLocaleString("he-IL")} יחידות`,
+                      }}
+                    />
+                    <a
+                      href="#contact"
+                      className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      לפרטים והצעת מחיר
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}

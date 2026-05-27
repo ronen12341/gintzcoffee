@@ -58,6 +58,14 @@ export default function MachinesPage() {
                 ctaHref="#contact"
                 ctaLabel="לפרטים והצעת מחיר"
                 imageContain={m.id === "melitta-solo-silver"}
+                cartItem={{
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  priceNumeric: m.priceNumeric,
+                  category: "machine",
+                  image: m.image,
+                }}
               />
             ))}
           </div>

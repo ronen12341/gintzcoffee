@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Phone, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import CartIcon from "@/components/layout/CartIcon";
 
 const navLinks = [
   { href: "/", label: "בית" },
@@ -64,7 +65,7 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Phone + hamburger */}
+          {/* Phone + cart + hamburger */}
           <div className="flex items-center gap-3">
             <a
               href="tel:0399600550"
@@ -74,6 +75,7 @@ export default function Navbar() {
               <Phone className="w-4 h-4" aria-hidden="true" />
               <span dir="ltr">03-9600550</span>
             </a>
+            <CartIcon />
             <button
               className="md:hidden text-cream p-1.5 rounded-md hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-gold"
               onClick={() => setOpen((v) => !v)}

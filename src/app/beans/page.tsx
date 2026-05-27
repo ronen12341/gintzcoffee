@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import LeadForm from "@/components/LeadForm";
+import AddToCartButton from "@/components/AddToCartButton";
 import { coffeeBeans } from "@/data/products";
 
 export const metadata: Metadata = {
@@ -75,12 +76,30 @@ export default function BeansPage() {
                   <p className="text-brown/65 text-sm leading-relaxed flex-1">
                     {bean.description}
                   </p>
-                  <a
-                    href="#contact"
-                    className="mt-5 block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-                  >
-                    לפרטים והצעת מחיר
-                  </a>
+                  {bean.price && (
+                    <div className="mt-3 mb-1 flex items-baseline gap-2">
+                      <span className="text-gold font-bold text-xl">{bean.price}</span>
+                      <span className="text-brown/50 text-xs">לק"ג</span>
+                    </div>
+                  )}
+                  <div className="mt-5 flex flex-col gap-2">
+                    <AddToCartButton
+                      item={{
+                        id: bean.id,
+                        name: bean.name,
+                        price: bean.price,
+                        priceNumeric: bean.priceNumeric,
+                        category: "bean",
+                        image: bean.image,
+                      }}
+                    />
+                    <a
+                      href="#contact"
+                      className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
+                    >
+                      לפרטים והצעת מחיר
+                    </a>
+                  </div>
                 </div>
               </article>
             ))}

@@ -5,7 +5,10 @@ export interface Machine {
   features: string[];
   featured?: boolean;
   image?: string;
+  /** Display price string like "11,200 ש\"ח" */
   price?: string;
+  /** Numeric price in NIS — used for cart totals calculation */
+  priceNumeric?: number;
 }
 
 export interface Bean {
@@ -16,6 +19,8 @@ export interface Bean {
   roast: string;
   featured?: boolean;
   image?: string;
+  price?: string;
+  priceNumeric?: number;
 }
 
 export interface CupCategory {
@@ -24,6 +29,8 @@ export interface CupCategory {
   description: string;
   minQuantity: number;
   image?: string;
+  price?: string;
+  priceNumeric?: number;
 }
 
 export interface UsedMachine {
@@ -44,6 +51,7 @@ export const coffeeMachines: Machine[] = [
     featured: true,
     image: "https://www.jura.co.il/wp-content/uploads/2026/05/Z10_1.webp",
     price: "11,200 ש\"ח",
+    priceNumeric: 11200,
   },
   {
     id: "jura-x10",

@@ -299,6 +299,14 @@ export default function HomePage() {
                 image={m.image}
                 priceRange={m.price}
                 ctaHref="#contact"
+                cartItem={{
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  priceNumeric: m.priceNumeric,
+                  category: "machine",
+                  image: m.image,
+                }}
               />
             ))}
           </div>

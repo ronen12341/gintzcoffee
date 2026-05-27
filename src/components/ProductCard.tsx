@@ -1,5 +1,7 @@
 import Image from "next/image";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import AddToCartButton from "@/components/AddToCartButton";
+import type { CartItem } from "@/lib/cart";
 
 interface ProductCardProps {
   name: string;
@@ -11,6 +13,8 @@ interface ProductCardProps {
   ctaHref?: string;
   features?: string[];
   imageContain?: boolean;
+  /** When set, an "Add to cart" button is rendered alongside the CTA. */
+  cartItem?: Omit<CartItem, "qty">;
 }
 
 export default function ProductCard({
@@ -23,6 +27,7 @@ export default function ProductCard({
   ctaHref = "#contact",
   features,
   imageContain = false,
+  cartItem,
 }: ProductCardProps) {
   return (
     <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
@@ -68,12 +73,15 @@ export default function ProductCard({
           </ul>
         )}
 
-        <a
-          href={ctaHref}
-          className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-        >
-          {ctaLabel}
-        </a>
+        <div className="flex flex-col gap-2 mt-auto">
+          {cartItem && <AddToCartButton item={cartItem} />}
+          <a
+            href={ctaHref}
+            className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
+          >
+            {ctaLabel}
+          </a>
+        </div>
       </div>
     </article>
   );
