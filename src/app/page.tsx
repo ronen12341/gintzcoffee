@@ -77,7 +77,7 @@ export default function HomePage() {
               href="#products"
               className="border-2 border-cream/60 text-cream hover:bg-cream hover:text-brown font-bold px-8 py-3.5 rounded-full text-base transition-colors focus:outline-none focus:ring-2 focus:ring-cream focus:ring-offset-2 focus:ring-offset-brown"
             >
-              הכר את המוצרים
+              הכר את מכונות הקפה שלנו
             </a>
           </div>
         </div>
