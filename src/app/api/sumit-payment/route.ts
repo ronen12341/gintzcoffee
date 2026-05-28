@@ -14,12 +14,12 @@ const SUMIT_API_KEY =
 const SUMIT_COMPANY_ID = Number(process.env.SUMIT_COMPANY_ID || "1947861983");
 
 /**
- * Sumit's "Begin redirect for transaction" endpoint.
- * Per the REST API docs at app.sumit.co.il/developers/api the URL is:
- *   POST https://api.sumit.co.il/creditguy/gateway/beginredirect/
+ * Sumit's "Begin redirect for transaction" endpoint at the billing/payments
+ * layer (handles itemized orders + invoice generation, not raw card auth).
+ * Per the public REST docs at app.sumit.co.il/developers/api.
  */
 const SUMIT_BEGIN_REDIRECT_URL =
-  "https://api.sumit.co.il/creditguy/gateway/beginredirect/";
+  "https://api.sumit.co.il/billing/payments/beginredirect/";
 
 interface SumitPaymentRequest {
   amount: number;
@@ -40,12 +40,17 @@ interface SumitResponse {
   Status: string;
   UserErrorMessage?: string;
   TechnicalErrorDetails?: string;
-  Data?: {
-    URL?: string;
-    RedirectURL?: string;
-    PaymentURL?: string;
-    [k: string]: unknown;
-  } | string | null;
+  Data?:
+    | {
+        URL?: string;
+        Url?: string;
+        RedirectURL?: string;
+        PaymentURL?: string;
+        PaymentPageURL?: string;
+        [k: string]: unknown;
+      }
+    | string
+    | null;
 }
 
 export async function POST(req: NextRequest) {
@@ -59,10 +64,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Build the request body Sumit expects. Structure based on public Sumit docs
-  // (REST swagger): Credentials wraps auth, Customer block carries contact
-  // info, Items lists the line items with Cost in NIS, and RedirectURL is
-  // where the browser is sent after a successful charge.
+  // Body shape per Sumit's beginredirect spec:
+  //   { Customer, Items: [{ Item, Quantity, UnitPrice }], VATIncluded,
+  //     RedirectURL, CancelRedirectURL, ExternalIdentifier, Credentials }
+  // Prices are passed via Items[].UnitPrice (in NIS). VATIncluded=true tells
+  // Sumit our amount already includes VAT — appropriate for Israeli B2C pricing
+  // where the displayed price on the site is the final price.
   const sumitBody = {
     Credentials: {
       CompanyID: SUMIT_COMPANY_ID,
@@ -70,12 +77,12 @@ export async function POST(req: NextRequest) {
     },
     Customer: {
       Name: body.customer.name,
-      Phone: body.customer.phone,
-      EmailAddress: body.customer.email || "",
-      City: body.customer.city || "",
-      Address: body.customer.address || "",
-      ZipCode: body.customer.zipCode || "",
-      SearchMode: "Automatic",
+      Phone: body.customer.phone || null,
+      EmailAddress: body.customer.email || null,
+      City: body.customer.city || null,
+      Address: body.customer.address || null,
+      ZipCode: body.customer.zipCode || null,
+      SearchMode: 0, // 0 = Automatic (matches existing or creates new)
     },
     Items: [
       {
@@ -84,12 +91,13 @@ export async function POST(req: NextRequest) {
           Description: `מספר הזמנה: ${body.orderId}`,
         },
         Quantity: 1,
-        Cost: body.amount,
-        Currency: "ILS",
+        UnitPrice: body.amount,
+        Description: `הזמנה ${body.orderId}`,
       },
     ],
+    VATIncluded: true,
     RedirectURL: body.successUrl,
-    FailureRedirectURL: body.failureUrl,
+    CancelRedirectURL: body.failureUrl,
     ExternalIdentifier: body.orderId,
   };
 
@@ -141,9 +149,10 @@ export async function POST(req: NextRequest) {
     } else if (data.Data && typeof data.Data === "object") {
       paymentUrl =
         data.Data.URL ||
+        data.Data.Url ||
         data.Data.RedirectURL ||
         data.Data.PaymentURL ||
-        (typeof data.Data.Url === "string" ? data.Data.Url : undefined);
+        data.Data.PaymentPageURL;
     }
 
     if (!paymentUrl) {
