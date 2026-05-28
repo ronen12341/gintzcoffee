@@ -95,15 +95,41 @@ export default function CheckoutPage() {
       // the standard "we'll call you" success page.
       if (paymentMethod === "online" && canPayOnline) {
         const params = new URLSearchParams();
-        // Sumit's payment page accepts several optional pre-fill params. We
-        // send the most common ones; unknown params are ignored by Sumit.
-        params.set("amount", String(totalPrice));
-        params.set("price", String(totalPrice));
+        const amountStr = String(totalPrice);
+        // Sumit's open-amount payment page accepts pre-fill params, but the
+        // exact field names aren't documented publicly. We send every common
+        // variant (lowercase + PascalCase) for amount, email, and phone so
+        // whichever one Sumit listens to gets the right value. Unknown params
+        // are silently ignored.
+        params.set("amount", amountStr);
+        params.set("Amount", amountStr);
+        params.set("sum", amountStr);
+        params.set("Sum", amountStr);
+        params.set("price", amountStr);
+        params.set("Price", amountStr);
+        params.set("total", amountStr);
+        params.set("Total", amountStr);
+        params.set("UnitPrice", amountStr);
+
         params.set("name", form.name);
-        if (form.email) params.set("email", form.email);
-        if (form.phone) params.set("phone", form.phone);
+        params.set("Name", form.name);
+        params.set("CustomerName", form.name);
+
+        if (form.email) {
+          params.set("email", form.email);
+          params.set("Email", form.email);
+          params.set("mail", form.email);
+          params.set("CustomerEmail", form.email);
+        }
+        if (form.phone) {
+          params.set("phone", form.phone);
+          params.set("Phone", form.phone);
+          params.set("mobile", form.phone);
+          params.set("CustomerPhone", form.phone);
+        }
         if (form.address) params.set("address", form.address);
         if (form.city) params.set("city", form.city);
+
         const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
         clear();
         window.location.href = `${SUMIT_PAYMENT_URL}${separator}${params.toString()}`;
