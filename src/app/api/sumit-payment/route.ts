@@ -37,9 +37,11 @@ interface SumitPaymentRequest {
 }
 
 interface SumitResponse {
-  Status: string;
-  UserErrorMessage?: string;
-  TechnicalErrorDetails?: string;
+  // Sumit returns Status as a numeric code (0 = success) — NOT a string like
+  // "Success (0)" as the docs example suggested.
+  Status: number | string;
+  UserErrorMessage?: string | null;
+  TechnicalErrorDetails?: string | null;
   Data?:
     | {
         URL?: string;
@@ -127,7 +129,15 @@ export async function POST(req: NextRequest) {
     // Log the full Sumit response so we can inspect field names in Vercel logs.
     console.log("Sumit beginredirect response:", JSON.stringify(data));
 
-    if (!data.Status || !data.Status.startsWith("Success")) {
+    // Sumit success = Status code 0 (numeric). Anything else (or missing) is
+    // a failure. Accept both numeric 0 and the legacy "Success" string form
+    // in case the response shape ever flips.
+    const isSuccess =
+      data.Status === 0 ||
+      (typeof data.Status === "string" &&
+        data.Status.toLowerCase().startsWith("success"));
+
+    if (!isSuccess) {
       return NextResponse.json(
         {
           ok: false,
