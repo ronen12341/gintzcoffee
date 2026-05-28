@@ -14,7 +14,7 @@ import { useCart } from "@/lib/cart";
  */
 const SUMIT_PAYMENT_URL =
   process.env.NEXT_PUBLIC_SUMIT_PAYMENT_URL ||
-  "https://pay.sumit.co.il/w7pfxb/waemv2/";
+  "https://pay.sumit.co.il/w7pfxb/waf7oo/c/payment/";
 
 type PaymentMethod = "phone" | "online";
 
