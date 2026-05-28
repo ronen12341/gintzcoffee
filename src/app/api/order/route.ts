@@ -25,6 +25,8 @@ interface OrderPayload {
   items: OrderItem[];
   totalPrice: number;
   hasUnpricedItems: boolean;
+  /** "online" = customer is about to pay via Sumit; "phone" = will be charged by phone */
+  paymentMethod?: "online" | "phone";
 }
 
 function categoryLabel(c: string): string {
@@ -70,6 +72,10 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
     .join("");
 
   const waLink = `https://wa.me/972${p.customer.phone.replace(/^0/, "").replace(/\D/g, "")}`;
+  const paymentBadge =
+    p.paymentMethod === "online"
+      ? `<span style="display:inline-block;background:#16a34a;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">💳 תשלום אונליין — הלקוח מועבר ל-Sumit</span>`
+      : `<span style="display:inline-block;background:#C8922A;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">📞 חיוב טלפוני — צריך להתקשר ללקוח</span>`;
 
   return `
     <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; background: #F5F0E8; padding: 24px; border-radius: 8px;">
@@ -82,6 +88,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
       <p style="color: #666; margin: 4px 0;">
         ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}
       </p>
+      <p style="margin: 12px 0;">${paymentBadge}</p>
 
       <h3 style="color: #5C3015; margin-top: 24px;">פרטי לקוח</h3>
       <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">
