@@ -323,6 +323,24 @@ export default function CheckoutPage() {
               )}
             </div>
 
+            {/* Reminder for online payments — in case the amount doesn't auto-fill on Sumit */}
+            {paymentMethod === "online" && totalPrice > 0 && (
+              <div className="bg-amber-50 border-r-4 border-amber-400 rounded-lg p-4 text-sm">
+                <p className="font-bold text-amber-900 mb-1 flex items-center gap-1">
+                  🔔 שימו לב לפני התשלום
+                </p>
+                <p className="text-amber-900">
+                  הסכום לתשלום הוא{" "}
+                  <strong className="text-base">
+                    {totalPrice.toLocaleString("he-IL")} ש&quot;ח
+                  </strong>
+                  . בעמוד התשלום של Sumit, אנא וודאו שהסכום שמופיע הוא{" "}
+                  <strong>{totalPrice.toLocaleString("he-IL")} ש&quot;ח</strong>.
+                  אם השדה ריק — הזינו את הסכום ידנית.
+                </p>
+              </div>
+            )}
+
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 text-sm">
                 {error}
