@@ -176,8 +176,8 @@ export const coffeeBeans: Bean[] = [
     roast: "קלייה בינונית",
     featured: false,
     image: "/coffee-bag.jpg.jpg",
-    price: "1 ש\"ח",
-    priceNumeric: 1,
+    price: "100 ש\"ח",
+    priceNumeric: 100,
   },
   {
     id: "kenya-aa",

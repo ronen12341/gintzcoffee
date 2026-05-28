@@ -101,6 +101,12 @@ export async function POST(req: NextRequest) {
     RedirectURL: body.successUrl,
     CancelRedirectURL: body.failureUrl,
     ExternalIdentifier: body.orderId,
+    // Ronen invoices customers manually from Hashavshevet (חשבשבת) in the
+    // office, so we don't want Sumit to email a tax invoice to the customer.
+    // DraftDocument:true keeps an internal record without finalizing/sending,
+    // and UpdateCustomerOnSuccess:false prevents the customer notification.
+    DraftDocument: true,
+    UpdateCustomerOnSuccess: false,
   };
 
   try {
