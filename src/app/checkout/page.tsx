@@ -90,50 +90,66 @@ export default function CheckoutPage() {
         throw new Error("send failed");
       }
 
-      // If the customer chose online payment AND Sumit is configured, build a
-      // payment URL with the order details and redirect there. Otherwise go to
-      // the standard "we'll call you" success page.
+      // If the customer chose online payment AND Sumit is configured, ask our
+      // server to create a Sumit payment session via the beginredirect API.
+      // The server returns a one-time payment URL with the exact amount, and
+      // we send the browser there. This avoids the URL-query-param guessing
+      // game and gives Sumit a proper itemized record per order.
       if (paymentMethod === "online" && canPayOnline) {
-        const params = new URLSearchParams();
-        const amountStr = String(totalPrice);
-        // Sumit's open-amount payment page accepts pre-fill params, but the
-        // exact field names aren't documented publicly. We send every common
-        // variant (lowercase + PascalCase) for amount, email, and phone so
-        // whichever one Sumit listens to gets the right value. Unknown params
-        // are silently ignored.
-        params.set("amount", amountStr);
-        params.set("Amount", amountStr);
-        params.set("sum", amountStr);
-        params.set("Sum", amountStr);
-        params.set("price", amountStr);
-        params.set("Price", amountStr);
-        params.set("total", amountStr);
-        params.set("Total", amountStr);
-        params.set("UnitPrice", amountStr);
+        const orderRes = await res.json().catch(() => ({}));
+        const orderId = orderRes.orderId || `ORD-${Date.now()}`;
 
-        params.set("name", form.name);
-        params.set("Name", form.name);
-        params.set("CustomerName", form.name);
+        try {
+          const payRes = await fetch("/api/sumit-payment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              amount: totalPrice,
+              orderId,
+              customer: {
+                name: form.name,
+                phone: form.phone,
+                email: form.email,
+                address: form.address,
+                city: form.city,
+              },
+              successUrl: `${window.location.origin}/order/success`,
+              failureUrl: `${window.location.origin}/checkout`,
+            }),
+          });
 
-        if (form.email) {
-          params.set("email", form.email);
-          params.set("Email", form.email);
-          params.set("mail", form.email);
-          params.set("CustomerEmail", form.email);
+          const payData = await payRes.json();
+          if (!payRes.ok || !payData.ok || !payData.paymentUrl) {
+            console.error("Sumit payment session failed:", payData);
+            // Fall back to the direct URL with the yellow notice telling the
+            // customer the amount to enter manually.
+            const fallbackParams = new URLSearchParams();
+            fallbackParams.set("amount", String(totalPrice));
+            fallbackParams.set("name", form.name);
+            if (form.email) fallbackParams.set("email", form.email);
+            if (form.phone) fallbackParams.set("phone", form.phone);
+            const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
+            clear();
+            window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
+            return;
+          }
+
+          clear();
+          window.location.href = payData.paymentUrl;
+          return;
+        } catch (err) {
+          console.error("Sumit session request failed:", err);
+          // Same fallback as above.
+          const fallbackParams = new URLSearchParams();
+          fallbackParams.set("amount", String(totalPrice));
+          fallbackParams.set("name", form.name);
+          if (form.email) fallbackParams.set("email", form.email);
+          if (form.phone) fallbackParams.set("phone", form.phone);
+          const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
+          clear();
+          window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
+          return;
         }
-        if (form.phone) {
-          params.set("phone", form.phone);
-          params.set("Phone", form.phone);
-          params.set("mobile", form.phone);
-          params.set("CustomerPhone", form.phone);
-        }
-        if (form.address) params.set("address", form.address);
-        if (form.city) params.set("city", form.city);
-
-        const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
-        clear();
-        window.location.href = `${SUMIT_PAYMENT_URL}${separator}${params.toString()}`;
-        return;
       }
 
       clear();
