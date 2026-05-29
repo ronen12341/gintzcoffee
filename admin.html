@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ניהול מוצרים — קפה גינץ</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Heebo", Arial, sans-serif;
+    margin: 0;
+    background: #F5F0E8;
+    color: #3B1F0A;
+  }
+  header {
+    background: #3B1F0A;
+    color: #F5F0E8;
+    padding: 16px 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  h1 { margin: 0; font-size: 22px; color: #C8922A; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  button, .btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background 0.15s, opacity 0.15s;
+  }
+  .btn-primary { background: #C8922A; color: white; }
+  .btn-primary:hover { background: #A87822; }
+  .btn-secondary { background: #5C3015; color: white; }
+  .btn-secondary:hover { background: #3B1F0A; }
+  .btn-danger { background: #B91C1C; color: white; }
+  .btn-danger:hover { background: #991111; }
+  .btn-ghost { background: transparent; color: #F5F0E8; border: 1px solid #C8922A; }
+  .btn:disabled, button:disabled { opacity: 0.4; cursor: not-allowed; }
+  main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+  .status {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+  .status-info { background: #FFF4D6; border: 1px solid #E8C97A; color: #5C3015; }
+  .status-ok { background: #D6F4D9; border: 1px solid #4CAF50; color: #1B5E20; }
+  .status-warn { background: #FFE5C7; border: 1px solid #FF9800; color: #E65100; }
+  .status-error { background: #FFD6D6; border: 1px solid #B91C1C; color: #991111; }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    background: white;
+    padding: 6px;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  .tab {
+    background: transparent;
+    color: #5C3015;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .tab.active { background: #C8922A; color: white; }
+  .tab:hover:not(.active) { background: #F5F0E8; }
+  .product-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 16px;
+    align-items: center;
+  }
+  .product-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    background: #F5F0E8;
+    border-radius: 8px;
+    padding: 4px;
+  }
+  .product-card .no-img {
+    width: 80px;
+    height: 80px;
+    background: #F5F0E8;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 11px;
+    text-align: center;
+  }
+  .product-card h3 { margin: 0 0 4px; font-size: 16px; }
+  .product-card .meta { font-size: 13px; color: #666; }
+  .product-card .price { color: #C8922A; font-weight: 700; font-size: 15px; }
+  .product-card .actions-row { display: flex; gap: 6px; }
+  .product-card button { padding: 6px 12px; font-size: 13px; }
+  .add-card {
+    background: white;
+    border: 2px dashed #C8922A;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    color: #C8922A;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+    margin-bottom: 20px;
+  }
+  .add-card:hover { background: #FFF4D6; }
+  .modal-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+  }
+  .modal h2 { margin: 0 0 16px; color: #3B1F0A; }
+  .modal .field { margin-bottom: 14px; }
+  .modal label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5C3015;
+    margin-bottom: 4px;
+  }
+  .modal input, .modal textarea, .modal select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #D9CBB3;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #3B1F0A;
+    background: white;
+  }
+  .modal input:focus, .modal textarea:focus, .modal select:focus {
+    outline: none;
+    border-color: #C8922A;
+    box-shadow: 0 0 0 2px rgba(200,146,42,0.2);
+  }
+  .modal textarea { resize: vertical; min-height: 80px; }
+  .modal .hint { font-size: 12px; color: #666; margin-top: 4px; }
+  .modal .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .modal .checkbox-field { display: flex; align-items: center; gap: 8px; }
+  .modal .checkbox-field input { width: auto; }
+  .modal-actions { display: flex; justify-content: space-between; gap: 8px; margin-top: 20px; }
+  .empty { text-align: center; padding: 40px 20px; color: #999; }
+  .file-info {
+    background: white;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 16px;
+  }
+  .file-info code { background: #F5F0E8; padding: 2px 6px; border-radius: 3px; }
+  .help-strip {
+    background: #FFF4D6;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .help-strip strong { color: #5C3015; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <h1>☕ ניהול מוצרים — קפה גינץ</h1>
+    <div class="actions">
+      <button id="open-btn" class="btn btn-ghost">📂 פתח קובץ</button>
+      <button id="save-btn" class="btn btn-primary" disabled>💾 שמור</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="status" class="status status-info">
+    👋 ברוכים הבאים! לחצי על "פתח קובץ" ובחרי את <code>products-data.json</code> מתיקיית <code>src/data/</code>.
+  </div>
+
+  <div class="help-strip">
+    <strong>תהליך עבודה:</strong>
+    (1) פתח קובץ → (2) ערוך/הוסף/מחק מוצרים → (3) שמור → (4) דאבל-קליק על <code>publish.bat</code> → האתר מתעדכן תוך 2-3 דקות.
+  </div>
+
+  <div id="content" style="display: none;">
+    <div class="tabs">
+      <button class="tab active" data-tab="coffeeMachines">☕ מכונות קפה</button>
+      <button class="tab" data-tab="coffeeBeans">🫘 פולי קפה</button>
+      <button class="tab" data-tab="cupCategories">🥤 כוסות</button>
+      <button class="tab" data-tab="usedMachines">♻️ יד שנייה</button>
+    </div>
+
+    <div id="list-container"></div>
+  </div>
+</main>
+
+<!-- Edit modal -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <h2 id="modal-title">עריכת מוצר</h2>
+    <form id="edit-form"></form>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-secondary" id="cancel-btn">ביטול</button>
+      <button type="button" class="btn btn-primary" id="save-modal-btn">שמור</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---- State ----
+let fileHandle = null;
+let data = null;
+let currentTab = 'coffeeMachines';
+let editingIndex = null;
+let unsaved = false;
+
+// ---- Field definitions per product type ----
+const SCHEMAS = {
+  coffeeMachines: {
+    label: 'מכונת קפה',
+    icon: '☕',
+    idPrefix: 'machine',
+    fields: [
+      { key: 'id', label: 'מזהה (אנגלית, ללא רווחים)', type: 'text', required: true, readonlyOnEdit: true, hint: 'משמש בכתובות אתר. לדוגמה: jura-z10' },
+      { key: 'name', label: 'שם המכונה', type: 'text', required: true },
+      { key: 'description', label: 'תיאור קצר', type: 'textarea', required: true },
+      { key: 'features', label: 'תכונות (כל תכונה בשורה נפרדת)', type: 'list' },
+      { key: 'image', label: 'כתובת תמונה (URL או /path)', type: 'text' },
+      { key: 'price', label: 'מחיר (להצגה)', type: 'text', hint: 'לדוגמה: 11,200 ש"ח' },
+      { key: 'priceNumeric', label: 'מחיר (מספר לחישובי סל)', type: 'number', hint: 'לדוגמה: 11200' },
+      { key: 'featured', label: 'מוצר מומלץ (יופיע בעמוד הבית)', type: 'checkbox' },
+      { key: 'longDescription', label: 'תיאור מורחב (אופציונלי)', type: 'textarea', hint: 'שורה ריקה = פסקה חדשה' },
+    ],
+  },
+  coffeeBeans: {
+    label: 'פולי קפה',
+    icon: '🫘',
+    idPrefix: 'bean',
+    fields: [
+      { key: 'id', label: 'מזהה (אנגלית)', type: 'text', required: true, readonlyOnEdit: true },
+      { key: 'name', label: 'שם הפול/תערובת', type: 'text', required: true },
+      { key: 'description', label: 'תיאור', type: 'textarea', required: true },
+      { key: 'origin', label: 'מקור', type: 'text', hint: 'לדוגמה: אתיופיה' },
+      { key: 'roast', label: 'דרגת קלייה', type: 'text', hint: 'לדוגמה: קלייה בינונית' },
+      { key: 'image', label: 'כתובת תמונה', type: 'text' },
+      { key: 'price', label: 'מחיר (להצגה)', type: 'text', hint: 'לדוגמה: 100 ש"ח' },
+      { key: 'priceNumeric', label: 'מחיר (מספר)', type: 'number' },
+      { key: 'featured', label: 'מומלץ', type: 'checkbox' },
+    ],
+  },
+  cupCategories: {
+    label: 'כוסות',
+    icon: '🥤',
+    idPrefix: 'cup',
+    fields: [
+      { key: 'id', label: 'מזהה (אנגלית)', type: 'text', required: true, readonlyOnEdit: true },
+      { key: 'name', label: 'שם הקטגוריה', type: 'text', required: true },
+      { key: 'description', label: 'תיאור', type: 'textarea', required: true },
+      { key: 'minQuantity', label: 'כמות מינימום להזמנה', type: 'number', required: true },
+      { key: 'image', label: 'כתובת תמונה', type: 'text' },
+      { key: 'price', label: 'מחיר (להצגה, אופציונלי)', type: 'text' },
+      { key: 'priceNumeric', label: 'מחיר (מספר)', type: 'number' },
+    ],
+  },
+  usedMachines: {
+    label: 'מכונה יד שנייה',
+    icon: '♻️',
+    idPrefix: 'used',
+    fields: [
+      { key: 'id', label: 'מזהה (אנגלית)', type: 'text', required: true, readonlyOnEdit: true },
+      { key: 'name', label: 'שם המכונה', type: 'text', required: true },
+      { key: 'description', label: 'תיאור', type: 'textarea', required: true },
+      { key: 'condition', label: 'מצב', type: 'text', required: true, hint: 'לדוגמה: מצב טוב מאוד / כמו חדש / אחרי שיפוץ' },
+      { key: 'image', label: 'כתובת תמונה', type: 'text' },
+      { key: 'price', label: 'מחיר שלנו (להצגה)', type: 'text' },
+      { key: 'priceNumeric', label: 'מחיר שלנו (מספר)', type: 'number' },
+      { key: 'originalPrice', label: 'מחיר מקורי (יוצג מחוק)', type: 'text', hint: 'אופציונלי — להצגת הנחה' },
+    ],
+  },
+};
+
+// ---- DOM helpers ----
+const $ = (id) => document.getElementById(id);
+const statusEl = $('status');
+
+function setStatus(msg, type = 'info') {
+  statusEl.className = `status status-${type}`;
+  statusEl.innerHTML = msg;
+}
+
+function markUnsaved() {
+  unsaved = true;
+  $('save-btn').disabled = false;
+  $('save-btn').textContent = '💾 שמור שינויים';
+}
+
+function markSaved() {
+  unsaved = false;
+  $('save-btn').disabled = true;
+  $('save-btn').textContent = '✓ נשמר';
+}
+
+// ---- File operations ----
+async function openFile() {
+  if (!window.showOpenFilePicker) {
+    setStatus('הדפדפן שלך לא תומך בפתיחת קבצים ישירה. אנא השתמשי ב-Chrome או Edge.', 'error');
+    return;
+  }
+  try {
+    const [handle] = await window.showOpenFilePicker({
+      types: [{ description: 'JSON files', accept: { 'application/json': ['.json'] } }],
+      suggestedName: 'products-data.json',
+    });
+    fileHandle = handle;
+    const file = await handle.getFile();
+    const text = await file.text();
+    data = JSON.parse(text);
+    // Make sure all sections exist
+    for (const key of Object.keys(SCHEMAS)) {
+      if (!Array.isArray(data[key])) data[key] = [];
+    }
+    $('content').style.display = 'block';
+    setStatus(`✓ קובץ נטען: <code>${file.name}</code>. אפשר להתחיל לערוך.`, 'ok');
+    render();
+    markSaved();
+  } catch (err) {
+    if (err.name !== 'AbortError') {
+      setStatus(`שגיאה בפתיחת הקובץ: ${err.message}`, 'error');
+    }
+  }
+}
+
+async function saveFile() {
+  if (!fileHandle || !data) return;
+  try {
+    const writable = await fileHandle.createWritable();
+    await writable.write(JSON.stringify(data, null, 2));
+    await writable.close();
+    markSaved();
+    setStatus('✓ נשמר בהצלחה! עכשיו דאבל-קליק על <code>publish.bat</code> להעלות לאתר.', 'ok');
+  } catch (err) {
+    setStatus(`שגיאה בשמירה: ${err.message}`, 'error');
+  }
+}
+
+// ---- Rendering ----
+function render() {
+  if (!data) return;
+  const items = data[currentTab] || [];
+  const schema = SCHEMAS[currentTab];
+  const container = $('list-container');
+  let html = `<div class="add-card" onclick="openModal(null)">＋ הוסף ${schema.label} חדש${schema.idPrefix === 'cup' ? 'ה' : ''}</div>`;
+  if (items.length === 0) {
+    html += `<div class="empty">אין מוצרים בקטגוריה הזו עדיין. לחצי "הוסף" כדי להתחיל.</div>`;
+  } else {
+    html += items.map((item, idx) => {
+      const imgHtml = item.image
+        ? `<img src="${escapeAttr(item.image)}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+           <div class="no-img" style="display:none;">תמונה לא נטענה</div>`
+        : `<div class="no-img">ללא תמונה</div>`;
+      const priceHtml = item.price ? `<span class="price">${escapeHtml(item.price)}</span>` : '<span style="color:#999;font-size:13px;">ללא מחיר</span>';
+      const metaParts = [];
+      if (item.id) metaParts.push(`ID: ${escapeHtml(item.id)}`);
+      if (item.featured) metaParts.push('⭐ מומלץ');
+      if (item.origin) metaParts.push(`מקור: ${escapeHtml(item.origin)}`);
+      if (item.condition) metaParts.push(`מצב: ${escapeHtml(item.condition)}`);
+      if (item.minQuantity) metaParts.push(`מינ׳: ${item.minQuantity}`);
+      return `
+        <div class="product-card">
+          ${imgHtml}
+          <div>
+            <h3>${escapeHtml(item.name || '(ללא שם)')}</h3>
+            <div class="meta">${metaParts.join(' · ')}</div>
+            <div style="margin-top:6px;">${priceHtml}</div>
+          </div>
+          <div class="actions-row">
+            <button class="btn-secondary" onclick="openModal(${idx})">✏️ ערוך</button>
+            <button class="btn-danger" onclick="deleteItem(${idx})">🗑️ מחק</button>
+          </div>
+        </div>`;
+    }).join('');
+  }
+  container.innerHTML = html;
+}
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function escapeAttr(str) {
+  return escapeHtml(str);
+}
+
+// ---- Modal ----
+function openModal(idx) {
+  editingIndex = idx;
+  const schema = SCHEMAS[currentTab];
+  const item = idx !== null ? data[currentTab][idx] : {};
+  const isNew = idx === null;
+  $('modal-title').textContent = isNew ? `הוספת ${schema.label}` : `עריכת ${schema.label}`;
+  const form = $('edit-form');
+  form.innerHTML = schema.fields.map(f => {
+    const value = item[f.key];
+    const readonly = !isNew && f.readonlyOnEdit ? ' readonly' : '';
+    const required = f.required ? ' required' : '';
+    let input;
+    if (f.type === 'textarea') {
+      input = `<textarea name="${f.key}"${required}>${escapeHtml(value ?? '')}</textarea>`;
+    } else if (f.type === 'list') {
+      input = `<textarea name="${f.key}" placeholder="תכונה אחת בכל שורה">${escapeHtml((value ?? []).join('\n'))}</textarea>`;
+    } else if (f.type === 'checkbox') {
+      return `<div class="field checkbox-field"><input type="checkbox" id="f-${f.key}" name="${f.key}"${value ? ' checked' : ''}><label for="f-${f.key}">${escapeHtml(f.label)}</label></div>`;
+    } else if (f.type === 'number') {
+      input = `<input type="number" name="${f.key}"${required} value="${value ?? ''}"${readonly}>`;
+    } else {
+      input = `<input type="text" name="${f.key}"${required} value="${escapeAttr(value ?? '')}"${readonly}>`;
+    }
+    const hint = f.hint ? `<div class="hint">${escapeHtml(f.hint)}</div>` : '';
+    return `<div class="field"><label>${escapeHtml(f.label)}</label>${input}${hint}</div>`;
+  }).join('');
+  // Auto-suggest ID for new items
+  if (isNew) {
+    const idInput = form.querySelector('input[name="id"]');
+    if (idInput && !idInput.value) {
+      idInput.value = `${schema.idPrefix}-${Date.now().toString(36)}`;
+    }
+  }
+  $('modal').classList.add('open');
+}
+
+function closeModal() {
+  $('modal').classList.remove('open');
+  editingIndex = null;
+}
+
+function saveModal() {
+  const schema = SCHEMAS[currentTab];
+  const form = $('edit-form');
+  const formData = {};
+  for (const f of schema.fields) {
+    const el = form.querySelector(`[name="${f.key}"]`);
+    if (!el) continue;
+    if (f.type === 'checkbox') {
+      formData[f.key] = el.checked;
+    } else if (f.type === 'list') {
+      const lines = el.value.split('\n').map(l => l.trim()).filter(Boolean);
+      formData[f.key] = lines;
+    } else if (f.type === 'number') {
+      formData[f.key] = el.value === '' ? undefined : Number(el.value);
+    } else {
+      formData[f.key] = el.value.trim() || undefined;
+    }
+    if (f.required && (formData[f.key] === undefined || formData[f.key] === '' || (Array.isArray(formData[f.key]) && formData[f.key].length === 0))) {
+      alert(`השדה "${f.label}" חובה`);
+      return;
+    }
+  }
+  // Default empty features list
+  if (currentTab === 'coffeeMachines' && !formData.features) formData.features = [];
+  // Strip undefined keys
+  for (const k of Object.keys(formData)) {
+    if (formData[k] === undefined) delete formData[k];
+  }
+  if (editingIndex === null) {
+    // Check ID uniqueness
+    if (data[currentTab].some(x => x.id === formData.id)) {
+      alert('מזהה זה כבר קיים. בחרי מזהה אחר.');
+      return;
+    }
+    data[currentTab].push(formData);
+  } else {
+    // Preserve original ID (it's readonly on edit)
+    formData.id = data[currentTab][editingIndex].id;
+    data[currentTab][editingIndex] = formData;
+  }
+  markUnsaved();
+  render();
+  closeModal();
+}
+
+function deleteItem(idx) {
+  const item = data[currentTab][idx];
+  if (!confirm(`למחוק את "${item.name}"? פעולה זו לא ניתנת לביטול עד שמירת הקובץ.`)) return;
+  data[currentTab].splice(idx, 1);
+  markUnsaved();
+  render();
+}
+
+// ---- Event listeners ----
+$('open-btn').addEventListener('click', openFile);
+$('save-btn').addEventListener('click', saveFile);
+$('cancel-btn').addEventListener('click', closeModal);
+$('save-modal-btn').addEventListener('click', saveModal);
+$('modal').addEventListener('click', (e) => {
+  if (e.target.id === 'modal') closeModal();
+});
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentTab = btn.dataset.tab;
+    render();
+  });
+});
+
+// Warn on unsaved changes when closing
+window.addEventListener('beforeunload', (e) => {
+  if (unsaved) {
+    e.preventDefault();
+    e.returnValue = 'יש לך שינויים שלא נשמרו';
+  }
+});
+
+// Expose to inline handlers
+window.openModal = openModal;
+window.deleteItem = deleteItem;
+</script>
+
+</body>
+</html>
