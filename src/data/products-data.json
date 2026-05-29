@@ -112,14 +112,15 @@
     },
     {
       "id": "colombia-supremo",
-      "name": "קולומביה סופרמו",
+      "name": "קולומביה סופרימו",
       "description": "פולים ממוצא יחיד מקולומביה. ארומה עשירה עם טעמי פירות יבשים, חמיצות מאוזנת וסיומת ארוכה.",
       "origin": "קולומביה",
       "roast": "קלייה בינונית",
-      "featured": false,
       "image": "/coffee-bag.jpg.jpg",
       "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "priceNumeric": 100,
+      "featured": false,
+      "hidden": false
     },
     {
       "id": "costa-rica",
@@ -141,7 +142,8 @@
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
       "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "priceNumeric": 100,
+      "hidden": true
     },
     {
       "id": "kenya-aa",
@@ -152,7 +154,8 @@
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
       "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "priceNumeric": 100,
+      "hidden": true
     },
     {
       "id": "india-monsoon",
@@ -163,7 +166,8 @@
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
       "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "priceNumeric": 100,
+      "hidden": true
     },
     {
       "id": "platinum-blend",
@@ -185,7 +189,8 @@
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
       "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "priceNumeric": 100,
+      "hidden": true
     },
     {
       "id": "silver-blend",
