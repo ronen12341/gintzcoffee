@@ -211,7 +211,6 @@
       "description": "הטבעת החותם האישי של בית העסק שלכם. כוסות עם הלוגו שלכם — שיווק חכם בכל כוס קפה.",
       "minQuantity": 500,
       "image": "/cups/branded-cups.svg",
-      "priceNumeric": 500,
       "hidden": false
     },
     {
