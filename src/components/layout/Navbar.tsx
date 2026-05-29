@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Phone, Menu, X } from "lucide-react";
+import { Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CartIcon from "@/components/layout/CartIcon";
 
@@ -19,7 +19,6 @@ const navLinks = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -31,11 +30,6 @@ export default function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  // Close mobile menu on route change
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   return (
     <header
@@ -91,8 +85,7 @@ export default function Navbar() {
                   className={cn(
                     "nav-link",
                     emphasis && "nav-link-emphasis",
-                    active && !emphasis && "nav-link-active",
-                    active && emphasis && "nav-link-active"
+                    active && "nav-link-active"
                   )}
                 >
                   {label}
@@ -101,7 +94,7 @@ export default function Navbar() {
             })}
           </nav>
 
-          {/* Right side: phone + cart + hamburger */}
+          {/* Right side: phone (desktop) + cart */}
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href="tel:0399600550"
@@ -114,34 +107,20 @@ export default function Navbar() {
               </span>
             </a>
             <CartIcon />
-            <button
-              type="button"
-              className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full text-cream bg-white/5 hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls="mobile-nav"
-              aria-label={open ? "סגור תפריט" : "פתח תפריט"}
-            >
-              {open ? (
-                <X className="w-5 h-5" aria-hidden="true" />
-              ) : (
-                <Menu className="w-5 h-5" aria-hidden="true" />
-              )}
-            </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu — smooth slide-down */}
+      {/* Mobile nav chips — horizontal scroll. Visible only on small screens
+          since desktop has the inline nav above. */}
       <nav
-        id="mobile-nav"
-        className={cn(
-          "md:hidden overflow-hidden transition-[max-height] duration-300 ease-out",
-          open ? "max-h-[520px]" : "max-h-0"
-        )}
-        aria-label="ניווט נייד"
+        className="md:hidden border-t border-white/5"
+        aria-label="ניווט מהיר"
       >
-        <div className="px-4 py-4 bg-brown-dark/95 backdrop-blur-sm border-t border-gold/10 space-y-1">
+        <div
+          className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2.5"
+          style={{ scrollPaddingInline: "1rem" }}
+        >
           {navLinks.map(({ href, label, emphasis }) => {
             const active = pathname === href;
             return (
@@ -149,16 +128,11 @@ export default function Navbar() {
                 key={href}
                 href={href}
                 className={cn(
-                  "block px-4 py-3 rounded-lg text-base font-medium transition-colors",
-                  emphasis
-                    ? "bg-gold/15 text-gold ring-1 ring-gold/30 hover:bg-gold/25"
-                    : "text-cream/80 hover:text-gold hover:bg-white/5",
-                  active &&
-                    (emphasis
-                      ? "bg-gold/30 ring-gold/50"
-                      : "text-gold bg-white/10")
+                  "nav-chip",
+                  emphasis && "nav-chip-emphasis",
+                  active && "nav-chip-active"
                 )}
-                onClick={() => setOpen(false)}
+                aria-current={active ? "page" : undefined}
               >
                 {label}
               </Link>
@@ -166,11 +140,13 @@ export default function Navbar() {
           })}
           <a
             href="tel:0399600550"
-            className="flex items-center gap-2 px-4 py-3 mt-2 text-gold font-medium border-t border-white/10"
-            onClick={() => setOpen(false)}
+            className="nav-chip flex items-center gap-1.5"
+            aria-label="התקשר 03-9600550"
           >
-            <Phone className="w-4 h-4" aria-hidden="true" />
-            <span dir="ltr">03-9600550</span>
+            <Phone className="w-3.5 h-3.5 text-gold" aria-hidden="true" />
+            <span dir="ltr" className="font-mono">
+              03-9600550
+            </span>
           </a>
         </div>
       </nav>
