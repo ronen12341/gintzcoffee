@@ -22,3 +22,219 @@
     @apply py-16 px-4 sm:px-6 lg:px-8;
   }
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   3D Button system
+   ────────────────────────────────────────────────────────────────────────── */
+@layer components {
+  /* Shared base — adopted via composition (`btn btn-primary` etc.).
+     The button sits on top of a darker "ledge" rendered with box-shadow;
+     on press the button shifts down to "meet" the ledge → tactile feedback. */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    border: none;
+    border-radius: 0.75rem;
+    cursor: pointer;
+    text-decoration: none;
+    white-space: nowrap;
+    user-select: none;
+    transform: translateY(0);
+    transition:
+      transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+      box-shadow 0.18s ease,
+      filter 0.18s ease;
+    will-change: transform, box-shadow;
+  }
+  .btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(200, 146, 42, 0.45);
+  }
+  .btn:disabled,
+  .btn[aria-disabled="true"] {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: grayscale(0.3);
+  }
+
+  /* Subtle shine sweep on hover */
+  .btn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.18) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    background-position: 100% 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, background-position 0.6s ease;
+  }
+  .btn:hover::before {
+    opacity: 1;
+    background-position: 0 0;
+  }
+
+  /* Primary (gold) — main CTA */
+  .btn-primary {
+    color: #ffffff;
+    background-image: linear-gradient(180deg, #d6a13d 0%, #c8922a 55%, #a87a1d 100%);
+    box-shadow:
+      0 4px 0 0 #7a5810,
+      0 6px 12px -2px rgba(122, 88, 16, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.35);
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 0 0 #7a5810,
+      0 10px 18px -2px rgba(122, 88, 16, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    filter: brightness(1.05);
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 0 #7a5810,
+      0 2px 4px -1px rgba(122, 88, 16, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+
+  /* Secondary (brown) — supporting CTA */
+  .btn-secondary {
+    color: #f5f0e8;
+    background-image: linear-gradient(180deg, #6b3a18 0%, #5c3015 55%, #3b1f0a 100%);
+    box-shadow:
+      0 4px 0 0 #2a1505,
+      0 6px 12px -2px rgba(42, 21, 5, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.18);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 0 0 #2a1505,
+      0 10px 18px -2px rgba(42, 21, 5, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+    filter: brightness(1.1);
+  }
+  .btn-secondary:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 0 #2a1505,
+      0 2px 4px -1px rgba(42, 21, 5, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  }
+
+  /* Outline (ghost) — tertiary, sits on dark backgrounds */
+  .btn-outline {
+    color: #f5f0e8;
+    background: transparent;
+    border: 2px solid rgba(245, 240, 232, 0.6);
+    box-shadow:
+      0 4px 0 0 rgba(0, 0, 0, 0.25),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+  }
+  .btn-outline:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: rgba(245, 240, 232, 0.92);
+    color: #3b1f0a;
+    border-color: #f5f0e8;
+    box-shadow:
+      0 6px 0 0 rgba(0, 0, 0, 0.25),
+      0 10px 18px -2px rgba(0, 0, 0, 0.3);
+  }
+  .btn-outline:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 0 rgba(0, 0, 0, 0.25),
+      0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Danger (red) — destructive */
+  .btn-danger {
+    color: #ffffff;
+    background-image: linear-gradient(180deg, #d23a3a 0%, #b91c1c 55%, #911313 100%);
+    box-shadow:
+      0 4px 0 0 #6b0e0e,
+      0 6px 12px -2px rgba(107, 14, 14, 0.45),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+  .btn-danger:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 0 0 #6b0e0e,
+      0 10px 18px -2px rgba(107, 14, 14, 0.5),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.3);
+    filter: brightness(1.05);
+  }
+  .btn-danger:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 0 #6b0e0e,
+      0 2px 4px -1px rgba(107, 14, 14, 0.5);
+  }
+
+  /* Size modifiers */
+  .btn-sm { padding: 0.55rem 1rem; font-size: 0.82rem; border-radius: 0.55rem; }
+  .btn-lg { padding: 1.1rem 2.2rem; font-size: 1.05rem; border-radius: 0.85rem; }
+  .btn-block { display: flex; width: 100%; }
+
+  /* Soft variant — flatter, for in-card actions where the 3D ledge feels heavy */
+  .btn-soft {
+    color: #ffffff;
+    background-image: linear-gradient(180deg, #d6a13d 0%, #c8922a 100%);
+    box-shadow:
+      0 2px 0 0 #a87a1d,
+      0 4px 10px -2px rgba(168, 122, 29, 0.35);
+    border-radius: 0.65rem;
+  }
+  .btn-soft:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow:
+      0 3px 0 0 #a87a1d,
+      0 6px 14px -2px rgba(168, 122, 29, 0.45);
+    filter: brightness(1.06);
+  }
+  .btn-soft:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+      0 0 0 0 #a87a1d,
+      0 1px 3px 0 rgba(168, 122, 29, 0.4);
+  }
+
+  .btn-soft-secondary {
+    color: #f5f0e8;
+    background-image: linear-gradient(180deg, #5c3015 0%, #3b1f0a 100%);
+    box-shadow:
+      0 2px 0 0 #2a1505,
+      0 4px 10px -2px rgba(42, 21, 5, 0.35);
+    border-radius: 0.65rem;
+  }
+  .btn-soft-secondary:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow:
+      0 3px 0 0 #2a1505,
+      0 6px 14px -2px rgba(42, 21, 5, 0.45);
+    filter: brightness(1.1);
+  }
+  .btn-soft-secondary:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+      0 0 0 0 #2a1505,
+      0 1px 3px 0 rgba(42, 21, 5, 0.4);
+  }
+}

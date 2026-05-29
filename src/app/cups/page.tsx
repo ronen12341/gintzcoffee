@@ -74,10 +74,7 @@ export default function CupsPage() {
                         note: `כמות מינימום: ${cat.minQuantity.toLocaleString("he-IL")} יחידות`,
                       }}
                     />
-                    <a
-                      href="#contact"
-                      className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2 px-4 rounded-lg transition-colors text-sm"
-                    >
+                    <a href="#contact" className="btn btn-soft-secondary btn-block btn-sm">
                       לפרטים והצעת מחיר
                     </a>
                   </div>

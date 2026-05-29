@@ -93,10 +93,7 @@ export default function BeansPage() {
                         image: bean.image,
                       }}
                     />
-                    <a
-                      href="#contact"
-                      className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-                    >
+                    <a href="#contact" className="btn btn-soft-secondary btn-block btn-sm">
                       לפרטים והצעת מחיר
                     </a>
                   </div>

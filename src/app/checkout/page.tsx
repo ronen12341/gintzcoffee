@@ -48,10 +48,7 @@ export default function CheckoutPage() {
           <p className="text-brown/65 mb-6">
             הוסיפו פריטים לסל לפני השלמת ההזמנה.
           </p>
-          <Link
-            href="/machines"
-            className="inline-block bg-brown hover:bg-brown-light text-cream font-medium py-3 px-6 rounded-lg transition-colors"
-          >
+          <Link href="/machines" className="btn btn-soft-secondary">
             לעמוד המכונות
           </Link>
         </div>
@@ -363,11 +360,7 @@ export default function CheckoutPage() {
               </div>
             )}
 
-            <button
-              type="submit"
-              disabled={submitting}
-              className="w-full bg-gold hover:bg-gold-dark disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-lg"
-            >
+            <button type="submit" disabled={submitting} className="btn btn-primary btn-block btn-lg">
               {submitting
                 ? "שולח..."
                 : paymentMethod === "online"

@@ -110,10 +110,7 @@ export default function ProductCard({
 
         <div className="flex flex-col gap-2 mt-auto">
           {cartItem && <AddToCartButton item={cartItem} />}
-          <a
-            href={ctaHref}
-            className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-          >
+          <a href={ctaHref} className="btn btn-soft-secondary btn-block btn-sm">
             {ctaLabel}
           </a>
         </div>

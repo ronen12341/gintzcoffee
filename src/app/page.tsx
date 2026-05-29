@@ -67,16 +67,10 @@ export default function HomePage() {
             פולים טריים, מכונות מקצועיות וכוסות ממותגות, הכל ממקור אחד.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="#contact"
-              className="bg-gold hover:bg-gold-dark text-white font-bold px-8 py-3.5 rounded-full text-base transition-colors shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-brown"
-            >
+            <a href="#contact" className="btn btn-primary btn-lg">
               קבל הצעת מחיר
             </a>
-            <a
-              href="#products"
-              className="border-2 border-cream/60 text-cream hover:bg-cream hover:text-brown font-bold px-8 py-3.5 rounded-full text-base transition-colors focus:outline-none focus:ring-2 focus:ring-cream focus:ring-offset-2 focus:ring-offset-brown"
-            >
+            <a href="#products" className="btn btn-outline btn-lg">
               הכר את מכונות הקפה שלנו
             </a>
           </div>
@@ -337,10 +331,7 @@ export default function HomePage() {
                 הפכו כל כוס קפה לפרסומת. כוסות ממותגות איכותיות עם הלוגו של העסק — פתרון
                 שיווקי חכם שעובד עבורכם כל יום, כל כוס.
               </p>
-              <Link
-                href="/cups"
-                className="inline-block bg-brown hover:bg-brown-light text-cream font-bold px-7 py-3 rounded-full transition-colors shadow-md focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-              >
+              <Link href="/cups" className="btn btn-secondary">
                 לפרטים על כוסות ממותגות ←
               </Link>
             </div>

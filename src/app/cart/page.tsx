@@ -18,16 +18,10 @@ export default function CartPage() {
             עיינו במוצרים שלנו והוסיפו לסל כדי להתחיל הזמנה.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Link
-              href="/machines"
-              className="inline-block bg-brown hover:bg-brown-light text-cream font-medium py-3 px-6 rounded-lg transition-colors"
-            >
+            <Link href="/machines" className="btn btn-soft-secondary">
               למכונות קפה
             </Link>
-            <Link
-              href="/beans"
-              className="inline-block bg-gold hover:bg-gold-dark text-white font-medium py-3 px-6 rounded-lg transition-colors"
-            >
+            <Link href="/beans" className="btn btn-soft">
               לפולי קפה
             </Link>
           </div>
@@ -132,16 +126,10 @@ export default function CartPage() {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link
-            href="/checkout"
-            className="flex-1 text-center bg-gold hover:bg-gold-dark text-white font-bold py-3.5 px-6 rounded-lg transition-colors text-lg"
-          >
+          <Link href="/checkout" className="btn btn-primary btn-lg flex-1">
             המשך לפרטי הזמנה ←
           </Link>
-          <Link
-            href="/machines"
-            className="text-center bg-cream-dark hover:bg-cream text-brown font-medium py-3.5 px-6 rounded-lg transition-colors"
-          >
+          <Link href="/machines" className="btn btn-soft-secondary">
             המשך בקניות
           </Link>
         </div>

@@ -82,10 +82,7 @@ export default function OrderSuccessPage() {
           </a>
         </div>
 
-        <Link
-          href="/"
-          className="inline-block bg-cream-dark hover:bg-cream text-brown font-medium py-3 px-6 rounded-lg transition-colors"
-        >
+        <Link href="/" className="btn btn-soft-secondary">
           חזרה לעמוד הבית
         </Link>
       </div>

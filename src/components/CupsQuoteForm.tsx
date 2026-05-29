@@ -164,11 +164,7 @@ export default function CupsQuoteForm() {
         <p className="text-red-500 text-sm text-center" role="alert">{serverError}</p>
       )}
 
-      <button
-        type="submit"
-        disabled={sending}
-        className="w-full bg-gold hover:bg-gold-dark disabled:opacity-60 disabled:cursor-not-allowed text-white font-bold py-3 px-6 rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
-      >
+      <button type="submit" disabled={sending} className="btn btn-primary btn-block">
         {sending ? "שולח…" : "שלח בקשת הצעת מחיר"}
       </button>
     </form>
