@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Coffee, Package, Award, Zap, DollarSign, HeartHandshake, Flame, Sliders, Leaf } from "lucide-react";
+import { Coffee, Package, Award, Zap, DollarSign, HeartHandshake, Flame, Sliders, Leaf, Briefcase } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import ProductCard from "@/components/ProductCard";
-import { coffeeMachines } from "@/data/products";
+import BusinessSolutionCard from "@/components/BusinessSolutionCard";
+import { coffeeMachines, businessSolutions } from "@/data/products";
 
 export default function HomePage() {
   const featured = coffeeMachines.filter((m) => m.featured);
@@ -59,19 +60,19 @@ export default function HomePage() {
             Boutique Coffee Roastery · Since 2005
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-cream leading-tight mb-4">
-            בית קלייה בוטיק
-            <span className="block text-gold mt-1">לפי הטעם שלכם</span>
+            פתרונות קפה
+            <span className="block text-gold mt-1">לעסקים ולמשרדים</span>
           </h1>
           <p className="text-cream/75 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-            אנחנו קולים את הקפה בעצמנו — בהתאם לטעם האישי של כל לקוח.
-            פולים טריים, מכונות מקצועיות וכוסות ממותגות, הכל ממקור אחד.
+            פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
+            שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a href="#contact" className="btn btn-primary btn-lg">
-              קבל הצעת מחיר
-            </a>
-            <a href="#products" className="btn btn-outline btn-lg">
-              הכר את מכונות הקפה שלנו
+            <Link href="/business-solutions" className="btn btn-primary btn-lg">
+              ראו את הפתרונות לעסקים ←
+            </Link>
+            <a href="#contact" className="btn btn-outline btn-lg">
+              קבל הצעת מחיר עכשיו
             </a>
           </div>
         </div>
@@ -117,6 +118,46 @@ export default function HomePage() {
           <span className="absolute bottom-4 start-4 text-white font-bold text-sm tracking-wide drop-shadow">
             פולים פרימיום
           </span>
+        </div>
+      </section>
+
+      {/* ── Business Solutions — the headline pitch ── */}
+      <section
+        className="py-16 sm:py-20 bg-gradient-to-b from-cream to-cream-dark"
+        id="business-solutions"
+        aria-labelledby="home-solutions-heading"
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10 sm:mb-12">
+            <div className="inline-flex items-center gap-2 bg-gold/15 text-gold px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+              <Briefcase className="w-4 h-4" aria-hidden="true" />
+              העיקר שלנו
+            </div>
+            <h2
+              id="home-solutions-heading"
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-brown mb-4 leading-tight"
+            >
+              פתרונות קפה <span className="text-gold">לעסקים</span>
+            </h2>
+            <p className="text-brown/70 text-lg max-w-2xl mx-auto leading-relaxed">
+              מכונה מקצועית, פולים טריים, התקנה, הדרכה ותמיכה שוטפת — הכל ממקור אחד
+              ומותאם לכמות העובדים שלכם.
+            </p>
+          </div>
+
+          {businessSolutions.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10">
+              {businessSolutions.slice(0, 4).map((s) => (
+                <BusinessSolutionCard key={s.id} solution={s} />
+              ))}
+            </div>
+          )}
+
+          <div className="text-center">
+            <Link href="/business-solutions" className="btn btn-secondary btn-lg">
+              כל הפתרונות לעסקים ←
+            </Link>
+          </div>
         </div>
       </section>
 

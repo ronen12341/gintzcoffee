@@ -3,7 +3,8 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const links = [
   { href: "/", label: "בית" },
-  { href: "/machines", label: "מכונות קפה" },
+  { href: "/business-solutions", label: "פתרונות לעסקים" },
+  { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/cups", label: "כוסות ממותגות" },
   { href: "/bargains", label: "מכונות יד2" },

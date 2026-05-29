@@ -48,6 +48,25 @@ export interface CupCategory {
   hidden?: boolean;
 }
 
+/** Business-tier offering, sized by employee headcount.
+ *  These are not individual machines for sale — they're packaged solutions
+ *  (machine + installation + service) the owner pitches to companies. */
+export interface BusinessSolution {
+  id: string;
+  name: string;
+  /** Short pitch line shown under the title */
+  tagline?: string;
+  description: string;
+  /** Display string like "5–15 עובדים" */
+  employeeRange: string;
+  /** Numeric range for sorting/filtering, optional */
+  minEmployees?: number;
+  maxEmployees?: number;
+  features?: string[];
+  image?: string;
+  hidden?: boolean;
+}
+
 export interface UsedMachine {
   id: string;
   name: string;
@@ -74,11 +93,13 @@ const allCoffeeMachines = data.coffeeMachines as Machine[];
 const allCoffeeBeans = data.coffeeBeans as Bean[];
 const allCupCategories = data.cupCategories as CupCategory[];
 const allUsedMachines = data.usedMachines as UsedMachine[];
+const allBusinessSolutions = ((data as unknown as { businessSolutions?: BusinessSolution[] }).businessSolutions ?? []) as BusinessSolution[];
 
 export const coffeeMachines: Machine[] = allCoffeeMachines.filter((m) => !m.hidden);
 export const coffeeBeans: Bean[] = allCoffeeBeans.filter((b) => !b.hidden);
 export const cupCategories: CupCategory[] = allCupCategories.filter((c) => !c.hidden);
 export const usedMachines: UsedMachine[] = allUsedMachines.filter((m) => !m.hidden);
+export const businessSolutions: BusinessSolution[] = allBusinessSolutions.filter((s) => !s.hidden);
 
 export const quantityOptions = [
   500, 1000, 2000, 3000, 5000, 10000, 20000, 50000, 100000,

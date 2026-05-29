@@ -10,7 +10,8 @@ import CartIcon from "@/components/layout/CartIcon";
 
 const navLinks = [
   { href: "/", label: "בית" },
-  { href: "/machines", label: "מכונות קפה" },
+  { href: "/business-solutions", label: "פתרונות לעסקים", emphasis: true },
+  { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/cups", label: "כוסות ממותגות" },
   { href: "/bargains", label: "מכונות יד2" },
@@ -49,15 +50,20 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-0.5" aria-label="ניווט ראשי">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, label, emphasis }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
                   "px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  emphasis &&
+                    "bg-gold/15 text-gold ring-1 ring-gold/30 hover:bg-gold/25",
                   pathname === href
-                    ? "text-gold bg-white/10"
-                    : "text-cream/80 hover:text-gold hover:bg-white/5"
+                    ? emphasis
+                      ? "bg-gold/30 text-gold ring-gold/50"
+                      : "text-gold bg-white/10"
+                    : !emphasis &&
+                        "text-cream/80 hover:text-gold hover:bg-white/5"
                 )}
               >
                 {label}
@@ -101,15 +107,19 @@ export default function Navbar() {
           aria-label="ניווט נייד"
         >
           <div className="px-4 py-3 space-y-1">
-            {navLinks.map(({ href, label }) => (
+            {navLinks.map(({ href, label, emphasis }) => (
               <Link
                 key={href}
                 href={href}
                 className={cn(
                   "block px-3 py-2.5 rounded-md text-base font-medium transition-colors",
+                  emphasis && "bg-gold/15 text-gold ring-1 ring-gold/30",
                   pathname === href
-                    ? "text-gold bg-white/10"
-                    : "text-cream/80 hover:text-gold hover:bg-white/5"
+                    ? emphasis
+                      ? "bg-gold/30 text-gold ring-gold/50"
+                      : "text-gold bg-white/10"
+                    : !emphasis &&
+                        "text-cream/80 hover:text-gold hover:bg-white/5"
                 )}
                 onClick={() => setOpen(false)}
               >

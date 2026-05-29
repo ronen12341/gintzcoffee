@@ -285,7 +285,8 @@
 
   <div id="content" style="display: none;">
     <div class="tabs">
-      <button class="tab active" data-tab="coffeeMachines">☕ מכונות קפה</button>
+      <button class="tab active" data-tab="businessSolutions">💼 פתרונות לעסקים</button>
+      <button class="tab" data-tab="coffeeMachines">☕ מכונות קפה</button>
       <button class="tab" data-tab="coffeeBeans">🫘 פולי קפה</button>
       <button class="tab" data-tab="cupCategories">🥤 כוסות</button>
       <button class="tab" data-tab="usedMachines">♻️ יד שנייה</button>
@@ -311,12 +312,29 @@
 // ---- State ----
 let fileHandle = null;
 let data = null;
-let currentTab = 'coffeeMachines';
+let currentTab = 'businessSolutions';
 let editingIndex = null;
 let unsaved = false;
 
 // ---- Field definitions per product type ----
 const SCHEMAS = {
+  businessSolutions: {
+    label: 'פתרון לעסקים',
+    icon: '💼',
+    idPrefix: 'solution',
+    fields: [
+      { key: 'id', label: 'מזהה (אנגלית)', type: 'text', required: true, readonlyOnEdit: true, hint: 'לדוגמה: solution-small-office' },
+      { key: 'name', label: 'שם הפתרון', type: 'text', required: true, hint: 'לדוגמה: פתרון לעסק קטן' },
+      { key: 'tagline', label: 'משפט פתיחה (אופציונלי)', type: 'text', hint: 'לדוגמה: מושלם למשרדים מתחילים' },
+      { key: 'description', label: 'תיאור', type: 'textarea', required: true },
+      { key: 'employeeRange', label: 'טווח עובדים (להצגה)', type: 'text', required: true, hint: 'לדוגמה: 5–15 עובדים' },
+      { key: 'minEmployees', label: 'מינימום עובדים (מספר)', type: 'number' },
+      { key: 'maxEmployees', label: 'מקסימום עובדים (מספר)', type: 'number', hint: 'השאירי ריק בשביל "פלוס" (לדוגמה 80+)' },
+      { key: 'features', label: 'מה כלול (כל פריט בשורה נפרדת)', type: 'list' },
+      { key: 'image', label: 'תמונה', type: 'text' },
+      { key: 'hidden', label: '🙈 הסתר באתר', type: 'checkbox' },
+    ],
+  },
   coffeeMachines: {
     label: 'מכונת קפה',
     icon: '☕',
