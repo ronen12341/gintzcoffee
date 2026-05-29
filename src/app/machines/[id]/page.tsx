@@ -115,12 +115,6 @@ export default async function MachineDetailPage({ params }: PageProps) {
                     image: machine.image,
                   }}
                 />
-                <a
-                  href="#contact"
-                  className="block text-center bg-brown hover:bg-brown-light text-cream font-medium py-2.5 px-4 rounded-lg transition-colors text-sm focus:outline-none focus:ring-2 focus:ring-brown focus:ring-offset-2"
-                >
-                  לפרטים והצעת מחיר
-                </a>
               </div>
 
               {/* Specs table */}
