@@ -442,4 +442,69 @@
   .nav-chip-emphasis.nav-chip-active {
     background: linear-gradient(180deg, rgba(200, 146, 42, 0.5) 0%, rgba(200, 146, 42, 0.3) 100%);
   }
+
+  /* Slide-in side drawer triggered by the hamburger button on mobile. The
+     drawer enters from the right (start side in RTL) and is dismissed by
+     tapping the backdrop or the close button. */
+  .drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 8, 2, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 49;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .drawer-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .drawer-panel {
+    position: fixed;
+    top: 0;
+    inset-inline-start: 0;
+    height: 100vh;
+    width: min(82vw, 320px);
+    background: linear-gradient(180deg, #3B1F0A 0%, #2A1505 100%);
+    border-inline-end: 1px solid rgba(200, 146, 42, 0.18);
+    box-shadow: 4px 0 24px -8px rgba(0, 0, 0, 0.4);
+    z-index: 50;
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  /* In LTR, translate the panel back the other way */
+  html[dir="ltr"] .drawer-panel { transform: translateX(-100%); }
+  .drawer-panel.open { transform: translateX(0); }
+
+  .drawer-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.25rem;
+    color: rgba(245, 240, 232, 0.85);
+    font-weight: 500;
+    font-size: 1rem;
+    border-radius: 0.6rem;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .drawer-link:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #e8b558;
+  }
+  .drawer-link-active {
+    background: rgba(200, 146, 42, 0.14);
+    color: #f5d394;
+  }
+  .drawer-link-emphasis {
+    background: linear-gradient(180deg, rgba(200, 146, 42, 0.22) 0%, rgba(200, 146, 42, 0.14) 100%);
+    color: #f5d394;
+    border: 1px solid rgba(200, 146, 42, 0.4);
+  }
+  .drawer-link-emphasis:hover {
+    background: linear-gradient(180deg, rgba(200, 146, 42, 0.32) 0%, rgba(200, 146, 42, 0.22) 100%);
+  }
 }
