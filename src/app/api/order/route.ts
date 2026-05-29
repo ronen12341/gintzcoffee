@@ -18,6 +18,10 @@ interface OrderPayload {
     name: string;
     phone: string;
     email?: string;
+    /** 9-digit Israeli company tax ID (ח.פ) or personal ID (ת.ז) */
+    taxId?: string;
+    /** Name to print on the tax invoice if it differs from the contact name */
+    invoiceName?: string;
     address?: string;
     city?: string;
     notes?: string;
@@ -108,6 +112,16 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">אימייל</td>
           <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${p.customer.email}</td>
+        </tr>` : ""}
+        ${p.customer.taxId ? `
+        <tr style="background: #FAF6F0;">
+          <td style="padding: 10px; color: #5C3015; font-weight: bold;">ח.פ / ת.ז</td>
+          <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${p.customer.taxId}</td>
+        </tr>` : ""}
+        ${p.customer.invoiceName ? `
+        <tr>
+          <td style="padding: 10px; color: #5C3015; font-weight: bold;">שם לחשבונית</td>
+          <td style="padding: 10px; color: #3B1F0A;">${p.customer.invoiceName}</td>
         </tr>` : ""}
         ${p.customer.address || p.customer.city ? `
         <tr style="background: #FAF6F0;">

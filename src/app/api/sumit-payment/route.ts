@@ -31,6 +31,11 @@ interface SumitPaymentRequest {
     address?: string;
     city?: string;
     zipCode?: string;
+    /** Israeli company tax ID (ח.פ) or personal ID (ת.ז) — written to Sumit's
+     *  Customer.CompanyNumber so it lands on the eventual tax receipt. */
+    taxId?: string;
+    /** Display name to use on the invoice if different from `name`. */
+    invoiceName?: string;
   };
   successUrl: string;
   failureUrl: string;
@@ -78,12 +83,15 @@ export async function POST(req: NextRequest) {
       APIKey: SUMIT_API_KEY,
     },
     Customer: {
-      Name: body.customer.name,
+      // Invoice name takes precedence so the tax receipt carries the right
+      // legal entity; the contact name is preserved in the order email.
+      Name: body.customer.invoiceName?.trim() || body.customer.name,
       Phone: body.customer.phone || null,
       EmailAddress: body.customer.email || null,
       City: body.customer.city || null,
       Address: body.customer.address || null,
       ZipCode: body.customer.zipCode || null,
+      CompanyNumber: body.customer.taxId || null,
       SearchMode: 0, // 0 = Automatic (matches existing or creates new)
     },
     Items: [

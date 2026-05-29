@@ -35,6 +35,8 @@ export default function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
+    taxId: "",
+    invoiceName: "",
     address: "",
     city: "",
     notes: "",
@@ -66,6 +68,20 @@ export default function CheckoutPage() {
 
     if (!form.name.trim() || !form.phone.trim()) {
       setError("נא למלא שם וטלפון.");
+      return;
+    }
+    if (!form.email.trim()) {
+      setError("נא למלא כתובת אימייל.");
+      return;
+    }
+    if (!form.taxId.trim()) {
+      setError("נא למלא ח.פ או ת.ז.");
+      return;
+    }
+    // Basic 9-digit check for Israeli ID numbers (ID or company tax ID).
+    const digitsOnly = form.taxId.replace(/\D/g, "");
+    if (digitsOnly.length !== 9) {
+      setError("ח.פ או ת.ז חייבים להכיל 9 ספרות.");
       return;
     }
 
@@ -109,6 +125,8 @@ export default function CheckoutPage() {
                 email: form.email,
                 address: form.address,
                 city: form.city,
+                taxId: form.taxId,
+                invoiceName: form.invoiceName,
               },
               successUrl: `${window.location.origin}/order/success`,
               failureUrl: `${window.location.origin}/checkout`,
@@ -210,7 +228,7 @@ export default function CheckoutPage() {
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-brown mb-1">
-                אימייל (לא חובה)
+                אימייל *
               </label>
               <input
                 id="email"
@@ -218,10 +236,47 @@ export default function CheckoutPage() {
                 type="email"
                 value={form.email}
                 onChange={handleChange}
+                required
                 className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
                 dir="ltr"
                 autoComplete="email"
               />
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label htmlFor="taxId" className="block text-sm font-medium text-brown mb-1">
+                  ח.פ / ת.ז *
+                </label>
+                <input
+                  id="taxId"
+                  name="taxId"
+                  type="text"
+                  inputMode="numeric"
+                  value={form.taxId}
+                  onChange={handleChange}
+                  required
+                  pattern="[0-9]{9}"
+                  maxLength={9}
+                  className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  dir="ltr"
+                  placeholder="9 ספרות"
+                />
+              </div>
+              <div>
+                <label htmlFor="invoiceName" className="block text-sm font-medium text-brown mb-1">
+                  שם לחשבונית (אם שונה)
+                </label>
+                <input
+                  id="invoiceName"
+                  name="invoiceName"
+                  type="text"
+                  value={form.invoiceName}
+                  onChange={handleChange}
+                  className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                  placeholder="לא חובה — אם החשבונית צריכה שם אחר"
+                />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -336,23 +391,6 @@ export default function CheckoutPage() {
               )}
             </div>
 
-            {/* Reminder for online payments — in case the amount doesn't auto-fill on Sumit */}
-            {paymentMethod === "online" && totalPrice > 0 && (
-              <div className="bg-amber-50 border-r-4 border-amber-400 rounded-lg p-4 text-sm">
-                <p className="font-bold text-amber-900 mb-1 flex items-center gap-1">
-                  🔔 שימו לב לפני התשלום
-                </p>
-                <p className="text-amber-900">
-                  הסכום לתשלום הוא{" "}
-                  <strong className="text-base">
-                    {totalPrice.toLocaleString("he-IL")} ש&quot;ח
-                  </strong>
-                  . בעמוד התשלום של Sumit, אנא וודאו שהסכום שמופיע הוא{" "}
-                  <strong>{totalPrice.toLocaleString("he-IL")} ש&quot;ח</strong>.
-                  אם השדה ריק — הזינו את הסכום ידנית.
-                </p>
-              </div>
-            )}
 
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-3 text-sm">
