@@ -385,13 +385,10 @@
 
   /* Scroll-aware header — adds subtle backdrop blur + shadow on scroll */
   .nav-shell {
-    background: linear-gradient(180deg, rgba(59, 31, 10, 0.96) 0%, rgba(42, 21, 5, 0.94) 100%);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(200, 146, 42, 0.1);
-    transition: box-shadow 0.3s ease, background 0.3s ease;
+    background: linear-gradient(180deg, #3B1F0A 0%, #2A1505 100%);
+    transition: box-shadow 0.3s ease;
   }
   .nav-shell-scrolled {
-    box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.35), 0 2px 0 0 rgba(200, 146, 42, 0.15);
+    box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.35);
   }
 }
