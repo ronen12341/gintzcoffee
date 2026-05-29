@@ -253,13 +253,15 @@
       "id": "used-jura-s8",
       "name": "ג'ורה S8 – יד שנייה",
       "description": "מכונה שימשה שנתיים במשרד. תוחזקה על ידי טכנאי מוסמך. במצב מעולה.",
-      "condition": "מצב טוב מאוד"
+      "condition": "מצב טוב מאוד",
+      "hidden": true
     },
     {
       "id": "used-delonghi-perfecta",
       "name": "דה לונגי פרפקטה – מציאה",
       "description": "מכונה מוחזרת מלקוח. עברה בדיקה ושיפוץ מלא. מגיעה עם אחריות 6 חודשים.",
-      "condition": "אחרי שיפוץ"
+      "condition": "אחרי שיפוץ",
+      "hidden": true
     },
     {
       "id": "used-bezzera-arcadia-2gr",
@@ -275,7 +277,8 @@
       "id": "used-saeco-royal",
       "name": "סאקו רויאל – מכונות יד2",
       "description": "מכונת תצוגה. שימוש מינימלי. כמו חדשה. ללא קופסה מקורית.",
-      "condition": "כמו חדש"
+      "condition": "כמו חדש",
+      "hidden": true
     }
   ]
 }
