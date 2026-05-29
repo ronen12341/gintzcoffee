@@ -9,6 +9,13 @@ export interface Machine {
   price?: string;
   /** Numeric price in NIS — used for cart totals calculation */
   priceNumeric?: number;
+  /** Multi-paragraph extended description shown on the detail page. Split on
+   *  blank lines for paragraph breaks. Falls back to `description` if missing. */
+  longDescription?: string;
+  /** Additional images for the detail-page gallery (besides the main `image`). */
+  images?: string[];
+  /** Optional spec table shown on the detail page. */
+  specs?: { label: string; value: string }[];
 }
 
 export interface Bean {

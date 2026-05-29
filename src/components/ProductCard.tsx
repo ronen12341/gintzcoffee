@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import AddToCartButton from "@/components/AddToCartButton";
 import type { CartItem } from "@/lib/cart";
@@ -17,6 +18,8 @@ interface ProductCardProps {
   imageContain?: boolean;
   /** When set, an "Add to cart" button is rendered alongside the CTA. */
   cartItem?: Omit<CartItem, "qty">;
+  /** When set, the image and name become a link to this URL (the detail page). */
+  detailHref?: string;
 }
 
 export default function ProductCard({
@@ -31,7 +34,23 @@ export default function ProductCard({
   features,
   imageContain = false,
   cartItem,
+  detailHref,
 }: ProductCardProps) {
+  // When a detail page exists for this product, the image and the title are
+  // wrapped in a Link so customers can click to learn more.
+  const imageContent = image ? (
+    <div className={`relative w-full aspect-[4/3] ${imageContain ? "bg-gray-50 p-6" : ""}`}>
+      <Image
+        src={image}
+        alt={name}
+        fill
+        className={imageContain ? "object-contain" : "object-cover"}
+      />
+    </div>
+  ) : (
+    <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
+  );
+
   return (
     <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
       <div className="relative">
@@ -40,22 +59,30 @@ export default function ProductCard({
             {badge}
           </span>
         )}
-        {image ? (
-          <div className={`relative w-full aspect-[4/3] ${imageContain ? "bg-gray-50 p-6" : ""}`}>
-            <Image
-              src={image}
-              alt={name}
-              fill
-              className={imageContain ? "object-contain" : "object-cover"}
-            />
-          </div>
+        {detailHref ? (
+          <Link
+            href={detailHref}
+            aria-label={`עוד פרטים על ${name}`}
+            className="block focus:outline-none focus:ring-2 focus:ring-gold"
+          >
+            {imageContent}
+          </Link>
         ) : (
-          <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
+          imageContent
         )}
       </div>
 
       <div className="p-5 flex flex-col flex-1">
-        <h3 className="text-brown font-bold text-lg mb-2 leading-snug">{name}</h3>
+        {detailHref ? (
+          <Link
+            href={detailHref}
+            className="text-brown font-bold text-lg mb-2 leading-snug hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold rounded"
+          >
+            {name}
+          </Link>
+        ) : (
+          <h3 className="text-brown font-bold text-lg mb-2 leading-snug">{name}</h3>
+        )}
         <p className="text-brown/65 text-sm mb-3 leading-relaxed flex-1">{description}</p>
 
         {priceRange && (

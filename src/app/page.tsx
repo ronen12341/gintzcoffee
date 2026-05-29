@@ -298,7 +298,9 @@ export default function HomePage() {
                 features={m.features}
                 image={m.image}
                 priceRange={m.price}
-                ctaHref="#contact"
+                ctaHref={`/machines/${m.id}`}
+                ctaLabel="פרטים מלאים ←"
+                detailHref={`/machines/${m.id}`}
                 cartItem={{
                   id: m.id,
                   name: m.name,
