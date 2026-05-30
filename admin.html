@@ -478,7 +478,7 @@ function render() {
   } else {
     html += items.map((item, idx) => {
       const imgHtml = item.image
-        ? `<img src="${escapeAttr(item.image)}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        ? `<img src="${escapeAttr(resolveAdminImageSrc(item.image))}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
            <div class="no-img" style="display:none;">תמונה לא נטענה</div>`
         : `<div class="no-img">ללא תמונה</div>`;
       const priceHtml = item.price ? `<span class="price">${escapeHtml(item.price)}</span>` : '<span style="color:#999;font-size:13px;">ללא מחיר</span>';
@@ -516,6 +516,21 @@ function escapeAttr(str) {
   return escapeHtml(str);
 }
 
+/**
+ * The admin runs as a local HTML file. Image paths stored in products-data.json
+ * like "/machine-ena8.jpg" are relative to the Next.js public folder, which
+ * the site serves at the root URL. But the admin's HTML lives one level above
+ * public/, so "/foo.jpg" resolves to filesystem root and fails. We rewrite
+ * leading-slash paths to "public/foo.jpg" for the admin's preview only — the
+ * raw value stored in JSON stays correct for the deployed site.
+ */
+function resolveAdminImageSrc(src) {
+  if (!src) return '';
+  if (/^(https?:|data:|blob:)/i.test(src)) return src;
+  if (src.startsWith('/')) return 'public' + src;
+  return src;
+}
+
 // ---- Modal ----
 function openModal(idx) {
   editingIndex = idx;
@@ -531,7 +546,7 @@ function openModal(idx) {
     // Special handling for the image field: a side-by-side preview + an
     // upload button that resizes and saves the file to /public/ for the user.
     if (f.key === 'image') {
-      const previewSrc = value ? escapeAttr(value) : '';
+      const previewSrc = value ? escapeAttr(resolveAdminImageSrc(value)) : '';
       return `<div class="field">
         <label>${escapeHtml(f.label)}</label>
         <div class="image-field-wrap">
@@ -590,7 +605,7 @@ function updateImagePreview(url) {
   const box = $('image-preview');
   if (!box) return;
   if (url) {
-    box.innerHTML = `<img src="${escapeAttr(url)}" alt="" onerror="this.outerHTML='<div class=&quot;no-img-text&quot;>תמונה לא נטענה</div>'">`;
+    box.innerHTML = `<img src="${escapeAttr(resolveAdminImageSrc(url))}" alt="" onerror="this.outerHTML='<div class=&quot;no-img-text&quot;>תמונה לא נטענה</div>'">`;
   } else {
     box.innerHTML = '<div class="no-img-text">אין תמונה</div>';
   }
