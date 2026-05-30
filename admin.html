@@ -283,6 +283,14 @@
     (1) פתח קובץ → (2) ערוך/הוסף/מחק מוצרים → (3) שמור → (4) דאבל-קליק על <code>publish.bat</code> → האתר מתעדכן תוך 2-3 דקות.
   </div>
 
+  <div id="folder-status" class="file-info" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+    <span>
+      <strong>תיקיית תמונות (public):</strong>
+      <span id="folder-status-name" style="color:#999;">לא הוגדרה — תוגדר אוטומטית בעת ההעלאה הראשונה</span>
+    </span>
+    <button type="button" class="btn-secondary" style="padding:6px 12px;font-size:13px;" onclick="clearPublicFolder()">🔄 איפוס תיקייה</button>
+  </div>
+
   <div id="content" style="display: none;">
     <div class="tabs">
       <button class="tab active" data-tab="businessSolutions">💼 פתרונות לעסקים</button>
@@ -662,7 +670,21 @@ async function storeDirHandle(handle) {
 // On page load, try to recall a previously-granted public folder handle.
 loadStoredDirHandle().then((h) => {
   publicDirHandle = h;
+  updateFolderStatus();
 });
+
+function updateFolderStatus() {
+  const el = document.getElementById('folder-status-name');
+  if (!el) return;
+  if (publicDirHandle && publicDirHandle.name) {
+    const ok = publicDirHandle.name.toLowerCase() === 'public';
+    el.innerHTML = ok
+      ? `✓ <span style="color:#2E7D32;font-weight:600;">${escapeHtml(publicDirHandle.name)}</span> <span style="color:#999;">(תקין)</span>`
+      : `⚠ <span style="color:#C2410C;font-weight:600;">${escapeHtml(publicDirHandle.name)}</span> <span style="color:#C2410C;">(לא "public"! לחצי על איפוס ובחרי שוב)</span>`;
+  } else {
+    el.innerHTML = '<span style="color:#999;">לא הוגדרה — תוגדר אוטומטית בעת ההעלאה הראשונה</span>';
+  }
+}
 
 function handleImageUpload() {
   const btn = document.getElementById('upload-image-btn');
@@ -694,27 +716,29 @@ function handleImageUpload() {
 
     try {
       // First-time setup: ask the user to point us at the public folder.
-      // The directory handle is persisted in IndexedDB so this only
-      // happens once per browser.
       if (!publicDirHandle) {
         alert(
-          'הגדרה חד-פעמית:\n\nבדיאלוג שייפתח, בחרי את התיקייה:\nDesktop / gintzcoffe-main / gintzcoffe-main / public\n\nמרגע זה ההעלאות יישמרו אוטומטית.'
+          '⚙️ הגדרה חד-פעמית\n\n' +
+          'בדיאלוג שייפתח עליך לנווט אל:\n' +
+          'Desktop ← gintzcoffe-main ← gintzcoffe-main ← public\n\n' +
+          'ולבחור את התיקייה "public" עצמה (לא קובץ בתוכה).\n' +
+          'אחרי האישור — כל ההעלאות יישמרו שם אוטומטית.'
         );
         publicDirHandle = await window.showDirectoryPicker({
           id: 'gintz-public-dir',
           mode: 'readwrite',
           startIn: 'desktop',
         });
-        // Quick sanity check that the user picked the public folder
-        if (publicDirHandle.name && publicDirHandle.name.toLowerCase() !== 'public') {
-          const ok = confirm(
-            `בחרת בתיקייה בשם "${publicDirHandle.name}", לא "public". להמשיך בכל זאת? (אם לא, בחרי שוב)`
+        // STRICT check: refuse anything that's not literally named "public".
+        // Anything else (project root, src/, Desktop) would silently break
+        // the site because Next.js only serves files from public/.
+        if (!publicDirHandle.name || publicDirHandle.name.toLowerCase() !== 'public') {
+          alert(
+            `⚠️ בחרת בתיקייה בשם "${publicDirHandle.name}", אבל הקבצים חייבים להישמר בתיקייה בשם "public" בדיוק.\n\nאנא לחצי שוב על העלאת תמונה ובחרי את התיקייה הנכונה.`
           );
-          if (!ok) {
-            publicDirHandle = null;
-            resetUploadBtn();
-            return;
-          }
+          publicDirHandle = null;
+          resetUploadBtn();
+          return;
         }
         await storeDirHandle(publicDirHandle);
       } else {
@@ -728,7 +752,7 @@ function handleImageUpload() {
         }
       }
 
-      // Process + write the image directly into the public folder.
+      // Process + write the image directly into the chosen folder.
       const blob = await resizeImage(file, 1200, 1200, 0.85);
       const fileHandle = await publicDirHandle.getFileHandle(suggestedName, {
         create: true,
@@ -737,6 +761,7 @@ function handleImageUpload() {
       await writable.write(blob);
       await writable.close();
 
+      updateFolderStatus();
       finishUpload(suggestedName, true);
     } catch (err) {
       if (err.name === 'AbortError') {
@@ -761,7 +786,8 @@ async function clearPublicFolder() {
   } catch {
     /* ignore */
   }
-  alert('הוסר. בהעלאה הבאה ייבחרו מחדש את תיקיית public.');
+  updateFolderStatus();
+  alert('הוסר. בהעלאה הבאה תתבקשי לבחור מחדש את תיקיית public.');
 }
 window.clearPublicFolder = clearPublicFolder;
 

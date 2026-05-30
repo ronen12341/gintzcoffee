@@ -79,7 +79,7 @@
       "name": "מכונת אספרסו פרופיטק Profitec PRO 400",
       "description": "מכונה בעלת דוד מחליף חום, ראש E61 ובקר לבחירת טמפרטורת עבודה מבין 3 מצבים שונים. בעלת דוד נירוסטה בנפח 1.6 ליטר אשר מאפשר הקצפה עוצמתית ויציבות טמפרטורה כוס אחר כוס. מצוידת בסטימר קיטור מקצועי וברז למים רותחים.",
       "features": [],
-      "image": "/machine-profitech400.jpg",
+      "image": "/prifitech400.jpg",
       "price": "6,290",
       "priceNumeric": 6290,
       "featured": false,
@@ -315,6 +315,7 @@
     {
       "id": "used-B2016gr1",
       "name": "מכונה קפה מקצועית בזרה BEZZERA B2016 DE 1GR",
+      "image": "/used-B2016gr1.jpg",
       "description": "מכונת קפה מקצועית לבתי קפה מבית המותג הוותיק \"BEZZERA\" \nהדגם החדש עם ראש אחד B2016 DE ELECTRONIC 1GR\n\nכלליPower supply V~/Hz / 50-60HzResistance 50W) 2600 3000Power supply V~/Hz 220 - 415 / 50-60HzResistance W(230V) 2000 3000 5000Boiler l 5 11 17Width mm 570 750 960Depth mm 550 550 550Height mm 515 515 515Net weight kg 49 54 75Gross weight (pallets) kg 56 65 87מחברי כניסת מים R G 3/8\"מחברי ניקוז R G 3/4\"",
       "condition": "מצב מעולה",
       "price": "6,500",
