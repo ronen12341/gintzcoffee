@@ -110,9 +110,14 @@ export default function ProductCard({
 
         <div className="flex flex-col gap-2 mt-auto">
           {cartItem && <AddToCartButton item={cartItem} />}
-          <a href={ctaHref} className="btn btn-soft-secondary btn-block btn-sm">
-            {ctaLabel}
-          </a>
+          {/* The standalone CTA is only shown when there's no detail page —
+              when detailHref is set, the image and title already link there,
+              so a separate button is redundant. */}
+          {!detailHref && (
+            <a href={ctaHref} className="btn btn-soft-secondary btn-block btn-sm">
+              {ctaLabel}
+            </a>
+          )}
         </div>
       </div>
     </article>

@@ -593,59 +593,113 @@ function updateImagePreview(url) {
   }
 }
 
-// ---- Image upload: resize then save to /public/ via the save-file picker ----
-async function handleImageUpload() {
-  if (!window.showSaveFilePicker) {
-    alert('הדפדפן שלך לא תומך בשמירת קבצים. נא להשתמש ב-Chrome או Edge.');
-    return;
-  }
-  // 1. Pick the source image from the user's computer.
+// ---- Image upload: resize then save to /public/ ----
+// Chrome requires showSaveFilePicker to be called within an active user
+// gesture. Awaiting anything (like resizeImage) before calling it breaks the
+// gesture and Chrome rejects with "Must be handling a user gesture". The fix:
+// call showSaveFilePicker SYNCHRONOUSLY inside the file input's `change`
+// handler (which still counts as a gesture), THEN do the async resize+write.
+// If the picker still fails (e.g. Firefox/Safari, or unexpected gesture loss),
+// we fall back to a regular browser download so the flow never deadends.
+function handleImageUpload() {
+  const btn = document.getElementById('upload-image-btn');
+
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.accept = 'image/*';
-  fileInput.click();
-  const file = await new Promise((resolve) => {
-    fileInput.onchange = () => resolve(fileInput.files[0]);
-  });
-  if (!file) return;
 
-  const btn = $('upload-image-btn');
-  btn.disabled = true;
-  btn.textContent = '⏳ מעבד תמונה...';
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files && fileInput.files[0];
+    if (!file) return;
 
-  try {
-    // 2. Resize via canvas to keep file size reasonable (max 1200x1200).
-    const blob = await resizeImage(file, 1200, 1200, 0.85);
-
-    // 3. Build a clean suggested filename from the product ID.
-    const idInput = $('image-url').form?.querySelector('input[name="id"]');
-    const baseId = (idInput?.value || `image-${Date.now().toString(36)}`).replace(/[^a-z0-9-]/gi, '-');
+    // Compute the suggested filename synchronously from the product ID.
+    const idInput = document.getElementById('image-url').form
+      ? document.getElementById('image-url').form.querySelector('input[name="id"]')
+      : null;
+    const baseId = (idInput && idInput.value || `image-${Date.now().toString(36)}`)
+      .replace(/[^a-z0-9-]/gi, '-');
     const suggestedName = `${baseId}.jpg`;
 
-    // 4. Ask the user to pick where in /public to save. Chrome remembers the
-    //    last folder, so subsequent uploads default to the same place.
-    const handle = await window.showSaveFilePicker({
-      suggestedName,
-      types: [{ description: 'JPEG image', accept: { 'image/jpeg': ['.jpg', '.jpeg'] } }],
-    });
-    const writable = await handle.createWritable();
-    await writable.write(blob);
-    await writable.close();
+    btn.disabled = true;
+    btn.textContent = '⏳ מעבד תמונה...';
 
-    // 5. Use the saved filename as the image path (Next.js public/ → root URL).
-    const savedName = handle.name;
-    const newUrl = `/${savedName}`;
-    $('image-url').value = newUrl;
-    updateImagePreview(newUrl);
-    btn.textContent = '✓ הועלה — אפשר להמשיך לערוך';
-    setTimeout(() => { btn.textContent = '📷 העלה תמונה אחרת'; btn.disabled = false; }, 2500);
-  } catch (err) {
-    if (err.name !== 'AbortError') {
-      alert('שגיאה בהעלאת התמונה: ' + err.message);
+    // If the modern File System Access API is available, ask for the save
+    // location IMMEDIATELY (still in user gesture). Otherwise fall back to
+    // a regular browser download.
+    if (window.showSaveFilePicker) {
+      window
+        .showSaveFilePicker({
+          suggestedName,
+          types: [{ description: 'JPEG image', accept: { 'image/jpeg': ['.jpg', '.jpeg'] } }],
+        })
+        .then(async (handle) => {
+          const blob = await resizeImage(file, 1200, 1200, 0.85);
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          finishUpload(handle.name);
+        })
+        .catch(async (err) => {
+          if (err.name === 'AbortError') {
+            resetUploadBtn();
+            return;
+          }
+          // Any other error (incl. lost user gesture) → download fallback
+          await fallbackDownload(file, suggestedName);
+        });
+    } else {
+      fallbackDownload(file, suggestedName);
     }
-    btn.textContent = '📷 העלה תמונה מהמחשב';
-    btn.disabled = false;
+  });
+
+  fileInput.click();
+}
+
+async function fallbackDownload(file, suggestedName) {
+  try {
+    const blob = await resizeImage(file, 1200, 1200, 0.85);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = suggestedName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    // Set the URL field anyway, so the value is ready once the user moves
+    // the downloaded file into public/.
+    document.getElementById('image-url').value = `/${suggestedName}`;
+    updateImagePreview(`/${suggestedName}`);
+    alert(
+      'התמונה ירדה למחשב בשם: ' +
+        suggestedName +
+        '\n\nאנא העתיקי אותה לתיקייה:\nDesktop/gintzcoffe-main/gintzcoffe-main/public/\n\nהשדה כבר הוגדר עם הקישור הנכון.'
+    );
+    finishUpload(suggestedName);
+  } catch (err) {
+    alert('שגיאה בעיבוד התמונה: ' + err.message);
+    resetUploadBtn();
   }
+}
+
+function finishUpload(savedName) {
+  const newUrl = `/${savedName}`;
+  document.getElementById('image-url').value = newUrl;
+  updateImagePreview(newUrl);
+  const btn = document.getElementById('upload-image-btn');
+  if (!btn) return;
+  btn.textContent = '✓ הועלה — אפשר להמשיך לערוך';
+  setTimeout(() => {
+    btn.textContent = '📷 העלה תמונה אחרת';
+    btn.disabled = false;
+  }, 2500);
+}
+
+function resetUploadBtn() {
+  const btn = document.getElementById('upload-image-btn');
+  if (!btn) return;
+  btn.textContent = '📷 העלה תמונה מהמחשב';
+  btn.disabled = false;
 }
 
 function resizeImage(file, maxW, maxH, quality) {
