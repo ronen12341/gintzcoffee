@@ -33,6 +33,24 @@ interface OrderPayload {
   paymentMethod?: "online" | "phone";
 }
 
+/**
+ * Normalize an Israeli phone number to E.164 digits for wa.me links.
+ * Examples:
+ *   "+972532733822"  → "972532733822"
+ *   "972532733822"   → "972532733822"
+ *   "0532733822"     → "972532733822"
+ *   "053-273-3822"   → "972532733822"
+ * The bug we're fixing: a previous version always prepended "972", so an
+ * already-international input like "+972532733822" produced "972972532733822".
+ */
+function toIsraeliE164(raw: string): string {
+  const digits = (raw ?? "").replace(/\D/g, "");
+  if (!digits) return "";
+  if (digits.startsWith("972")) return digits;
+  if (digits.startsWith("0")) return "972" + digits.slice(1);
+  return "972" + digits;
+}
+
 function categoryLabel(c: string): string {
   switch (c) {
     case "machine":
@@ -75,7 +93,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
     })
     .join("");
 
-  const waLink = `https://wa.me/972${p.customer.phone.replace(/^0/, "").replace(/\D/g, "")}`;
+  const waLink = `https://wa.me/${toIsraeliE164(p.customer.phone)}`;
   const paymentBadge =
     p.paymentMethod === "online"
       ? `<span style="display:inline-block;background:#16a34a;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">💳 תשלום אונליין — הלקוח מועבר ל-Sumit</span>`
