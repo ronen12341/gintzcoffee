@@ -593,14 +593,59 @@ function updateImagePreview(url) {
   }
 }
 
-// ---- Image upload: resize then save to /public/ ----
-// Chrome requires showSaveFilePicker to be called within an active user
-// gesture. Awaiting anything (like resizeImage) before calling it breaks the
-// gesture and Chrome rejects with "Must be handling a user gesture". The fix:
-// call showSaveFilePicker SYNCHRONOUSLY inside the file input's `change`
-// handler (which still counts as a gesture), THEN do the async resize+write.
-// If the picker still fails (e.g. Firefox/Safari, or unexpected gesture loss),
-// we fall back to a regular browser download so the flow never deadends.
+// ---- Image upload: resize + save DIRECTLY to /public/ ----
+// First time the user uploads, we ask them to pick the public folder ONCE.
+// The directory handle is persisted in IndexedDB so subsequent uploads are
+// silent (no folder picker, no manual copy). If the user is on a browser
+// without File System Access API support, we fall back to a regular download.
+
+const DB_NAME = 'gintz-admin';
+const STORE_NAME = 'handles';
+const HANDLE_KEY = 'public-dir';
+let publicDirHandle = null;
+
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const req = indexedDB.open(DB_NAME, 1);
+    req.onupgradeneeded = () => req.result.createObjectStore(STORE_NAME);
+    req.onsuccess = () => resolve(req.result);
+    req.onerror = () => reject(req.error);
+  });
+}
+
+async function loadStoredDirHandle() {
+  try {
+    const db = await openDB();
+    return await new Promise((resolve) => {
+      const tx = db.transaction(STORE_NAME, 'readonly');
+      const req = tx.objectStore(STORE_NAME).get(HANDLE_KEY);
+      req.onsuccess = () => resolve(req.result || null);
+      req.onerror = () => resolve(null);
+    });
+  } catch {
+    return null;
+  }
+}
+
+async function storeDirHandle(handle) {
+  try {
+    const db = await openDB();
+    return await new Promise((resolve, reject) => {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      tx.objectStore(STORE_NAME).put(handle, HANDLE_KEY);
+      tx.oncomplete = resolve;
+      tx.onerror = () => reject(tx.error);
+    });
+  } catch {
+    /* ignore */
+  }
+}
+
+// On page load, try to recall a previously-granted public folder handle.
+loadStoredDirHandle().then((h) => {
+  publicDirHandle = h;
+});
+
 function handleImageUpload() {
   const btn = document.getElementById('upload-image-btn');
 
@@ -608,11 +653,11 @@ function handleImageUpload() {
   fileInput.type = 'file';
   fileInput.accept = 'image/*';
 
-  fileInput.addEventListener('change', () => {
+  fileInput.addEventListener('change', async () => {
     const file = fileInput.files && fileInput.files[0];
     if (!file) return;
 
-    // Compute the suggested filename synchronously from the product ID.
+    // Compute the filename synchronously from the product ID.
     const idInput = document.getElementById('image-url').form
       ? document.getElementById('image-url').form.querySelector('input[name="id"]')
       : null;
@@ -623,37 +668,84 @@ function handleImageUpload() {
     btn.disabled = true;
     btn.textContent = '⏳ מעבד תמונה...';
 
-    // If the modern File System Access API is available, ask for the save
-    // location IMMEDIATELY (still in user gesture). Otherwise fall back to
-    // a regular browser download.
-    if (window.showSaveFilePicker) {
-      window
-        .showSaveFilePicker({
-          suggestedName,
-          types: [{ description: 'JPEG image', accept: { 'image/jpeg': ['.jpg', '.jpeg'] } }],
-        })
-        .then(async (handle) => {
-          const blob = await resizeImage(file, 1200, 1200, 0.85);
-          const writable = await handle.createWritable();
-          await writable.write(blob);
-          await writable.close();
-          finishUpload(handle.name);
-        })
-        .catch(async (err) => {
-          if (err.name === 'AbortError') {
+    // No File System Access API at all → download fallback (Firefox/Safari).
+    if (!window.showDirectoryPicker) {
+      await fallbackDownload(file, suggestedName);
+      return;
+    }
+
+    try {
+      // First-time setup: ask the user to point us at the public folder.
+      // The directory handle is persisted in IndexedDB so this only
+      // happens once per browser.
+      if (!publicDirHandle) {
+        alert(
+          'הגדרה חד-פעמית:\n\nבדיאלוג שייפתח, בחרי את התיקייה:\nDesktop / gintzcoffe-main / gintzcoffe-main / public\n\nמרגע זה ההעלאות יישמרו אוטומטית.'
+        );
+        publicDirHandle = await window.showDirectoryPicker({
+          id: 'gintz-public-dir',
+          mode: 'readwrite',
+          startIn: 'desktop',
+        });
+        // Quick sanity check that the user picked the public folder
+        if (publicDirHandle.name && publicDirHandle.name.toLowerCase() !== 'public') {
+          const ok = confirm(
+            `בחרת בתיקייה בשם "${publicDirHandle.name}", לא "public". להמשיך בכל זאת? (אם לא, בחרי שוב)`
+          );
+          if (!ok) {
+            publicDirHandle = null;
             resetUploadBtn();
             return;
           }
-          // Any other error (incl. lost user gesture) → download fallback
-          await fallbackDownload(file, suggestedName);
-        });
-    } else {
-      fallbackDownload(file, suggestedName);
+        }
+        await storeDirHandle(publicDirHandle);
+      } else {
+        // Re-verify permission (browsers may revoke after long idle)
+        const perm = await publicDirHandle.queryPermission({ mode: 'readwrite' });
+        if (perm !== 'granted') {
+          const req = await publicDirHandle.requestPermission({ mode: 'readwrite' });
+          if (req !== 'granted') {
+            throw new Error('Permission denied');
+          }
+        }
+      }
+
+      // Process + write the image directly into the public folder.
+      const blob = await resizeImage(file, 1200, 1200, 0.85);
+      const fileHandle = await publicDirHandle.getFileHandle(suggestedName, {
+        create: true,
+      });
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+
+      finishUpload(suggestedName, true);
+    } catch (err) {
+      if (err.name === 'AbortError') {
+        resetUploadBtn();
+        return;
+      }
+      console.error('Direct save failed, falling back to download:', err);
+      await fallbackDownload(file, suggestedName);
     }
   });
 
   fileInput.click();
 }
+
+/** Lets the admin reset the cached public folder (e.g. moved the project). */
+async function clearPublicFolder() {
+  publicDirHandle = null;
+  try {
+    const db = await openDB();
+    const tx = db.transaction(STORE_NAME, 'readwrite');
+    tx.objectStore(STORE_NAME).delete(HANDLE_KEY);
+  } catch {
+    /* ignore */
+  }
+  alert('הוסר. בהעלאה הבאה ייבחרו מחדש את תיקיית public.');
+}
+window.clearPublicFolder = clearPublicFolder;
 
 async function fallbackDownload(file, suggestedName) {
   try {
