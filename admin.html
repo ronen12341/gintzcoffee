@@ -565,7 +565,11 @@ function openModal(idx) {
           </div>
           <div>
             <input type="text" name="image" value="${escapeAttr(value ?? '')}" id="image-url" placeholder="לדוגמה: /image.jpg או https://...">
-            <button type="button" class="upload-btn" id="upload-image-btn">📷 העלה תמונה מהמחשב</button>
+            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
+              <button type="button" class="upload-btn" id="upload-image-btn">📷 העלה תמונה מהמחשב</button>
+              <button type="button" class="upload-btn" id="pick-existing-btn" style="background:#5C3015;">📂 בחרי קובץ קיים</button>
+            </div>
+            <select id="existing-images-select" style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #D9CBB3;border-radius:6px;background:white;font-family:inherit;"></select>
             <div class="hint">
               בפעם הראשונה תתבקשי לבחור את תיקיית <code>public</code>. אחר־כך כל ההעלאות נשמרות שם אוטומטית.
               <a href="#" onclick="event.preventDefault();clearPublicFolder();" style="color:#C8922A;text-decoration:underline;">איפוס תיקייה</a>
@@ -605,6 +609,42 @@ function openModal(idx) {
   const urlInput = $('image-url');
   if (urlInput) {
     urlInput.addEventListener('input', () => updateImagePreview(urlInput.value));
+  }
+  // Wire up the "pick existing file" button
+  const pickBtn = $('pick-existing-btn');
+  const selectEl = $('existing-images-select');
+  if (pickBtn && selectEl) {
+    pickBtn.addEventListener('click', async () => {
+      if (!publicDirHandle) {
+        alert('קודם צריך להגדיר את תיקיית public. תני קליק על "העלה תמונה" כדי לבחור אותה.');
+        return;
+      }
+      // Re-verify permission (browsers may revoke after long idle)
+      const perm = await publicDirHandle.queryPermission({ mode: 'read' });
+      if (perm !== 'granted') {
+        const req = await publicDirHandle.requestPermission({ mode: 'read' });
+        if (req !== 'granted') {
+          alert('אין הרשאת קריאה לתיקייה. לחצי על "איפוס תיקייה" ובחרי שוב.');
+          return;
+        }
+      }
+      const names = await listPublicImages();
+      if (names.length === 0) {
+        alert('לא נמצאו תמונות בתיקייה. אפשר להעלות חדשה דרך הכפתור "העלה תמונה".');
+        return;
+      }
+      selectEl.innerHTML =
+        '<option value="">— בחרי קובץ —</option>' +
+        names.map((n) => `<option value="/${escapeAttr(n)}">${escapeHtml(n)}</option>`).join('');
+      selectEl.style.display = 'block';
+      selectEl.value = urlInput.value || '';
+    });
+    selectEl.addEventListener('change', () => {
+      if (selectEl.value) {
+        urlInput.value = selectEl.value;
+        updateImagePreview(selectEl.value);
+      }
+    });
   }
   $('modal').classList.add('open');
 }
@@ -683,6 +723,30 @@ function updateFolderStatus() {
       : `⚠ <span style="color:#C2410C;font-weight:600;">${escapeHtml(publicDirHandle.name)}</span> <span style="color:#C2410C;">(לא "public"! לחצי על איפוס ובחרי שוב)</span>`;
   } else {
     el.innerHTML = '<span style="color:#999;">לא הוגדרה — תוגדר אוטומטית בעת ההעלאה הראשונה</span>';
+  }
+}
+
+/**
+ * List image files currently in the configured public folder. Returns an
+ * array of filenames (e.g. ["ENA8_W1.jpg", "logo.png"]) so the edit form
+ * can populate a "choose existing file" dropdown next to the URL input.
+ * Saves the user from having to remember exact filenames.
+ */
+async function listPublicImages() {
+  if (!publicDirHandle) return [];
+  try {
+    const perm = await publicDirHandle.queryPermission({ mode: 'read' });
+    if (perm !== 'granted') return [];
+    const names = [];
+    for await (const entry of publicDirHandle.values()) {
+      if (entry.kind !== 'file') continue;
+      if (/\.(jpe?g|png|webp|gif|svg|avif)$/i.test(entry.name)) {
+        names.push(entry.name);
+      }
+    }
+    return names.sort((a, b) => a.localeCompare(b));
+  } catch {
+    return [];
   }
 }
 
