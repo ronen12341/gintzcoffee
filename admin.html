@@ -543,7 +543,10 @@ function openModal(idx) {
           <div>
             <input type="text" name="image" value="${escapeAttr(value ?? '')}" id="image-url" placeholder="לדוגמה: /image.jpg או https://...">
             <button type="button" class="upload-btn" id="upload-image-btn">📷 העלה תמונה מהמחשב</button>
-            <div class="hint">לחיצי על הכפתור כדי להעלות תמונה — היא תישמר אוטומטית בתיקיית public ותקושר לשדה.</div>
+            <div class="hint">
+              בפעם הראשונה תתבקשי לבחור את תיקיית <code>public</code>. אחר־כך כל ההעלאות נשמרות שם אוטומטית.
+              <a href="#" onclick="event.preventDefault();clearPublicFolder();" style="color:#C8922A;text-decoration:underline;">איפוס תיקייה</a>
+            </div>
           </div>
         </div>
       </div>`;
@@ -774,13 +777,15 @@ async function fallbackDownload(file, suggestedName) {
   }
 }
 
-function finishUpload(savedName) {
+function finishUpload(savedName, directlySaved) {
   const newUrl = `/${savedName}`;
   document.getElementById('image-url').value = newUrl;
   updateImagePreview(newUrl);
   const btn = document.getElementById('upload-image-btn');
   if (!btn) return;
-  btn.textContent = '✓ הועלה — אפשר להמשיך לערוך';
+  btn.textContent = directlySaved
+    ? '✓ נשמרה בתיקיית public'
+    : '✓ הועלה — אפשר להמשיך לערוך';
   setTimeout(() => {
     btn.textContent = '📷 העלה תמונה אחרת';
     btn.disabled = false;
