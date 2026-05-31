@@ -15,6 +15,7 @@ const navLinks = [
   { href: "/beans", label: "פולי קפה" },
   { href: "/cups", label: "כוסות ממותגות" },
   { href: "/bargains", label: "מכונות יד2" },
+  { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
 ];
 
