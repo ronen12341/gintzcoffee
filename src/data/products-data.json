@@ -263,10 +263,13 @@
   "cupCategories": [
     {
       "id": "branded-cups",
-      "name": "כוסות ממותגות לעסקים",
-      "description": "הטבעת החותם האישי של בית העסק שלכם. כוסות עם הלוגו שלכם — שיווק חכם בכל כוס קפה.",
+      "name": "500 כוסות מודפסות",
+      "description": "עם הדפסה בכל צבע",
       "minQuantity": 500,
-      "image": "/cups/branded-cups.svg"
+      "image": "/cups/branded-cups.svg",
+      "price": "500",
+      "priceNumeric": 500,
+      "hidden": false
     },
     {
       "id": "disposable-cups",
