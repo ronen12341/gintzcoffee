@@ -1,4 +1,4 @@
-import Image from "next/image";
+import SmartImage from "@/components/SmartImage";
 import { Users, Check } from "lucide-react";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import type { BusinessSolution } from "@/data/products";
@@ -18,7 +18,7 @@ export default function BusinessSolutionCard({ solution }: BusinessSolutionCardP
       <div className="relative">
         {solution.image ? (
           <div className="relative w-full aspect-[4/3] bg-cream">
-            <Image
+            <SmartImage
               src={solution.image}
               alt={solution.name}
               fill
@@ -27,7 +27,7 @@ export default function BusinessSolutionCard({ solution }: BusinessSolutionCardP
             />
           </div>
         ) : (
-          <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
+          <SmartImagePlaceholder label="הוסף תמונה" width={400} height={300} />
         )}
         {/* Employee-range badge — the headline feature of this card */}
         <div className="absolute top-4 start-4 bg-brown text-cream px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-lg">

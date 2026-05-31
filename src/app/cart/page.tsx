@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import SmartImage from "@/components/SmartImage";
 
 export default function CartPage() {
   const { items, updateQty, removeItem, totalPrice, hasUnpricedItems, totalQty } = useCart();
@@ -44,7 +44,7 @@ export default function CartPage() {
               <li key={item.id} className="p-4 sm:p-6 flex gap-4">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-cream rounded-lg overflow-hidden relative">
                   {item.image && (
-                    <Image
+                    <SmartImage
                       src={item.image}
                       alt={item.name}
                       fill

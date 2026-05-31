@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import SmartImage from "@/components/SmartImage";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 
 interface MachineGalleryProps {
@@ -20,7 +20,7 @@ export default function MachineGallery({ images, alt }: MachineGalleryProps) {
   if (images.length === 0) {
     return (
       <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-        <ImagePlaceholder label="הוסף תמונה" width={600} height={500} />
+        <SmartImagePlaceholder label="הוסף תמונה" width={600} height={500} />
       </div>
     );
   }
@@ -31,7 +31,7 @@ export default function MachineGallery({ images, alt }: MachineGalleryProps) {
     <div className="flex flex-col gap-3">
       {/* Main image */}
       <div className="relative w-full aspect-square sm:aspect-[4/3] bg-white rounded-2xl shadow-md overflow-hidden">
-        <Image
+        <SmartImage
           src={currentImage}
           alt={alt}
           fill
@@ -57,7 +57,7 @@ export default function MachineGallery({ images, alt }: MachineGalleryProps) {
                   : "border-cream-dark hover:border-gold/60"
               }`}
             >
-              <Image
+              <SmartImage
                 src={src}
                 alt=""
                 fill

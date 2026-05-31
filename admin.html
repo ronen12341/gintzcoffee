@@ -283,12 +283,9 @@
     (1) פתח קובץ → (2) ערוך/הוסף/מחק מוצרים → (3) שמור → (4) דאבל-קליק על <code>publish.bat</code> → האתר מתעדכן תוך 2-3 דקות.
   </div>
 
-  <div id="folder-status" class="file-info" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
-    <span>
-      <strong>תיקיית תמונות (public):</strong>
-      <span id="folder-status-name" style="color:#999;">לא הוגדרה — תוגדר אוטומטית בעת ההעלאה הראשונה</span>
-    </span>
-    <button type="button" class="btn-secondary" style="padding:6px 12px;font-size:13px;" onclick="clearPublicFolder()">🔄 איפוס תיקייה</button>
+  <div id="folder-status" class="file-info" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+    <strong>🖼️ תמונות:</strong>
+    <span style="color:#2E7D32;">מוטמעות ישירות בקובץ — אין צורך בתיקיות נפרדות או העלאה ידנית.</span>
   </div>
 
   <div id="content" style="display: none;">
@@ -564,15 +561,10 @@ function openModal(idx) {
               : '<div class="no-img-text">אין תמונה</div>'}
           </div>
           <div>
-            <input type="text" name="image" value="${escapeAttr(value ?? '')}" id="image-url" placeholder="לדוגמה: /image.jpg או https://...">
-            <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;">
-              <button type="button" class="upload-btn" id="upload-image-btn">📷 העלה תמונה מהמחשב</button>
-              <button type="button" class="upload-btn" id="pick-existing-btn" style="background:#5C3015;">📂 בחרי קובץ קיים</button>
-            </div>
-            <select id="existing-images-select" style="display:none;width:100%;margin-top:8px;padding:8px;border:1px solid #D9CBB3;border-radius:6px;background:white;font-family:inherit;"></select>
+            <input type="text" name="image" value="${escapeAttr(value ?? '')}" id="image-url" placeholder="לחיצי על הכפתור למטה כדי להעלות, או הדביקי כתובת https://...">
+            <button type="button" class="upload-btn" id="upload-image-btn" style="margin-top:8px;">📷 העלה תמונה מהמחשב</button>
             <div class="hint">
-              בפעם הראשונה תתבקשי לבחור את תיקיית <code>public</code>. אחר־כך כל ההעלאות נשמרות שם אוטומטית.
-              <a href="#" onclick="event.preventDefault();clearPublicFolder();" style="color:#C8922A;text-decoration:underline;">איפוס תיקייה</a>
+              התמונה תישמר בתוך הקובץ עצמו. אין צורך בתיקיות נפרדות או העלאה ידנית — אחרי שמירה ולחיצה על <code>publish.bat</code> התמונה תופיע באתר.
             </div>
           </div>
         </div>
@@ -610,42 +602,6 @@ function openModal(idx) {
   if (urlInput) {
     urlInput.addEventListener('input', () => updateImagePreview(urlInput.value));
   }
-  // Wire up the "pick existing file" button
-  const pickBtn = $('pick-existing-btn');
-  const selectEl = $('existing-images-select');
-  if (pickBtn && selectEl) {
-    pickBtn.addEventListener('click', async () => {
-      if (!publicDirHandle) {
-        alert('קודם צריך להגדיר את תיקיית public. תני קליק על "העלה תמונה" כדי לבחור אותה.');
-        return;
-      }
-      // Re-verify permission (browsers may revoke after long idle)
-      const perm = await publicDirHandle.queryPermission({ mode: 'read' });
-      if (perm !== 'granted') {
-        const req = await publicDirHandle.requestPermission({ mode: 'read' });
-        if (req !== 'granted') {
-          alert('אין הרשאת קריאה לתיקייה. לחצי על "איפוס תיקייה" ובחרי שוב.');
-          return;
-        }
-      }
-      const names = await listPublicImages();
-      if (names.length === 0) {
-        alert('לא נמצאו תמונות בתיקייה. אפשר להעלות חדשה דרך הכפתור "העלה תמונה".');
-        return;
-      }
-      selectEl.innerHTML =
-        '<option value="">— בחרי קובץ —</option>' +
-        names.map((n) => `<option value="/${escapeAttr(n)}">${escapeHtml(n)}</option>`).join('');
-      selectEl.style.display = 'block';
-      selectEl.value = urlInput.value || '';
-    });
-    selectEl.addEventListener('change', () => {
-      if (selectEl.value) {
-        urlInput.value = selectEl.value;
-        updateImagePreview(selectEl.value);
-      }
-    });
-  }
   $('modal').classList.add('open');
 }
 
@@ -659,96 +615,12 @@ function updateImagePreview(url) {
   }
 }
 
-// ---- Image upload: resize + save DIRECTLY to /public/ ----
-// First time the user uploads, we ask them to pick the public folder ONCE.
-// The directory handle is persisted in IndexedDB so subsequent uploads are
-// silent (no folder picker, no manual copy). If the user is on a browser
-// without File System Access API support, we fall back to a regular download.
-
-const DB_NAME = 'gintz-admin';
-const STORE_NAME = 'handles';
-const HANDLE_KEY = 'public-dir';
-let publicDirHandle = null;
-
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const req = indexedDB.open(DB_NAME, 1);
-    req.onupgradeneeded = () => req.result.createObjectStore(STORE_NAME);
-    req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
-  });
-}
-
-async function loadStoredDirHandle() {
-  try {
-    const db = await openDB();
-    return await new Promise((resolve) => {
-      const tx = db.transaction(STORE_NAME, 'readonly');
-      const req = tx.objectStore(STORE_NAME).get(HANDLE_KEY);
-      req.onsuccess = () => resolve(req.result || null);
-      req.onerror = () => resolve(null);
-    });
-  } catch {
-    return null;
-  }
-}
-
-async function storeDirHandle(handle) {
-  try {
-    const db = await openDB();
-    return await new Promise((resolve, reject) => {
-      const tx = db.transaction(STORE_NAME, 'readwrite');
-      tx.objectStore(STORE_NAME).put(handle, HANDLE_KEY);
-      tx.oncomplete = resolve;
-      tx.onerror = () => reject(tx.error);
-    });
-  } catch {
-    /* ignore */
-  }
-}
-
-// On page load, try to recall a previously-granted public folder handle.
-loadStoredDirHandle().then((h) => {
-  publicDirHandle = h;
-  updateFolderStatus();
-});
-
-function updateFolderStatus() {
-  const el = document.getElementById('folder-status-name');
-  if (!el) return;
-  if (publicDirHandle && publicDirHandle.name) {
-    const ok = publicDirHandle.name.toLowerCase() === 'public';
-    el.innerHTML = ok
-      ? `✓ <span style="color:#2E7D32;font-weight:600;">${escapeHtml(publicDirHandle.name)}</span> <span style="color:#999;">(תקין)</span>`
-      : `⚠ <span style="color:#C2410C;font-weight:600;">${escapeHtml(publicDirHandle.name)}</span> <span style="color:#C2410C;">(לא "public"! לחצי על איפוס ובחרי שוב)</span>`;
-  } else {
-    el.innerHTML = '<span style="color:#999;">לא הוגדרה — תוגדר אוטומטית בעת ההעלאה הראשונה</span>';
-  }
-}
-
-/**
- * List image files currently in the configured public folder. Returns an
- * array of filenames (e.g. ["ENA8_W1.jpg", "logo.png"]) so the edit form
- * can populate a "choose existing file" dropdown next to the URL input.
- * Saves the user from having to remember exact filenames.
- */
-async function listPublicImages() {
-  if (!publicDirHandle) return [];
-  try {
-    const perm = await publicDirHandle.queryPermission({ mode: 'read' });
-    if (perm !== 'granted') return [];
-    const names = [];
-    for await (const entry of publicDirHandle.values()) {
-      if (entry.kind !== 'file') continue;
-      if (/\.(jpe?g|png|webp|gif|svg|avif)$/i.test(entry.name)) {
-        names.push(entry.name);
-      }
-    }
-    return names.sort((a, b) => a.localeCompare(b));
-  } catch {
-    return [];
-  }
-}
+// ---- Image upload: embed as data URL in the JSON ----
+// We deliberately avoid the filesystem entirely. Picked images are resized
+// in the browser, converted to base64 data URLs, and stored inline in the
+// products-data.json `image` field. Saving the JSON saves the image with it.
+// This eliminates the whole class of filename-mismatch bugs the previous
+// directory-picker approach kept producing.
 
 function handleImageUpload() {
   const btn = document.getElementById('upload-image-btn');
@@ -761,140 +633,38 @@ function handleImageUpload() {
     const file = fileInput.files && fileInput.files[0];
     if (!file) return;
 
-    // Compute the filename synchronously from the product ID.
-    const idInput = document.getElementById('image-url').form
-      ? document.getElementById('image-url').form.querySelector('input[name="id"]')
-      : null;
-    const baseId = (idInput && idInput.value || `image-${Date.now().toString(36)}`)
-      .replace(/[^a-z0-9-]/gi, '-');
-    const suggestedName = `${baseId}.jpg`;
-
     btn.disabled = true;
     btn.textContent = '⏳ מעבד תמונה...';
 
-    // No File System Access API at all → download fallback (Firefox/Safari).
-    if (!window.showDirectoryPicker) {
-      await fallbackDownload(file, suggestedName);
-      return;
-    }
-
     try {
-      // First-time setup: ask the user to point us at the public folder.
-      if (!publicDirHandle) {
-        alert(
-          '⚙️ הגדרה חד-פעמית\n\n' +
-          'בדיאלוג שייפתח עליך לנווט אל:\n' +
-          'Desktop ← gintzcoffe-main ← gintzcoffe-main ← public\n\n' +
-          'ולבחור את התיקייה "public" עצמה (לא קובץ בתוכה).\n' +
-          'אחרי האישור — כל ההעלאות יישמרו שם אוטומטית.'
-        );
-        publicDirHandle = await window.showDirectoryPicker({
-          id: 'gintz-public-dir',
-          mode: 'readwrite',
-          startIn: 'desktop',
-        });
-        // STRICT check: refuse anything that's not literally named "public".
-        // Anything else (project root, src/, Desktop) would silently break
-        // the site because Next.js only serves files from public/.
-        if (!publicDirHandle.name || publicDirHandle.name.toLowerCase() !== 'public') {
-          alert(
-            `⚠️ בחרת בתיקייה בשם "${publicDirHandle.name}", אבל הקבצים חייבים להישמר בתיקייה בשם "public" בדיוק.\n\nאנא לחצי שוב על העלאת תמונה ובחרי את התיקייה הנכונה.`
-          );
-          publicDirHandle = null;
-          resetUploadBtn();
-          return;
-        }
-        await storeDirHandle(publicDirHandle);
-      } else {
-        // Re-verify permission (browsers may revoke after long idle)
-        const perm = await publicDirHandle.queryPermission({ mode: 'readwrite' });
-        if (perm !== 'granted') {
-          const req = await publicDirHandle.requestPermission({ mode: 'readwrite' });
-          if (req !== 'granted') {
-            throw new Error('Permission denied');
-          }
-        }
-      }
-
-      // Process + write the image directly into the chosen folder.
-      const blob = await resizeImage(file, 1200, 1200, 0.85);
-      const fileHandle = await publicDirHandle.getFileHandle(suggestedName, {
-        create: true,
-      });
-      const writable = await fileHandle.createWritable();
-      await writable.write(blob);
-      await writable.close();
-
-      updateFolderStatus();
-      finishUpload(suggestedName, true);
+      // 800×800 / quality 0.75 keeps the data URL small (~50–100 KB) while
+      // staying sharp on product cards + detail-page galleries.
+      const blob = await resizeImage(file, 800, 800, 0.75);
+      const dataUrl = await blobToDataUrl(blob);
+      document.getElementById('image-url').value = dataUrl;
+      updateImagePreview(dataUrl);
+      const sizeKb = Math.round(dataUrl.length / 1024);
+      btn.textContent = `✓ הועלה (${sizeKb} KB)`;
+      setTimeout(() => {
+        btn.textContent = '📷 העלה תמונה אחרת';
+        btn.disabled = false;
+      }, 2500);
     } catch (err) {
-      if (err.name === 'AbortError') {
-        resetUploadBtn();
-        return;
-      }
-      console.error('Direct save failed, falling back to download:', err);
-      await fallbackDownload(file, suggestedName);
+      alert('שגיאה בעיבוד התמונה: ' + err.message);
+      resetUploadBtn();
     }
   });
 
   fileInput.click();
 }
 
-/** Lets the admin reset the cached public folder (e.g. moved the project). */
-async function clearPublicFolder() {
-  publicDirHandle = null;
-  try {
-    const db = await openDB();
-    const tx = db.transaction(STORE_NAME, 'readwrite');
-    tx.objectStore(STORE_NAME).delete(HANDLE_KEY);
-  } catch {
-    /* ignore */
-  }
-  updateFolderStatus();
-  alert('הוסר. בהעלאה הבאה תתבקשי לבחור מחדש את תיקיית public.');
-}
-window.clearPublicFolder = clearPublicFolder;
-
-async function fallbackDownload(file, suggestedName) {
-  try {
-    const blob = await resizeImage(file, 1200, 1200, 0.85);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = suggestedName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    // Set the URL field anyway, so the value is ready once the user moves
-    // the downloaded file into public/.
-    document.getElementById('image-url').value = `/${suggestedName}`;
-    updateImagePreview(`/${suggestedName}`);
-    alert(
-      'התמונה ירדה למחשב בשם: ' +
-        suggestedName +
-        '\n\nאנא העתיקי אותה לתיקייה:\nDesktop/gintzcoffe-main/gintzcoffe-main/public/\n\nהשדה כבר הוגדר עם הקישור הנכון.'
-    );
-    finishUpload(suggestedName);
-  } catch (err) {
-    alert('שגיאה בעיבוד התמונה: ' + err.message);
-    resetUploadBtn();
-  }
-}
-
-function finishUpload(savedName, directlySaved) {
-  const newUrl = `/${savedName}`;
-  document.getElementById('image-url').value = newUrl;
-  updateImagePreview(newUrl);
-  const btn = document.getElementById('upload-image-btn');
-  if (!btn) return;
-  btn.textContent = directlySaved
-    ? '✓ נשמרה בתיקיית public'
-    : '✓ הועלה — אפשר להמשיך לערוך';
-  setTimeout(() => {
-    btn.textContent = '📷 העלה תמונה אחרת';
-    btn.disabled = false;
-  }, 2500);
+function blobToDataUrl(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(new Error('FileReader failed'));
+    reader.readAsDataURL(blob);
+  });
 }
 
 function resetUploadBtn() {
@@ -903,6 +673,13 @@ function resetUploadBtn() {
   btn.textContent = '📷 העלה תמונה מהמחשב';
   btn.disabled = false;
 }
+
+// Legacy shims kept so older inline handlers (clearPublicFolder, etc.)
+// don't crash with reference errors. The filesystem flow is gone.
+function clearPublicFolder() {
+  alert('כבר אין צורך באיפוס — תמונות נשמרות ישירות בתוך הקובץ.');
+}
+window.clearPublicFolder = clearPublicFolder;
 
 function resizeImage(file, maxW, maxH, quality) {
   return new Promise((resolve, reject) => {

@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import SmartImage from "@/components/SmartImage";
 import AddToCartButton from "@/components/AddToCartButton";
 import type { CartItem } from "@/lib/cart";
 
@@ -40,7 +40,7 @@ export default function ProductCard({
   // wrapped in a Link so customers can click to learn more.
   const imageContent = image ? (
     <div className={`relative w-full aspect-[4/3] ${imageContain ? "bg-gray-50 p-6" : ""}`}>
-      <Image
+      <SmartImage
         src={image}
         alt={name}
         fill

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import SmartImage from "@/components/SmartImage";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import CupsQuoteForm from "@/components/CupsQuoteForm";
 import AddToCartButton from "@/components/AddToCartButton";
@@ -45,7 +45,7 @@ export default function CupsPage() {
               >
                 <div className="relative w-full aspect-square bg-[#F5F0E8]">
                   {cat.image ? (
-                    <Image
+                    <SmartImage
                       src={cat.image}
                       alt={cat.name}
                       fill
@@ -53,7 +53,7 @@ export default function CupsPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
-                    <ImagePlaceholder label="הוסף תמונה" width={300} height={300} />
+                    <SmartImagePlaceholder label="הוסף תמונה" width={300} height={300} />
                   )}
                 </div>
                 <div className="p-5 flex flex-col flex-1">
