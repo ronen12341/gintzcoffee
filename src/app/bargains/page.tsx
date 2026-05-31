@@ -80,24 +80,6 @@ export default function BargainsPage() {
         </div>
       </section>
 
-      {/* Info strip */}
-      <section className="py-10 bg-brown text-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            {[
-              { title: "בדיקה מלאה", desc: "כל מכונה עוברת בדיקת טכנאי מוסמך" },
-              { title: "שיפוץ אם נדרש", desc: "מכונות עם ליקויים משופצות לפני המכירה" },
-              { title: "אחריות כלולה", desc: "3–6 חודשי אחריות על כל מכונה" },
-            ].map(({ title, desc }) => (
-              <div key={title}>
-                <h3 className="text-gold font-bold text-lg mb-1">{title}</h3>
-                <p className="text-cream/65 text-sm">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Lead form */}
       <section
         className="py-16 bg-cream-dark"
