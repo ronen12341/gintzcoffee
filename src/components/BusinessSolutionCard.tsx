@@ -17,12 +17,12 @@ export default function BusinessSolutionCard({ solution }: BusinessSolutionCardP
     <article className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow flex flex-col group">
       <div className="relative">
         {solution.image ? (
-          <div className="relative w-full aspect-[4/3] bg-cream">
+          <div className="relative w-full h-[200px] sm:h-[240px] bg-cream">
             <SmartImage
               src={solution.image}
               alt={solution.name}
               fill
-              className="object-contain p-6 transition-transform group-hover:scale-105"
+              className="object-contain p-4 transition-transform group-hover:scale-105"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>
