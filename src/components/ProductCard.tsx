@@ -20,6 +20,9 @@ interface ProductCardProps {
   cartItem?: Omit<CartItem, "qty">;
   /** When set, the image and name become a link to this URL (the detail page). */
   detailHref?: string;
+  /** When true, the secondary "details" CTA link is suppressed entirely
+   *  (used on pages where the cart button is the only action we want). */
+  hideCta?: boolean;
 }
 
 export default function ProductCard({
@@ -35,6 +38,7 @@ export default function ProductCard({
   imageContain = false,
   cartItem,
   detailHref,
+  hideCta = false,
 }: ProductCardProps) {
   // When a detail page exists for this product, the image and the title are
   // wrapped in a Link so customers can click to learn more.
@@ -120,7 +124,7 @@ export default function ProductCard({
           {/* The standalone CTA is only shown when there's no detail page —
               when detailHref is set, the image and title already link there,
               so a separate button is redundant. */}
-          {!detailHref && (
+          {!detailHref && !hideCta && (
             <a href={ctaHref} className="btn btn-soft-secondary btn-block btn-sm">
               {ctaLabel}
             </a>
