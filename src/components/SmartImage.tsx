@@ -15,8 +15,14 @@ import Image, { type ImageProps } from "next/image";
  *   - "data:image/jpeg;base64,..." (new: image embedded directly in the JSON)
  * and everything renders correctly without per-call thinking.
  */
-export default function SmartImage(props: ImageProps) {
-  const src = props.src;
+export default function SmartImage({ alt, src, unoptimized, ...rest }: ImageProps) {
   const isDataUrl = typeof src === "string" && src.startsWith("data:");
-  return <Image {...props} unoptimized={isDataUrl || props.unoptimized} />;
+  return (
+    <Image
+      {...rest}
+      src={src}
+      alt={alt}
+      unoptimized={isDataUrl || unoptimized}
+    />
+  );
 }

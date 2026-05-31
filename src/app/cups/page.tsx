@@ -53,7 +53,7 @@ export default function CupsPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                   ) : (
-                    <SmartImagePlaceholder label="הוסף תמונה" width={300} height={300} />
+                    <ImagePlaceholder label="הוסף תמונה" width={300} height={300} />
                   )}
                 </div>
                 <div className="p-5 flex flex-col flex-1">

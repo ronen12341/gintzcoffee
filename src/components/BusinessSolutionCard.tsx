@@ -27,7 +27,7 @@ export default function BusinessSolutionCard({ solution }: BusinessSolutionCardP
             />
           </div>
         ) : (
-          <SmartImagePlaceholder label="הוסף תמונה" width={400} height={300} />
+          <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
         )}
         {/* Employee-range badge — the headline feature of this card */}
         <div className="absolute top-4 start-4 bg-brown text-cream px-3 py-1.5 rounded-full text-sm font-bold flex items-center gap-1.5 shadow-lg">

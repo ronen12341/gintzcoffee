@@ -20,7 +20,7 @@ export default function MachineGallery({ images, alt }: MachineGalleryProps) {
   if (images.length === 0) {
     return (
       <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-        <SmartImagePlaceholder label="הוסף תמונה" width={600} height={500} />
+        <ImagePlaceholder label="הוסף תמונה" width={600} height={500} />
       </div>
     );
   }
