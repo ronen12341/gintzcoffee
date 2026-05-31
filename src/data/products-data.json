@@ -313,7 +313,8 @@
       "image": "/bezzera-arcadia.jpg.jpg",
       "price": "8,500 ש\"ח",
       "priceNumeric": 8500,
-      "originalPrice": "24,900 ש\"ח"
+      "originalPrice": "24,900 ש\"ח",
+      "hidden": false
     },
     {
       "id": "used-B2016gr1",
