@@ -13,7 +13,7 @@ const navLinks = [
   { href: "/business-solutions", label: "פתרונות לעסקים", emphasis: true },
   { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
-  { href: "/cups", label: "כוסות ממותגות" },
+  { href: "https://www.aspagil.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מכונות יד2" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
@@ -118,8 +118,21 @@ export default function Navbar() {
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-1" aria-label="ניווט ראשי">
-              {navLinks.map(({ href, label, emphasis }) => {
+              {navLinks.map(({ href, label, emphasis, external }) => {
                 const active = pathname === href;
+                if (external) {
+                  return (
+                    <a
+                      key={href}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={cn("nav-link", emphasis && "nav-link-emphasis")}
+                    >
+                      {label}
+                    </a>
+                  );
+                }
                 return (
                   <Link
                     key={href}
@@ -160,8 +173,21 @@ export default function Navbar() {
           aria-label="ניווט מהיר"
         >
           <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2.5">
-            {navLinks.map(({ href, label, emphasis }) => {
+            {navLinks.map(({ href, label, emphasis, external }) => {
               const active = pathname === href;
+              if (external) {
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cn("nav-chip", emphasis && "nav-chip-emphasis")}
+                  >
+                    {label}
+                  </a>
+                );
+              }
               return (
                 <Link
                   key={href}
@@ -223,8 +249,22 @@ export default function Navbar() {
         </div>
 
         <nav className="flex-1 p-3 space-y-1" aria-label="ניווט בתפריט נשלף">
-          {navLinks.map(({ href, label, emphasis }) => {
+          {navLinks.map(({ href, label, emphasis, external }) => {
             const active = pathname === href;
+            if (external) {
+              return (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cn("drawer-link", emphasis && "drawer-link-emphasis")}
+                  onClick={() => setDrawerOpen(false)}
+                >
+                  {label}
+                </a>
+              );
+            }
             return (
               <Link
                 key={href}
