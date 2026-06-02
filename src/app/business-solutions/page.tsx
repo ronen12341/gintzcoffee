@@ -116,7 +116,7 @@ export default function BusinessSolutionsPage() {
               אין כרגע פתרונות זמינים. השאירו פרטים ונחזור אליכם.
             </p>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {businessSolutions.map((s) => (
                 <BusinessSolutionCard key={s.id} solution={s} />
               ))}
