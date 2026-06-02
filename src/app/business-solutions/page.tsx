@@ -68,30 +68,10 @@ export default function BusinessSolutionsPage() {
           >
             פתרונות קפה <span className="text-gold">לעסקים</span>
           </h1>
-          <p className="text-cream/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto mb-8">
+          <p className="text-cream/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
             שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
           </p>
-          <a href="#solutions" className="btn btn-primary btn-lg">
-            הציגו לי את הפתרונות ←
-          </a>
-        </div>
-      </section>
-
-      {/* Perks strip */}
-      <section className="py-12 bg-cream-dark border-y border-cream" aria-label="יתרונות">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PERKS.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="text-center">
-                <div className="w-14 h-14 mx-auto mb-3 bg-gold/15 text-gold rounded-full flex items-center justify-center">
-                  <Icon className="w-7 h-7" aria-hidden="true" />
-                </div>
-                <h3 className="text-brown font-bold mb-1">{title}</h3>
-                <p className="text-brown/65 text-sm leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -122,6 +102,23 @@ export default function BusinessSolutionsPage() {
               ))}
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Perks strip */}
+      <section className="py-12 bg-cream-dark border-y border-cream" aria-label="יתרונות">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {PERKS.map(({ icon: Icon, title, body }) => (
+              <div key={title} className="text-center">
+                <div className="w-14 h-14 mx-auto mb-3 bg-gold/15 text-gold rounded-full flex items-center justify-center">
+                  <Icon className="w-7 h-7" aria-hidden="true" />
+                </div>
+                <h3 className="text-brown font-bold mb-1">{title}</h3>
+                <p className="text-brown/65 text-sm leading-relaxed">{body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
