@@ -109,10 +109,6 @@ export default function BusinessSolutionsPage() {
             >
               בחרו את הפתרון לפי גודל העסק
             </h2>
-            <p className="text-brown/65 text-lg max-w-2xl mx-auto">
-              ארבעה פתרונות, כל אחד מותאם לכמות עובדים שונה. אם לא בטוחים — נשמח
-              ללוות אתכם בבחירה.
-            </p>
           </div>
 
           {businessSolutions.length === 0 ? (
