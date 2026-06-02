@@ -367,7 +367,7 @@
   "businessSolutions": [
     {
       "id": "biz-starter",
-      "name": "פתרון סטארטר",
+      "name": "משרד קטן",
       "tagline": "הקפה הנכון לעסק הקטן שלכם",
       "description": "פתרון קפה מושלם לעסקים קטנים. כולל מכונת קפה אוטומטית, התקנה מקצועית, הדרכת צוות ואספקת פולים שוטפת. פשוט, מהיר, ברמה גבוהה.",
       "employeeRange": "5–15 עובדים",
@@ -379,6 +379,7 @@
         "אספקת פולים טריים חודשית",
         "תמיכה טלפונית שוטפת"
       ],
+      "image": "https://www.hartsofstur.com/media/catalog/product/6/5/6571856-Melitta-SOLO-E950-103-Silver-Bean-To-Cup-Coffee-Machine.jpg",
       "hidden": false
     },
     {
