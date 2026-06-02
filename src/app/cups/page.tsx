@@ -163,6 +163,94 @@ export default function CupsPage() {
         </div>
       </section>
 
+      {/* Gilcups bridge section */}
+      <section className="py-16 bg-white" aria-labelledby="gilcups-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Arrow divider */}
+          <div className="flex flex-col items-center mb-12">
+            <div className="w-px h-8 bg-gold/30" />
+            <div className="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center mt-1 mb-1">
+              <svg className="w-4 h-4 text-gold" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div className="w-px h-8 bg-gold/30" />
+          </div>
+
+          {/* Label + heading */}
+          <div className="text-center mb-10">
+            <span className="inline-block bg-amber-50 text-amber-700 text-xs tracking-widest uppercase px-4 py-1 rounded-full mb-4">
+              מבית קפה גינץ
+            </span>
+            <h2 id="gilcups-heading" className="text-3xl md:text-4xl font-bold text-brown mb-4 leading-snug">
+              רוצים לעצב את הכוסות שלכם?<br />
+              <span className="text-gold">הכירו את Gilcups</span>
+            </h2>
+            <p className="text-brown/65 text-lg max-w-xl mx-auto leading-relaxed">
+              המפעל שלנו להדפסת כוסות נייר — עם קטלוג מלא, כלי עיצוב אונליין, מחירון שקוף ומערכת הזמנה מלאה.
+            </p>
+          </div>
+
+          {/* Features grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+            {[
+              { icon: "🎨", title: "Designer אינטראקטיבי", desc: "העלו לוגו וראו תצוגה מקדימה חיה על הכוס" },
+              { icon: "📐", title: "גדלים 8, 9, 12 אונקיות", desc: "קטלוג מלא עם מפרטים ומחירים" },
+              { icon: "🚚", title: "משלוח לכל הארץ", desc: "הזמנה, תשלום ומעקב — הכל אונליין" },
+              { icon: "✅", title: "מינ׳ 500 יחידות", desc: "הדפסה איכותית ללא הגבלת צבעים" },
+            ].map(({ icon, title, desc }) => (
+              <div key={title} className="flex items-start gap-4 bg-cream rounded-2xl p-5">
+                <div className="w-10 h-10 rounded-xl bg-gold/15 flex items-center justify-center text-xl flex-shrink-0">
+                  {icon}
+                </div>
+                <div>
+                  <p className="text-brown font-bold text-sm mb-1">{title}</p>
+                  <p className="text-brown/60 text-sm leading-relaxed">{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA box */}
+          <div
+            className="relative rounded-2xl overflow-hidden p-10 text-center"
+            style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 60%, #6B3A18 100%)" }}
+          >
+            <div
+              className="absolute inset-0 opacity-20 pointer-events-none"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 20% 20%, #C8922A 0%, transparent 40%), radial-gradient(circle at 80% 80%, #C8922A 0%, transparent 35%)",
+              }}
+              aria-hidden="true"
+            />
+            <div className="relative">
+              <p className="text-gold/90 text-xs tracking-widest uppercase mb-3">GILCUPS.COM</p>
+              <h3 className="text-cream text-2xl md:text-3xl font-bold mb-3">
+                עצבו את הכוסות שלכם עכשיו
+              </h3>
+              <p className="text-cream/65 mb-8 text-sm">
+                קטלוג מלא · כלי עיצוב · הזמנה ותשלום אונליין
+              </p>
+              <a
+                href="https://www.gilcups.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gold text-white font-bold px-8 py-4 rounded-xl text-base hover:bg-gold/90 transition-colors"
+              >
+                מעבר לאתר Gilcups
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <p className="text-cream/40 text-xs mt-5">מאות עסקים כבר הזמינו · תשלום מאובטח</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* Quote form */}
       <section
         className="py-16 bg-cream-dark"
