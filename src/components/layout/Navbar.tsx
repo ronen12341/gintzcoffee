@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/", label: "בית" },
   { href: "/business-solutions", label: "פתרונות לעסקים", emphasis: true },
   { href: "/machines", label: "רכישת מכונות" },
+  { href: "/jura-x10", label: "JURA X10" },
   { href: "/beans", label: "פולי קפה" },
   { href: "https://www.aspagil.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מכונות יד2" },
