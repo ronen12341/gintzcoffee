@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Heebo, Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import SiteShell from "@/components/layout/SiteShell";
 import { CartProvider } from "@/lib/cart";
 
 const heebo = Heebo({
@@ -137,10 +135,7 @@ export default function RootLayout({
           דלג לתוכן הראשי
         </a>
         <CartProvider>
-          <Navbar />
-          <main id="main-content">{children}</main>
-          <Footer />
-          <WhatsAppButton />
+          <SiteShell>{children}</SiteShell>
         </CartProvider>
       </body>
     </html>

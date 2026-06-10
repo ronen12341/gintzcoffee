@@ -34,7 +34,7 @@ const PAGE_CSS = `
 .x10p .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 
 /* HERO */
-.x10p .hero{position:relative;min-height:92vh;display:flex;flex-direction:column;justify-content:center;
+.x10p .hero{position:relative;min-height:88vh;display:flex;flex-direction:column;justify-content:center;
   background:radial-gradient(120% 90% at 72% 38%, #43290f 0%, #251403 45%, #100802 72%, #0a0502 100%);overflow:hidden}
 .x10p .hero::after{content:"";position:absolute;inset:0;
   background:radial-gradient(120% 100% at 50% 120%, transparent 60%, rgba(0,0,0,.6) 100%);pointer-events:none}
@@ -115,20 +115,15 @@ const PAGE_CSS = `
 
 /* PILLARS */
 .x10p .pillars{background:#100802;border-top:1px solid rgba(200,146,42,.15);border-bottom:1px solid rgba(200,146,42,.15)}
-.x10p .pillars .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:40px 24px}
+.x10p .pillars .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:26px 24px}
 .x10p .pillar{display:flex;align-items:center;gap:16px;justify-content:center}
 .x10p .pillar .ic{font-size:34px}
 .x10p .pillar .tx b{display:block;font-size:19px;font-weight:800}
 .x10p .pillar .tx span{font-size:14px;color:rgba(245,240,232,.6)}
 
-/* MARQUEE */
-.x10p .marquee{background:linear-gradient(90deg,var(--gold),var(--gold-l));color:#2a1505;overflow:hidden;padding:14px 0}
-.x10p .mtrack{display:flex;gap:48px;width:max-content;white-space:nowrap;font-weight:800;font-size:16px;animation:x10p_scroll 26s linear infinite}
-@keyframes x10p_scroll{to{transform:translateX(-50%)}}
-
 /* SECTION / FEATURES */
-.x10p .section{padding:90px 0}
-.x10p .section-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.x10p .section{padding:56px 0}
+.x10p .section-head{text-align:center;max-width:680px;margin:0 auto 34px}
 .x10p .section-head h2{font-size:clamp(32px,4.5vw,48px);font-weight:900;margin-bottom:16px}
 .x10p .section-head h2 span{color:var(--gold-l)}
 .x10p .section-head p{color:rgba(245,240,232,.65);font-size:18px;font-weight:300;line-height:1.75}
@@ -144,7 +139,7 @@ const PAGE_CSS = `
 .x10p .feat p{color:rgba(245,240,232,.62);font-size:15px;font-weight:300;line-height:1.65}
 
 /* TASTE HIGHLIGHT */
-.x10p .taste{position:relative;background:radial-gradient(110% 120% at 50% 0%,#3a2410,#190d04 65%,#100802);overflow:hidden;text-align:center;padding:100px 0}
+.x10p .taste{position:relative;background:radial-gradient(110% 120% at 50% 0%,#3a2410,#190d04 65%,#100802);overflow:hidden;text-align:center;padding:60px 0}
 .x10p .taste::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:520px;height:360px;border-radius:50%;
   background:radial-gradient(circle,rgba(233,190,99,.3),transparent 70%);filter:blur(24px)}
 .x10p .taste .ic{font-size:46px;margin-bottom:14px;display:block}
@@ -153,8 +148,8 @@ const PAGE_CSS = `
 .x10p .taste p{position:relative;color:rgba(245,240,232,.78);font-size:18px;font-weight:300;line-height:1.75;max-width:640px;margin:0 auto 32px}
 
 /* AUDIENCE */
-.x10p .aud{padding:80px 0;background:#100802}
-.x10p .aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:40px}
+.x10p .aud{padding:52px 0;background:#100802}
+.x10p .aud-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:26px}
 .x10p .aud-card{background:rgba(255,255,255,.03);border:1px solid rgba(245,240,232,.08);border-radius:18px;
   padding:30px 16px;text-align:center;transition:transform .3s,border-color .3s}
 .x10p .aud-card:hover{transform:translateY(-5px);border-color:rgba(233,190,99,.4)}
@@ -162,7 +157,7 @@ const PAGE_CSS = `
 .x10p .aud-card span{font-weight:600;font-size:15px}
 
 /* LEAD */
-.x10p .lead-sec{position:relative;background:radial-gradient(100% 100% at 50% 0%,#2a1808,#140a03 70%);padding:100px 0;overflow:hidden}
+.x10p .lead-sec{position:relative;background:radial-gradient(100% 100% at 50% 0%,#2a1808,#140a03 70%);padding:60px 0;overflow:hidden}
 .x10p .lead-sec .glowL{position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:300px;
   background:radial-gradient(circle,rgba(200,146,42,.3),transparent 70%);filter:blur(30px)}
 .x10p .lead-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
@@ -317,22 +312,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
-      {/* MARQUEE */}
-      <div className="marquee">
-        <div className="mtrack">
-          <span>☕ קלייה טרייה במקום</span>
-          <span>🎯 התאמה אישית לכל חך</span>
-          <span>🌍 פולים נבחרים</span>
-          <span>🔧 שירות בכל הארץ</span>
-          <span>📅 משנת 2005</span>
-          <span aria-hidden="true">☕ קלייה טרייה במקום</span>
-          <span aria-hidden="true">🎯 התאמה אישית לכל חך</span>
-          <span aria-hidden="true">🌍 פולים נבחרים</span>
-          <span aria-hidden="true">🔧 שירות בכל הארץ</span>
-          <span aria-hidden="true">📅 משנת 2005</span>
-        </div>
-      </div>
 
       {/* WHY GINTZ */}
       <section className="section" id="about">
