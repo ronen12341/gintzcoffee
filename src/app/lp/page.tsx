@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SmartImage from "@/components/SmartImage";
 import X10LeadForm from "@/components/X10LeadForm";
 import X10Reveal from "@/components/X10Reveal";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 import { coffeeMachines } from "@/data/products";
 
 const X10 = coffeeMachines.find((m) => m.id === "jura-x10");
@@ -239,6 +240,8 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+
+      <WhatsAppButton />
     </div>
   );
 }
