@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { quantityOptions } from "@/data/products";
+import { trackLead } from "@/lib/gtag";
 
 export default function CupsQuoteForm() {
   const [form, setForm] = useState({
@@ -44,6 +45,7 @@ export default function CupsQuoteForm() {
       });
       if (res.ok) {
         setSubmitted(true);
+        trackLead("cups");
       } else {
         setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון");
       }

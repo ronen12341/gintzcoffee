@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Heebo, Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
 import { CartProvider } from "@/lib/cart";
+import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID } from "@/lib/gtag";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -77,6 +79,20 @@ export default function RootLayout({
       className={`${heebo.variable} ${playfair.variable} ${montserrat.variable}`}
     >
       <body>
+        {/* Google tag (gtag.js) — GA4 + Google Ads */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-tag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', '${GOOGLE_ADS_ID}');
+          `}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

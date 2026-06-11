@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackLead } from "@/lib/gtag";
 
 const BUSINESS_TYPES = [
   "משרד",
@@ -64,6 +65,7 @@ export default function LeadForm({
       });
       if (res.ok) {
         setSubmitted(true);
+        trackLead("lead");
       } else {
         setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון");
       }

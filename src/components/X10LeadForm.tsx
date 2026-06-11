@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackLead } from "@/lib/gtag";
 
 const BUSINESS_TYPES = [
   "משרד",
@@ -63,6 +64,7 @@ export default function X10LeadForm() {
       });
       if (res.ok) {
         setSubmitted(true);
+        trackLead("x10");
       } else {
         setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון 03-9600550");
       }
