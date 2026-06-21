@@ -260,7 +260,7 @@ export default function HomePage() {
               icon={<CupIcon />}
               title="כוסות ממותגות"
               description="כוסות חד פעמיות עם לוגו העסק שלכם — פרסום חכם בכל כוס קפה."
-              href="/cups"
+              href="https://www.aspagil.com"
             />
           </div>
         </div>
@@ -372,7 +372,7 @@ export default function HomePage() {
                 הפכו כל כוס קפה לפרסומת. כוסות ממותגות איכותיות עם הלוגו של העסק — פתרון
                 שיווקי חכם שעובד עבורכם כל יום, כל כוס.
               </p>
-              <Link href="/cups" className="btn btn-secondary">
+              <Link href="https://www.aspagil.com" className="btn btn-secondary">
                 לפרטים על כוסות ממותגות ←
               </Link>
             </div>
