@@ -16,7 +16,6 @@ const SUMIT_PAYMENT_URL =
   process.env.NEXT_PUBLIC_SUMIT_PAYMENT_URL ||
   "https://pay.sumit.co.il/w7pfxb/waf7oo/c/payment/";
 
-type PaymentMethod = "phone" | "online";
 type DeliveryMethod = "delivery" | "pickup";
 
 /** Free shipping at or above this priced-subtotal (NIS); below it costs SHIPPING_FEE. */
@@ -42,12 +41,11 @@ export default function CheckoutPage() {
       : 0;
   const grandTotal = totalPrice + shippingFee;
 
-  // Default to online payment when available AND all items are priced;
-  // otherwise fall back to phone payment.
+  // Online card payment via Sumit is the only payment method. It's available
+  // when Sumit is configured, all items are priced, and there's an amount to
+  // charge. (Quote-based items with no price are submitted as a request and we
+  // contact the customer — there is no phone credit-card billing option.)
   const canPayOnline = !!SUMIT_PAYMENT_URL && !hasUnpricedItems && totalPrice > 0;
-  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>(
-    canPayOnline ? "online" : "phone"
-  );
 
   const [form, setForm] = useState({
     name: "",
@@ -117,7 +115,7 @@ export default function CheckoutPage() {
           items,
           totalPrice,
           hasUnpricedItems,
-          paymentMethod,
+          paymentMethod: canPayOnline ? "online" : "phone",
           deliveryMethod,
           shippingFee,
           grandTotal,
@@ -133,7 +131,7 @@ export default function CheckoutPage() {
       // The server returns a one-time payment URL with the exact amount, and
       // we send the browser there. This avoids the URL-query-param guessing
       // game and gives Sumit a proper itemized record per order.
-      if (paymentMethod === "online" && canPayOnline) {
+      if (canPayOnline) {
         const orderRes = await res.json().catch(() => ({}));
         const orderId = orderRes.orderId || `ORD-${Date.now()}`;
 
@@ -208,7 +206,7 @@ export default function CheckoutPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className="text-3xl font-bold text-brown mb-2">פרטי הזמנה</h1>
         <p className="text-brown/65 mb-8">
-          מלאו את הפרטים ונחזור אליכם טלפונית לאישור ההזמנה וחיוב באשראי.
+          מלאו את הפרטים ותשלמו באשראי בדף מאובטח. תקבלו חשבונית מס במייל.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -398,56 +396,9 @@ export default function CheckoutPage() {
               />
             </div>
 
-            {/* Payment method selector — shown only when online payment is possible */}
-            {canPayOnline && (
-              <fieldset className="border border-cream-dark rounded-lg p-4">
-                <legend className="px-2 text-sm font-semibold text-brown">
-                  בחר אופן תשלום
-                </legend>
-                <div className="space-y-2 mt-2">
-                  <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-cream/50">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="online"
-                      checked={paymentMethod === "online"}
-                      onChange={() => setPaymentMethod("online")}
-                      className="mt-1"
-                    />
-                    <div>
-                      <p className="font-semibold text-brown">
-                        💳 תשלום מאובטח באשראי אונליין
-                      </p>
-                      <p className="text-xs text-brown/65">
-                        חיוב מיידי באתר מאובטח של Sumit. תקבלו חשבונית במייל.
-                      </p>
-                    </div>
-                  </label>
-                  <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-cream/50">
-                    <input
-                      type="radio"
-                      name="paymentMethod"
-                      value="phone"
-                      checked={paymentMethod === "phone"}
-                      onChange={() => setPaymentMethod("phone")}
-                      className="mt-1"
-                    />
-                    <div>
-                      <p className="font-semibold text-brown">
-                        📞 חיוב טלפוני
-                      </p>
-                      <p className="text-xs text-brown/65">
-                        נחזור אליכם תוך יום עסקים ונחייב את הכרטיס בשיחה טלפונית.
-                      </p>
-                    </div>
-                  </label>
-                </div>
-              </fieldset>
-            )}
-
             <div className="bg-cream rounded-lg p-4 text-sm text-brown/75">
               <p className="font-semibold text-brown mb-1">איך זה עובד?</p>
-              {paymentMethod === "online" ? (
+              {canPayOnline ? (
                 <ol className="list-decimal list-inside space-y-1">
                   <li>תלחצו על &quot;שלם עכשיו&quot; ותועברו לדף תשלום מאובטח</li>
                   <li>תמלאו את פרטי כרטיס האשראי</li>
@@ -460,13 +411,12 @@ export default function CheckoutPage() {
                 </ol>
               ) : (
                 <ol className="list-decimal list-inside space-y-1">
-                  <li>תשלחו את ההזמנה (ללא חיוב בכרטיס אשראי)</li>
-                  <li>נחזור אליכם תוך יום עסקים לאישור</li>
-                  <li>נחייב את הכרטיס שלכם בשיחה טלפונית מאובטחת</li>
+                  <li>תשלחו את הבקשה</li>
+                  <li>נחזור אליכם תוך יום עסקים עם הצעת מחיר</li>
                   <li>
                     {deliveryMethod === "pickup"
-                      ? "נתאם איתכם מועד לאיסוף עצמי"
-                      : "נשלח את ההזמנה לכתובת שלכם"}
+                      ? "לאחר אישור נתאם איתכם מועד לאיסוף עצמי"
+                      : "לאחר אישור נשלח את ההזמנה לכתובת שלכם"}
                   </li>
                 </ol>
               )}
@@ -482,9 +432,9 @@ export default function CheckoutPage() {
             <button type="submit" disabled={submitting} className="btn btn-primary btn-block btn-lg">
               {submitting
                 ? "שולח..."
-                : paymentMethod === "online"
+                : canPayOnline
                   ? `שלם עכשיו ${grandTotal.toLocaleString("he-IL")} ש"ח ←`
-                  : "שלח הזמנה"}
+                  : "שלח בקשה"}
             </button>
           </form>
 
