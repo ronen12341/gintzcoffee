@@ -31,6 +31,12 @@ interface OrderPayload {
   hasUnpricedItems: boolean;
   /** "online" = customer is about to pay via Sumit; "phone" = will be charged by phone */
   paymentMethod?: "online" | "phone";
+  /** "delivery" = ship to address; "pickup" = self-pickup by prior arrangement */
+  deliveryMethod?: "delivery" | "pickup";
+  /** Shipping fee in NIS (0 when free or self-pickup) */
+  shippingFee?: number;
+  /** Total to charge including shipping (totalPrice + shippingFee) */
+  grandTotal?: number;
 }
 
 /**
@@ -141,6 +147,14 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">שם לחשבונית</td>
           <td style="padding: 10px; color: #3B1F0A;">${p.customer.invoiceName}</td>
         </tr>` : ""}
+        <tr>
+          <td style="padding: 10px; color: #5C3015; font-weight: bold;">אופן קבלה</td>
+          <td style="padding: 10px; color: #3B1F0A;">${
+            p.deliveryMethod === "pickup"
+              ? "🏪 איסוף עצמי בתיאום מראש"
+              : "🚚 משלוח עד הבית"
+          }</td>
+        </tr>
         ${p.customer.address || p.customer.city ? `
         <tr style="background: #FAF6F0;">
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">כתובת</td>
@@ -164,15 +178,33 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
           </tr>
         </thead>
         <tbody>${itemRows}</tbody>
-        ${p.totalPrice > 0 ? `
+        ${p.totalPrice > 0 ? (() => {
+          const shippingFee = p.shippingFee ?? 0;
+          const grandTotal = p.grandTotal ?? p.totalPrice + shippingFee;
+          const shippingLabel =
+            p.deliveryMethod === "pickup"
+              ? "איסוף עצמי"
+              : shippingFee > 0
+                ? `${shippingFee.toLocaleString("he-IL")} ש"ח`
+                : "חינם";
+          return `
         <tfoot>
+          <tr style="background: #FAF6F0;">
+            <td colspan="3" style="padding: 8px; text-align: end; color: #5C3015;">סכום ביניים:</td>
+            <td style="padding: 8px; text-align: end; color: #3B1F0A;">${p.totalPrice.toLocaleString("he-IL")} ש"ח</td>
+          </tr>
+          <tr style="background: #FAF6F0;">
+            <td colspan="3" style="padding: 8px; text-align: end; color: #5C3015;">משלוח:</td>
+            <td style="padding: 8px; text-align: end; color: #3B1F0A;">${shippingLabel}</td>
+          </tr>
           <tr style="background: #C8922A; color: #fff;">
-            <td colspan="3" style="padding: 12px 8px; text-align: end; font-weight: bold;">סה"כ פריטים מתומחרים:</td>
+            <td colspan="3" style="padding: 12px 8px; text-align: end; font-weight: bold;">סה"כ לתשלום:</td>
             <td style="padding: 12px 8px; text-align: end; font-weight: bold; font-size: 16px;">
-              ${p.totalPrice.toLocaleString("he-IL")} ש"ח
+              ${grandTotal.toLocaleString("he-IL")} ש"ח
             </td>
           </tr>
-        </tfoot>` : ""}
+        </tfoot>`;
+        })() : ""}
       </table>
 
       ${p.hasUnpricedItems ? `
@@ -211,8 +243,16 @@ function buildWhatsAppText(orderId: string, p: OrderPayload): string {
       : "לפי הצעה";
     lines.push(`• ${i.name} × ${i.qty} — ${lineTotal}`);
   }
+  const shippingFee = p.shippingFee ?? 0;
+  const grandTotal = p.grandTotal ?? p.totalPrice + shippingFee;
+  lines.push(
+    ``,
+    p.deliveryMethod === "pickup"
+      ? `📦 איסוף עצמי בתיאום מראש`
+      : `📦 משלוח${shippingFee > 0 ? ` — ${shippingFee.toLocaleString("he-IL")} ש"ח` : " — חינם"}`
+  );
   if (p.totalPrice > 0) {
-    lines.push(``, `*סה"כ: ${p.totalPrice.toLocaleString("he-IL")} ש"ח*`);
+    lines.push(`*סה"כ לתשלום: ${grandTotal.toLocaleString("he-IL")} ש"ח*`);
   }
   if (p.hasUnpricedItems) {
     lines.push(``, `⚠️ יש פריטים ללא מחיר`);

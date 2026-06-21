@@ -17,12 +17,30 @@ const SUMIT_PAYMENT_URL =
   "https://pay.sumit.co.il/w7pfxb/waf7oo/c/payment/";
 
 type PaymentMethod = "phone" | "online";
+type DeliveryMethod = "delivery" | "pickup";
+
+/** Free shipping at or above this priced-subtotal (NIS); below it costs SHIPPING_FEE. */
+const FREE_SHIPPING_THRESHOLD = 350;
+const SHIPPING_FEE = 40;
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, totalPrice, hasUnpricedItems, clear } = useCart();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Delivery vs. self-pickup (by prior arrangement). Default to delivery.
+  const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("delivery");
+
+  // Shipping fee: only for delivery, only when there is a priced subtotal,
+  // and only below the free-shipping threshold. Pickup is always free.
+  const shippingFee =
+    deliveryMethod === "delivery" &&
+    totalPrice > 0 &&
+    totalPrice < FREE_SHIPPING_THRESHOLD
+      ? SHIPPING_FEE
+      : 0;
+  const grandTotal = totalPrice + shippingFee;
 
   // Default to online payment when available AND all items are priced;
   // otherwise fall back to phone payment.
@@ -84,6 +102,10 @@ export default function CheckoutPage() {
       setError("ח.פ או ת.ז חייבים להכיל 9 ספרות.");
       return;
     }
+    if (deliveryMethod === "delivery" && (!form.address.trim() || !form.city.trim())) {
+      setError("נא למלא כתובת ועיר למשלוח, או לבחור באיסוף עצמי.");
+      return;
+    }
 
     setSubmitting(true);
     try {
@@ -96,6 +118,9 @@ export default function CheckoutPage() {
           totalPrice,
           hasUnpricedItems,
           paymentMethod,
+          deliveryMethod,
+          shippingFee,
+          grandTotal,
         }),
       });
 
@@ -117,7 +142,8 @@ export default function CheckoutPage() {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              amount: totalPrice,
+              amount: grandTotal,
+              shippingFee,
               orderId,
               customer: {
                 name: form.name,
@@ -139,7 +165,7 @@ export default function CheckoutPage() {
             // Fall back to the direct URL with the yellow notice telling the
             // customer the amount to enter manually.
             const fallbackParams = new URLSearchParams();
-            fallbackParams.set("amount", String(totalPrice));
+            fallbackParams.set("amount", String(grandTotal));
             fallbackParams.set("name", form.name);
             if (form.email) fallbackParams.set("email", form.email);
             if (form.phone) fallbackParams.set("phone", form.phone);
@@ -279,36 +305,83 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div className="sm:col-span-2">
-                <label htmlFor="address" className="block text-sm font-medium text-brown mb-1">
-                  כתובת למשלוח
+            {/* Delivery method selector */}
+            <fieldset className="border border-cream-dark rounded-lg p-4">
+              <legend className="px-2 text-sm font-semibold text-brown">
+                אופן קבלת ההזמנה
+              </legend>
+              <div className="space-y-2 mt-2">
+                <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-cream/50">
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="delivery"
+                    checked={deliveryMethod === "delivery"}
+                    onChange={() => setDeliveryMethod("delivery")}
+                    className="mt-1"
+                  />
+                  <div>
+                    <p className="font-semibold text-brown">🚚 משלוח עד הבית</p>
+                    <p className="text-xs text-brown/65">
+                      משלוח חינם בקנייה מעל {FREE_SHIPPING_THRESHOLD} ש&quot;ח. מתחת לסכום זה — דמי משלוח {SHIPPING_FEE} ש&quot;ח.
+                    </p>
+                  </div>
                 </label>
-                <input
-                  id="address"
-                  name="address"
-                  type="text"
-                  value={form.address}
-                  onChange={handleChange}
-                  className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
-                  autoComplete="street-address"
-                />
-              </div>
-              <div>
-                <label htmlFor="city" className="block text-sm font-medium text-brown mb-1">
-                  עיר
+                <label className="flex items-start gap-3 cursor-pointer p-2 rounded hover:bg-cream/50">
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="pickup"
+                    checked={deliveryMethod === "pickup"}
+                    onChange={() => setDeliveryMethod("pickup")}
+                    className="mt-1"
+                  />
+                  <div>
+                    <p className="font-semibold text-brown">🏪 איסוף עצמי בתיאום מראש</p>
+                    <p className="text-xs text-brown/65">
+                      ללא דמי משלוח. נתאם איתכם טלפונית מועד נוח לאיסוף.
+                    </p>
+                  </div>
                 </label>
-                <input
-                  id="city"
-                  name="city"
-                  type="text"
-                  value={form.city}
-                  onChange={handleChange}
-                  className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
-                  autoComplete="address-level2"
-                />
               </div>
-            </div>
+            </fieldset>
+
+            {deliveryMethod === "delivery" ? (
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="sm:col-span-2">
+                  <label htmlFor="address" className="block text-sm font-medium text-brown mb-1">
+                    כתובת למשלוח *
+                  </label>
+                  <input
+                    id="address"
+                    name="address"
+                    type="text"
+                    value={form.address}
+                    onChange={handleChange}
+                    className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    autoComplete="street-address"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-brown mb-1">
+                    עיר *
+                  </label>
+                  <input
+                    id="city"
+                    name="city"
+                    type="text"
+                    value={form.city}
+                    onChange={handleChange}
+                    className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"
+                    autoComplete="address-level2"
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="bg-cream rounded-lg p-3 text-sm text-brown/75">
+                בחרתם באיסוף עצמי — נחזור אליכם טלפונית לתיאום מועד נוח לאיסוף ההזמנה.
+              </div>
+            )}
 
             <div>
               <label htmlFor="notes" className="block text-sm font-medium text-brown mb-1">
@@ -379,14 +452,22 @@ export default function CheckoutPage() {
                   <li>תלחצו על &quot;שלם עכשיו&quot; ותועברו לדף תשלום מאובטח</li>
                   <li>תמלאו את פרטי כרטיס האשראי</li>
                   <li>תקבלו חשבונית מס במייל</li>
-                  <li>נשלח את ההזמנה לכתובת שלכם תוך 48 שעות</li>
+                  <li>
+                    {deliveryMethod === "pickup"
+                      ? "נתאם איתכם טלפונית מועד לאיסוף עצמי"
+                      : "נשלח את ההזמנה לכתובת שלכם תוך 48 שעות"}
+                  </li>
                 </ol>
               ) : (
                 <ol className="list-decimal list-inside space-y-1">
                   <li>תשלחו את ההזמנה (ללא חיוב בכרטיס אשראי)</li>
                   <li>נחזור אליכם תוך יום עסקים לאישור</li>
                   <li>נחייב את הכרטיס שלכם בשיחה טלפונית מאובטחת</li>
-                  <li>נשלח את ההזמנה לכתובת שלכם</li>
+                  <li>
+                    {deliveryMethod === "pickup"
+                      ? "נתאם איתכם מועד לאיסוף עצמי"
+                      : "נשלח את ההזמנה לכתובת שלכם"}
+                  </li>
                 </ol>
               )}
             </div>
@@ -402,7 +483,7 @@ export default function CheckoutPage() {
               {submitting
                 ? "שולח..."
                 : paymentMethod === "online"
-                  ? `שלם עכשיו ${totalPrice.toLocaleString("he-IL")} ש"ח ←`
+                  ? `שלם עכשיו ${grandTotal.toLocaleString("he-IL")} ש"ח ←`
                   : "שלח הזמנה"}
             </button>
           </form>
@@ -426,11 +507,36 @@ export default function CheckoutPage() {
               ))}
             </ul>
             {totalPrice > 0 && (
-              <div className="border-t-2 border-brown pt-3 flex justify-between items-baseline">
-                <span className="font-bold text-brown">{'סה"כ:'}</span>
-                <span className="text-2xl font-bold text-gold">
-                  {`${totalPrice.toLocaleString("he-IL")} ש"ח`}
-                </span>
+              <div className="border-t border-cream-dark pt-3 space-y-2">
+                <div className="flex justify-between items-baseline text-sm">
+                  <span className="text-brown/75">סכום ביניים</span>
+                  <span className="text-brown font-medium">
+                    {`${totalPrice.toLocaleString("he-IL")} ש"ח`}
+                  </span>
+                </div>
+                <div className="flex justify-between items-baseline text-sm">
+                  <span className="text-brown/75">
+                    {deliveryMethod === "pickup" ? "איסוף עצמי" : "משלוח"}
+                  </span>
+                  <span className="text-brown font-medium">
+                    {shippingFee > 0
+                      ? `${shippingFee.toLocaleString("he-IL")} ש"ח`
+                      : "חינם"}
+                  </span>
+                </div>
+                {deliveryMethod === "delivery" &&
+                  shippingFee > 0 &&
+                  totalPrice < FREE_SHIPPING_THRESHOLD && (
+                    <p className="text-xs text-brown/55 bg-cream p-2 rounded">
+                      הוסיפו עוד {(FREE_SHIPPING_THRESHOLD - totalPrice).toLocaleString("he-IL")} ש&quot;ח לקנייה כדי לקבל משלוח חינם.
+                    </p>
+                  )}
+                <div className="border-t-2 border-brown pt-2 flex justify-between items-baseline">
+                  <span className="font-bold text-brown">{'סה"כ לתשלום:'}</span>
+                  <span className="text-2xl font-bold text-gold">
+                    {`${grandTotal.toLocaleString("he-IL")} ש"ח`}
+                  </span>
+                </div>
               </div>
             )}
             {hasUnpricedItems && (

@@ -120,8 +120,18 @@ export default function CartPage() {
               מותאמת אישית.
             </p>
           )}
+          {totalPrice > 0 && totalPrice < 350 && (
+            <p className="text-sm text-brown/70 bg-cream rounded-lg p-3 mt-2">
+              🚚 הוסיפו עוד {(350 - totalPrice).toLocaleString("he-IL")} ש&quot;ח לקנייה וקבלו <strong>משלוח חינם</strong> (אחרת דמי משלוח 40 ש&quot;ח). ניתן גם לבחור באיסוף עצמי בתיאום מראש בעמוד ההזמנה.
+            </p>
+          )}
+          {totalPrice >= 350 && (
+            <p className="text-sm text-green-700 bg-green-50 rounded-lg p-3 mt-2">
+              ✓ הקנייה זכאית ל<strong>משלוח חינם</strong>!
+            </p>
+          )}
           <p className="text-xs text-brown/55 mt-4">
-            * התשלום מתבצע טלפונית — לאחר שליחת ההזמנה ניצור איתך קשר לחיוב באשראי.
+            * בעמוד ההזמנה ניתן לבחור משלוח או איסוף עצמי, ולשלם באשראי אונליין או טלפונית.
           </p>
         </div>
 

@@ -22,7 +22,10 @@ const SUMIT_BEGIN_REDIRECT_URL =
   "https://api.sumit.co.il/billing/payments/beginredirect/";
 
 interface SumitPaymentRequest {
+  /** Grand total to charge (products + shipping), VAT included. */
   amount: number;
+  /** Shipping fee portion of `amount` (0 when free or self-pickup). */
+  shippingFee?: number;
   orderId: string;
   customer: {
     name: string;
@@ -77,6 +80,41 @@ export async function POST(req: NextRequest) {
   // Prices are passed via Items[].UnitPrice (in NIS). VATIncluded=true tells
   // Sumit our amount already includes VAT — appropriate for Israeli B2C pricing
   // where the displayed price on the site is the final price.
+  // Split the grand total into a products line and an optional shipping line,
+  // so the Sumit record itemizes the delivery fee. The two lines always sum
+  // back to `amount` (the exact figure shown to and charged to the customer).
+  const shippingFee = Math.max(0, Number(body.shippingFee) || 0);
+  const productsAmount = body.amount - shippingFee;
+
+  const items: Array<{
+    Item: { Name: string; Description?: string };
+    Quantity: number;
+    UnitPrice: number;
+    Description?: string;
+  }> = [
+    {
+      Item: {
+        Name: "הזמנה מאתר קפה גינץ",
+        Description: `מספר הזמנה: ${body.orderId}`,
+      },
+      Quantity: 1,
+      UnitPrice: productsAmount,
+      Description: `הזמנה ${body.orderId}`,
+    },
+  ];
+
+  if (shippingFee > 0) {
+    items.push({
+      Item: {
+        Name: "דמי משלוח",
+        Description: `הזמנה ${body.orderId}`,
+      },
+      Quantity: 1,
+      UnitPrice: shippingFee,
+      Description: "דמי משלוח",
+    });
+  }
+
   const sumitBody = {
     Credentials: {
       CompanyID: SUMIT_COMPANY_ID,
@@ -94,17 +132,7 @@ export async function POST(req: NextRequest) {
       CompanyNumber: body.customer.taxId || null,
       SearchMode: 0, // 0 = Automatic (matches existing or creates new)
     },
-    Items: [
-      {
-        Item: {
-          Name: "הזמנה מאתר קפה גינץ",
-          Description: `מספר הזמנה: ${body.orderId}`,
-        },
-        Quantity: 1,
-        UnitPrice: body.amount,
-        Description: `הזמנה ${body.orderId}`,
-      },
-    ],
+    Items: items,
     VATIncluded: true,
     RedirectURL: body.successUrl,
     CancelRedirectURL: body.failureUrl,
