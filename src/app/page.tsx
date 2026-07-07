@@ -13,57 +13,31 @@ export default function HomePage() {
     <>
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden"
-        style={{ backgroundColor: "#2A1506" }}
+        className="relative overflow-hidden bg-gradient-to-br from-cream via-cream to-cream-dark"
         aria-label="כותרת ראשית"
       >
-        {/* Background video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-110 saturate-110"
-          aria-hidden="true"
-        >
-          <source
-            src="/coffee-roasting.mp4.mp4"
-            type="video/mp4"
-          />
-        </video>
-
-        {/* Lighter overlay so video is clearly visible */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(135deg, rgba(42,21,6,0.55) 0%, rgba(59,31,10,0.50) 45%, rgba(92,48,21,0.45) 75%, rgba(59,31,10,0.55) 100%)",
-          }}
-          aria-hidden="true"
-        />
-
         {/* Decorative rings */}
         <div
-          className="absolute -top-32 -end-32 w-96 h-96 rounded-full border border-gold/10 opacity-50"
+          className="absolute -top-32 -end-32 w-96 h-96 rounded-full border border-gold/25 opacity-40"
           aria-hidden="true"
         />
         <div
-          className="absolute -bottom-16 -start-16 w-64 h-64 rounded-full border border-gold/10 opacity-40"
+          className="absolute -bottom-16 -start-16 w-64 h-64 rounded-full border border-gold/25 opacity-30"
           aria-hidden="true"
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold mb-4 font-heebo">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold-dark mb-4 font-heebo">
             קפה גינץ
           </h2>
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-4">
+          <p className="text-brown/55 text-sm font-montserrat tracking-widest uppercase mb-4">
             Boutique Coffee Roastery · Since 2005
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-cream leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-4">
             פתרונות קפה
-            <span className="block text-gold mt-1">לעסקים ולמשרדים</span>
+            <span className="block text-gold-dark mt-1">לעסקים ולמשרדים</span>
           </h1>
-          <p className="text-cream/75 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-brown/70 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
             פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
             שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
           </p>
@@ -71,7 +45,7 @@ export default function HomePage() {
             <Link href="/business-solutions" className="btn btn-primary btn-lg">
               ראו את הפתרונות לעסקים ←
             </Link>
-            <a href="#contact" className="btn btn-outline btn-lg">
+            <a href="#contact" className="btn btn-outline-brown btn-lg">
               קבל הצעת מחיר עכשיו
             </a>
           </div>
@@ -79,45 +53,47 @@ export default function HomePage() {
       </section>
 
       {/* ── Photo strip ── */}
-      <section className="grid grid-cols-1 sm:grid-cols-3 h-56 sm:h-72" aria-label="גלריית תמונות">
-        <div className="relative overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80"
-            alt="קלייה של פולי קפה טריים"
-            fill
-            className="object-cover hover:scale-105 transition-transform duration-700"
-            sizes="(max-width: 640px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-brown/30" />
-          <span className="absolute bottom-4 start-4 text-white font-bold text-sm tracking-wide drop-shadow">
-            קלייה טרייה
-          </span>
-        </div>
-        <div className="relative overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
-            alt="אנשי עסקים שותים קפה בפגישה"
-            fill
-            className="object-cover hover:scale-105 transition-transform duration-700"
-            sizes="(max-width: 640px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-brown/20" />
-          <span className="absolute bottom-4 start-4 text-white font-bold text-sm tracking-wide drop-shadow">
-            קפה לעסקים
-          </span>
-        </div>
-        <div className="relative overflow-hidden">
-          <Image
-            src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
-            alt="פולי קפה קלויים איכותיים"
-            fill
-            className="object-cover hover:scale-105 transition-transform duration-700"
-            sizes="(max-width: 640px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-brown/25" />
-          <span className="absolute bottom-4 start-4 text-white font-bold text-sm tracking-wide drop-shadow">
-            פולים פרימיום
-          </span>
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8" aria-label="גלריית תמונות">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4 h-28 sm:h-36">
+          <div className="relative overflow-hidden rounded-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80"
+              alt="קלייה של פולי קפה טריים"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 640px) 33vw, 300px"
+            />
+            <div className="absolute inset-0 bg-brown/30" />
+            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
+              קלייה טרייה
+            </span>
+          </div>
+          <div className="relative overflow-hidden rounded-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
+              alt="אנשי עסקים שותים קפה בפגישה"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 640px) 33vw, 300px"
+            />
+            <div className="absolute inset-0 bg-brown/20" />
+            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
+              קפה לעסקים
+            </span>
+          </div>
+          <div className="relative overflow-hidden rounded-xl">
+            <Image
+              src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
+              alt="פולי קפה קלויים איכותיים"
+              fill
+              className="object-cover hover:scale-105 transition-transform duration-700"
+              sizes="(max-width: 640px) 33vw, 300px"
+            />
+            <div className="absolute inset-0 bg-brown/25" />
+            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
+              פולים פרימיום
+            </span>
+          </div>
         </div>
       </section>
 
@@ -268,19 +244,18 @@ export default function HomePage() {
 
       {/* ── Why us ── */}
       <section
-        className="py-16"
-        style={{ background: "linear-gradient(180deg, #3B1F0A 0%, #2A1506 100%)" }}
+        className="py-16 bg-cream-dark"
         aria-labelledby="whyus-heading"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <h2
               id="whyus-heading"
-              className="text-3xl font-bold text-gold mb-3"
+              className="text-3xl font-bold text-brown mb-3"
             >
               למה לבחור בנו?
             </h2>
-            <p className="text-cream/55 text-base max-w-xl mx-auto">
+            <p className="text-brown/60 text-base max-w-xl mx-auto">
               אנחנו לא מפיצים — אנחנו היצרן. הקפה שלכם נקלה אצלנו, לפי הטעם שלכם, ומגיע ישירות אליכם.
             </p>
           </div>
@@ -464,11 +439,11 @@ function WhyCard({
 }) {
   return (
     <div className="text-center">
-      <div className="w-16 h-16 rounded-full bg-gold/15 flex items-center justify-center mx-auto mb-4 text-gold">
+      <div className="w-16 h-16 rounded-full bg-gold/15 flex items-center justify-center mx-auto mb-4 text-gold-dark">
         {icon}
       </div>
-      <h3 className="text-gold font-bold text-xl mb-2">{title}</h3>
-      <p className="text-cream/65 text-sm leading-relaxed">{description}</p>
+      <h3 className="text-brown font-bold text-xl mb-2">{title}</h3>
+      <p className="text-brown/60 text-sm leading-relaxed">{description}</p>
     </div>
   );
 }
