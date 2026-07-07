@@ -11,6 +11,7 @@ const X10_IMAGE =
   X10?.image ?? "https://www.jura.co.il/wp-content/uploads/2024/06/X10Main.webp";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/lp" },
   title: "קפה גינץ — בית קלייה בוטיק | הקפה שמתאים בדיוק לטעם שלך",
   description:
     "קפה גינץ — בית קלייה בוטיק מאז 2005. קפה בהתאמה אישית לכל לקוח, התקנה ושירות בכל הארץ. השאירו פרטים וקבלו הצעה אישית.",

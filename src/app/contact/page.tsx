@@ -3,6 +3,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "צור קשר",
   description: "צרו קשר עם קפה גינץ. טלפון, וואטסאפ, אימייל ואפשרות לקבלת הצעת מחיר.",
 };

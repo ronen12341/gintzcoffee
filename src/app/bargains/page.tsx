@@ -4,6 +4,7 @@ import LeadForm from "@/components/LeadForm";
 import { usedMachines } from "@/data/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/bargains" },
   title: "מכונות יד2 – מכונות קפה משומשות",
   description:
     "מכונות קפה יד שנייה ומשופצות במחירים מיוחדים. מגיעות עם בדיקה ואחריות.",

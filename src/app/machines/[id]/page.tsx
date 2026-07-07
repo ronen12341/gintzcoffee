@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${machine.name} — קפה גינץ`,
     description: machine.description.slice(0, 160),
+    alternates: { canonical: `/machines/${machine.id}` },
     openGraph: {
       title: machine.name,
       description: machine.description.slice(0, 160),

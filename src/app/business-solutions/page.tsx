@@ -5,6 +5,7 @@ import LeadForm from "@/components/LeadForm";
 import { businessSolutions } from "@/data/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/business-solutions" },
   title: "פתרונות קפה לעסקים | קפה גינץ",
   description:
     "פתרונות קפה מקצה לקצה לעסקים — מכונת קפה, פולים טריים, התקנה, הדרכה ותמיכה שוטפת. מתאים מעסקים קטנים ועד ארגונים גדולים.",

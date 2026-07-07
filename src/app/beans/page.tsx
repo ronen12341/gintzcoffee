@@ -5,6 +5,7 @@ import AddToCartButton from "@/components/AddToCartButton";
 import { coffeeBeans } from "@/data/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/beans" },
   title: "פולי קפה טריים לעסק ולמשרד | בית קלייה בוטיק",
   description:
     "פולי קפה טריים לעסק ולמשרד מבית קלייה גינץ. קלייה בוטיק בהתאמה אישית לפי הטעם שלכם. קפה לעסק שמגיע טרי עד 10 ימים מהקלייה.",

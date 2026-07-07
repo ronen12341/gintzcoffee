@@ -3,6 +3,7 @@ import Link from "next/link";
 import { CheckCircle2, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
+  robots: { index: false, follow: false },
   title: "ההזמנה התקבלה",
   description: "תודה על ההזמנה. נחזור אליכם בקרוב.",
 };

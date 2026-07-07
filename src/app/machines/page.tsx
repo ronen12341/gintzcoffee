@@ -4,6 +4,7 @@ import LeadForm from "@/components/LeadForm";
 import { coffeeMachines } from "@/data/products";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/machines" },
   title: "מכונת קפה למשרד ולעסק | JURA ומכונות מקצועיות",
   description:
     "מכונת קפה למשרד ולעסק — JURA, Melitta ועוד. פתרונות קפה לעסק כולל התקנה, הדרכה ותמיכה. קפה למשרד בהתאמה אישית מבית קלייה גינץ.",
