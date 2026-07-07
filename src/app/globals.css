@@ -317,7 +317,7 @@
   .footer-link {
     position: relative;
     display: inline-block;
-    color: rgba(245, 240, 232, 0.65);
+    color: rgba(59, 31, 10, 0.65);
     font-size: 0.9rem;
     padding: 0.25rem 0;
     transition: color 0.2s ease;
@@ -330,11 +330,11 @@
     transform: translateX(-50%);
     width: 0;
     height: 1px;
-    background: #c8922a;
+    background: #a87a1d;
     transition: width 0.3s ease;
   }
   .footer-link:hover {
-    color: #e8b558;
+    color: #a87a1d;
   }
   .footer-link:hover::after {
     width: 100%;
