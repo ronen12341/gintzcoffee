@@ -10,7 +10,7 @@ const nextConfig = {
       { source: "/מכונות-קפה-ראש-אחד.html", destination: "/machines", permanent: true },
       { source: "/מכונות-אספרסו.html", destination: "/machines", permanent: true },
       // רשת ביטחון: כל עמוד .html ישן אחר מופנה לדף הבית במקום 404
-      { source: "/:path(.*\\.html)", destination: "/", permanent: true },
+      { source: "/:path((?!google).*\\.html)", destination: "/", permanent: true },
     ];
   },
   images: {
