@@ -27,10 +27,10 @@ export default function HomePage() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-          <h2 className="text-5xl sm:text-6xl md:text-7xl font-bold text-gold-dark mb-4 font-heebo">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gold-dark mb-2 font-heebo">
             קפה גינץ
           </h2>
-          <p className="text-brown/55 text-sm font-montserrat tracking-widest uppercase mb-4">
+          <p className="text-brown/55 text-sm font-montserrat tracking-widest uppercase mb-6">
             Boutique Coffee Roastery · Since 2005
           </p>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-4">

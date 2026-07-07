@@ -102,109 +102,115 @@ export default function LeadForm({
   }
 
   const fieldClass = (field: string) =>
-    `w-full px-4 py-2.5 rounded-lg border ${
-      errors[field] ? "border-red-500" : "border-brown/20"
-    } bg-white focus:outline-none focus:ring-2 focus:ring-gold text-brown placeholder:text-brown/30`;
+    `w-full px-4 py-2.5 rounded-xl border ${
+      errors[field] ? "border-red-400" : "border-brown/12"
+    } bg-cream/40 focus:outline-none focus:ring-2 focus:ring-gold/50 focus:border-transparent focus:bg-white text-brown placeholder:text-brown/35 text-sm transition-colors`;
+
+  const labelClass = "block text-xs font-semibold text-brown/70 tracking-wide mb-1.5";
 
   return (
-    <form onSubmit={handleSubmit} className={`space-y-4 ${className}`} noValidate>
+    <form onSubmit={handleSubmit} className={`space-y-5 ${className}`} noValidate>
       {title && (
         <h3 className="text-2xl font-bold text-brown mb-6">{title}</h3>
       )}
 
-      <div>
-        <label htmlFor="lf-name" className="block text-sm font-medium text-brown mb-1">
-          שם מלא <span className="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          id="lf-name"
-          type="text"
-          autoComplete="name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          className={fieldClass("name")}
-          placeholder="ישראל ישראלי"
-          aria-required="true"
-          aria-describedby={errors.name ? "lf-name-err" : undefined}
-        />
-        {errors.name && (
-          <p id="lf-name-err" className="text-red-500 text-xs mt-1" role="alert">
-            {errors.name}
-          </p>
-        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="lf-name" className={labelClass}>
+            שם מלא <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="lf-name"
+            type="text"
+            autoComplete="name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            className={fieldClass("name")}
+            placeholder="ישראל ישראלי"
+            aria-required="true"
+            aria-describedby={errors.name ? "lf-name-err" : undefined}
+          />
+          {errors.name && (
+            <p id="lf-name-err" className="text-red-500 text-xs mt-1" role="alert">
+              {errors.name}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="lf-phone" className={labelClass}>
+            טלפון <span className="text-red-500" aria-hidden="true">*</span>
+          </label>
+          <input
+            id="lf-phone"
+            type="tel"
+            autoComplete="tel"
+            dir="ltr"
+            value={form.phone}
+            onChange={(e) => setForm({ ...form, phone: e.target.value })}
+            className={`${fieldClass("phone")} text-right`}
+            placeholder="050-0000000"
+            aria-required="true"
+            aria-describedby={errors.phone ? "lf-phone-err" : undefined}
+          />
+          {errors.phone && (
+            <p id="lf-phone-err" className="text-red-500 text-xs mt-1" role="alert">
+              {errors.phone}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="lf-email" className={labelClass}>
+            אימייל
+          </label>
+          <input
+            id="lf-email"
+            type="email"
+            autoComplete="email"
+            dir="ltr"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            className={`${fieldClass("email")} text-right`}
+            placeholder="example@company.com"
+            aria-describedby={errors.email ? "lf-email-err" : undefined}
+          />
+          {errors.email && (
+            <p id="lf-email-err" className="text-red-500 text-xs mt-1" role="alert">
+              {errors.email}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="lf-biz" className={labelClass}>
+            סוג עסק
+          </label>
+          <select
+            id="lf-biz"
+            value={form.businessType}
+            onChange={(e) => setForm({ ...form, businessType: e.target.value })}
+            className={fieldClass("businessType")}
+          >
+            <option value="">בחר סוג עסק…</option>
+            {BUSINESS_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {t}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
 
       <div>
-        <label htmlFor="lf-phone" className="block text-sm font-medium text-brown mb-1">
-          טלפון <span className="text-red-500" aria-hidden="true">*</span>
-        </label>
-        <input
-          id="lf-phone"
-          type="tel"
-          autoComplete="tel"
-          dir="ltr"
-          value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          className={fieldClass("phone")}
-          placeholder="050-0000000"
-          aria-required="true"
-          aria-describedby={errors.phone ? "lf-phone-err" : undefined}
-        />
-        {errors.phone && (
-          <p id="lf-phone-err" className="text-red-500 text-xs mt-1" role="alert">
-            {errors.phone}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="lf-email" className="block text-sm font-medium text-brown mb-1">
-          אימייל
-        </label>
-        <input
-          id="lf-email"
-          type="email"
-          autoComplete="email"
-          dir="ltr"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className={fieldClass("email")}
-          placeholder="example@company.com"
-          aria-describedby={errors.email ? "lf-email-err" : undefined}
-        />
-        {errors.email && (
-          <p id="lf-email-err" className="text-red-500 text-xs mt-1" role="alert">
-            {errors.email}
-          </p>
-        )}
-      </div>
-
-      <div>
-        <label htmlFor="lf-biz" className="block text-sm font-medium text-brown mb-1">
-          סוג עסק
-        </label>
-        <select
-          id="lf-biz"
-          value={form.businessType}
-          onChange={(e) => setForm({ ...form, businessType: e.target.value })}
-          className={fieldClass("businessType")}
-        >
-          <option value="">בחר סוג עסק…</option>
-          {BUSINESS_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        <label htmlFor="lf-msg" className="block text-sm font-medium text-brown mb-1">
+        <label htmlFor="lf-msg" className={labelClass}>
           הודעה חופשית
         </label>
         <textarea
           id="lf-msg"
-          rows={4}
+          rows={3}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           className={`${fieldClass("message")} resize-none`}
@@ -216,7 +222,7 @@ export default function LeadForm({
         <p className="text-red-500 text-sm text-center" role="alert">{serverError}</p>
       )}
 
-      <button type="submit" disabled={sending} className="btn btn-primary btn-block">
+      <button type="submit" disabled={sending} className="btn btn-primary btn-block mt-1">
         {sending ? "שולח…" : "שלח פנייה"}
       </button>
     </form>
