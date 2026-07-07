@@ -27,20 +27,28 @@ export default function HomePage() {
         />
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 text-center">
-          <div className="inline-flex items-center gap-3 mb-3">
-            <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
-            <span
-              className="text-gold-dark font-bold text-lg tracking-wide"
-              style={{ fontFamily: "var(--font-playfair), serif" }}
-            >
-              קפה גינץ
-            </span>
-            <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
+          <div className="inline-flex items-center gap-4 mb-3">
+            <span className="h-px w-10 bg-gold/40" aria-hidden="true" />
+            <div className="flex flex-col items-center leading-tight">
+              <span
+                className="text-gold-dark font-bold text-4xl tracking-wide"
+                style={{ fontFamily: "var(--font-playfair), serif" }}
+              >
+                קפה גינץ
+              </span>
+              <span
+                className="text-gold-dark/70 font-semibold text-sm tracking-[0.15em] mt-0.5"
+                style={{ fontFamily: "var(--font-playfair), serif" }}
+              >
+                Gintz Coffee
+              </span>
+            </div>
+            <span className="h-px w-10 bg-gold/40" aria-hidden="true" />
           </div>
           <p className="text-brown/45 text-xs font-montserrat tracking-[0.25em] uppercase mb-4">
             Boutique Coffee Roastery · Since 2005
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brown leading-tight mb-3">
             פתרונות קפה
             <span className="block text-gold-dark mt-1">לעסקים ולמשרדים</span>
           </h1>
