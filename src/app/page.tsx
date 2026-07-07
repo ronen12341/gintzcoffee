@@ -13,31 +13,38 @@ export default function HomePage() {
     <>
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden bg-gradient-to-br from-cream via-cream to-cream-dark"
+        className="relative overflow-hidden bg-cream"
         aria-label="כותרת ראשית"
       >
-        {/* Decorative rings */}
+        {/* Soft ambient glow — replaces the old hard-edged rings */}
         <div
-          className="absolute -top-32 -end-32 w-96 h-96 rounded-full border border-gold/25 opacity-40"
+          className="absolute -top-20 -end-20 w-[28rem] h-[28rem] rounded-full bg-gold/10 blur-3xl pointer-events-none"
           aria-hidden="true"
         />
         <div
-          className="absolute -bottom-16 -start-16 w-64 h-64 rounded-full border border-gold/25 opacity-30"
+          className="absolute -bottom-24 -start-24 w-80 h-80 rounded-full bg-brown/[0.04] blur-3xl pointer-events-none"
           aria-hidden="true"
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gold-dark mb-2 font-heebo">
-            קפה גינץ
-          </h2>
-          <p className="text-brown/55 text-sm font-montserrat tracking-widest uppercase mb-6">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
+          <div className="inline-flex items-center gap-3 mb-5">
+            <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
+            <span
+              className="text-gold-dark font-bold text-lg tracking-wide"
+              style={{ fontFamily: "var(--font-playfair), serif" }}
+            >
+              קפה גינץ
+            </span>
+            <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
+          </div>
+          <p className="text-brown/45 text-xs font-montserrat tracking-[0.25em] uppercase mb-7">
             Boutique Coffee Roastery · Since 2005
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-5">
             פתרונות קפה
             <span className="block text-gold-dark mt-1">לעסקים ולמשרדים</span>
           </h1>
-          <p className="text-brown/70 text-lg sm:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="text-brown/65 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
             פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
             שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
           </p>
