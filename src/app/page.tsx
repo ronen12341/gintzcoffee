@@ -26,8 +26,8 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center">
-          <div className="inline-flex items-center gap-3 mb-5">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 text-center">
+          <div className="inline-flex items-center gap-3 mb-3">
             <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
             <span
               className="text-gold-dark font-bold text-lg tracking-wide"
@@ -37,14 +37,14 @@ export default function HomePage() {
             </span>
             <span className="h-px w-8 bg-gold/40" aria-hidden="true" />
           </div>
-          <p className="text-brown/45 text-xs font-montserrat tracking-[0.25em] uppercase mb-7">
+          <p className="text-brown/45 text-xs font-montserrat tracking-[0.25em] uppercase mb-4">
             Boutique Coffee Roastery · Since 2005
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-5">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-brown leading-tight mb-3">
             פתרונות קפה
             <span className="block text-gold-dark mt-1">לעסקים ולמשרדים</span>
           </h1>
-          <p className="text-brown/65 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-brown/65 text-lg max-w-xl mx-auto mb-6 leading-relaxed">
             פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
             שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
           </p>
@@ -60,7 +60,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Photo strip ── */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8" aria-label="גלריית תמונות">
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="גלריית תמונות">
         <div className="grid grid-cols-3 gap-3 sm:gap-4 h-28 sm:h-36">
           <div className="relative overflow-hidden rounded-xl">
             <Image
