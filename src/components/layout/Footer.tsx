@@ -6,6 +6,7 @@ const links = [
   { href: "/business-solutions", label: "פתרונות לעסקים" },
   { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
+  { href: "/roastery", label: "בית הקלייה" },
   { href: "https://www.aspagil.com", label: "כוסות ממותגות" },
   { href: "/bargains", label: "מכונות יד2" },
   { href: "/faq", label: "שאלות נפוצות" },

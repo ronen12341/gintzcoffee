@@ -26,7 +26,7 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = {
   title: {
-    default: "קפה גינץ | פתרונות קפה למשרד ולעסק",
+    default: "קפה גינץ | בית קלייה לקפה ופתרונות קפה לעסקים",
     template: "%s | קפה גינץ",
   },
   description:
