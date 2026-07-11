@@ -14,7 +14,7 @@ const navLinks = [
   { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/roastery", label: "בית הקלייה" },
-  { href: "https://www.aspagil.com", label: "כוסות ממותגות", external: true },
+  { href: "https://www.gilcups.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מכונות יד2" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },

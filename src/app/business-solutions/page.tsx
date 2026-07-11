@@ -6,9 +6,15 @@ import { businessSolutions } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions" },
-  title: "פתרונות קפה לעסקים | קפה גינץ",
+  title: "פתרונות קפה לעסקים",
   description:
     "פתרונות קפה מקצה לקצה לעסקים — מכונת קפה, פולים טריים, התקנה, הדרכה ותמיכה שוטפת. מתאים מעסקים קטנים ועד ארגונים גדולים.",
+  openGraph: {
+    url: "https://www.gintz.co.il/business-solutions",
+    title: "פתרונות קפה לעסקים | קפה גינץ",
+    description:
+      "פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה, התקנה, הדרכה ותמיכה שוטפת.",
+  },
   keywords: [
     "פתרונות קפה לעסקים",
     "מכונת קפה למשרד",

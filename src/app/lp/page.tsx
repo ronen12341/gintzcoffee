@@ -12,7 +12,7 @@ const X10_IMAGE =
 
 export const metadata: Metadata = {
   alternates: { canonical: "/lp" },
-  title: "קפה גינץ — בית קלייה בוטיק | הקפה שמתאים בדיוק לטעם שלך",
+  title: { absolute: "קפה גינץ — בית קלייה בוטיק | הקפה שמתאים בדיוק לטעם שלך" },
   description:
     "קפה גינץ — בית קלייה בוטיק מאז 2005. קפה בהתאמה אישית לכל לקוח, התקנה ושירות בכל הארץ. השאירו פרטים וקבלו הצעה אישית.",
   robots: { index: false, follow: false },
