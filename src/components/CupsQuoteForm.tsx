@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { quantityOptions } from "@/data/products";
-import { trackLead } from "@/lib/gtag";
+import { trackLead, ADS_CONVERSION } from "@/lib/gtag";
 
 export default function CupsQuoteForm() {
   const [form, setForm] = useState({
@@ -45,7 +45,7 @@ export default function CupsQuoteForm() {
       });
       if (res.ok) {
         setSubmitted(true);
-        trackLead("cups");
+        trackLead("cups", ADS_CONVERSION.cups);
       } else {
         setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון");
       }
