@@ -3,7 +3,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Check } from "lucide-react";
 import AddToCartButton from "@/components/AddToCartButton";
-import LeadForm from "@/components/LeadForm";
 import MachineGallery from "@/components/MachineGallery";
 import { coffeeBeans } from "@/data/products";
 
@@ -173,29 +172,6 @@ export default async function BeanDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Lead form */}
-      <section
-        className="py-16 bg-cream-dark"
-        id="contact"
-        aria-labelledby="bean-contact-heading"
-      >
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2
-              id="bean-contact-heading"
-              className="text-3xl font-bold text-brown mb-2"
-            >
-              מעוניינים ב-{bean.name}?
-            </h2>
-            <p className="text-brown/65">
-              השאירו פרטים ונחזור אליכם עם הצעה
-            </p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <LeadForm title="" />
-          </div>
-        </div>
-      </section>
     </>
   );
 }
