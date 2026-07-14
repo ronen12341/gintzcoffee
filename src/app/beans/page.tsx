@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
 import LeadForm from "@/components/LeadForm";
 import AddToCartButton from "@/components/AddToCartButton";
@@ -54,16 +55,22 @@ export default function BeansPage() {
                 key={bean.id}
                 className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
               >
-                {bean.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={bean.image}
-                    alt={bean.name}
-                    className="w-full h-52 object-contain bg-white"
-                  />
-                ) : (
-                  <ImagePlaceholder label="הוסף תמונה" width={300} height={400} />
-                )}
+                <Link
+                  href={`/beans/${bean.id}`}
+                  aria-label={`עוד פרטים על ${bean.name}`}
+                  className="block focus:outline-none focus:ring-2 focus:ring-gold"
+                >
+                  {bean.image ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={bean.image}
+                      alt={bean.name}
+                      className="w-full h-52 object-contain bg-white"
+                    />
+                  ) : (
+                    <ImagePlaceholder label="הוסף תמונה" width={300} height={400} />
+                  )}
+                </Link>
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-2 mb-3 flex-wrap">
                     <span className="text-xs bg-gold/15 text-gold-dark font-semibold px-2.5 py-1 rounded-full">
@@ -73,7 +80,12 @@ export default function BeansPage() {
                       {bean.origin}
                     </span>
                   </div>
-                  <h3 className="text-brown font-bold text-xl mb-2">{bean.name}</h3>
+                  <Link
+                    href={`/beans/${bean.id}`}
+                    className="text-brown font-bold text-xl mb-2 hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold rounded"
+                  >
+                    {bean.name}
+                  </Link>
                   <p className="text-brown/65 text-sm leading-relaxed flex-1">
                     {bean.description}
                   </p>
@@ -94,9 +106,12 @@ export default function BeansPage() {
                         image: bean.image,
                       }}
                     />
-                    <a href="#contact" className="btn btn-soft-secondary btn-block btn-sm">
-                      לפרטים והצעת מחיר
-                    </a>
+                    <Link
+                      href={`/beans/${bean.id}`}
+                      className="btn btn-soft-secondary btn-block btn-sm"
+                    >
+                      פרטים מלאים ←
+                    </Link>
                   </div>
                 </div>
               </article>
