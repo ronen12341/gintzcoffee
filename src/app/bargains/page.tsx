@@ -57,7 +57,7 @@ export default function BargainsPage() {
                 description={m.description}
                 image={m.image}
                 badge="מכונות יד2"
-                hideCta
+                detailHref={`/bargains/${m.id}`}
                 features={[`מצב: ${m.condition}`]}
                 priceRange={m.price}
                 originalPrice={m.originalPrice}

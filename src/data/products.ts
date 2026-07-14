@@ -79,6 +79,15 @@ export interface UsedMachine {
   priceNumeric?: number;
   /** Original / new-machine price — shown with strike-through */
   originalPrice?: string;
+  /** Bullet-point highlights shown on the card and detail page. */
+  features?: string[];
+  /** Multi-paragraph extended description shown on the detail page. Split on
+   *  blank lines for paragraph breaks. Falls back to `description` if missing. */
+  longDescription?: string;
+  /** Additional images for the detail-page gallery (besides the main `image`). */
+  images?: string[];
+  /** Optional spec table shown on the detail page. */
+  specs?: { label: string; value: string }[];
   hidden?: boolean;
 }
 
