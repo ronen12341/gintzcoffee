@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { CheckCircle2, Phone } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
 export default function OrderSuccessPage() {
   return (
     <section className="py-20 bg-cream min-h-[60vh]">
+      {/* Meta Pixel — Purchase event (order completed) */}
+      <Script id="meta-purchase" strategy="afterInteractive">
+        {`if (typeof fbq === 'function') { fbq('track', 'Purchase', {currency: 'ILS'}); }`}
+      </Script>
       <div className="max-w-2xl mx-auto px-4 text-center">
         <CheckCircle2
           className="w-20 h-20 text-green-600 mx-auto mb-6"
