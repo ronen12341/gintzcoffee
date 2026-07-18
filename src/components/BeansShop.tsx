@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import AddToCartButton from "@/components/AddToCartButton";
+import BeanPurchase from "@/components/BeanPurchase";
 import type { Bean } from "@/data/products";
 
 type TypeFilter = "all" | "blend" | "single";
@@ -175,22 +175,16 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                   </p>
                 )}
 
-                {bean.price && (
-                  <div className="mt-3 mb-1 flex items-baseline gap-2">
-                    <span className="text-gold font-bold text-xl">{bean.price}</span>
-                    <span className="text-brown/50 text-xs">{'לק"ג'}</span>
-                  </div>
-                )}
                 <div className="mt-4">
-                  <AddToCartButton
-                    item={{
+                  <BeanPurchase
+                    bean={{
                       id: bean.id,
                       name: bean.name,
                       price: bean.price,
                       priceNumeric: bean.priceNumeric,
-                      category: "bean",
                       image: bean.image,
                     }}
+                    compact
                   />
                 </div>
               </div>

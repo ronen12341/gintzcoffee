@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Check } from "lucide-react";
-import AddToCartButton from "@/components/AddToCartButton";
+import BeanPurchase from "@/components/BeanPurchase";
 import MachineGallery from "@/components/MachineGallery";
 import { coffeeBeans } from "@/data/products";
 
@@ -85,13 +85,6 @@ export default async function BeanDetailPage({ params }: PageProps) {
                 {bean.name}
               </h1>
 
-              {bean.price && (
-                <div className="mb-5 flex items-baseline gap-2 flex-wrap">
-                  <span className="text-gold font-bold text-3xl">{bean.price}</span>
-                  <span className="text-brown/50 text-sm">{'לק"ג'}</span>
-                </div>
-              )}
-
               {/* Short description */}
               <p className="text-brown/75 text-base leading-relaxed mb-5">
                 {bean.description}
@@ -115,16 +108,15 @@ export default async function BeanDetailPage({ params }: PageProps) {
                 </ul>
               )}
 
-              {/* CTAs */}
+              {/* Purchase: weight + grind */}
               {bean.priceNumeric != null && (
-                <div className="flex flex-col gap-2 mb-6">
-                  <AddToCartButton
-                    item={{
+                <div className="mb-6">
+                  <BeanPurchase
+                    bean={{
                       id: bean.id,
                       name: bean.name,
                       price: bean.price,
                       priceNumeric: bean.priceNumeric,
-                      category: "bean",
                       image: bean.image,
                     }}
                   />
