@@ -2,13 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Coffee, Package, Award, Zap, HeartHandshake, Briefcase } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
-import ProductCard from "@/components/ProductCard";
 import BusinessSolutionCard from "@/components/BusinessSolutionCard";
-import { coffeeMachines, businessSolutions } from "@/data/products";
+import { businessSolutions } from "@/data/products";
 
 export default function HomePage() {
-  const featured = coffeeMachines.filter((m) => m.featured);
-
   return (
     <>
       {/* ── Hero ── */}
@@ -195,47 +192,6 @@ export default function HomePage() {
               title="שירות אישי"
               description="ליווי אמיתי מהבחירה ועד המזיגה"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Featured products ── */}
-      <section className="py-16 bg-cream" id="products" aria-labelledby="products-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
-            <h2 id="products-heading" className="text-3xl font-bold text-brown">
-              מכונות קפה מובילות
-            </h2>
-            <Link
-              href="/machines"
-              className="text-gold hover:text-gold-dark font-medium text-sm transition-colors"
-              aria-label="לכל מכונות הקפה"
-            >
-              לכל המכונות ←
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {featured.slice(0, 3).map((m) => (
-              <ProductCard
-                key={m.id}
-                name={m.name}
-                description={m.description}
-                features={m.features}
-                image={m.image}
-                priceRange={m.price}
-                ctaHref={`/machines/${m.id}`}
-                ctaLabel="פרטים מלאים ←"
-                detailHref={`/machines/${m.id}`}
-                cartItem={{
-                  id: m.id,
-                  name: m.name,
-                  price: m.price,
-                  priceNumeric: m.priceNumeric,
-                  category: "machine",
-                  image: m.image,
-                }}
-              />
-            ))}
           </div>
         </div>
       </section>
