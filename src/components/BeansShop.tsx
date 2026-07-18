@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
+import SmartImage from "@/components/SmartImage";
 import BeanPurchase from "@/components/BeanPurchase";
 import type { Bean } from "@/data/products";
 
@@ -138,14 +139,17 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                 className="block focus:outline-none focus:ring-2 focus:ring-gold"
               >
                 {bean.image ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={bean.image}
-                    alt={bean.name}
-                    className="w-full h-52 object-contain bg-white"
-                  />
+                  <div className="relative aspect-[4/3] w-full bg-cream/30">
+                    <SmartImage
+                      src={bean.image}
+                      alt={bean.name}
+                      fill
+                      className="object-contain p-5 sm:p-7"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  </div>
                 ) : (
-                  <ImagePlaceholder label="הוסף תמונה" width={300} height={400} />
+                  <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
                 )}
               </Link>
               <div className="p-6 flex flex-col flex-1">

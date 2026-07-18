@@ -29,14 +29,13 @@ export default function MachineGallery({ images, alt }: MachineGalleryProps) {
 
   return (
     <div className="flex flex-col gap-3">
-      {/* Main image — fixed height instead of aspect ratio to avoid the
-          gallery towering over mobile screens. */}
-      <div className="relative w-full h-[260px] sm:h-[360px] lg:h-[420px] bg-white rounded-2xl shadow-md overflow-hidden">
+      {/* A stable 4:3 stage matches the listing cards and prevents layout jumps. */}
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-white shadow-md">
         <SmartImage
           src={currentImage}
           alt={alt}
           fill
-          className="object-contain p-4 sm:p-6"
+          className="object-contain p-5 sm:p-8"
           sizes="(max-width: 1024px) 100vw, 50vw"
           priority
         />

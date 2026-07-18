@@ -19,21 +19,22 @@ export default function BusinessSolutionCard({
 }: BusinessSolutionCardProps) {
   if (variant === "home") {
     return (
-      <article className="group relative flex min-h-[500px] overflow-hidden rounded-[1.75rem] bg-brown-dark shadow-lg transition duration-500 hover:-translate-y-2 hover:shadow-2xl">
-        {solution.image ? (
-          <SmartImage
-            src={solution.image}
-            alt={solution.name}
-            fill
-            className="object-cover transition duration-700 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-        ) : (
-          <ImagePlaceholder label="הוסף תמונה" width={400} height={500} />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-brown-dark via-brown-dark/75 to-brown-dark/5" />
+      <article className="group flex flex-col overflow-hidden rounded-[1.75rem] bg-brown-dark shadow-lg transition duration-500 hover:-translate-y-1 hover:shadow-xl">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-white">
+          {solution.image ? (
+            <SmartImage
+              src={solution.image}
+              alt={solution.name}
+              fill
+              className="object-contain p-6 transition duration-500 group-hover:scale-[1.03] sm:p-8"
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+          ) : (
+            <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
+          )}
+        </div>
 
-        <div className="relative z-10 mt-auto flex w-full flex-col p-6 text-white sm:p-7">
+        <div className="flex w-full flex-1 flex-col p-6 text-white sm:p-7">
           <div className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-gold/40 bg-black/25 px-3 py-1.5 text-xs font-bold text-cream backdrop-blur-sm">
             <Users className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
             {solution.employeeRange}
@@ -67,12 +68,12 @@ export default function BusinessSolutionCard({
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-brown/[0.06] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="relative">
         {solution.image ? (
-          <div className="relative w-full h-[200px] sm:h-[240px] bg-cream">
+          <div className="relative aspect-[4/3] w-full bg-cream/50">
             <SmartImage
               src={solution.image}
               alt={solution.name}
               fill
-              className="object-contain p-4 transition-transform group-hover:scale-105"
+              className="object-contain p-6 transition-transform duration-300 group-hover:scale-[1.03] sm:p-8"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
           </div>

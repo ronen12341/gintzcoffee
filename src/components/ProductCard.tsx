@@ -42,19 +42,15 @@ export default function ProductCard({
 }: ProductCardProps) {
   // When a detail page exists for this product, the image and the title are
   // wrapped in a Link so customers can click to learn more.
-  // Image area uses a fixed pixel height instead of an aspect ratio so the
-  // card stays compact regardless of card width. 200px on mobile, 220px on
-  // desktop — small enough to keep the card scannable, large enough to read
-  // the product. `object-contain` guarantees the whole machine is visible
-  // (never cropped), with a soft cream background so the letterboxing looks
-  // intentional.
+  // A consistent 4:3 frame keeps every listing aligned while object-contain
+  // preserves the full machine, regardless of the source image proportions.
   const imageContent = image ? (
-    <div className="relative w-full h-[200px] sm:h-[220px] bg-cream/40 p-3">
+    <div className="relative aspect-[4/3] w-full bg-cream/40">
       <SmartImage
         src={image}
         alt={name}
         fill
-        className="object-contain"
+        className="object-contain p-5 sm:p-7"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
     </div>
