@@ -162,8 +162,8 @@
       ],
       "featured": true,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "120 ש\"ח",
+      "priceNumeric": 120
     },
     {
       "id": "office-blend",
@@ -203,8 +203,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "140 ש\"ח",
+      "priceNumeric": 140
     },
     {
       "id": "colombia-supremo",
@@ -227,8 +227,8 @@
         { "label": "עיבוד", "value": "שטוף (Washed)" }
       ],
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100,
+      "price": "140 ש\"ח",
+      "priceNumeric": 140,
       "featured": false,
       "hidden": false
     },
@@ -253,8 +253,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "140 ש\"ח",
+      "priceNumeric": 140
     },
     {
       "id": "guatemala",
@@ -305,8 +305,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "120 ש\"ח",
+      "priceNumeric": 120
     },
     {
       "id": "decaf",
@@ -333,8 +333,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "120 ש\"ח",
+      "priceNumeric": 120
     },
     {
       "id": "premium-blend",
@@ -381,8 +381,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "120 ש\"ח",
+      "priceNumeric": 120
     },
     {
       "id": "titanium-blend",
@@ -397,8 +397,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "120 ש\"ח",
+      "priceNumeric": 120
     },
     {
       "id": "ethiopia",
@@ -421,8 +421,8 @@
       ],
       "featured": false,
       "image": "/coffee-bag.jpg.jpg",
-      "price": "100 ש\"ח",
-      "priceNumeric": 100
+      "price": "140 ש\"ח",
+      "priceNumeric": 140
     }
   ],
   "cupCategories": [
