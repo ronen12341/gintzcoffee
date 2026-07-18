@@ -265,19 +265,19 @@
      ──────────────────────────────────────────────────────────────────────── */
   .nav-link {
     position: relative;
-    padding: 0.5rem 0.85rem;
-    font-size: 0.92rem;
+    padding: 0.65rem 0.72rem;
+    font-size: 0.88rem;
     font-weight: 500;
     letter-spacing: 0.015em;
-    color: rgba(245, 240, 232, 0.78);
-    border-radius: 0.5rem;
+    color: rgba(245, 240, 232, 0.72);
+    border-radius: 9999px;
     transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
   }
   .nav-link::after {
     content: "";
     position: absolute;
     left: 50%;
-    bottom: 0.25rem;
+    bottom: 0.15rem;
     width: 0;
     height: 2px;
     background: linear-gradient(90deg, transparent, #c8922a, transparent);
@@ -292,8 +292,8 @@
     left: 0.85rem;
   }
   .nav-link-active {
-    color: #e8b558;
-    background: rgba(200, 146, 42, 0.10);
+    color: #f2c979;
+    background: rgba(255, 255, 255, 0.055);
   }
   .nav-link-active::after {
     width: calc(100% - 1.7rem);
@@ -407,11 +407,15 @@
 
   /* Scroll-aware header — adds subtle backdrop blur + shadow on scroll */
   .nav-shell {
-    background: linear-gradient(180deg, #3B1F0A 0%, #2A1505 100%);
-    transition: box-shadow 0.3s ease;
+    background: rgba(42, 21, 5, 0.97);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    backdrop-filter: blur(18px);
+    transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   }
   .nav-shell-scrolled {
-    box-shadow: 0 6px 24px -6px rgba(0, 0, 0, 0.35);
+    background: rgba(42, 21, 5, 0.92);
+    border-color: rgba(200, 146, 42, 0.16);
+    box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.65);
   }
 
   /* Hide scrollbar but keep scrolling functional — used for the mobile nav
@@ -487,13 +491,13 @@
     top: 0;
     inset-inline-start: 0;
     height: 100vh;
-    width: min(82vw, 320px);
-    background: linear-gradient(180deg, #3B1F0A 0%, #2A1505 100%);
+    width: min(86vw, 350px);
+    background: linear-gradient(180deg, #351b08 0%, #211004 100%);
     border-inline-end: 1px solid rgba(200, 146, 42, 0.18);
     box-shadow: 4px 0 24px -8px rgba(0, 0, 0, 0.4);
     z-index: 50;
     transform: translateX(100%);
-    transition: transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -506,11 +510,11 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.9rem 1.25rem;
+    padding: 0.8rem 1.1rem;
     color: rgba(245, 240, 232, 0.85);
     font-weight: 500;
     font-size: 1rem;
-    border-radius: 0.6rem;
+    border-radius: 0.8rem;
     transition: background 0.18s ease, color 0.18s ease;
   }
   .drawer-link:hover {

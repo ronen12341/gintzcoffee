@@ -1,30 +1,60 @@
 @echo off
+setlocal
 title Publish to gintz.co.il
 
 cd /d "C:\Users\user\Dropbox\My PC (HASH-GINTZ)\Desktop\gintzcoffe-main\gintzcoffe-main"
 
 echo.
 echo ========================================
-echo   Publishing changes to gintz.co.il
+echo   Publishing approved changes to gintz.co.il
 echo ========================================
 echo.
 
-echo [1/3] Adding changes...
-call git add .
+echo [1/4] Cleaning previous file selection...
+call git reset
+if errorlevel 1 goto :error
 echo.
 
-echo [2/3] Saving commit...
+echo [2/4] Adding approved website files only...
+call git add src public AGENTS.md publish.bat
+if errorlevel 1 goto :error
+echo.
+
+call git diff --cached --quiet
+if not errorlevel 1 goto :nothing
+
+echo [3/4] Saving changes...
 call git commit -m "Update site"
+if errorlevel 1 goto :error
 echo.
 
-echo [3/3] Pushing to GitHub...
-call git push
+echo [4/4] Publishing to GitHub...
+call git push origin main
+if errorlevel 1 goto :error
 echo.
 
 echo ========================================
-echo   DONE! Site will update in 1-2 minutes.
-echo   (If you see errors above - send a screenshot)
+echo   SUCCESS! Site will update shortly.
 echo ========================================
 echo.
-
 pause
+exit /b 0
+
+:nothing
+echo.
+echo ========================================
+echo   Nothing new to publish.
+echo ========================================
+echo.
+pause
+exit /b 0
+
+:error
+echo.
+echo ========================================
+echo   PUBLISH FAILED - nothing was confirmed.
+echo   Please send a screenshot of this window.
+echo ========================================
+echo.
+pause
+exit /b 1

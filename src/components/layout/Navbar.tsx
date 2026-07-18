@@ -10,15 +10,19 @@ import CartIcon from "@/components/layout/CartIcon";
 
 const navLinks = [
   { href: "/", label: "בית" },
-  { href: "/business-solutions", label: "פתרונות לעסקים", emphasis: true },
-  { href: "/machines", label: "רכישת מכונות" },
+  { href: "/business-solutions", label: "לעסקים" },
+  { href: "/machines", label: "מכונות קפה" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/roastery", label: "בית הקלייה" },
   { href: "https://www.gilcups.com", label: "כוסות ממותגות", external: true },
-  { href: "/bargains", label: "מכונות יד2" },
+  { href: "/bargains", label: "מציאון" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
 ];
+
+const desktopLinks = navLinks.filter(
+  ({ href }) => href !== "/faq" && href !== "/contact"
+);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -69,14 +73,14 @@ export default function Navbar() {
         )}
         role="banner"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[68px] gap-3 sm:gap-4">
+        <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
+          <div className="flex h-[76px] items-center justify-between gap-4">
             {/* Right side (in RTL): hamburger (mobile) + logo */}
             <div className="flex items-center gap-2.5">
               <button
                 type="button"
                 onClick={() => setDrawerOpen(true)}
-                className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full text-cream bg-white/5 hover:bg-white/10 ring-1 ring-white/10 hover:ring-gold/40 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-cream transition-all hover:border-gold/40 hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:hidden"
                 aria-label="פתח תפריט"
                 aria-expanded={drawerOpen}
                 aria-controls="side-drawer"
@@ -86,7 +90,7 @@ export default function Navbar() {
 
               <Link
                 href="/"
-                className="flex items-center gap-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-md group"
+                className="group flex items-center gap-3 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
                 aria-label="קפה גינץ – דף הבית"
               >
                 <div className="relative">
@@ -97,29 +101,29 @@ export default function Navbar() {
                   <Image
                     src="/logo.png"
                     alt="לוגו קפה גינץ"
-                    width={44}
-                    height={44}
-                    className="relative rounded-full object-contain bg-white ring-1 ring-gold/30 group-hover:ring-gold/60 transition-all"
+                    width={46}
+                    height={46}
+                    className="relative rounded-full bg-white object-contain ring-1 ring-white/20 transition-all group-hover:ring-gold/60"
                     priority
                   />
                 </div>
                 <div className="flex flex-col leading-none">
                   <span
-                    className="text-gold font-bold text-xl tracking-wide"
+                    className="text-xl font-bold tracking-wide text-gold"
                     style={{ fontFamily: "var(--font-playfair), serif" }}
                   >
                     Gintz
                   </span>
-                  <span className="text-cream/55 text-[10px] font-montserrat tracking-[0.25em] uppercase mt-0.5">
-                    Coffee · קפה גינץ
+                  <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-cream/55 sm:text-[10px]">
+                    Coffee Roastery
                   </span>
                 </div>
               </Link>
             </div>
 
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-1" aria-label="ניווט ראשי">
-              {navLinks.map(({ href, label, emphasis, external }) => {
+            <nav className="hidden items-center gap-0.5 lg:flex" aria-label="ניווט ראשי">
+              {desktopLinks.map(({ href, label, external }) => {
                 const active = pathname === href;
                 if (external) {
                   return (
@@ -128,7 +132,7 @@ export default function Navbar() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={cn("nav-link", emphasis && "nav-link-emphasis")}
+                      className="nav-link"
                     >
                       {label}
                     </a>
@@ -140,7 +144,6 @@ export default function Navbar() {
                     href={href}
                     className={cn(
                       "nav-link",
-                      emphasis && "nav-link-emphasis",
                       active && "nav-link-active"
                     )}
                   >
@@ -150,11 +153,17 @@ export default function Navbar() {
               })}
             </nav>
 
-            {/* Left side (in RTL): phone (desktop) + cart */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            {/* Left side (in RTL): quote CTA + phone + cart */}
+            <div className="flex items-center gap-2">
+              <Link
+                href="/contact"
+                className="hidden min-h-11 items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-bold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-gold-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:inline-flex"
+              >
+                קבלו הצעה
+              </Link>
               <a
                 href="tel:0399600550"
-                className="hidden sm:flex items-center gap-1.5 text-cream/70 hover:text-gold text-sm font-medium transition-colors px-2 py-1 rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-cream/65 transition-colors hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold xl:flex"
                 aria-label="התקשר אלינו: 03-9600550"
               >
                 <Phone className="w-4 h-4 text-gold" aria-hidden="true" />
@@ -167,78 +176,29 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile nav chips — horizontal scroll. Stays visible alongside the
-            hamburger so quick links remain one tap away. */}
-        <nav
-          className="md:hidden border-t border-white/5"
-          aria-label="ניווט מהיר"
-        >
-          <div className="flex gap-2 overflow-x-auto scrollbar-hide px-4 py-2.5">
-            {navLinks.map(({ href, label, emphasis, external }) => {
-              const active = pathname === href;
-              if (external) {
-                return (
-                  <a
-                    key={href}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={cn("nav-chip", emphasis && "nav-chip-emphasis")}
-                  >
-                    {label}
-                  </a>
-                );
-              }
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={cn(
-                    "nav-chip",
-                    emphasis && "nav-chip-emphasis",
-                    active && "nav-chip-active"
-                  )}
-                  aria-current={active ? "page" : undefined}
-                >
-                  {label}
-                </Link>
-              );
-            })}
-            <a
-              href="tel:0399600550"
-              className="nav-chip flex items-center gap-1.5"
-              aria-label="התקשר 03-9600550"
-            >
-              <Phone className="w-3.5 h-3.5 text-gold" aria-hidden="true" />
-              <span dir="ltr" className="font-mono">
-                03-9600550
-              </span>
-            </a>
-          </div>
-        </nav>
       </header>
 
       {/* Slide-in side drawer (mobile only — triggered by hamburger) */}
       <div
-        className={cn("drawer-backdrop md:hidden", drawerOpen && "open")}
+        className={cn("drawer-backdrop lg:hidden", drawerOpen && "open")}
         onClick={() => setDrawerOpen(false)}
         aria-hidden="true"
       />
       <aside
         id="side-drawer"
-        className={cn("drawer-panel md:hidden", drawerOpen && "open")}
+        className={cn("drawer-panel lg:hidden", drawerOpen && "open")}
         role="dialog"
         aria-label="תפריט ראשי"
         aria-modal="true"
         aria-hidden={!drawerOpen}
       >
-        <div className="flex items-center justify-between px-5 h-[68px] border-b border-white/10">
-          <span
-            className="text-gold font-bold text-lg tracking-wide"
-            style={{ fontFamily: "var(--font-playfair), serif" }}
-          >
-            Gintz Coffee
-          </span>
+        <div className="flex h-[76px] items-center justify-between border-b border-white/10 px-5">
+          <div>
+            <span className="block text-xl font-bold tracking-wide text-gold" style={{ fontFamily: "var(--font-playfair), serif" }}>
+              Gintz Coffee
+            </span>
+            <span className="mt-1 block text-[10px] uppercase tracking-[0.25em] text-cream/45">Boutique Roastery</span>
+          </div>
           <button
             type="button"
             onClick={() => setDrawerOpen(false)}
@@ -250,7 +210,7 @@ export default function Navbar() {
         </div>
 
         <nav className="flex-1 p-3 space-y-1" aria-label="ניווט בתפריט נשלף">
-          {navLinks.map(({ href, label, emphasis, external }) => {
+          {navLinks.map(({ href, label, external }) => {
             const active = pathname === href;
             if (external) {
               return (
@@ -259,7 +219,7 @@ export default function Navbar() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={cn("drawer-link", emphasis && "drawer-link-emphasis")}
+                  className="drawer-link"
                   onClick={() => setDrawerOpen(false)}
                 >
                   {label}
@@ -272,7 +232,6 @@ export default function Navbar() {
                 href={href}
                 className={cn(
                   "drawer-link",
-                  emphasis && "drawer-link-emphasis",
                   active && "drawer-link-active"
                 )}
                 onClick={() => setDrawerOpen(false)}
@@ -284,7 +243,14 @@ export default function Navbar() {
         </nav>
 
         {/* Contact strip at the bottom of the drawer */}
-        <div className="border-t border-white/10 px-5 py-4 space-y-3 text-sm">
+        <div className="space-y-3 border-t border-white/10 px-5 py-5 text-sm">
+          <Link
+            href="/contact"
+            onClick={() => setDrawerOpen(false)}
+            className="mb-4 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-gold px-5 py-2.5 font-bold text-white transition hover:bg-gold-dark"
+          >
+            קבלו הצעת מחיר
+          </Link>
           <a
             href="tel:0399600550"
             className="flex items-center gap-3 text-cream/75 hover:text-gold transition-colors"
