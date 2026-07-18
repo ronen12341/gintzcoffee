@@ -165,7 +165,7 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                 >
                   {bean.name}
                 </Link>
-                <p className="text-brown/65 text-sm leading-relaxed flex-1">
+                <p className="content-summary flex-1 text-[0.95rem] leading-7 text-brown/65">
                   {bean.description}
                 </p>
 

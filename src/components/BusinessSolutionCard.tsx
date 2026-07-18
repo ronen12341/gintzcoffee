@@ -64,7 +64,7 @@ export default function BusinessSolutionCard({
   }
 
   return (
-    <article className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow flex flex-col group">
+    <article className="group flex flex-col overflow-hidden rounded-2xl border border-brown/[0.06] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="relative">
         {solution.image ? (
           <div className="relative w-full h-[200px] sm:h-[240px] bg-cream">
@@ -86,17 +86,17 @@ export default function BusinessSolutionCard({
         </div>
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="text-brown font-bold text-xl mb-1 leading-snug">{solution.name}</h3>
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <h3 className="mb-2 text-xl font-bold leading-snug text-brown">{solution.name}</h3>
         {solution.tagline && (
           <p className="text-gold text-sm font-medium mb-3">{solution.tagline}</p>
         )}
-        <p className="text-brown/70 text-sm leading-relaxed mb-4">{solution.description}</p>
+        <p className="content-summary mb-5 text-[0.95rem] leading-7 text-brown/65">{solution.description}</p>
 
         {solution.features && solution.features.length > 0 && (
-          <ul className="mb-5 space-y-2">
-            {solution.features.map((f) => (
-              <li key={f} className="flex items-start gap-2 text-sm text-brown">
+          <ul className="mb-6 space-y-2.5 border-t border-brown/[0.06] pt-4">
+            {solution.features.slice(0, 4).map((f) => (
+              <li key={f} className="flex items-start gap-2 text-sm leading-6 text-brown/80">
                 <Check className="w-4 h-4 text-gold flex-shrink-0 mt-0.5" aria-hidden="true" />
                 {f}
               </li>

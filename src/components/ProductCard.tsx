@@ -63,7 +63,7 @@ export default function ProductCard({
   );
 
   return (
-    <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+    <article className="flex flex-col overflow-hidden rounded-2xl border border-brown/[0.06] bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
       <div className="relative">
         {badge && (
           <span className="absolute top-3 start-3 z-10 bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
@@ -83,21 +83,21 @@ export default function ProductCard({
         )}
       </div>
 
-      <div className="p-5 flex flex-col flex-1">
+      <div className="flex flex-1 flex-col p-6">
         {detailHref ? (
           <Link
             href={detailHref}
-            className="text-brown font-bold text-lg mb-2 leading-snug hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold rounded"
+            className="mb-3 rounded text-xl font-bold leading-snug text-brown transition-colors hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold"
           >
             {name}
           </Link>
         ) : (
-          <h3 className="text-brown font-bold text-lg mb-2 leading-snug">{name}</h3>
+          <h3 className="mb-3 text-xl font-bold leading-snug text-brown">{name}</h3>
         )}
-        <p className="text-brown/65 text-sm mb-3 leading-relaxed flex-1">{description}</p>
+        <p className="content-summary mb-5 flex-1 text-[0.95rem] leading-7 text-brown/65">{description}</p>
 
         {priceRange && (
-          <div className="mb-3 flex items-baseline gap-2 flex-wrap">
+          <div className="mb-5 flex flex-wrap items-baseline gap-2 border-t border-brown/[0.06] pt-4">
             <span className="text-gold font-bold text-xl">{priceRange}</span>
             {originalPrice && (
               <span className="text-brown/50 text-sm line-through decoration-red-500 decoration-2">
@@ -109,9 +109,9 @@ export default function ProductCard({
         )}
 
         {features && features.length > 0 && (
-          <ul className="mb-3 space-y-1">
-            {features.map((f) => (
-              <li key={f} className="flex items-center gap-1.5 text-xs text-brown/70">
+          <ul className="mb-5 space-y-2">
+            {features.slice(0, 3).map((f) => (
+              <li key={f} className="flex items-start gap-2 text-sm leading-6 text-brown/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
                 {f}
               </li>
