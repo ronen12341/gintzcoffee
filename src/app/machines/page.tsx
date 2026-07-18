@@ -15,6 +15,12 @@ export const metadata: Metadata = {
     "JURA לעסקים",
     "מכונת קפה אוטומטית לעסק",
   ],
+  openGraph: {
+    title: "מכונת קפה למשרד ולעסק | קפה גינץ",
+    description:
+      "מכונות קפה מקצועיות לעסק — JURA, Melitta ועוד, כולל התקנה, הדרכה ותמיכה. פתרונות קפה למשרד מבית גינץ.",
+    url: "https://www.gintz.co.il/machines",
+  },
 };
 
 export default function MachinesPage() {

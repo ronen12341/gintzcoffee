@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ImagePlaceholder from "@/components/ui/ImagePlaceholder";
-import AddToCartButton from "@/components/AddToCartButton";
+import BeansShop from "@/components/BeansShop";
 import { coffeeBeans } from "@/data/products";
 
 export const metadata: Metadata = {
@@ -17,6 +15,12 @@ export const metadata: Metadata = {
     "קפה טרי לעסקים",
     "קלייה בהתאמה אישית",
   ],
+  openGraph: {
+    title: "פולי קפה טריים לעסק ולמשרד | קפה גינץ",
+    description:
+      "פולי קפה טריים מבית קלייה גינץ — תערובות וחד-זני בקלייה בוטיק, טרי עד 10 ימים מהקלייה.",
+    url: "https://www.gintz.co.il/beans",
+  },
 };
 
 export default function BeansPage() {
@@ -42,80 +46,31 @@ export default function BeansPage() {
         </div>
       </section>
 
-      {/* Beans grid */}
-      <section className="py-14 bg-cream" aria-labelledby="beans-grid-heading">
+      {/* Quality manifesto */}
+      <section className="py-14 bg-cream" aria-labelledby="beans-intro-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2
+            id="beans-intro-heading"
+            className="text-2xl sm:text-3xl font-bold text-brown mb-4"
+          >
+            קפה שנקלה בשבילכם, לא מהמדף
+          </h2>
+          <p className="text-brown/70 text-base sm:text-lg leading-relaxed">
+            כל שקית שיוצאת מבית הקלייה שלנו נקלית בהזמנה — לא מיוצרת מראש ומחכה במחסן.
+            אנחנו בוחרים פולים ממיטב אזורי הגידול בעולם, מתאימים לכל אחד פרופיל קלייה
+            מדויק, ומוציאים אותו אליכם טרי עד 10 ימים מהקלייה. ההבדל מורגש כבר בכוס
+            הראשונה.
+          </p>
+        </div>
+      </section>
+
+      {/* Shop grid with filters */}
+      <section className="pb-16 bg-cream" aria-labelledby="beans-grid-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="beans-grid-heading" className="text-2xl font-bold text-brown mb-8">
+          <h2 id="beans-grid-heading" className="sr-only">
             הפולים שלנו
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {coffeeBeans.map((bean) => (
-              <article
-                key={bean.id}
-                className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col"
-              >
-                <Link
-                  href={`/beans/${bean.id}`}
-                  aria-label={`עוד פרטים על ${bean.name}`}
-                  className="block focus:outline-none focus:ring-2 focus:ring-gold"
-                >
-                  {bean.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={bean.image}
-                      alt={bean.name}
-                      className="w-full h-52 object-contain bg-white"
-                    />
-                  ) : (
-                    <ImagePlaceholder label="הוסף תמונה" width={300} height={400} />
-                  )}
-                </Link>
-                <div className="p-6 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 mb-3 flex-wrap">
-                    <span className="text-xs bg-gold/15 text-gold-dark font-semibold px-2.5 py-1 rounded-full">
-                      {bean.roast}
-                    </span>
-                    <span className="text-xs bg-brown/10 text-brown font-medium px-2.5 py-1 rounded-full">
-                      {bean.origin}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/beans/${bean.id}`}
-                    className="text-brown font-bold text-xl mb-2 hover:text-gold transition-colors focus:outline-none focus:ring-2 focus:ring-gold rounded"
-                  >
-                    {bean.name}
-                  </Link>
-                  <p className="text-brown/65 text-sm leading-relaxed flex-1">
-                    {bean.description}
-                  </p>
-                  {bean.price && (
-                    <div className="mt-3 mb-1 flex items-baseline gap-2">
-                      <span className="text-gold font-bold text-xl">{bean.price}</span>
-                      <span className="text-brown/50 text-xs">{'לק"ג'}</span>
-                    </div>
-                  )}
-                  <div className="mt-5 flex flex-col gap-2">
-                    <AddToCartButton
-                      item={{
-                        id: bean.id,
-                        name: bean.name,
-                        price: bean.price,
-                        priceNumeric: bean.priceNumeric,
-                        category: "bean",
-                        image: bean.image,
-                      }}
-                    />
-                    <Link
-                      href={`/beans/${bean.id}`}
-                      className="btn btn-soft-secondary btn-block btn-sm"
-                    >
-                      פרטים מלאים ←
-                    </Link>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          <BeansShop beans={coffeeBeans} />
         </div>
       </section>
 
@@ -142,7 +97,6 @@ export default function BeansPage() {
           </div>
         </div>
       </section>
-
     </>
   );
 }

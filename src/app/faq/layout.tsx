@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description:
     "כל התשובות על פתרונות קפה למשרד: מכונות קפה לעסקים, פולי קפה טריים, אספקה, תחזוקה ושירות מבית קלייה גינץ.",
   alternates: { canonical: "/faq" },
+  openGraph: {
+    title: "שאלות נפוצות — פתרונות קפה למשרד ולעסק | קפה גינץ",
+    description:
+      "כל התשובות על פתרונות קפה למשרד: מכונות קפה, פולי קפה טריים, אספקה, תחזוקה ושירות מבית קלייה גינץ.",
+    url: "https://www.gintz.co.il/faq",
+  },
 };
 
 export default function FaqLayout({
