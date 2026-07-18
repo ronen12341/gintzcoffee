@@ -13,138 +13,120 @@ export default function HomePage() {
     <>
       {/* ── Hero ── */}
       <section
-        className="relative overflow-hidden bg-cream"
-        aria-label="כותרת ראשית"
+        className="relative isolate min-h-[620px] overflow-hidden bg-brown-dark text-white sm:min-h-[680px]"
+        aria-label="פתרונות קפה לעסקים"
       >
-        {/* Soft ambient glow — replaces the old hard-edged rings */}
-        <div
-          className="absolute -top-20 -end-20 w-[28rem] h-[28rem] rounded-full bg-gold/10 blur-3xl pointer-events-none"
-          aria-hidden="true"
+        <Image
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=2000&q=85"
+          alt="מכונת אספרסו וקפה טרי"
+          fill
+          priority
+          className="-z-20 object-cover object-center"
+          sizes="100vw"
         />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-l from-brown-dark/95 via-brown-dark/78 to-brown-dark/30" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-brown-dark/80 via-transparent to-black/25" />
         <div
-          className="absolute -bottom-24 -start-24 w-80 h-80 rounded-full bg-brown/[0.04] blur-3xl pointer-events-none"
+          className="absolute -start-40 top-1/2 -z-10 h-96 w-96 -translate-y-1/2 rounded-full bg-gold/20 blur-3xl"
           aria-hidden="true"
         />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 text-center">
-          <div className="inline-flex items-center gap-5 mb-4">
-            <span className="h-px w-12 bg-gold/40" aria-hidden="true" />
-            <div className="flex flex-col items-center leading-tight">
-              <span
-                className="text-gold-dark font-bold text-6xl tracking-wide"
-                style={{ fontFamily: "var(--font-playfair), serif" }}
-              >
-                קפה גינץ
-              </span>
-              <span
-                className="text-gold-dark/70 font-semibold text-xl tracking-[0.15em] mt-1"
-                style={{ fontFamily: "var(--font-playfair), serif" }}
-              >
-                Gintz Coffee
-              </span>
+        <div className="mx-auto flex min-h-[620px] max-w-7xl items-center px-4 py-20 sm:min-h-[680px] sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/45 bg-black/20 px-4 py-2 text-sm font-semibold text-cream backdrop-blur-sm">
+              <Award className="h-4 w-4 text-gold" aria-hidden="true" />
+              בית קלייה בוטיק · ניסיון של עשרות שנים
             </div>
-            <span className="h-px w-12 bg-gold/40" aria-hidden="true" />
-          </div>
-          <p className="text-brown/45 text-sm font-montserrat tracking-[0.25em] uppercase mb-5">
-            Boutique Coffee Roastery · Since 2005
-          </p>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-brown leading-tight mb-3">
-            פתרונות קפה
-            <span className="block text-gold-dark mt-1">לעסקים ולמשרדים</span>
-          </h1>
-          <p className="text-brown/65 text-lg max-w-xl mx-auto mb-6 leading-relaxed">
-            פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה
-            שלנו, התקנה, הדרכה ותמיכה שוטפת. מותאם לגודל העסק ולתקציב.
-          </p>
-          <div className="flex flex-wrap gap-3 justify-center">
-            <Link href="/business-solutions" className="btn btn-primary btn-sm">
-              ראו את הפתרונות לעסקים ←
-            </Link>
-            <a href="#contact" className="btn btn-outline-gold btn-sm">
-              קבל הצעת מחיר עכשיו
-            </a>
-          </div>
-        </div>
-      </section>
 
-      {/* ── Photo strip ── */}
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="גלריית תמונות">
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 h-28 sm:h-36">
-          <div className="relative overflow-hidden rounded-xl">
-            <Image
-              src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?w=800&q=80"
-              alt="קלייה של פולי קפה טריים"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 640px) 33vw, 300px"
-            />
-            <div className="absolute inset-0 bg-brown/30" />
-            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
-              קלייה טרייה
-            </span>
-          </div>
-          <div className="relative overflow-hidden rounded-xl">
-            <Image
-              src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=800&q=80"
-              alt="אנשי עסקים שותים קפה בפגישה"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 640px) 33vw, 300px"
-            />
-            <div className="absolute inset-0 bg-brown/20" />
-            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
-              קפה לעסקים
-            </span>
-          </div>
-          <div className="relative overflow-hidden rounded-xl">
-            <Image
-              src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=800&q=80"
-              alt="פולי קפה קלויים איכותיים"
-              fill
-              className="object-cover hover:scale-105 transition-transform duration-700"
-              sizes="(max-width: 640px) 33vw, 300px"
-            />
-            <div className="absolute inset-0 bg-brown/25" />
-            <span className="absolute bottom-2 start-2 text-white font-bold text-[11px] sm:text-xs tracking-wide drop-shadow">
-              פולים פרימיום
-            </span>
+            <p className="mb-4 font-montserrat text-xs font-semibold uppercase tracking-[0.3em] text-gold sm:text-sm">
+              Gintz Coffee · Coffee Solutions
+            </p>
+            <h1 className="mb-6 text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              פתרונות קפה
+              <span className="mt-2 block text-gold">לעסקים</span>
+            </h1>
+            <p className="mb-8 max-w-2xl text-lg leading-relaxed text-cream/85 sm:text-xl">
+              מכונות קפה מקצועיות, פולים טריים מבית הקלייה וכוסות ממותגות —
+              פתרון מלא שמותאם בדיוק לעסק שלכם.
+            </p>
+
+            <div className="mb-10 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#contact"
+                className="inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-7 py-3 font-bold text-white shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-0.5 hover:bg-gold-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                קבלו הצעת מחיר
+              </a>
+              <a
+                href="https://wa.me/97239600550"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/55 bg-white/10 px-7 py-3 font-bold text-white backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:bg-white hover:text-brown focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+              >
+                דברו איתנו ב-WhatsApp
+              </a>
+            </div>
+
+            <div className="grid max-w-2xl grid-cols-3 divide-x-reverse divide-x divide-white/20 border-t border-white/20 pt-6">
+              <div className="px-2 first:pe-0 sm:px-5 sm:first:pe-0">
+                <strong className="block text-xl text-gold sm:text-2xl">30+</strong>
+                <span className="text-xs text-cream/70 sm:text-sm">שנות ניסיון</span>
+              </div>
+              <div className="px-2 sm:px-5">
+                <strong className="block text-xl text-gold sm:text-2xl">ארצי</strong>
+                <span className="text-xs text-cream/70 sm:text-sm">שירות ואספקה</span>
+              </div>
+              <div className="px-2 sm:px-5">
+                <strong className="block text-xl text-gold sm:text-2xl">טרי</strong>
+                <span className="text-xs text-cream/70 sm:text-sm">ישירות מהקלייה</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── Business Solutions — the headline pitch ── */}
       <section
-        className="py-16 sm:py-20 bg-gradient-to-b from-cream to-cream-dark"
+        className="relative overflow-hidden bg-cream py-20 sm:py-24"
         id="business-solutions"
         aria-labelledby="home-solutions-heading"
       >
+        <div className="absolute -end-32 top-12 h-80 w-80 rounded-full bg-gold/[0.08] blur-3xl" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10 sm:mb-12">
-            <div className="inline-flex items-center gap-2 bg-gold/15 text-gold px-4 py-1.5 rounded-full text-sm font-bold mb-4">
+          <div className="relative mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div className="max-w-3xl">
+              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-1.5 text-sm font-bold text-gold-dark">
               <Briefcase className="w-4 h-4" aria-hidden="true" />
-              העיקר שלנו
+                פתרון שמתאים לעסק שלכם
+              </div>
+              <h2
+                id="home-solutions-heading"
+                className="mb-4 text-3xl font-bold leading-tight text-brown sm:text-4xl md:text-5xl"
+              >
+                קפה מצוין, בכל גודל של <span className="text-gold-dark">עסק</span>
+              </h2>
+              <p className="max-w-2xl text-lg leading-relaxed text-brown/70">
+                בחרו את גודל המשרד וקבלו מעטפת מלאה: מכונה מקצועית, פולים טריים,
+                התקנה, הדרכה ושירות שוטף ממקור אחד.
+              </p>
             </div>
-            <h2
-              id="home-solutions-heading"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold text-brown mb-4 leading-tight"
+            <Link
+              href="/business-solutions"
+              className="hidden flex-shrink-0 items-center gap-2 font-bold text-brown transition-colors hover:text-gold md:inline-flex"
             >
-              פתרונות קפה <span className="text-gold">לעסקים</span>
-            </h2>
-            <p className="text-brown/70 text-lg max-w-2xl mx-auto leading-relaxed">
-              מכונה מקצועית, פולים טריים, התקנה, הדרכה ותמיכה שוטפת — הכל ממקור אחד
-              ומותאם לכמות העובדים שלכם.
-            </p>
+              לכל הפתרונות ←
+            </Link>
           </div>
 
           {businessSolutions.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-10">
-              {businessSolutions.slice(0, 4).map((s) => (
-                <BusinessSolutionCard key={s.id} solution={s} />
+            <div className="relative grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+              {businessSolutions.slice(0, 3).map((s) => (
+                <BusinessSolutionCard key={s.id} solution={s} variant="home" />
               ))}
             </div>
           )}
 
-          <div className="text-center">
+          <div className="mt-8 text-center md:hidden">
             <Link href="/business-solutions" className="btn btn-secondary btn-lg">
               כל הפתרונות לעסקים ←
             </Link>
