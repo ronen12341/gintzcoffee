@@ -10,16 +10,10 @@ type TypeFilter = "all" | "blend" | "single";
 type RoastFilter = "all" | "light" | "medium" | "dark";
 type SortKey = "featured" | "name";
 
-/** A blend is anything with multiple origins, a "תערובת"/"זנים"/"עראביקה"
- *  descriptor. Everything else is treated as single-origin. */
+/** Single-origin beans carry an origin (country); blends have it left blank.
+ *  So: no origin → blend, has origin → single-origin. */
 function isBlend(bean: Bean): boolean {
-  const o = bean.origin ?? "";
-  return (
-    o.includes(",") ||
-    o.includes("תערובת") ||
-    o.includes("זנים") ||
-    o.includes("עראביקה")
-  );
+  return (bean.origin ?? "").trim() === "";
 }
 
 /** Map the free-text roast label to a coarse category for filtering. */
@@ -159,9 +153,11 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                   <span className="text-xs bg-gold/15 text-gold-dark font-semibold px-2.5 py-1 rounded-full">
                     {bean.roast}
                   </span>
-                  <span className="text-xs bg-brown/10 text-brown font-medium px-2.5 py-1 rounded-full">
-                    {bean.origin}
-                  </span>
+                  {bean.origin && (
+                    <span className="text-xs bg-brown/10 text-brown font-medium px-2.5 py-1 rounded-full">
+                      {bean.origin}
+                    </span>
+                  )}
                 </div>
                 <Link
                   href={`/beans/${bean.id}`}

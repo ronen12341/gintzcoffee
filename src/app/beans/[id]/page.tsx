@@ -74,9 +74,11 @@ export default async function BeanDetailPage({ params }: PageProps) {
                 <span className="text-xs bg-gold/15 text-gold-dark font-semibold px-2.5 py-1 rounded-full">
                   {bean.roast}
                 </span>
-                <span className="text-xs bg-brown/10 text-brown font-medium px-2.5 py-1 rounded-full">
-                  {bean.origin}
-                </span>
+                {bean.origin && (
+                  <span className="text-xs bg-brown/10 text-brown font-medium px-2.5 py-1 rounded-full">
+                    {bean.origin}
+                  </span>
+                )}
               </div>
 
               <h1 className="text-3xl sm:text-4xl font-bold text-brown mb-3 leading-tight">
