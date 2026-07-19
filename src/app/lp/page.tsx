@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Coffee, Flame, Heart, ShieldCheck, Target } from "lucide-react";
 import X10LeadForm from "@/components/X10LeadForm";
+import WhatsAppButton from "@/components/ui/WhatsAppButton";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/lp" },
@@ -103,6 +104,7 @@ export default function LandingPage() {
         </div>
       </section>
       <footer>© GINTZ COFFEE ROASTERS. כל הזכויות שמורות.</footer>
+      <WhatsAppButton />
     </div>
   );
 }

@@ -10,6 +10,7 @@ export default function X10LeadForm() {
     name: "",
     company: "",
     phone: "",
+    email: "",
     employees: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -25,6 +26,9 @@ export default function X10LeadForm() {
       nextErrors.phone = "יש להזין מספר טלפון";
     } else if (!/^[\d\s\-+()]{9,15}$/.test(form.phone)) {
       nextErrors.phone = "מספר הטלפון אינו תקין";
+    }
+    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
+      nextErrors.email = "כתובת האימייל אינה תקינה";
     }
     if (!form.employees) nextErrors.employees = "יש לבחור מספר עובדים";
     return nextErrors;
@@ -48,6 +52,7 @@ export default function X10LeadForm() {
         body: JSON.stringify({
           name: form.name,
           phone: form.phone,
+          email: form.email,
           businessType: form.company,
           message: `מספר עובדים: ${form.employees}`,
           formType: "lead",
@@ -121,6 +126,22 @@ export default function X10LeadForm() {
           aria-invalid={Boolean(errors.phone)}
         />
         {errors.phone && <p className="field-error">{errors.phone}</p>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="lp-email">אימייל</label>
+        <input
+          id="lp-email"
+          type="email"
+          inputMode="email"
+          autoComplete="email"
+          dir="rtl"
+          value={form.email}
+          onChange={(event) => setForm({ ...form, email: event.target.value })}
+          placeholder="אימייל (לא חובה)"
+          aria-invalid={Boolean(errors.email)}
+        />
+        {errors.email && <p className="field-error">{errors.email}</p>}
       </div>
 
       <div className="field">
