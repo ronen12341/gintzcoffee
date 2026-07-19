@@ -3,29 +3,14 @@
 import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
 
-const BUSINESS_TYPES = [
-  "משרד",
-  "מסעדה / בית קפה",
-  "מלון",
-  "חנות",
-  "מוסד חינוכי",
-  "מרפאה / קליניקה",
-  "אחר",
-];
+const EMPLOYEE_RANGES = ["עד 15", "15–50", "50–100", "מעל 100"];
 
-/**
- * Dark-styled lead form for the JURA X10 landing page.
- * Visually matches the page design (.x10p scoped CSS) while posting to the
- * same /api/contact endpoint used by the standard LeadForm — so submissions
- * reach the business exactly like every other lead on the site.
- */
 export default function X10LeadForm() {
   const [form, setForm] = useState({
     name: "",
+    company: "",
     phone: "",
-    email: "",
-    businessType: "",
-    message: "",
+    employees: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -33,43 +18,47 @@ export default function X10LeadForm() {
   const [serverError, setServerError] = useState("");
 
   function validate() {
-    const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = "שם מלא הוא שדה חובה";
+    const nextErrors: Record<string, string> = {};
+    if (!form.name.trim()) nextErrors.name = "יש להזין שם מלא";
+    if (!form.company.trim()) nextErrors.company = "יש להזין את שם החברה";
     if (!form.phone.trim()) {
-      e.phone = "מספר טלפון הוא שדה חובה";
+      nextErrors.phone = "יש להזין מספר טלפון";
     } else if (!/^[\d\s\-+()]{9,15}$/.test(form.phone)) {
-      e.phone = "מספר טלפון לא תקין";
+      nextErrors.phone = "מספר הטלפון אינו תקין";
     }
-    if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      e.email = "כתובת אימייל לא תקינה";
-    }
-    return e;
+    if (!form.employees) nextErrors.employees = "יש לבחור מספר עובדים";
+    return nextErrors;
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) {
-      setErrors(errs);
+  async function handleSubmit(event: React.FormEvent) {
+    event.preventDefault();
+    const nextErrors = validate();
+    if (Object.keys(nextErrors).length) {
+      setErrors(nextErrors);
       return;
     }
+
     setErrors({});
     setSending(true);
     setServerError("");
     try {
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, formType: "lead" }),
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          businessType: form.company,
+          message: `מספר עובדים: ${form.employees}`,
+          formType: "lead",
+        }),
       });
-      if (res.ok) {
-        setSubmitted(true);
-        trackLead("x10");
-      } else {
-        setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון 03-9600550");
-      }
+
+      if (!response.ok) throw new Error("Lead submission failed");
+      setSubmitted(true);
+      trackLead("lp");
     } catch {
-      setServerError("שגיאה בשליחה, נסה שוב או צור קשר בטלפון 03-9600550");
+      setServerError("אירעה שגיאה בשליחה. אפשר לנסות שוב או להתקשר ל־03-9600550");
     } finally {
       setSending(false);
     }
@@ -77,91 +66,85 @@ export default function X10LeadForm() {
 
   if (submitted) {
     return (
-      <div className="lead-success">
-        <span className="ic" aria-hidden="true">✓</span>
+      <div className="lead-success" role="status">
+        <span className="success-icon" aria-hidden="true">✓</span>
         <h3>תודה!</h3>
-        <p>קיבלנו את הפנייה ונחזור אליך בהקדם עם הצעה אישית.</p>
+        <p>קיבלנו את הפרטים ונחזור אליכם בהקדם עם הצעה מותאמת.</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <h3>פרטים ליצירת קשר</h3>
+      <h2>קבלו הצעת מחיר</h2>
+      <p className="form-intro">פתרון קפה מלא לעסק שלכם</p>
 
       <div className="field">
-        <label htmlFor="x10-name">שם מלא *</label>
+        <label htmlFor="lp-name">שם מלא</label>
         <input
-          id="x10-name"
+          id="lp-name"
           type="text"
           autoComplete="name"
           value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="ישראל ישראלי"
+          onChange={(event) => setForm({ ...form, name: event.target.value })}
+          placeholder="שם מלא"
+          aria-invalid={Boolean(errors.name)}
         />
-        {errors.name && <p className="ferr">{errors.name}</p>}
+        {errors.name && <p className="field-error">{errors.name}</p>}
       </div>
 
       <div className="field">
-        <label htmlFor="x10-phone">טלפון *</label>
+        <label htmlFor="lp-company">שם החברה</label>
         <input
-          id="x10-phone"
+          id="lp-company"
+          type="text"
+          autoComplete="organization"
+          value={form.company}
+          onChange={(event) => setForm({ ...form, company: event.target.value })}
+          placeholder="שם החברה"
+          aria-invalid={Boolean(errors.company)}
+        />
+        {errors.company && <p className="field-error">{errors.company}</p>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="lp-phone">טלפון</label>
+        <input
+          id="lp-phone"
           type="tel"
+          inputMode="tel"
           autoComplete="tel"
-          dir="ltr"
+          dir="rtl"
           value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          placeholder="050-0000000"
+          onChange={(event) => setForm({ ...form, phone: event.target.value })}
+          placeholder="טלפון"
+          aria-invalid={Boolean(errors.phone)}
         />
-        {errors.phone && <p className="ferr">{errors.phone}</p>}
+        {errors.phone && <p className="field-error">{errors.phone}</p>}
       </div>
 
       <div className="field">
-        <label htmlFor="x10-email">אימייל</label>
-        <input
-          id="x10-email"
-          type="email"
-          autoComplete="email"
-          dir="ltr"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          placeholder="example@company.com"
-        />
-        {errors.email && <p className="ferr">{errors.email}</p>}
-      </div>
-
-      <div className="field">
-        <label htmlFor="x10-biz">סוג עסק</label>
+        <label htmlFor="lp-employees">מספר עובדים</label>
         <select
-          id="x10-biz"
-          value={form.businessType}
-          onChange={(e) => setForm({ ...form, businessType: e.target.value })}
+          id="lp-employees"
+          value={form.employees}
+          onChange={(event) => setForm({ ...form, employees: event.target.value })}
+          aria-invalid={Boolean(errors.employees)}
         >
-          <option value="">בחר סוג עסק…</option>
-          {BUSINESS_TYPES.map((t) => (
-            <option key={t} value={t}>
-              {t}
-            </option>
+          <option value="">מספר עובדים</option>
+          {EMPLOYEE_RANGES.map((range) => (
+            <option key={range} value={range}>{range}</option>
           ))}
         </select>
+        {errors.employees && <p className="field-error">{errors.employees}</p>}
       </div>
 
-      <div className="field">
-        <label htmlFor="x10-msg">הודעה חופשית</label>
-        <textarea
-          id="x10-msg"
-          rows={3}
-          value={form.message}
-          onChange={(e) => setForm({ ...form, message: e.target.value })}
-          placeholder="ספרו לנו על הצורך שלכם…"
-        />
-      </div>
+      {serverError && <p className="server-error" role="alert">{serverError}</p>}
 
-      {serverError && <p className="ferr center">{serverError}</p>}
-
-      <button type="submit" className="btn btn-gold submit" disabled={sending}>
-        {sending ? "שולח…" : "שלח פנייה"}
+      <button type="submit" className="submit-button" disabled={sending}>
+        {sending ? "שולחים..." : "קבלו הצעת מחיר"}
       </button>
+      <p className="privacy">הפרטים נשמרים באופן מאובטח ומשמשים לחזרה אליכם בלבד.</p>
     </form>
   );
 }

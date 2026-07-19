@@ -1,248 +1,108 @@
 import type { Metadata } from "next";
-import SmartImage from "@/components/SmartImage";
+import Image from "next/image";
+import { Coffee, Flame, Heart, ShieldCheck, Target } from "lucide-react";
 import X10LeadForm from "@/components/X10LeadForm";
-import X10Reveal from "@/components/X10Reveal";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import { coffeeMachines } from "@/data/products";
-
-const X10 = coffeeMachines.find((m) => m.id === "jura-x10");
-
-const X10_IMAGE =
-  X10?.image ?? "https://www.jura.co.il/wp-content/uploads/2024/06/X10Main.webp";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/lp" },
-  title: { absolute: "קפה גינץ — בית קלייה בוטיק | הקפה שמתאים בדיוק לטעם שלך" },
-  description:
-    "קפה גינץ — בית קלייה בוטיק מאז 2005. קפה בהתאמה אישית לכל לקוח, התקנה ושירות בכל הארץ. השאירו פרטים וקבלו הצעה אישית.",
+  title: { absolute: "פתרונות קפה לעסקים | קפה גינץ" },
+  description: "מכונה מקצועית, פולים טריים ושירות מלא לעסק. הצעה מותאמת לגודל ולצרכים שלכם." ,
   robots: { index: false, follow: false },
-  openGraph: {
-    title: "קפה גינץ — בית קלייה בוטיק",
-    description: "קפה בוטיק בהתאמה אישית, התקנה ושירות בכל הארץ.",
-    images: [X10_IMAGE],
-  },
 };
 
-const PAGE_CSS = `
-.x10p{
-  --gold:#C8922A; --gold-l:#E9BE63; --gold-x:#f7dca0;
-  --cream:#F5F0E8; --ink:#0c0602;
-  font-family:var(--font-heebo),'Heebo',sans-serif;
-  background:#0c0602; color:var(--cream); overflow-x:hidden;
-}
-.x10p *{box-sizing:border-box}
-.x10p a{text-decoration:none;color:inherit}
-.x10p .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+const CLIENT_LOGOS = [
+  { src: "/lp/logos/electra.png", alt: "Electra" },
+  { src: "/lp/logos/electra-group.png", alt: "Electra Group" },
+  { src: "/lp/logos/electra-fm.svg", alt: "Electra FM" },
+  { src: "/lp/logos/electra-construction.png", alt: "Electra Construction" },
+  { src: "/lp/logos/electra-me.png", alt: "Electra M&E" },
+  { src: "/lp/logos/electra-power.png", alt: "Electra Power" },
+];
 
-/* ── HERO ── */
-.x10p .hero{position:relative;
-  background:radial-gradient(120% 90% at 72% 30%, #43290f 0%, #251403 48%, #0e0703 100%);overflow:hidden}
-.x10p .hero-grid{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:clamp(40px,7vh,72px) 22px;
-  display:grid;grid-template-columns:1.02fr .98fr;gap:40px;align-items:center}
-
-.x10p .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.08em;
-  color:var(--gold-x);background:rgba(200,146,42,.12);border:1px solid rgba(200,146,42,.3);
-  padding:7px 15px;border-radius:999px;margin-bottom:20px}
-.x10p .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold-l);box-shadow:0 0 10px var(--gold-l)}
-
-.x10p h1{font-weight:900;line-height:1.0;margin-bottom:16px}
-.x10p .brand{display:block;font-size:clamp(48px,7vw,92px);letter-spacing:-.02em;
-  background:linear-gradient(100deg,var(--gold),var(--gold-x) 45%,#fff7e6 55%,var(--gold));
-  -webkit-background-clip:text;background-clip:text;color:transparent}
-.x10p .sub{display:block;font-size:clamp(20px,2.8vw,32px);font-weight:800;color:var(--cream);margin-top:8px}
-.x10p .lead{font-size:clamp(15px,1.5vw,18px);font-weight:300;line-height:1.65;color:rgba(245,240,232,.74);max-width:490px;margin-bottom:26px}
-.x10p .lead b{color:var(--gold-l);font-weight:600}
-
-.x10p .cta-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
-.x10p .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-weight:800;font-size:16px;
-  padding:15px 30px;border-radius:13px;cursor:pointer;border:none;font-family:inherit;
-  transition:transform .2s,filter .2s}
-.x10p .btn-gold{color:#2a1505;background:linear-gradient(180deg,var(--gold-l),var(--gold) 60%,#9c6e18);
-  box-shadow:0 8px 26px -8px rgba(200,146,42,.6),inset 0 1px 0 rgba(255,255,255,.4)}
-.x10p .btn-gold:hover{transform:translateY(-2px);filter:brightness(1.05)}
-.x10p .phone{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:rgba(245,240,232,.6)}
-.x10p .phone .ph{color:var(--gold-l);font-weight:800;font-size:18px;direction:ltr}
-
-/* machine */
-.x10p .machine-wrap{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px}
-.x10p .glow{position:absolute;width:440px;height:440px;max-width:90%;border-radius:50%;
-  background:radial-gradient(circle,rgba(233,190,99,.5) 0%,rgba(200,146,42,.22) 38%,transparent 68%);
-  filter:blur(8px);animation:x10p_breathe 6s ease-in-out infinite}
-@keyframes x10p_breathe{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
-.x10p .machine{position:relative;z-index:2;width:min(380px,80%);animation:x10p_float 6s ease-in-out infinite}
-.x10p .machine-img{width:100%;height:auto;display:block;filter:drop-shadow(0 28px 46px rgba(0,0,0,.6))}
-@keyframes x10p_float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.x10p .badge{position:absolute;z-index:5;display:flex;align-items:center;gap:7px;
-  background:rgba(22,12,4,.74);backdrop-filter:blur(10px);border:1px solid rgba(233,190,99,.4);
-  color:var(--cream);font-weight:600;font-size:14px;padding:9px 14px;border-radius:12px;
-  box-shadow:0 10px 28px -10px rgba(0,0,0,.7);white-space:nowrap}
-.x10p .badge.b1{top:16%;right:0}
-.x10p .badge.b2{bottom:16%;left:0}
-
-/* ── benefits ── */
-.x10p .benefits{background:#100802;border-top:1px solid rgba(200,146,42,.14)}
-.x10p .ben-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:44px 22px;max-width:1120px;margin:0 auto}
-.x10p .ben{background:rgba(255,255,255,.03);border:1px solid rgba(245,240,232,.08);border-radius:18px;padding:24px;
-  transition:transform .3s,border-color .3s}
-.x10p .ben:hover{transform:translateY(-4px);border-color:rgba(233,190,99,.4)}
-.x10p .ben .ic{font-size:30px;display:block;margin-bottom:12px}
-.x10p .ben h3{font-size:18px;font-weight:800;margin-bottom:7px}
-.x10p .ben p{font-size:14.5px;font-weight:300;line-height:1.6;color:rgba(245,240,232,.62)}
-
-/* ── lead ── */
-.x10p .lead-sec{position:relative;background:radial-gradient(100% 100% at 50% 0%,#2a1808,#120902 72%);overflow:hidden}
-.x10p .lead-grid{position:relative;max-width:1120px;margin:0 auto;padding:56px 22px;
-  display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-.x10p .lead-grid h2{font-size:clamp(26px,3.4vw,38px);font-weight:900;margin-bottom:14px}
-.x10p .lead-grid h2 span{color:var(--gold-l)}
-.x10p .lead-grid .p{color:rgba(245,240,232,.65);font-size:16px;font-weight:300;line-height:1.7;margin-bottom:22px}
-.x10p .checks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.x10p .checks li{display:flex;gap:10px;align-items:center;font-size:15px;color:rgba(245,240,232,.9)}
-.x10p .checks .ck{color:var(--gold-l);font-weight:900;font-size:17px}
-
-/* form card */
-.x10p .form-card{background:rgba(255,255,255,.04);border:1px solid rgba(233,190,99,.22);border-radius:22px;
-  padding:30px;backdrop-filter:blur(8px);box-shadow:0 30px 70px -24px rgba(0,0,0,.7)}
-.x10p .form-card h3{font-size:21px;font-weight:800;margin-bottom:18px}
-.x10p .field{margin-bottom:13px}
-.x10p .field label{display:block;font-size:13px;font-weight:600;margin-bottom:6px;color:rgba(245,240,232,.8)}
-.x10p .field input,.x10p .field select,.x10p .field textarea{width:100%;padding:12px 14px;border-radius:11px;
-  border:1px solid rgba(245,240,232,.18);background:rgba(0,0,0,.28);color:var(--cream);font-family:inherit;font-size:15px}
-.x10p .field textarea{resize:none}
-.x10p .field input::placeholder,.x10p .field textarea::placeholder{color:rgba(245,240,232,.3)}
-.x10p .field input:focus,.x10p .field select:focus,.x10p .field textarea:focus{outline:none;border-color:var(--gold-l);box-shadow:0 0 0 3px rgba(200,146,42,.22)}
-.x10p .field select option{color:#160c04}
-.x10p .submit{width:100%;margin-top:4px}
-.x10p .ferr{color:#ff9c87;font-size:12.5px;margin-top:6px}
-.x10p .ferr.center{text-align:center;margin-top:0;margin-bottom:8px}
-.x10p .lead-success{text-align:center;padding:30px 8px}
-.x10p .lead-success .ic{font-size:38px;display:inline-flex;align-items:center;justify-content:center;
-  width:60px;height:60px;border-radius:50%;background:rgba(233,190,99,.15);border:1px solid rgba(233,190,99,.4);
-  color:var(--gold-l);margin-bottom:13px}
-.x10p .lead-success h3{font-size:23px;font-weight:800;margin-bottom:7px;color:var(--gold-l)}
-.x10p .lead-success p{color:rgba(245,240,232,.75)}
-
-/* reveal */
-.x10p .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
-.x10p .reveal.in{opacity:1;transform:none}
-
-@media(max-width:860px){
-  .x10p .hero-grid{grid-template-columns:1fr;gap:30px;text-align:center}
-  .x10p .lead{margin-inline:auto}
-  .x10p .cta-row{justify-content:center}
-  .x10p .machine-wrap{order:-1;min-height:300px}
-  .x10p .ben-grid{grid-template-columns:1fr;gap:14px}
-  .x10p .lead-grid{grid-template-columns:1fr;gap:28px}
-  .x10p .form-card{text-align:right}
-}
-@media (prefers-reduced-motion: reduce){
-  .x10p .machine,.x10p .glow{animation:none !important}
-  .x10p .reveal{opacity:1 !important;transform:none !important}
-}
+const FEATURE_CSS = `
+.business-lp{--gold:#cc984c;--gold-light:#e5bb74;--ink:#0a0a09;--soft:#f5f3ef;background:#fff;color:var(--ink);font-family:var(--font-heebo),'Heebo',sans-serif;overflow-x:hidden}
+.business-lp *{box-sizing:border-box}.business-lp a{text-decoration:none;color:inherit}
+.business-lp .hero{min-height:720px;background:linear-gradient(90deg,rgba(0,0,0,.14),rgba(0,0,0,.14)),url('/lp/hero.png') center/cover no-repeat;color:#fff;display:flex;align-items:center;padding:52px 6vw}
+.business-lp .hero-inner{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.1fr .78fr;gap:7vw;align-items:center;direction:ltr}
+.business-lp .hero-copy,.business-lp .lead-card{direction:rtl}.business-lp .wordmark{display:inline-block;color:var(--gold-light);font-family:var(--font-montserrat),Arial,sans-serif;font-size:34px;font-weight:800;letter-spacing:3px;line-height:1;margin-bottom:45px;direction:ltr}
+.business-lp .wordmark small{display:block;font-size:9px;letter-spacing:4px;margin-top:10px}
+.business-lp h1{font-size:clamp(38px,4vw,64px);line-height:1.2;margin:0 0 24px;font-weight:900;letter-spacing:0}.business-lp h1 strong{color:var(--gold-light)}
+.business-lp .hero-description{font-size:19px;color:#e9e9e9;margin:0 0 16px;max-width:560px;line-height:1.65}
+.business-lp .machine-offer{display:inline-block;margin:0 0 28px;padding:10px 16px;border-right:3px solid var(--gold);background:rgba(0,0,0,.46);font-size:18px;font-weight:700}
+.business-lp .quick-benefits{display:grid;grid-template-columns:repeat(4,1fr);max-width:620px}.business-lp .quick-benefit{padding:2px 13px;text-align:center;border-left:1px solid rgba(255,255,255,.24);font-size:14px}.business-lp .quick-benefit:last-child{border:0}.business-lp .quick-benefit svg{display:block;margin:0 auto 8px;color:var(--gold-light);width:28px;height:28px;stroke-width:1.8}
+.business-lp .lead-card{background:#fff;color:var(--ink);padding:34px;border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.28);max-width:430px;width:100%}.business-lp .lead-card h2{text-align:center;font-size:31px;line-height:1.2;margin:0 0 4px}.business-lp .form-intro{text-align:center;color:#666;margin:0 0 24px}
+.business-lp .field{margin-bottom:12px}.business-lp .field label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.business-lp .field input,.business-lp .field select{width:100%;height:51px;border:1px solid #dedbd4;border-radius:3px;padding:0 15px;background:#fff;color:#222;outline:none}.business-lp .field input:focus,.business-lp .field select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(204,152,76,.16)}.business-lp .field-error,.business-lp .server-error{color:#b42318;font-size:12px;margin:5px 2px 0}.business-lp .server-error{text-align:center;margin-bottom:8px}
+.business-lp .submit-button{border:0;background:var(--gold);color:#111;font-weight:800;width:100%;height:55px;border-radius:3px;cursor:pointer;font-size:18px;transition:.2s}.business-lp .submit-button:hover{background:var(--gold-light);transform:translateY(-1px)}.business-lp .submit-button:disabled{cursor:wait;opacity:.7}.business-lp .privacy{text-align:center;font-size:11px;color:#888;margin:10px 0 0}.business-lp .lead-success{text-align:center;padding:55px 8px}.business-lp .success-icon{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;background:#f4e6d1;color:#8a5a18;font-size:30px}.business-lp .lead-success h3{font-size:28px;margin:12px 0 6px}.business-lp .lead-success p{color:#555;margin:0}
+.business-lp .clients{padding:44px 20px 52px;text-align:center}.business-lp .section-title{font-size:23px;margin:0;font-weight:800}.business-lp .dash{width:38px;height:2px;background:var(--gold);margin:14px auto 28px}.business-lp .logo-row{display:flex;align-items:center;justify-content:center;direction:ltr}.business-lp .logo-item{height:72px;min-width:150px;padding:12px 26px;border-right:1px solid #d3d3d3;display:flex;align-items:center;justify-content:center}.business-lp .logo-item:first-child{border:0}.business-lp .logo-item img{max-width:136px;max-height:46px;width:auto;height:auto;object-fit:contain}.business-lp .logo-row.secondary{gap:28px;margin-top:18px}.business-lp .logo-row.secondary .logo-item{min-width:205px;height:75px}.business-lp .logo-row.secondary img{max-width:160px;max-height:56px}.business-lp .logo-row.secondary .meitar{max-width:185px}
+.business-lp .story{display:grid;grid-template-columns:1fr 1fr;background:var(--soft);min-height:460px}.business-lp .story-copy{display:flex;flex-direction:column;justify-content:center;padding:65px max(7vw,35px)}.business-lp .eyebrow{color:var(--gold);font-size:18px;margin:0 0 8px}.business-lp .story h2{font-size:42px;margin:0 0 22px;line-height:1.2}.business-lp .story-text{font-size:18px;color:#484848;max-width:520px;margin:0;line-height:1.7}.business-lp .promise{margin-top:28px;background:#111;color:#fff;padding:14px 22px;width:max-content;max-width:100%;border-right:4px solid var(--gold);font-weight:700}.business-lp .story-photo{position:relative;min-height:390px}.business-lp .story-photo img{object-fit:cover}
+.business-lp .service-benefits{display:grid;grid-template-columns:repeat(3,1fr);max-width:1050px;margin:auto;padding:34px 20px}.business-lp .service-benefit{display:flex;align-items:center;justify-content:center;gap:18px;padding:0 30px;border-left:1px solid #ddd}.business-lp .service-benefit:last-child{border:0}.business-lp .service-benefit svg{color:var(--gold);width:38px;height:38px;stroke-width:1.6;flex:0 0 auto}.business-lp .service-benefit b{display:block;font-size:17px}.business-lp .service-benefit span{font-size:14px;color:#666}
+.business-lp .closing{min-height:270px;background:url('/lp/cup.png') center/cover no-repeat;color:#fff;display:flex;align-items:center;padding:40px 7vw}.business-lp .closing-content{width:56%;margin-right:auto}.business-lp .closing h2{font-size:34px;margin:0 0 8px}.business-lp .closing p{color:#ccc;font-size:17px;margin:0 0 24px}.business-lp .closing a{display:inline-flex;align-items:center;justify-content:center;background:var(--gold);color:#111;font-weight:800;min-width:320px;height:54px;border-radius:3px}.business-lp footer{background:#050505;color:#777;text-align:center;padding:18px;font-size:12px}
+@media(max-width:860px){.business-lp .hero{padding:35px 20px 48px;background-position:36% center}.business-lp .hero-inner{grid-template-columns:1fr;gap:34px}.business-lp .hero-copy{text-align:center}.business-lp .wordmark{margin-bottom:30px}.business-lp .hero-description{margin-left:auto;margin-right:auto}.business-lp .quick-benefits{margin:auto}.business-lp .lead-card{margin:auto}.business-lp .story{grid-template-columns:1fr}.business-lp .story-photo{grid-row:1}.business-lp .story-copy{text-align:center;padding:45px 24px}.business-lp .story-text{margin:auto}.business-lp .promise{margin-left:auto;margin-right:auto}.business-lp .service-benefits{grid-template-columns:1fr}.business-lp .service-benefit{border-left:0;border-bottom:1px solid #ddd;justify-content:flex-start;padding:20px 30px}.business-lp .service-benefit:last-child{border-bottom:0}.business-lp .closing{background-position:22% center;padding:34px 22px}.business-lp .closing-content{width:62%}.business-lp .closing a{min-width:0;width:100%}}
+@media(max-width:560px){.business-lp .hero{min-height:0;padding:26px 16px 38px;background-position:27% center}.business-lp .wordmark{font-size:24px;letter-spacing:2px;margin-bottom:24px}.business-lp .wordmark small{font-size:8px}.business-lp h1{font-size:38px}.business-lp .hero-description{font-size:16px}.business-lp .machine-offer{font-size:16px}.business-lp .quick-benefits{grid-template-columns:repeat(2,1fr);gap:20px 0}.business-lp .quick-benefit:nth-child(2){border:0}.business-lp .lead-card{padding:25px 18px}.business-lp .lead-card h2{font-size:27px}.business-lp .clients{padding:35px 8px}.business-lp .logo-row{display:grid;grid-template-columns:repeat(2,1fr)}.business-lp .logo-item,.business-lp .logo-row.secondary .logo-item{min-width:0;height:70px;padding:12px 16px;border:0}.business-lp .logo-item img{max-width:125px;max-height:42px}.business-lp .logo-row.secondary{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-top:10px}.business-lp .logo-row.secondary .logo-item:last-child{grid-column:1/-1}.business-lp .story h2{font-size:33px}.business-lp .story-photo{min-height:280px}.business-lp .closing{background-position:28% center;min-height:320px}.business-lp .closing-content{width:62%}.business-lp .closing h2{font-size:27px}.business-lp .closing p{font-size:15px}}
 `;
 
 export default function LandingPage() {
   return (
-    <div className="x10p">
-      <style dangerouslySetInnerHTML={{ __html: PAGE_CSS }} />
-      <X10Reveal />
+    <div className="business-lp">
+      <style dangerouslySetInnerHTML={{ __html: FEATURE_CSS }} />
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-grid">
-          <div className="pitch">
-            <span className="eyebrow">
-              <span className="dot" aria-hidden="true" />
-              בית קלייה בוטיק · משנת 2005
-            </span>
-            <h1>
-              <span className="brand">קפה גינץ</span>
-              <span className="sub">הקפה שמתאים בדיוק לטעם שלך</span>
-            </h1>
-            <p className="lead">
-              אנחנו קולים את הפולים בעצמנו ומתאימים את{" "}
-              <b>החוזק, הארומה והפרופיל</b> לחך של כל לקוח — קפה בוטיק אמיתי,
-              לעסק ולבית.
-            </p>
-            <div className="cta-row">
-              <a href="#lead" className="btn btn-gold">
-                קבלו הצעה אישית ←
-              </a>
-              <span className="phone">
-                או חייגו: <span className="ph">03-9600550</span>
-              </span>
+      <section className="hero" id="top">
+        <div className="hero-inner">
+          <div className="hero-copy">
+            <div className="wordmark">GINTZ COFFEE<small>COFFEE ROASTERS</small></div>
+            <h1>קפה שנקלה <strong>במיוחד לעסק שלכם.</strong><br />מותאם לטעם העובדים שלכם.</h1>
+            <p className="hero-description">מכונה מקצועית, פולים טריים ושירות מלא במקום אחד. פתרון אישי שמתאים בדיוק לגודל העסק שלכם.</p>
+            <p className="machine-offer">אתם לא משלמים על המכונה — רק על הקפה ועל דמי טיפול ואחזקה.</p>
+            <div className="quick-benefits" aria-label="יתרונות מרכזיים">
+              <div className="quick-benefit"><Heart aria-hidden="true" />עובדים מרוצים</div>
+              <div className="quick-benefit"><Coffee aria-hidden="true" />קפה טרי תמיד</div>
+              <div className="quick-benefit"><Target aria-hidden="true" />התאמה אישית</div>
+              <div className="quick-benefit"><Flame aria-hidden="true" />בית קלייה</div>
             </div>
           </div>
-
-          <div className="machine-wrap">
-            <div className="glow" aria-hidden="true" />
-            <div className="machine">
-              <SmartImage
-                src={X10_IMAGE}
-                alt="מכונת קפה JURA X10"
-                width={460}
-                height={520}
-                priority
-                className="machine-img"
-              />
-            </div>
-            <div className="badge b1">🔥 קלייה טרייה</div>
-            <div className="badge b2">🎯 התאמה אישית</div>
-          </div>
+          <div className="lead-card"><X10LeadForm /></div>
         </div>
       </section>
 
-      {/* BENEFITS */}
-      <section className="benefits">
-        <div className="ben-grid">
-          <div className="ben reveal">
-            <span className="ic" aria-hidden="true">☕</span>
-            <h3>קלייה בוטיק</h3>
-            <p>קולים את הפולים בעצמנו במנות קטנות — קפה טרי, ארומטי ועשיר בכל כוס.</p>
-          </div>
-          <div className="ben reveal">
-            <span className="ic" aria-hidden="true">🎯</span>
-            <h3>התאמה אישית לטעם</h3>
-            <p>מכווננים את החוזק, הארומה והפרופיל לחך שלכם — עד שזה בדיוק מה שאתם אוהבים.</p>
-          </div>
-          <div className="ben reveal">
-            <span className="ic" aria-hidden="true">🔧</span>
-            <h3>שירות בכל הארץ</h3>
-            <p>התקנה, ליווי ותחזוקה — צוות שלנו דואג שהכול יעבוד חלק, מאז 2005.</p>
-          </div>
+      <section className="clients" aria-labelledby="clients-heading">
+        <h2 className="section-title" id="clients-heading">חברות מובילות שבחרו בקפה גינץ</h2>
+        <div className="dash" />
+        <div className="logo-row">
+          {CLIENT_LOGOS.map((logo) => (
+            <div className="logo-item" key={logo.src}><Image src={logo.src} alt={logo.alt} width={170} height={60} /></div>
+          ))}
+        </div>
+        <div className="logo-row secondary">
+          <div className="logo-item"><Image src="/lp/logos/amazon.svg" alt="Amazon" width={180} height={60} /></div>
+          <div className="logo-item"><Image src="/lp/logos/aws.svg" alt="AWS" width={160} height={60} /></div>
+          <div className="logo-item"><Image className="meitar" src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={200} height={65} /></div>
         </div>
       </section>
 
-      {/* LEAD */}
-      <section className="lead-sec" id="lead">
-        <div className="lead-grid">
-          <div className="reveal">
-            <h2>
-              בואו נתאים לכם את <span>הקפה המושלם</span>
-            </h2>
-            <p className="p">
-              השאירו פרטים ונחזור אליכם עם הצעה אישית — קפה בוטיק שמתאים בדיוק
-              לטעם ולצרכים שלכם. ללא התחייבות.
-            </p>
-            <ul className="checks">
-              <li>
-                <span className="ck" aria-hidden="true">✓</span> קלייה בוטיק טרייה בהתאמה אישית
-              </li>
-              <li>
-                <span className="ck" aria-hidden="true">✓</span> פולים נבחרים מרחבי העולם
-              </li>
-              <li>
-                <span className="ck" aria-hidden="true">✓</span> התקנה, ליווי ושירות בכל הארץ
-              </li>
-            </ul>
-          </div>
-          <div className="form-card reveal">
-            <X10LeadForm />
-          </div>
+      <section className="story">
+        <div className="story-copy">
+          <p className="eyebrow">אנחנו בית קלייה</p>
+          <h2>קולים. מתאימים. מספקים.</h2>
+          <p className="story-text">אנחנו קולים את הפולים בעצמנו ומתאימים את התערובת המושלמת לטעם של העובדים שלכם.</p>
+          <p className="promise">קפה טרי. טעם מושלם. כל יום.</p>
         </div>
+        <div className="story-photo"><Image src="/lp/roaster.png" alt="פולי קפה טריים בבית הקלייה" fill sizes="(max-width: 860px) 100vw, 50vw" /></div>
       </section>
 
-      <WhatsAppButton />
+      <section className="service-benefits" aria-label="השירות שלנו">
+        <div className="service-benefit"><ShieldCheck aria-hidden="true" /><div><b>שירות מלא</b><span>מכונה, תחזוקה ואספקה שוטפת</span></div></div>
+        <div className="service-benefit"><Coffee aria-hidden="true" /><div><b>קפה טרי</b><span>קלוי ומסופק בכל חודש</span></div></div>
+        <div className="service-benefit"><Target aria-hidden="true" /><div><b>התאמה אישית</b><span>תערובת ייחודית לטעם העובדים</span></div></div>
+      </section>
+
+      <section className="closing">
+        <div className="closing-content">
+          <h2>מוכנים לשדרג את חוויית הקפה במשרד?</h2>
+          <p>השאירו פרטים ונחזור אליכם עם הצעה מותאמת אישית.</p>
+          <a href="#top">קבלו הצעת מחיר ←</a>
+        </div>
+      </section>
+      <footer>© GINTZ COFFEE ROASTERS. כל הזכויות שמורות.</footer>
     </div>
   );
 }
