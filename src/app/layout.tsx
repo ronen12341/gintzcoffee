@@ -56,6 +56,14 @@ export const metadata: Metadata = {
     title: "קפה גינץ | פתרונות קפה למשרד ולעסק",
     description:
       "בית קלייה בוטיק מאז 2005. מכונת קפה למשרד, פולי קפה טריים וכוסות ממותגות. קפה לעסק בהתאמה אישית.",
+    images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "קפה גינץ | פתרונות קפה למשרד ולעסק",
+    description:
+      "בית קלייה בוטיק מאז 2005. מכונת קפה למשרד, פולי קפה טריים וכוסות ממותגות.",
+    images: ["/logo.png"],
   },
   robots: {
     index: true,

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { coffeeMachines } from "@/data/products";
+import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.gintz.co.il";
@@ -36,12 +36,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     })),
-    {
-      url: `${base}/lp`,
+    ...coffeeBeans.map((b) => ({
+      url: `${base}/beans/${b.id}`,
       lastModified: now,
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.6,
-    },
+    })),
+    ...usedMachines.map((m) => ({
+      url: `${base}/bargains/${m.id}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    })),
     {
       url: `${base}/faq`,
       lastModified: now,
