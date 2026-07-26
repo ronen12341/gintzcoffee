@@ -2,16 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 /**
  * Sumit credentials. The API key is sensitive and must never be exposed to the
- * client; this route runs on the server, so reading it here is safe.
- *
- * Hardcoded fallbacks are for convenience while bootstrapping the integration —
- * they should be moved to Vercel environment variables (SUMIT_API_KEY,
- * SUMIT_COMPANY_ID) and the fallbacks removed once verified working. After
- * deploying, ROTATE the API key in Sumit (the current one was shared in chat).
+ * client or committed to source control — this repo is public on GitHub, so
+ * it must come ONLY from the SUMIT_API_KEY environment variable (set in
+ * Vercel project settings). Do not add a hardcoded fallback here.
  */
-const SUMIT_API_KEY =
-  process.env.SUMIT_API_KEY || "2IQgqpoHESFTdBbeUKG5NiIEHD5NoIkp9x2b9UTEmD2xio9tA1";
+const SUMIT_API_KEY = process.env.SUMIT_API_KEY;
 const SUMIT_COMPANY_ID = Number(process.env.SUMIT_COMPANY_ID || "1947861983");
+
+if (!SUMIT_API_KEY) {
+  console.error("SUMIT_API_KEY environment variable is not set.");
+}
 
 /**
  * Sumit's "Begin redirect for transaction" endpoint at the billing/payments
@@ -64,6 +64,13 @@ interface SumitResponse {
 }
 
 export async function POST(req: NextRequest) {
+  if (!SUMIT_API_KEY) {
+    return NextResponse.json(
+      { ok: false, error: "sumit_not_configured", message: "SUMIT_API_KEY is not set on the server." },
+      { status: 500 }
+    );
+  }
+
   let body: SumitPaymentRequest;
   try {
     body = await req.json();
