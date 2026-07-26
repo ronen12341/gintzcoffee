@@ -152,7 +152,7 @@ export default function CheckoutPage() {
                 taxId: form.taxId,
                 invoiceName: form.invoiceName,
               },
-              successUrl: `${window.location.origin}/order/success`,
+              successUrl: `${window.location.origin}/order/success?paid=1`,
               failureUrl: `${window.location.origin}/checkout`,
             }),
           });
