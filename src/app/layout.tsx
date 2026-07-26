@@ -4,7 +4,7 @@ import { Heebo, Playfair_Display, Montserrat } from "next/font/google";
 import "./globals.css";
 import SiteShell from "@/components/layout/SiteShell";
 import { CartProvider } from "@/lib/cart";
-import { GA_MEASUREMENT_ID, GOOGLE_ADS_ID } from "@/lib/gtag";
+import { GA_MEASUREMENT_ID, GA_MEASUREMENT_ID_SECONDARY, GOOGLE_ADS_ID } from "@/lib/gtag";
 
 const heebo = Heebo({
   subsets: ["hebrew", "latin"],
@@ -98,6 +98,7 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_MEASUREMENT_ID}');
+            gtag('config', '${GA_MEASUREMENT_ID_SECONDARY}');
             gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>

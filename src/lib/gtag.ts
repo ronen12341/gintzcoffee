@@ -1,5 +1,6 @@
 // Google tag IDs for גינץ פתרונות קפה
-export const GA_MEASUREMENT_ID = "G-HR9MP6ENEP"; // GA4
+export const GA_MEASUREMENT_ID = "G-HR9MP6ENEP"; // GA4 (original property)
+export const GA_MEASUREMENT_ID_SECONDARY = "G-95ELQCJ4EQ"; // GA4 (second property, added in parallel)
 export const GOOGLE_ADS_ID = "AW-766413183"; // Google Ads
 
 type GtagFn = (...args: unknown[]) => void;
