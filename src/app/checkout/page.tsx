@@ -142,6 +142,11 @@ export default function CheckoutPage() {
             body: JSON.stringify({
               amount: grandTotal,
               shippingFee,
+              items: items.map((i) => ({
+                name: i.name,
+                qty: i.qty,
+                priceNumeric: i.priceNumeric ?? 0,
+              })),
               orderId,
               customer: {
                 name: form.name,

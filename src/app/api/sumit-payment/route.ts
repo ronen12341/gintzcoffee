@@ -26,6 +26,9 @@ interface SumitPaymentRequest {
   amount: number;
   /** Shipping fee portion of `amount` (0 when free or self-pickup). */
   shippingFee?: number;
+  /** Cart line items, itemized on the Sumit document (and eventually on the
+   *  Hashavshevet invoice) instead of a single lump-sum line. */
+  items: Array<{ name: string; qty: number; priceNumeric: number }>;
   orderId: string;
   customer: {
     name: string;
@@ -87,28 +90,25 @@ export async function POST(req: NextRequest) {
   // Prices are passed via Items[].UnitPrice (in NIS). VATIncluded=true tells
   // Sumit our amount already includes VAT — appropriate for Israeli B2C pricing
   // where the displayed price on the site is the final price.
-  // Split the grand total into a products line and an optional shipping line,
-  // so the Sumit record itemizes the delivery fee. The two lines always sum
-  // back to `amount` (the exact figure shown to and charged to the customer).
+  // Each cart line becomes its own Sumit item (instead of one lump-sum line)
+  // so the document — and the eventual Hashavshevet invoice — itemizes by
+  // product, plus an optional shipping line.
   const shippingFee = Math.max(0, Number(body.shippingFee) || 0);
-  const productsAmount = body.amount - shippingFee;
 
   const items: Array<{
     Item: { Name: string; Description?: string };
     Quantity: number;
     UnitPrice: number;
     Description?: string;
-  }> = [
-    {
-      Item: {
-        Name: "הזמנה מאתר קפה גינץ",
-        Description: `מספר הזמנה: ${body.orderId}`,
-      },
-      Quantity: 1,
-      UnitPrice: productsAmount,
+  }> = (body.items || []).map((line) => ({
+    Item: {
+      Name: line.name,
       Description: `הזמנה ${body.orderId}`,
     },
-  ];
+    Quantity: line.qty,
+    UnitPrice: line.priceNumeric,
+    Description: `הזמנה ${body.orderId}`,
+  }));
 
   if (shippingFee > 0) {
     items.push({
