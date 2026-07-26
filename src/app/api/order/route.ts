@@ -103,7 +103,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
   const paymentBadge =
     p.paymentMethod === "online"
       ? `<span style="display:inline-block;background:#16a34a;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">💳 תשלום אונליין — הלקוח מועבר ל-Sumit</span>`
-      : `<span style="display:inline-block;background:#C8922A;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">📞 חיוב טלפוני — צריך להתקשר ללקוח</span>`;
+      : `<span style="display:inline-block;background:#C8922A;color:#fff;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:bold;">📞 הצעת מחיר — יש ליצור קשר עם הלקוח</span>`;
 
   return `
     <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; background: #F5F0E8; padding: 24px; border-radius: 8px;">

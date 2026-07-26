@@ -99,9 +99,9 @@ export default function OrderSuccessPage({
                   3
                 </span>
                 <div>
-                  <p className="font-semibold text-brown">חיוב טלפוני באשראי</p>
+                  <p className="font-semibold text-brown">נשלח לך קישור לתשלום מאובטח</p>
                   <p className="text-sm text-brown/65">
-                    לאחר האישור — נקבל את פרטי האשראי בשיחה מאובטחת.
+                    לאחר אישור פרטי ההזמנה.
                   </p>
                 </div>
               </li>
