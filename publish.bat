@@ -2,7 +2,7 @@
 setlocal
 title Publish to gintz.co.il
 
-cd /d "C:\Users\user\Dropbox\My PC (HASH-GINTZ)\Desktop\gintzcoffe-main\gintzcoffe-main"
+cd /d "%~dp0"
 
 echo.
 echo ========================================
@@ -16,7 +16,7 @@ if errorlevel 1 goto :error
 echo.
 
 echo [2/4] Adding approved website files only...
-call git add src public AGENTS.md publish.bat
+call git add src public AGENTS.md CLAUDE.md .gitignore publish.bat
 if errorlevel 1 goto :error
 echo.
 

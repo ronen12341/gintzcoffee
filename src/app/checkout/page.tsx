@@ -22,6 +22,9 @@ type DeliveryMethod = "delivery" | "pickup";
 const FREE_SHIPPING_THRESHOLD = 350;
 const SHIPPING_FEE = 40;
 
+/** Israeli law requires a customer ID (ת.ז/ח.פ) on tax invoices at or above this amount (NIS). */
+const TAX_ID_REQUIRED_THRESHOLD = 5000;
+
 export default function CheckoutPage() {
   const router = useRouter();
   const { items, totalPrice, hasUnpricedItems, clear } = useCart();
@@ -40,6 +43,11 @@ export default function CheckoutPage() {
       ? SHIPPING_FEE
       : 0;
   const grandTotal = totalPrice + shippingFee;
+
+  // Israeli law only requires customer ID on the invoice above the threshold —
+  // below it we don't want to force a government-ID field on small consumer
+  // purchases (e.g. a bag of beans), since that's a known checkout blocker.
+  const taxIdRequired = grandTotal >= TAX_ID_REQUIRED_THRESHOLD;
 
   // Online card payment via Sumit is the only payment method. It's available
   // when Sumit is configured, all items are priced, and there's an amount to
@@ -90,15 +98,18 @@ export default function CheckoutPage() {
       setError("נא למלא כתובת אימייל.");
       return;
     }
-    if (!form.taxId.trim()) {
-      setError("נא למלא ח.פ או ת.ז.");
+    if (taxIdRequired && !form.taxId.trim()) {
+      setError('נא למלא ח.פ או ת.ז (חובה בחוק בהזמנות מעל 5,000 ש"ח).');
       return;
     }
-    // Basic 9-digit check for Israeli ID numbers (ID or company tax ID).
-    const digitsOnly = form.taxId.replace(/\D/g, "");
-    if (digitsOnly.length !== 9) {
-      setError("ח.פ או ת.ז חייבים להכיל 9 ספרות.");
-      return;
+    // Basic 9-digit check for Israeli ID numbers (ID or company tax ID) —
+    // only enforced when the field is required or the customer chose to fill it in.
+    if (taxIdRequired || form.taxId.trim()) {
+      const digitsOnly = form.taxId.replace(/\D/g, "");
+      if (digitsOnly.length !== 9) {
+        setError("ח.פ או ת.ז חייבים להכיל 9 ספרות.");
+        return;
+      }
     }
     if (deliveryMethod === "delivery" && (!form.address.trim() || !form.city.trim())) {
       setError("נא למלא כתובת ועיר למשלוח, או לבחור באיסוף עצמי.");
@@ -157,7 +168,7 @@ export default function CheckoutPage() {
                 taxId: form.taxId,
                 invoiceName: form.invoiceName,
               },
-              successUrl: `${window.location.origin}/order/success?paid=1`,
+              successUrl: `${window.location.origin}/order/success?paid=1&amount=${grandTotal}`,
               failureUrl: `${window.location.origin}/checkout`,
             }),
           });
@@ -197,7 +208,7 @@ export default function CheckoutPage() {
       }
 
       clear();
-      router.push("/order/success");
+      router.push(`/order/success?amount=${grandTotal}`);
     } catch {
       setError(
         "אירעה שגיאה בשליחת ההזמנה. אנא נסו שוב או התקשרו אלינו ב-03-9600550."
@@ -275,7 +286,7 @@ export default function CheckoutPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="taxId" className="block text-sm font-medium text-brown mb-1">
-                  ח.פ / ת.ז *
+                  {taxIdRequired ? "ח.פ / ת.ז *" : "ח.פ / ת.ז (לא חובה מתחת ל-5,000 ש\"ח)"}
                 </label>
                 <input
                   id="taxId"
@@ -284,7 +295,7 @@ export default function CheckoutPage() {
                   inputMode="numeric"
                   value={form.taxId}
                   onChange={handleChange}
-                  required
+                  required={taxIdRequired}
                   pattern="[0-9]{9}"
                   maxLength={9}
                   className="w-full border border-cream-dark rounded-lg px-3 py-2 text-brown focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent"

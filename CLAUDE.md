@@ -6,7 +6,7 @@ A modern, RTL Hebrew B2B website for **קפה גינץ (Gintz Coffee)**, combini
 - **Coffee machines for businesses** (formerly gintz.co.il)
 - **Branded paper cups** (formerly gilcups.com)
 
-The site is fully static (no backend/database). Forms submit client-side and show a success state only.
+The site has a working cart/checkout/order flow (no database — orders are not persisted, only emailed). Lead forms remain client-side-only (validate + show a success state, no submission). Order flow: `/beans` etc. → add to cart (`src/lib/cart.tsx`, persisted to `localStorage`) → `/cart` → `/checkout` → `POST /api/order` (emails the order via Resend, optional WhatsApp via CallMeBot) → if all items are priced, `POST /api/sumit-payment` creates a Sumit hosted-payment session and redirects there → Sumit redirects back to `/order/success`. Unpriced ("quote") items skip payment and go straight to `/order/success` as a lead.
 
 ---
 
@@ -55,14 +55,20 @@ The site is fully static (no backend/database). Forms submit client-side and sho
 ```
 src/
 ├── app/
-│   ├── layout.tsx          Root layout — dir="rtl", lang="he", fonts, Navbar, Footer, WhatsAppButton
+│   ├── layout.tsx          Root layout — dir="rtl", lang="he", fonts, GA4/Google Ads tag, Meta Pixel, CartProvider
 │   ├── globals.css         Tailwind directives + base RTL styles
 │   ├── page.tsx            Homepage (/)
 │   ├── machines/page.tsx   Coffee machines (/machines)
-│   ├── beans/page.tsx      Coffee beans (/beans)
+│   ├── beans/page.tsx      Coffee beans (/beans), beans/[id]/page.tsx product detail
 │   ├── cups/page.tsx       Branded cups (/cups)
 │   ├── bargains/page.tsx   Used machines (/bargains)
-│   └── contact/page.tsx    Contact page (/contact)
+│   ├── contact/page.tsx    Contact page (/contact)
+│   ├── cart/page.tsx       Cart view — reads CartContext
+│   ├── checkout/page.tsx   Checkout form + Sumit online-payment kickoff (client component)
+│   ├── order/success/      Order confirmation page — fires Meta Pixel "Purchase" event
+│   └── api/
+│       ├── order/route.ts         Emails the order (Resend) + optional WhatsApp (CallMeBot)
+│       └── sumit-payment/route.ts Creates a Sumit hosted-payment redirect session
 │
 ├── components/
 │   ├── layout/
@@ -71,18 +77,33 @@ src/
 │   ├── ui/
 │   │   ├── ImagePlaceholder.tsx   Gray placeholder with camera icon — server component
 │   │   └── WhatsAppButton.tsx     Fixed bottom-left WhatsApp CTA — client component
-│   ├── LeadForm.tsx        Lead capture form — "use client", validates name+phone
+│   ├── LeadForm.tsx        Lead capture form — "use client", validates name+phone, no submission
 │   ├── CupsQuoteForm.tsx   Cups quote form with quantity selector — "use client"
+│   ├── AddToCartButton.tsx Adds a priced product (machine/cup/used) to the cart
+│   ├── BeanPurchase.tsx    Weight + grind selector for beans, adds a cart line
 │   └── ProductCard.tsx     Product card (image/placeholder, features, CTA link) — server component
 │
 ├── data/
 │   └── products.ts         All static product data
 │
 └── lib/
-    └── utils.ts            cn() utility
+    ├── cart.tsx             CartProvider/useCart — localStorage-persisted cart state
+    ├── gtag.ts              GA4 / Google Ads measurement IDs
+    └── utils.ts             cn() utility
 
 public/
 └── images/                 Product images go here (see Image Conventions)
+
+## Required environment variables
+
+| Var | Used by | Purpose |
+|-----|---------|---------|
+| `RESEND_API_KEY` | `api/order` | Sends the order-notification email |
+| `SUMIT_API_KEY` | `api/sumit-payment` | Sumit billing API credential — without it, online payment falls back to a generic (non-itemized) Sumit payment link |
+| `SUMIT_COMPANY_ID` | `api/sumit-payment` | Defaults to `1947861983` if unset |
+| `CALLMEBOT_PHONE` / `CALLMEBOT_APIKEY` | `api/order` | Optional WhatsApp order notification — silently skipped if unset |
+
+Order emails currently go only to `ronen@aspagil.com` (Resend free-tier restriction to the verified sender address).
 ```
 
 ---
@@ -176,7 +197,7 @@ npm run dev
 
 - [ ] Move images from `/publicimages/` → `/public/images/`
 - [ ] Map images to products in `src/data/products.ts`
-- [ ] Wire forms to real backend (email, CRM, serverless)
+- [x] Wire forms to real backend — cart/checkout/order flow is live (Resend email + Sumit payment); `LeadForm`/`CupsQuoteForm` are still client-side-only
 - [ ] Embed real Google Maps iframe on `/contact`
-- [ ] Add Open Graph metadata
+- [x] Add Open Graph metadata — set in `src/app/layout.tsx`
 - [ ] Add more used machines to `/bargains`

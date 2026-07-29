@@ -12,15 +12,20 @@ export const metadata: Metadata = {
 export default function OrderSuccessPage({
   searchParams,
 }: {
-  searchParams: { paid?: string };
+  searchParams: { paid?: string; amount?: string };
 }) {
   const paid = searchParams.paid === "1";
+  const amount = Number(searchParams.amount);
+  const pixelParams =
+    Number.isFinite(amount) && amount > 0
+      ? { value: amount, currency: "ILS" }
+      : { currency: "ILS" };
 
   return (
     <section className="py-20 bg-cream min-h-[60vh]">
       {/* Meta Pixel — Purchase event (order completed) */}
       <Script id="meta-purchase" strategy="afterInteractive">
-        {`if (typeof fbq === 'function') { fbq('track', 'Purchase', {currency: 'ILS'}); }`}
+        {`if (typeof fbq === 'function') { fbq('track', 'Purchase', ${JSON.stringify(pixelParams)}); }`}
       </Script>
       <div className="max-w-2xl mx-auto px-4 text-center">
         <CheckCircle2
