@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getCatalogPrice } from "@/lib/server-pricing";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -297,6 +298,21 @@ export async function POST(req: NextRequest) {
   if (!Array.isArray(body.items) || body.items.length === 0) {
     return NextResponse.json({ ok: false, error: "empty cart" }, { status: 400 });
   }
+
+  // Re-price from the catalog wherever possible — the cart's priceNumeric is
+  // only a client-side snapshot (stale cache, or an edited request), and this
+  // email is what Ronen actually acts on to fulfill/charge the order. Items
+  // whose id/category don't resolve (e.g. quote-based cups) keep whatever the
+  // client sent, since there's no catalog price to fall back to.
+  body.items = body.items.map((item) => {
+    const catalogPrice = getCatalogPrice(item.category, item.id);
+    return catalogPrice !== undefined ? { ...item, priceNumeric: catalogPrice } : item;
+  });
+  body.totalPrice = body.items.reduce(
+    (sum, i) => sum + (i.priceNumeric ? i.priceNumeric * i.qty : 0),
+    0
+  );
+  body.grandTotal = body.totalPrice + (body.shippingFee ?? 0);
 
   const orderId = generateOrderId();
   const html = buildEmailHtml(orderId, body);

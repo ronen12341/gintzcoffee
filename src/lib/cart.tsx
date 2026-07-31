@@ -1,6 +1,23 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
+
+/** Client-side mirror of the server's price lookup (src/lib/server-pricing.ts) —
+ *  used only to keep the cart's *displayed* total from drifting; the actual
+ *  charge is always re-verified server-side regardless of this. */
+function currentCatalogPrice(category: string, id: string): number | undefined {
+  switch (category) {
+    case "bean":
+      return coffeeBeans.find((b) => b.id === id)?.priceNumeric;
+    case "machine":
+      return coffeeMachines.find((m) => m.id === id)?.priceNumeric;
+    case "used":
+      return usedMachines.find((m) => m.id === id)?.priceNumeric;
+    default:
+      return undefined;
+  }
+}
 
 export interface CartItem {
   id: string;
@@ -37,13 +54,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [hydrated, setHydrated] = useState(false);
 
-  // Load from localStorage on mount
+  // Load from localStorage on mount, re-syncing each item's price against the
+  // live catalog — a cart can sit in localStorage indefinitely (no expiry),
+  // so without this a price change after add-to-cart would silently undercharge
+  // (or overcharge) at checkout. The server re-verifies independently regardless.
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) setItems(parsed);
+        if (Array.isArray(parsed)) {
+          const resynced = parsed.map((item) => {
+            const livePrice = currentCatalogPrice(item.category, item.id);
+            return livePrice !== undefined ? { ...item, priceNumeric: livePrice } : item;
+          });
+          setItems(resynced);
+        }
       }
     } catch {
       // ignore corrupt storage

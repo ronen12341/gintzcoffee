@@ -154,6 +154,8 @@ export default function CheckoutPage() {
               amount: grandTotal,
               shippingFee,
               items: items.map((i) => ({
+                id: i.id,
+                category: i.category,
                 name: i.name,
                 qty: i.qty,
                 priceNumeric: i.priceNumeric ?? 0,

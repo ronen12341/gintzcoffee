@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getCatalogPrice } from "@/lib/server-pricing";
 
 /**
  * Sumit credentials. The API key is sensitive and must never be exposed to the
@@ -27,8 +28,11 @@ interface SumitPaymentRequest {
   /** Shipping fee portion of `amount` (0 when free or self-pickup). */
   shippingFee?: number;
   /** Cart line items, itemized on the Sumit document (and eventually on the
-   *  Hashavshevet invoice) instead of a single lump-sum line. */
-  items: Array<{ name: string; qty: number; priceNumeric: number }>;
+   *  Hashavshevet invoice) instead of a single lump-sum line. `priceNumeric`
+   *  here is only a client-side hint (used for the checkout page display) —
+   *  the actual charge is always re-priced server-side from `id`+`category`
+   *  via getCatalogPrice(), see below. */
+  items: Array<{ id: string; category: string; name: string; qty: number; priceNumeric: number }>;
   orderId: string;
   customer: {
     name: string;
@@ -95,20 +99,45 @@ export async function POST(req: NextRequest) {
   // product, plus an optional shipping line.
   const shippingFee = Math.max(0, Number(body.shippingFee) || 0);
 
+  // Re-price every line from the catalog — never trust the client-supplied
+  // priceNumeric for an actual charge. A stale cart (price changed after the
+  // item was added) or a directly-edited request body would otherwise let a
+  // customer pay less (or more) than the real price. If any line's id/category
+  // doesn't resolve to a known catalog price, refuse the whole charge rather
+  // than silently falling back to whatever the client sent.
+  const unresolvedLines: string[] = [];
   const items: Array<{
     Item: { Name: string; Description?: string };
     Quantity: number;
     UnitPrice: number;
     Description?: string;
-  }> = (body.items || []).map((line) => ({
-    Item: {
-      Name: line.name,
+  }> = (body.items || []).map((line) => {
+    const catalogPrice = getCatalogPrice(line.category, line.id);
+    if (catalogPrice === undefined) {
+      unresolvedLines.push(`${line.name} (${line.category}/${line.id})`);
+    }
+    return {
+      Item: {
+        Name: line.name,
+        Description: `הזמנה ${body.orderId}`,
+      },
+      Quantity: line.qty,
+      UnitPrice: catalogPrice ?? 0,
       Description: `הזמנה ${body.orderId}`,
-    },
-    Quantity: line.qty,
-    UnitPrice: line.priceNumeric,
-    Description: `הזמנה ${body.orderId}`,
-  }));
+    };
+  });
+
+  if (unresolvedLines.length > 0) {
+    console.error("sumit-payment: unresolved catalog price for line(s):", unresolvedLines);
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "price_lookup_failed",
+        message: "לא ניתן לאמת את המחיר עבור אחד או יותר מהפריטים בעגלה. רענן/י את העמוד ונסה/י שוב.",
+      },
+      { status: 400 }
+    );
+  }
 
   if (shippingFee > 0) {
     items.push({
