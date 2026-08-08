@@ -152,8 +152,10 @@ export default function Footer() {
 
         {/* Footer bottom */}
         <div className="mt-10 pt-5 border-t border-brown/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-brown/45">
-          <span>
-            © {new Date().getFullYear()} קפה גינץ · Gintz Coffee. כל הזכויות שמורות.
+          <span className="flex items-center gap-3 flex-wrap justify-center">
+            <span>© {new Date().getFullYear()} קפה גינץ · Gintz Coffee. כל הזכויות שמורות.</span>
+            <Link href="/terms" className="hover:text-gold-dark transition-colors">תקנון</Link>
+            <Link href="/accessibility" className="hover:text-gold-dark transition-colors">הצהרת נגישות</Link>
           </span>
           <span className="font-montserrat tracking-widest uppercase text-[10px]">
             Boutique Coffee Roastery
