@@ -97,7 +97,7 @@
       "hidden": false
     },
     {
-      "id": "machine-MaraX",
+      "id": "machine-marax",
       "name": "מכונת אספרסו Lelit MaraX - PL62X",
       "description": "הדגם החדש מסדרת Lelit Mara. בעלת הטכנולוגיה הטובה ביותר עם ראש ה-E61 ודוד מחליף חום בגוף מכונה קטן להפליא העשוי כולו מנירוסטה איכותית. התוצאה, מכונת קפה מקצועית בעלת גוף קטן ויפה – המייצרת אספרסו וקפוצ’ינו מדהימים",
       "features": [],
@@ -109,7 +109,7 @@
       "longDescription": "מערכת הבדיקה הכפולה החדשה, פטנט של לליט, שומרת על טמפרטורת חליטה קבועה כך שתייצר את הביצועים הטובים ביותר בכל מנה.\nבזכות כפתורי התצורה תוכלו לבחור גם את אופן השימוש וגם את טמפרטורת המיצוי המועדפת בין חם לחם במיוחד, כדי להשיג את המשקה המושלם.\n– פיית הקצפה הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– פיית מים חמים הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– ידית חליטה מקצועית בקוטר 58 מ\"מ מעלת סלסלות חליטה למנה מודדת ומנה כפולה. \n– מערכת כיבוי להגנה אוטומטית מפני שריפת גוף החימום מופעלת בשני מצבים: כאשר מיכל המים מוסר ממקומו / רמת המים נמוכה בדוד. \n– מיכל מים בקיבולת של 2.5 ליטר. \n– דוד 1.8 ליטר בשיטת מחליף חום. \n– ראש חליטה E61, מים חמים המועברים ממחליף החום לראש החליטה ובחזרה השומרים על מים חמים בטמפרטורה מדויקת וידית חליטה חמה ומוכנה לעבודה. \n-צינורות נחושת פנימים המבטיחם אורך חיים ארוך וטמפרטורה אחידה. \nגוף: נירוסטה מפולשת ומבריקה.\nשעון לחץ כפול: לחץ בדוד / לחץ משאבה.\nמנורות בקרה: מנורת בקרה המראה כשהמכונה דולקת ומנורת טרמוסטט.\nגוף חימום: 1300 W\nמשקל: 18 ק\"ג\nמידות המכונה: 22cm x 41cm x 35cm\nשנתיים אחריות יבואן רשמי קופמה ישראל"
     },
     {
-      "id": "machine-PL41EM",
+      "id": "machine-pl41em",
       "name": "מכונת אספרסו LeLit PL41EM",
       "description": "דוד פליז 250 מיליליטר. שסתום תלת כיווני לשחרור עודפי מים מידית החליטה לקבלת “עוגה” יבשה. גוף נירוסטה. ידית 57 לשימוש בקפה טחון או פודים.",
       "features": [],
@@ -145,7 +145,7 @@
         "מומלץ לאספרסו ולמשקאות חלב"
       ],
       "featured": true,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -161,7 +161,7 @@
         "מומלץ לאספרסו חזק ומלא אופי"
       ],
       "featured": true,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -176,7 +176,7 @@
         "טעם עקבי בכל שיטת הכנה",
         "מומלץ למכונה אוטומטית ולפילטר"
       ],
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120,
       "featured": false,
@@ -217,7 +217,7 @@
         }
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140
     },
@@ -259,7 +259,7 @@
           "value": "שטוף (Washed)"
         }
       ],
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140,
       "featured": false,
@@ -300,7 +300,7 @@
         }
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140
     },
@@ -311,7 +311,7 @@
       "origin": "גואטמלה",
       "roast": "קלייה בינונית",
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "100 ש\"ח",
       "priceNumeric": 100,
       "hidden": true
@@ -323,7 +323,7 @@
       "origin": "קניה",
       "roast": "קלייה בינונית",
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "100 ש\"ח",
       "priceNumeric": 100,
       "hidden": true
@@ -335,7 +335,7 @@
       "origin": "הודו",
       "roast": "קלייה בינונית",
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "100 ש\"ח",
       "priceNumeric": 100,
       "hidden": true
@@ -352,7 +352,7 @@
         "מומלץ לאספרסו במכונה אוטומטית"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -363,7 +363,7 @@
       "origin": "ברזיל, קולומביה",
       "roast": "קלייה בינונית",
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "100 ש\"ח",
       "priceNumeric": 100,
       "hidden": true
@@ -380,7 +380,7 @@
         "מומלץ לשתייה יומיומית ולקפה חלש"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -396,7 +396,7 @@
         "גוף בינוני וחלק — מעולה לפילטר ולאספרסו בהיר"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140
     },
@@ -412,7 +412,7 @@
         "מומלץ לאספרסו ולמשקאות חלב"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140
     },
@@ -428,7 +428,7 @@
         "מומלץ לשתייה יומיומית ולמשקאות חלב"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -444,7 +444,7 @@
         "מומלץ לאספרסו חזק ולמשקאות חלב"
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "120 ש\"ח",
       "priceNumeric": 120
     },
@@ -483,7 +483,7 @@
         }
       ],
       "featured": false,
-      "image": "/coffee-bag.jpg.jpg",
+      "image": "/coffee-bag.jpg",
       "price": "140 ש\"ח",
       "priceNumeric": 140
     }
@@ -541,14 +541,14 @@
       "name": "Bezzera ARCADIA DE PID 2GR – מכונה מקצועית",
       "description": "מכונת אספרסו מקצועית של בזרה האיטלקית, דגם ARCADIA עם 2 ראשי הכנה (2GR). מתאימה לבתי קפה, מסעדות ועסקים בעלי תפוקה גבוהה. בקרת טמפרטורה PID, חימום מהיר ויציבות מעולה. חיבור ישיר למים (DE).",
       "condition": "מצב טוב מאוד",
-      "image": "/bezzera-arcadia.jpg.jpg",
+      "image": "/bezzera-arcadia.jpg",
       "price": "8,500 ש\"ח",
       "priceNumeric": 8500,
       "originalPrice": "24,900 ש\"ח",
       "hidden": false
     },
     {
-      "id": "used-B2016gr1",
+      "id": "used-b2016gr1",
       "name": "מכונה קפה מקצועית בזרה BEZZERA B2016 DE 1GR",
       "image": "/used-B2016gr1.jpg",
       "description": "מכונת קפה מקצועית לבתי קפה מבית המותג הוותיק \"BEZZERA\" \nהדגם החדש עם ראש אחד B2016 DE ELECTRONIC 1GR\n\nכלליPower supply V~/Hz / 50-60HzResistance 50W) 2600 3000Power supply V~/Hz 220 - 415 / 50-60HzResistance W(230V) 2000 3000 5000Boiler l 5 11 17Width mm 570 750 960Depth mm 550 550 550Height mm 515 515 515Net weight kg 49 54 75Gross weight (pallets) kg 56 65 87מחברי כניסת מים R G 3/8\"מחברי ניקוז R G 3/4\"",

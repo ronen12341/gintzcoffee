@@ -54,6 +54,10 @@ const nextConfig = {
       { source: "/bargains/used-mrkgmn3g", destination: "/bargains/used-jura-x8", permanent: true },
       { source: "/bargains/used-mrkgrcrp", destination: "/bargains/used-jura-e8", permanent: true },
       { source: "/bargains/used-mrkgx716", destination: "/bargains/used-milk-fridge", permanent: true },
+      // אחידות סלאגים (אותיות גדולות -> קטנות)
+      { source: "/machines/machine-MaraX", destination: "/machines/machine-marax", permanent: true },
+      { source: "/machines/machine-PL41EM", destination: "/machines/machine-pl41em", permanent: true },
+      { source: "/bargains/used-B2016gr1", destination: "/bargains/used-b2016gr1", permanent: true },
     ];
   },
   images: {
