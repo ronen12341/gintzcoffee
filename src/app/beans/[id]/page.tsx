@@ -46,8 +46,50 @@ export default async function BeanDetailPage({ params }: PageProps) {
     .map((p) => p.trim())
     .filter(Boolean);
 
+  // --- Structured data (Product + BreadcrumbList) for rich results ---
+  const site = "https://www.gintz.co.il";
+  const productImage =
+    bean.image && bean.image.startsWith("http") ? bean.image : undefined;
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: bean.name,
+    description: (bean.longDescription ?? bean.description).slice(0, 500),
+    category: "פולי קפה",
+    brand: { "@type": "Brand", name: "קפה גינץ" },
+    ...(productImage ? { image: productImage } : {}),
+    ...(bean.priceNumeric
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "ILS",
+            price: bean.priceNumeric,
+            availability: "https://schema.org/InStock",
+            url: `${site}/beans/${bean.id}`,
+          },
+        }
+      : {}),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "דף הבית", item: site },
+      { "@type": "ListItem", position: 2, name: "פולי קפה", item: `${site}/beans` },
+      { "@type": "ListItem", position: 3, name: bean.name, item: `${site}/beans/${bean.id}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* Breadcrumb / back link */}
       <div className="bg-cream-dark border-b border-cream py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

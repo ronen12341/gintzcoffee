@@ -44,6 +44,16 @@ const nextConfig = {
       { source: "/:path((?!google).*\\.html)", destination: "/", permanent: true },
       // אותו דבר לשרידי האתר הישן עוד יותר (ASP) — searchShop.asp, showAlbumOrImage.asp וכו'
       { source: "/:path(.*\\.asp)", destination: "/", permanent: true },
+      // --- שינויי slug למוצרים (מזהים אקראיים/שבורים -> slugs ידידותיים ל-SEO) ---
+      { source: "/machines/machine-%20LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },
+      { source: "/machines/machine-\\+LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },
+      { source: "/machines/machine-mpwn3y4d", destination: "/machines/machine-wmf950s", permanent: true },
+      { source: "/bargains/used-mptoa8d4", destination: "/bargains/used-nivona-572", permanent: true },
+      { source: "/bargains/used-mptomi3u", destination: "/bargains/used-nivona-573", permanent: true },
+      { source: "/bargains/used-mptov7k3", destination: "/bargains/used-melitta-solo", permanent: true },
+      { source: "/bargains/used-mrkgmn3g", destination: "/bargains/used-jura-x8", permanent: true },
+      { source: "/bargains/used-mrkgrcrp", destination: "/bargains/used-jura-e8", permanent: true },
+      { source: "/bargains/used-mrkgx716", destination: "/bargains/used-milk-fridge", permanent: true },
     ];
   },
   images: {

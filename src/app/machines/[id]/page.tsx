@@ -46,8 +46,58 @@ export default async function MachineDetailPage({ params }: PageProps) {
     .map((p) => p.trim())
     .filter(Boolean);
 
+  // --- Structured data (Product + BreadcrumbList) for rich results ---
+  const site = "https://www.gintz.co.il";
+  const productImage =
+    machine.image && machine.image.startsWith("http") ? machine.image : undefined;
+  const brandName = /jura/i.test(machine.name)
+    ? "JURA"
+    : /melitta/i.test(machine.name)
+    ? "Melitta"
+    : /lelit/i.test(machine.name)
+    ? "LeLit"
+    : /profitec/i.test(machine.name)
+    ? "Profitec"
+    : undefined;
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: machine.name,
+    description: (machine.longDescription ?? machine.description).slice(0, 500),
+    ...(productImage ? { image: productImage } : {}),
+    ...(brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
+    ...(machine.priceNumeric
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "ILS",
+            price: machine.priceNumeric,
+            availability: "https://schema.org/InStock",
+            url: `${site}/machines/${machine.id}`,
+          },
+        }
+      : {}),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "דף הבית", item: site },
+      { "@type": "ListItem", position: 2, name: "מכונות קפה", item: `${site}/machines` },
+      { "@type": "ListItem", position: 3, name: machine.name, item: `${site}/machines/${machine.id}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* Breadcrumb / back link */}
       <div className="bg-cream-dark border-b border-cream py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
