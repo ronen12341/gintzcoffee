@@ -1,5 +1,9 @@
 import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
 
+/** Flat price (ש"ח) for the 250g bean variant, regardless of bean or grind.
+ *  Single source of truth — imported by BeanPurchase.tsx for display too. */
+export const BEAN_250G_PRICE = 45;
+
 /**
  * Authoritative server-side price lookup. The cart's `priceNumeric` is only a
  * snapshot cached in the customer's browser (localStorage, no expiry) — if a
@@ -11,8 +15,17 @@ import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
  */
 export function getCatalogPrice(category: string, id: string): number | undefined {
   switch (category) {
-    case "bean":
-      return coffeeBeans.find((b) => b.id === id)?.priceNumeric;
+    case "bean": {
+      // BeanPurchase.tsx appends a variant suffix to the cart item id:
+      // "<beanId>::1kg" (full kg, priced from the bean's own priceNumeric) or
+      // "<beanId>::250g-whole" / "::250g-ground" (flat BEAN_250G_PRICE).
+      const [beanId, variant] = id.split("::");
+      const bean = coffeeBeans.find((b) => b.id === beanId);
+      if (!bean) return undefined;
+      if (variant === "1kg") return bean.priceNumeric;
+      if (variant?.startsWith("250g-")) return BEAN_250G_PRICE;
+      return undefined;
+    }
     case "machine":
       return coffeeMachines.find((m) => m.id === id)?.priceNumeric;
     case "used":

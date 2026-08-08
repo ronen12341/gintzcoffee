@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ShoppingCart, Check } from "lucide-react";
 import { useCart } from "@/lib/cart";
+import { BEAN_250G_PRICE } from "@/lib/server-pricing";
 
 interface BeanPurchaseProps {
   bean: {
@@ -18,8 +19,6 @@ interface BeanPurchaseProps {
 
 type Size = "1kg" | "250g";
 type Grind = "whole" | "ground";
-
-const G250_PRICE = 45;
 
 /**
  * Weight + grind selector for a coffee bean.
@@ -37,8 +36,8 @@ export default function BeanPurchase({ bean, compact = false }: BeanPurchaseProp
   const kgPrice = bean.price ?? (kgNumeric != null ? `${kgNumeric} ש"ח` : undefined);
 
   const is250 = size === "250g";
-  const priceNumeric = is250 ? G250_PRICE : kgNumeric;
-  const priceStr = is250 ? `${G250_PRICE} ש"ח` : kgPrice;
+  const priceNumeric = is250 ? BEAN_250G_PRICE : kgNumeric;
+  const priceStr = is250 ? `${BEAN_250G_PRICE} ש"ח` : kgPrice;
 
   const grindLabel = grind === "whole" ? "פולים שלמים" : "טחון";
   const note = is250 ? `250 גרם · ${grindLabel}` : '1 ק"ג';
@@ -88,7 +87,7 @@ export default function BeanPurchase({ bean, compact = false }: BeanPurchaseProp
             aria-pressed={size === "250g"}
             className={optionBtn(size === "250g")}
           >
-            250 גרם · {G250_PRICE} ש&quot;ח
+            250 גרם · {BEAN_250G_PRICE} ש&quot;ח
           </button>
         </div>
       </div>
