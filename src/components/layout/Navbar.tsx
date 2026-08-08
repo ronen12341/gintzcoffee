@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/machines", label: "מכונות קפה" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/roastery", label: "בית הקלייה" },
+  { href: "/blog", label: "בלוג" },
   { href: "https://www.gilcups.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מציאון" },
   { href: "/faq", label: "שאלות נפוצות" },
