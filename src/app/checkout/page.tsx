@@ -178,14 +178,18 @@ export default function CheckoutPage() {
           const payData = await payRes.json();
           if (!payRes.ok || !payData.ok || !payData.paymentUrl) {
             console.error("Sumit payment session failed:", payData);
-            // Fall back to the direct URL with the yellow notice telling the
-            // customer the amount to enter manually.
+            // Fall back to the direct URL. Sumit's generic payment link does
+            // not reliably pre-fill the amount field from the query string,
+            // so warn the customer explicitly before sending them there.
             const fallbackParams = new URLSearchParams();
             fallbackParams.set("amount", String(grandTotal));
             fallbackParams.set("name", form.name);
             if (form.email) fallbackParams.set("email", form.email);
             if (form.phone) fallbackParams.set("phone", form.phone);
             const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
+            window.alert(
+              `לא הצלחנו ליצור עמוד תשלום מותאם אוטומטית. תועברו לדף תשלום כללי - אנא הזינו ידנית סכום של ${grandTotal.toLocaleString("he-IL")} ש"ח בשדה "סכום לתשלום".`
+            );
             clear();
             window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
             return;
@@ -198,11 +202,14 @@ export default function CheckoutPage() {
           console.error("Sumit session request failed:", err);
           // Same fallback as above.
           const fallbackParams = new URLSearchParams();
-          fallbackParams.set("amount", String(totalPrice));
+          fallbackParams.set("amount", String(grandTotal));
           fallbackParams.set("name", form.name);
           if (form.email) fallbackParams.set("email", form.email);
           if (form.phone) fallbackParams.set("phone", form.phone);
           const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
+          window.alert(
+            `לא הצלחנו ליצור עמוד תשלום מותאם אוטומטית. תועברו לדף תשלום כללי - אנא הזינו ידנית סכום של ${grandTotal.toLocaleString("he-IL")} ש"ח בשדה "סכום לתשלום".`
+          );
           clear();
           window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
           return;
