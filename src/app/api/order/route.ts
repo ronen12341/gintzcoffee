@@ -81,8 +81,8 @@ function generateOrderId() {
   return `ORD-${ymd}-${rand}`;
 }
 
-function buildEmailHtml(orderId: string, p: OrderPayload): string {
-  const itemRows = p.items
+function buildItemRows(items: OrderItem[]): string {
+  return items
     .map((i) => {
       const lineTotal = i.priceNumeric
         ? `${(i.priceNumeric * i.qty).toLocaleString("he-IL")} ש"ח`
@@ -99,6 +99,10 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         </tr>`;
     })
     .join("");
+}
+
+function buildEmailHtml(orderId: string, p: OrderPayload): string {
+  const itemRows = buildItemRows(p.items);
 
   const waLink = `https://wa.me/${toIsraeliE164(p.customer.phone)}`;
   const paymentBadge =
@@ -226,6 +230,89 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
   `;
 }
 
+function buildCustomerEmailHtml(orderId: string, p: OrderPayload): string {
+  const itemRows = buildItemRows(p.items);
+  const shippingFee = p.shippingFee ?? 0;
+  const grandTotal = p.grandTotal ?? p.totalPrice + shippingFee;
+
+  const nextStepText =
+    p.paymentMethod === "online"
+      ? "בעוד רגע תועבר/י לעמוד תשלום מאובטח כדי להשלים את הרכישה."
+      : "ניצור איתך קשר בהקדם לאישור פרטי ההזמנה והתשלום.";
+
+  return `
+    <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; background: #F5F0E8; padding: 24px; border-radius: 8px;">
+      <h2 style="color: #3B1F0A; border-bottom: 2px solid #C8922A; padding-bottom: 8px; margin-top: 0;">
+        ✅ תודה על ההזמנה שלך!
+      </h2>
+      <p style="color: #666; margin: 4px 0;">
+        מספר הזמנה: <strong style="color: #3B1F0A;">${orderId}</strong>
+      </p>
+      <p style="color: #666; margin: 4px 0;">
+        ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}
+      </p>
+      <p style="margin: 16px 0; color: #3B1F0A;">${nextStepText}</p>
+
+      <h3 style="color: #5C3015; margin-top: 24px;">פריטי ההזמנה</h3>
+      <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">
+        <thead>
+          <tr style="background: #5C3015; color: #fff;">
+            <th style="padding: 10px 8px; text-align: start;">מוצר</th>
+            <th style="padding: 10px 8px; text-align: center;">כמות</th>
+            <th style="padding: 10px 8px; text-align: end;">מחיר ליחידה</th>
+            <th style="padding: 10px 8px; text-align: end;">סה"כ</th>
+          </tr>
+        </thead>
+        <tbody>${itemRows}</tbody>
+        ${p.totalPrice > 0 ? `
+        <tfoot>
+          <tr style="background: #FAF6F0;">
+            <td colspan="3" style="padding: 8px; text-align: end; color: #5C3015;">סכום ביניים:</td>
+            <td style="padding: 8px; text-align: end; color: #3B1F0A;">${p.totalPrice.toLocaleString("he-IL")} ש"ח</td>
+          </tr>
+          <tr style="background: #FAF6F0;">
+            <td colspan="3" style="padding: 8px; text-align: end; color: #5C3015;">משלוח:</td>
+            <td style="padding: 8px; text-align: end; color: #3B1F0A;">${
+              p.deliveryMethod === "pickup"
+                ? "איסוף עצמי"
+                : shippingFee > 0
+                  ? `${shippingFee.toLocaleString("he-IL")} ש"ח`
+                  : "חינם"
+            }</td>
+          </tr>
+          <tr style="background: #C8922A; color: #fff;">
+            <td colspan="3" style="padding: 12px 8px; text-align: end; font-weight: bold;">סה"כ לתשלום:</td>
+            <td style="padding: 12px 8px; text-align: end; font-weight: bold; font-size: 16px;">
+              ${grandTotal.toLocaleString("he-IL")} ש"ח
+            </td>
+          </tr>
+        </tfoot>` : ""}
+      </table>
+
+      ${p.hasUnpricedItems ? `
+      <p style="background: #FFF4D6; border-right: 4px solid #C8922A; padding: 12px; margin-top: 16px; color: #5C3015;">
+        ⚠️ חלק מהפריטים בהזמנה הם לפי הצעת מחיר — ניצור איתך קשר לסגירת המחיר הסופי.
+      </p>` : ""}
+
+      <p style="margin-top: 16px; color: #3B1F0A;">
+        ${p.deliveryMethod === "pickup"
+          ? "האיסוף העצמי מתואם מראש בטלפון."
+          : "המשלוח יגיע עד הבית תוך 48 שעות ברוב המקרים."}
+        חשבונית מס תישלח אליך בנפרד.
+      </p>
+
+      <div style="margin-top: 24px; padding: 16px; background: #fff; border-radius: 8px; text-align: center;">
+        <p style="margin: 0 0 8px; color: #5C3015; font-weight: bold;">שאלות? נשמח לעזור:</p>
+        <a href="tel:0399600550" style="display: inline-block; background: #5C3015; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;" dir="ltr">📞 03-9600550</a>
+      </div>
+
+      <p style="margin-top: 24px; font-size: 12px; color: #999; text-align: center;">
+        קפה גינץ · gintz.co.il
+      </p>
+    </div>
+  `;
+}
+
 function buildWhatsAppText(orderId: string, p: OrderPayload): string {
   const lines = [
     `🛒 *הזמנה חדשה - ${orderId}*`,
@@ -344,11 +431,25 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // NOTE: Secondary recipient (e.g., ronen12341@gmail.com or
-  // salesaspagil@gmail.com) was removed because Resend's free tier with the
-  // shared sender domain (onboarding@resend.dev) only allows sending to the
-  // account owner's verified address. To enable additional recipients, verify
-  // a custom domain in Resend (Settings → Domains) and switch `from:` to use it.
+  // Customer-facing confirmation — sent from the verified gintz.co.il domain
+  // (unlike the shared onboarding@resend.dev sender above, which Resend only
+  // allows sending to the account's own verified address). Best-effort: the
+  // order is already submitted via the primary email above, so a failure
+  // here shouldn't fail the request — just log it.
+  if (body.customer.email) {
+    try {
+      const { error } = await resend.emails.send({
+        from: "קפה גינץ <orders@gintz.co.il>",
+        to: body.customer.email,
+        replyTo: "ronen@aspagil.com",
+        subject: `✅ ההזמנה שלך התקבלה ${orderId} — קפה גינץ`,
+        html: buildCustomerEmailHtml(orderId, body),
+      });
+      if (error) console.error("Customer email send failed:", error);
+    } catch (err) {
+      console.error("Customer email exception:", err);
+    }
+  }
 
   // Fire-and-forget WhatsApp
   sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
