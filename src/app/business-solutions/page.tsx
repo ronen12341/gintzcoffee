@@ -426,8 +426,33 @@ export default function BusinessSolutionsPage() {
         </div>
       </section>
 
+      {/* Segments */}
+      <section className="py-16 bg-cream" aria-labelledby="segments-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="segments-heading" className="text-3xl font-bold text-brown mb-8 text-center">
+            פתרון קפה לפי סוג העסק שלכם
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {[
+              { href: "/business-solutions/hightech", title: "קפה להייטק", desc: "מכונה בנפח גבוה ושירות שעומד בקצב" },
+              { href: "/business-solutions/factories", title: "קפה למפעלים", desc: "מכונה עמידה לעבודה מרובת משמרות" },
+              { href: "/business-solutions/clinics", title: "קפה למרפאות", desc: "מכונה קומפקטית ושקטה לחדר המתנה" },
+            ].map(({ href, title, desc }) => (
+              <Link
+                key={href}
+                href={href}
+                className="block bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6 text-center"
+              >
+                <h3 className="font-bold text-brown text-lg mb-1">{title}</h3>
+                <p className="text-brown/65 text-sm">{desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Related guide */}
-      <section className="py-10 bg-cream" aria-labelledby="business-guide-heading">
+      <section className="py-10 bg-cream-dark" aria-labelledby="business-guide-heading">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p id="business-guide-heading" className="text-brown/70">
             רוצים לתכנן תקציב מדויק?{" "}

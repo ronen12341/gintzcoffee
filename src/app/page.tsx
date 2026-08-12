@@ -83,6 +83,21 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── Client logos ── */}
+      <section className="bg-cream-dark py-10" aria-labelledby="clients-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p id="clients-heading" className="mb-6 text-center text-sm font-semibold text-brown/50">
+            חברות מובילות שבחרו בקפה גינץ
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-80">
+            <Image src="/lp/logos/electra.png" alt="Electra" width={140} height={48} className="h-10 w-auto object-contain" />
+            <Image src="/lp/logos/amazon.svg" alt="Amazon" width={140} height={48} className="h-8 w-auto object-contain" />
+            <Image src="/lp/logos/aws.svg" alt="AWS" width={120} height={48} className="h-9 w-auto object-contain" />
+            <Image src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={160} height={54} className="h-11 w-auto object-contain" />
+          </div>
+        </div>
+      </section>
+
       {/* ── Business Solutions — the headline pitch ── */}
       <section
         className="relative overflow-hidden bg-cream py-20 sm:py-24"
