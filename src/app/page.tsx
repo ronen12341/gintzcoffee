@@ -43,8 +43,9 @@ export default function HomePage() {
               <span className="mt-2 block text-gold">לעסקים</span>
             </h1>
             <p className="mb-8 max-w-2xl text-lg leading-relaxed text-cream/85 sm:text-xl">
-              מכונות קפה מקצועיות, פולים טריים מבית הקלייה וכוסות ממותגות —
-              פתרון מלא שמותאם בדיוק לעסק שלכם.
+              אנחנו לא מוכרים קפה מהמדף — אנחנו מתאימים את הטעם לעובדים שלכם,
+              וקולים אותו בעצמנו בבית הקלייה. מכונה מקצועית, פולים טריים,
+              התאמת תערובת, אספקה ושירות — הכול ממקור אחד.
             </p>
 
             <div className="mb-10 flex flex-col gap-3 sm:flex-row">
@@ -127,6 +128,35 @@ export default function HomePage() {
             <Link href="/business-solutions" className="btn btn-secondary btn-lg">
               כל הפתרונות לעסקים ←
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── How it works ── */}
+      <section className="bg-brown-dark py-16" aria-labelledby="how-it-works-heading">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            id="how-it-works-heading"
+            className="mb-10 text-center text-3xl font-bold text-cream sm:text-4xl"
+          >
+            איך זה עובד
+          </h2>
+          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
+            {[
+              { step: "1", title: "טעימה", desc: "בודקים איזה קפה הצוות שלכם אוהב" },
+              { step: "2", title: "התאמת תערובת", desc: "בוחרים רמת קלייה ובלנד מתאימים" },
+              { step: "3", title: "קלייה טרייה", desc: "קולים אצלנו, לפי הזמנה" },
+              { step: "4", title: "מכונה מתאימה", desc: "לפי גודל הצוות והצריכה" },
+              { step: "5", title: "אספקה ושירות", desc: "מתמשכים, לא חד-פעמיים" },
+            ].map(({ step, title, desc }) => (
+              <div key={step} className="text-center">
+                <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-gold/15 font-bold text-gold">
+                  {step}
+                </span>
+                <h3 className="mb-1 font-bold text-cream">{title}</h3>
+                <p className="text-sm text-cream/60">{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
