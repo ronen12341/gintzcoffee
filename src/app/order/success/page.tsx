@@ -70,7 +70,7 @@ export default function OrderSuccessPage({
                 <div>
                   <p className="font-semibold text-brown">משלוח או איסוף</p>
                   <p className="text-sm text-brown/65">
-                    משלוח עד הדלת תוך 48 שעות, או תיאום טלפוני לאיסוף עצמי.
+                    משלוח עד הדלת עד 7 ימי עסקים, או תיאום טלפוני לאיסוף עצמי.
                   </p>
                 </div>
               </li>
@@ -117,7 +117,7 @@ export default function OrderSuccessPage({
                 <div>
                   <p className="font-semibold text-brown">משלוח עד הדלת</p>
                   <p className="text-sm text-brown/65">
-                    אספקה תוך 48 שעות ברוב המקרים.
+                    אספקה עד 7 ימי עסקים.
                   </p>
                 </div>
               </li>

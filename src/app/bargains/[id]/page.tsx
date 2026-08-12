@@ -136,7 +136,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
 
               {/* Warranty note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">
-                כל מכונות היד2 עוברות בדיקה טכנית ומגיעות עם אחריות מינימום 3 חודשים.
+                כל מכונות היד2 עוברות בדיקה טכנית ומגיעות עם אחריות — תקופת האחריות לפריט הזה מפורטת למעלה תחת &quot;מצב&quot;.
               </div>
 
               {/* Specs table */}

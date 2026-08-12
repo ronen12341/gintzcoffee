@@ -297,7 +297,7 @@ function buildCustomerEmailHtml(orderId: string, p: OrderPayload): string {
       <p style="margin-top: 16px; color: #3B1F0A;">
         ${p.deliveryMethod === "pickup"
           ? "האיסוף העצמי מתואם מראש בטלפון."
-          : "המשלוח יגיע עד הבית תוך 48 שעות ברוב המקרים."}
+          : "המשלוח יגיע עד הבית עד 7 ימי עסקים."}
         חשבונית מס תישלח אליך בנפרד.
       </p>
 

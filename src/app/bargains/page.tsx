@@ -38,7 +38,7 @@ export default function BargainsPage() {
           <span className="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
             מכונות יד2
           </span>
-          <span>כל המכונות עברו בדיקה טכנית ומגיעות עם אחריות מינימום 3 חודשים</span>
+          <span>כל המכונות עברו בדיקה טכנית ומגיעות עם אחריות — תקופת האחריות מצוינת בכרטיס כל פריט</span>
         </div>
       </div>
 

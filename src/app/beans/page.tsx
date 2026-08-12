@@ -83,7 +83,7 @@ export default function BeansPage() {
             {[
               { step: "01", title: "בוחרים את הפולים", desc: "ממקורות איכות ברחבי העולם" },
               { step: "02", title: "קולים טרי", desc: "בהזמנה אישית לפי הצרכים שלכם" },
-              { step: "03", title: "מספקים מהר", desc: "אספקה תוך 48 שעות עד הדלת" },
+              { step: "03", title: "מספקים מהר", desc: "אספקה עד 7 ימי עסקים עד הדלת" },
             ].map(({ step, title, desc }) => (
               <div key={step}>
                 <div className="text-gold/40 font-bold text-5xl font-montserrat mb-3">
