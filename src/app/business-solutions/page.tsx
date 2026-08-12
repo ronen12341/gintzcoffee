@@ -426,6 +426,21 @@ export default function BusinessSolutionsPage() {
         </div>
       </section>
 
+      {/* Related guide */}
+      <section className="py-10 bg-cream" aria-labelledby="business-guide-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p id="business-guide-heading" className="text-brown/70">
+            רוצים לתכנן תקציב מדויק?{" "}
+            <Link
+              href="/blog/office-coffee-budget-guide"
+              className="text-gold-dark font-bold underline"
+            >
+              קראו את מדריך התקציב המלא לקפה למשרד
+            </Link>
+          </p>
+        </div>
+      </section>
+
       {/* Lead form */}
       <section
         className="py-16 bg-cream-dark"

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ProductCard from "@/components/ProductCard";
 import { coffeeMachines } from "@/data/products";
 
@@ -227,6 +228,21 @@ export default function MachinesPage() {
               </details>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Related guide */}
+      <section className="py-10 bg-cream-dark" aria-labelledby="machines-guide-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p id="machines-guide-heading" className="text-brown/70">
+            עוד לא בטוחים מה מתאים לכם?{" "}
+            <Link
+              href="/blog/choosing-office-coffee-machine"
+              className="text-gold-dark font-bold underline"
+            >
+              קראו את המדריך המלא לבחירת מכונת קפה למשרד
+            </Link>
+          </p>
         </div>
       </section>
     </>
