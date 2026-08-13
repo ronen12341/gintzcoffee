@@ -109,7 +109,12 @@ export default function BeansPage() {
             ·{" "}
             <Link href="/blog/beans-vs-capsules" className="text-gold-dark font-bold underline">
               פולים או קפסולות?
-            </Link>
+            </Link>{" "}
+            · ראו גם את{" "}
+            <Link href="/business-solutions" className="text-gold-dark font-bold underline">
+              פתרונות קפה לעסקים
+            </Link>{" "}
+            שלנו.
           </p>
         </div>
       </section>

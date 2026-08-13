@@ -242,6 +242,11 @@ export default function MachinesPage() {
             >
               קראו את המדריך המלא לבחירת מכונת קפה למשרד
             </Link>
+            {" "}או ראו את{" "}
+            <Link href="/business-solutions" className="text-gold-dark font-bold underline">
+              פתרונות קפה לעסקים
+            </Link>{" "}
+            שלנו לפי גודל הצוות.
           </p>
         </div>
       </section>
