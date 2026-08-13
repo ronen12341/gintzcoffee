@@ -95,7 +95,7 @@ export default function MatchingCoffeeToTastePost() {
 
           <div className="bg-gold/10 border-r-4 border-gold rounded-xl p-5 my-6">
             <strong className="block mb-1">💡 למה זה חשוב:</strong>
-            קפה שמתאים לטעם של הצוות זה לא רק "פינוק" - זה משפיע ישירות
+            קפה שמתאים לטעם של הצוות זה לא רק &quot;פינוק&quot; - זה משפיע ישירות
             על כמה עובדים בפועל משתמשים במכונה, ועל שביעות הרצון
             היומיומית שלהם מהמשרד.
           </div>
