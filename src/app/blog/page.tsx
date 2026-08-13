@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Coffee, Wallet } from "lucide-react";
+import { Coffee, Wallet, Scale, Calculator, Heart } from "lucide-react";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
@@ -32,6 +32,33 @@ const posts = [
     excerpt:
       "עלות מכונה, עלות פולים חודשית, ותחזוקה - פירוט מלא של תקציב הקפה השנתי למשרד, לפי גודל הצוות.",
     readTime: "6 דקות קריאה",
+  },
+  {
+    slug: "beans-vs-capsules",
+    icon: Scale,
+    category: "פולי קפה",
+    title: "פולים או קפסולות? מה עדיף לקפה במשרד",
+    excerpt:
+      "פולי קפה טריים מול קפסולות למשרד - השוואת עלות, איכות, נוחות והשפעה סביבתית.",
+    readTime: "5 דקות קריאה",
+  },
+  {
+    slug: "how-much-coffee-does-an-office-need",
+    icon: Calculator,
+    category: "תכנון ותקציב",
+    title: "כמה קפה (פולים) צריך למשרד בחודש?",
+    excerpt:
+      "מדריך כמויות פולי קפה למשרד - כמה קילוגרם בחודש לפי מספר עובדים.",
+    readTime: "4 דקות קריאה",
+  },
+  {
+    slug: "matching-coffee-to-taste",
+    icon: Heart,
+    category: "בית הקלייה שלנו",
+    title: "איך מתאימים קפה לטעם של העובדים",
+    excerpt:
+      "הסבר על תהליך התאמת רמת קלייה ובלנד לטעם הספציפי של הצוות שלכם.",
+    readTime: "5 דקות קריאה",
   },
 ];
 

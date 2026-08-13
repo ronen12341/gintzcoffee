@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BeansShop from "@/components/BeansShop";
 import { coffeeBeans } from "@/data/products";
 
@@ -94,6 +95,22 @@ export default function BeansPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Related guides */}
+      <section className="py-10 bg-cream" aria-labelledby="beans-guide-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p id="beans-guide-heading" className="text-brown/70">
+            רוצים לדעת עוד?{" "}
+            <Link href="/blog/matching-coffee-to-taste" className="text-gold-dark font-bold underline">
+              איך מתאימים קפה לטעם של העובדים
+            </Link>{" "}
+            ·{" "}
+            <Link href="/blog/beans-vs-capsules" className="text-gold-dark font-bold underline">
+              פולים או קפסולות?
+            </Link>
+          </p>
         </div>
       </section>
     </>
