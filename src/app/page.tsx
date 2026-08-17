@@ -156,7 +156,7 @@ export default function HomePage() {
           >
             איך זה עובד
           </h2>
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-5">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-5">
             {[
               { step: "1", title: "טעימה", desc: "בודקים איזה קפה הצוות שלכם אוהב" },
               { step: "2", title: "התאמת תערובת", desc: "בוחרים רמת קלייה ובלנד מתאימים" },
