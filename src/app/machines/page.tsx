@@ -95,7 +95,7 @@ export default function MachinesPage() {
             Gintz Coffee · Machines
           </p>
           <h1 id="machines-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות קפה לעסקים
+            מכונת קפה למשרד ולעסק
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
             מכונות אוטומטיות ומקצועיות לכל גודל עסק — משרד, מסעדה, מלון או קליניקה.

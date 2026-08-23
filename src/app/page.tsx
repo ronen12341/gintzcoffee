@@ -39,8 +39,8 @@ export default function HomePage() {
               Gintz Coffee · Coffee Solutions
             </p>
             <h1 className="mb-6 text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl lg:text-7xl">
-              פתרונות קפה{" "}
-              <span className="mt-2 block text-gold">לעסקים</span>
+              קפה טרי לעסק שלכם{" "}
+              <span className="mt-2 block text-gold">קלוי במיוחד בשבילכם</span>
             </h1>
             <p className="mb-8 max-w-2xl text-lg leading-relaxed text-cream/85 sm:text-xl">
               אנחנו לא מוכרים קפה מהמדף — אנחנו מתאימים את הטעם לעובדים שלכם,
