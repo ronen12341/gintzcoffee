@@ -233,6 +233,13 @@ export default function BusinessSolutionsPage() {
               כשמשהו צריך טיפול. זהו. אין רכש, אין חוזי שירות נפרדים, אין
               התלבטות איזה קפה לקנות.
             </p>
+            <p>
+              המודל הזה נקרא{" "}
+              <Link href="/business-solutions/rental" className="text-gold underline hover:no-underline">
+                השכרת מכונת קפה לעסק
+              </Link>
+              : המכונה עלינו, אתם משלמים על הקפה - בלי השקעה ראשונית בציוד.
+            </p>
           </div>
         </div>
       </section>
@@ -440,6 +447,9 @@ export default function BusinessSolutionsPage() {
               { href: "/business-solutions/hightech", title: "קפה להייטק", desc: "מכונה בנפח גבוה ושירות שעומד בקצב" },
               { href: "/business-solutions/factories", title: "קפה למפעלים", desc: "מכונה עמידה לעבודה מרובת משמרות" },
               { href: "/business-solutions/clinics", title: "קפה למרפאות", desc: "מכונה קומפקטית ושקטה לחדר המתנה" },
+              { href: "/business-solutions/small-office", title: "משרד קטן (עד 10)", desc: "מכונה קומפקטית עם מיכל מים פנימי" },
+              { href: "/business-solutions/medium-office", title: "משרד בינוני (עד 20)", desc: "מכונה מקצועית עם הקצפת חלב וחיבור מים" },
+              { href: "/business-solutions/large-office", title: "משרד גדול (מעל 20)", desc: "מכונה בעומס גבוה, אפשר יותר מעמדה אחת" },
             ].map(({ href, title, desc }) => (
               <Link
                 key={href}
