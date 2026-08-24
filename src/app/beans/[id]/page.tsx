@@ -48,14 +48,22 @@ export default async function BeanDetailPage({ params }: PageProps) {
 
   // --- Structured data (Product + BreadcrumbList) for rich results ---
   const site = "https://www.gintz.co.il";
-  const productImage =
-    bean.image && bean.image.startsWith("http") ? bean.image : undefined;
+  // Google requires an absolute image URL — a site-relative path (e.g.
+  // "/coffee-bag.jpg") was silently dropped here, which is why these
+  // products' Product schema had no "image" field at all.
+  const productImage = bean.image
+    ? bean.image.startsWith("http")
+      ? bean.image
+      : `${site}${bean.image}`
+    : undefined;
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: bean.name,
     description: (bean.longDescription ?? bean.description).slice(0, 500),
-    category: "פולי קפה",
+    // Google Product Taxonomy path, not free text — Merchant Center flags
+    // an arbitrary category string as an invalid value.
+    category: "Food, Beverages & Tobacco > Beverages > Coffee",
     brand: { "@type": "Brand", name: "קפה גינץ" },
     ...(productImage ? { image: productImage } : {}),
     ...(bean.priceNumeric
@@ -66,6 +74,24 @@ export default async function BeanDetailPage({ params }: PageProps) {
             price: bean.priceNumeric,
             availability: "https://schema.org/InStock",
             url: `${site}/beans/${bean.id}`,
+            // Real site policy (src/app/checkout/page.tsx, src/app/terms):
+            // ₪40 flat rate, free above ₪350, up to 7 business days; 14-day
+            // cancellation window per Israeli consumer-protection law.
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: { "@type": "MonetaryAmount", value: 40, currency: "ILS" },
+              shippingDestination: { "@type": "DefinedRegion", addressCountry: "IL" },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 7, unitCode: "d" },
+              },
+            },
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "IL",
+              returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+              merchantReturnDays: 14,
+            },
           },
         }
       : {}),

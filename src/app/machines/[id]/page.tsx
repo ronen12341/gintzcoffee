@@ -48,8 +48,14 @@ export default async function MachineDetailPage({ params }: PageProps) {
 
   // --- Structured data (Product + BreadcrumbList) for rich results ---
   const site = "https://www.gintz.co.il";
-  const productImage =
-    machine.image && machine.image.startsWith("http") ? machine.image : undefined;
+  // Same fix as beans/[id]/page.tsx: a site-relative image path (most of
+  // this catalog's images) was silently dropped instead of resolved to an
+  // absolute URL, so the Product schema shipped with no "image" at all.
+  const productImage = machine.image
+    ? machine.image.startsWith("http")
+      ? machine.image
+      : `${site}${machine.image}`
+    : undefined;
   const brandName = /jura/i.test(machine.name)
     ? "JURA"
     : /melitta/i.test(machine.name)
@@ -64,6 +70,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
     "@type": "Product",
     name: machine.name,
     description: (machine.longDescription ?? machine.description).slice(0, 500),
+    category: "Home & Garden > Kitchen & Dining > Kitchen Appliances > Coffee Makers & Espresso Machines",
     ...(productImage ? { image: productImage } : {}),
     ...(brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
     ...(machine.priceNumeric
@@ -74,6 +81,24 @@ export default async function MachineDetailPage({ params }: PageProps) {
             price: machine.priceNumeric,
             availability: "https://schema.org/InStock",
             url: `${site}/machines/${machine.id}`,
+            // Real site policy (src/app/checkout/page.tsx, src/app/terms):
+            // ₪40 flat rate, free above ₪350, up to 7 business days; 14-day
+            // cancellation window per Israeli consumer-protection law.
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: { "@type": "MonetaryAmount", value: 40, currency: "ILS" },
+              shippingDestination: { "@type": "DefinedRegion", addressCountry: "IL" },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 7, unitCode: "d" },
+              },
+            },
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "IL",
+              returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+              merchantReturnDays: 14,
+            },
           },
         }
       : {}),
