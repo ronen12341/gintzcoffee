@@ -26,6 +26,8 @@ interface OrderPayload {
     address?: string;
     city?: string;
     notes?: string;
+    /** Honeypot — real visitors never fill this in; a non-empty value means a bot. */
+    botcheck?: string;
   };
   items: OrderItem[];
   totalPrice: number;
@@ -379,8 +381,28 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid json" }, { status: 400 });
   }
 
+  // Honeypot — a real visitor never sees or fills this field, so a
+  // non-empty value means a bot is posting straight to this API (the
+  // client-side check in checkout/page.tsx only stops bots that go
+  // through the form itself). Return a normal-looking success so it
+  // doesn't notice and keep retrying, but never send the order email.
+  if (body?.customer?.botcheck?.trim()) {
+    return NextResponse.json({ ok: true, orderId: `ORD-${Date.now()}` });
+  }
+
   if (!body?.customer?.name || !body?.customer?.phone) {
     return NextResponse.json({ ok: false, error: "missing fields" }, { status: 400 });
+  }
+  // Israeli phone numbers: 9-10 digits starting with 0 (mobile 05X, or a
+  // landline area code) — also accepts a +972 international prefix. Catches
+  // bot spam posting non-Israeli-looking numbers directly to this endpoint.
+  let phoneDigits = body.customer.phone.replace(/\D/g, "");
+  if (phoneDigits.startsWith("972")) phoneDigits = "0" + phoneDigits.slice(3);
+  if (!/^0\d{8,9}$/.test(phoneDigits)) {
+    return NextResponse.json(
+      { ok: false, error: "invalid phone", message: "מספר טלפון לא תקין. אנא הזינו מספר טלפון ישראלי תקני." },
+      { status: 400 }
+    );
   }
   if (!Array.isArray(body.items) || body.items.length === 0) {
     return NextResponse.json({ ok: false, error: "empty cart" }, { status: 400 });

@@ -64,6 +64,7 @@ export default function CheckoutPage() {
     address: "",
     city: "",
     notes: "",
+    botcheck: "",
   });
 
   if (items.length === 0 && !submitting) {
@@ -89,6 +90,14 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
+
+    // Honeypot — real visitors never see or fill this field, so a filled-in
+    // value means a bot is driving the form. Pretend nothing happened; the
+    // server-side check in /api/order is the one that actually matters,
+    // since a direct API POST skips this form entirely.
+    if (form.botcheck.trim()) {
+      return;
+    }
 
     if (!form.name.trim() || !form.phone.trim()) {
       setError("נא למלא שם וטלפון.");
@@ -241,6 +250,16 @@ export default function CheckoutPage() {
             className="lg:col-span-2 bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-4"
             noValidate
           >
+            <input
+              type="text"
+              name="botcheck"
+              value={form.botcheck}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
+            />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-brown mb-1">
