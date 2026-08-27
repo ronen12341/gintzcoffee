@@ -82,11 +82,11 @@ export default async function MachineDetailPage({ params }: PageProps) {
             availability: "https://schema.org/InStock",
             url: `${site}/machines/${machine.id}`,
             // Real site policy (src/app/checkout/page.tsx, src/app/terms):
-            // ₪40 flat rate, free above ₪350, up to 7 business days; 14-day
+            // ₪60 flat rate, free above ₪400, up to 7 business days; 14-day
             // cancellation window per Israeli consumer-protection law.
             shippingDetails: {
               "@type": "OfferShippingDetails",
-              shippingRate: { "@type": "MonetaryAmount", value: 40, currency: "ILS" },
+              shippingRate: { "@type": "MonetaryAmount", value: 60, currency: "ILS" },
               shippingDestination: { "@type": "DefinedRegion", addressCountry: "IL" },
               deliveryTime: {
                 "@type": "ShippingDeliveryTime",

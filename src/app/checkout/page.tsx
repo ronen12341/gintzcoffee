@@ -19,8 +19,8 @@ const SUMIT_PAYMENT_URL =
 type DeliveryMethod = "delivery" | "pickup";
 
 /** Free shipping at or above this priced-subtotal (NIS); below it costs SHIPPING_FEE. */
-const FREE_SHIPPING_THRESHOLD = 350;
-const SHIPPING_FEE = 40;
+const FREE_SHIPPING_THRESHOLD = 400;
+const SHIPPING_FEE = 60;
 
 /** Israeli law requires a customer ID (ת.ז/ח.פ) on tax invoices at or above this amount (NIS). */
 const TAX_ID_REQUIRED_THRESHOLD = 5000;
