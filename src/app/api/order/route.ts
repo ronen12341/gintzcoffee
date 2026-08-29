@@ -428,11 +428,12 @@ export async function POST(req: NextRequest) {
   const waText = buildWhatsAppText(orderId, body);
   const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name}`;
 
-  // Primary recipient — known-verified address that works on Resend's free
-  // tier. Must succeed for the order to be considered submitted.
+  // Primary recipient — sent from the verified gilcups.com domain (the only
+  // domain verified in this Resend account). Must succeed for the order to
+  // be considered submitted.
   try {
     const { error } = await resend.emails.send({
-      from: "קפה גינץ <onboarding@resend.dev>",
+      from: "קפה גינץ <noreply@gilcups.com>",
       to: "ronen@aspagil.com",
       replyTo: body.customer.email || undefined,
       subject,
@@ -453,15 +454,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Customer-facing confirmation — sent from the verified gintz.co.il domain
-  // (unlike the shared onboarding@resend.dev sender above, which Resend only
-  // allows sending to the account's own verified address). Best-effort: the
-  // order is already submitted via the primary email above, so a failure
-  // here shouldn't fail the request — just log it.
+  // Customer-facing confirmation — also sent from the verified gilcups.com
+  // domain (gintz.co.il is not verified in this Resend account, so it can't
+  // be used as a "from" address yet). Best-effort: the order is already
+  // submitted via the primary email above, so a failure here shouldn't fail
+  // the request — just log it.
   if (body.customer.email) {
     try {
       const { error } = await resend.emails.send({
-        from: "קפה גינץ <orders@gintz.co.il>",
+        from: "קפה גינץ <orders@gilcups.com>",
         to: body.customer.email,
         replyTo: "ronen@aspagil.com",
         subject: `✅ ההזמנה שלך התקבלה ${orderId} — קפה גינץ`,
