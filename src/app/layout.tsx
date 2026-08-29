@@ -101,6 +101,22 @@ export default function RootLayout({
             gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
+        {/* Phone-click tracking — B2B visitors call instead of filling a form,
+            and those conversions were completely invisible. Fires a GA4
+            'phone_click' event on any tel: link; mark it as a conversion in
+            GA4 / import it into Google Ads to have it count. */}
+        <Script id="phone-click-tracking" strategy="afterInteractive">
+          {`
+            document.addEventListener('click', function (e) {
+              var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+              if (!a || typeof gtag !== 'function') return;
+              gtag('event', 'phone_click', {
+                link_url: a.getAttribute('href'),
+                link_text: (a.textContent || '').trim().slice(0, 100)
+              });
+            }, true);
+          `}
+        </Script>
         {/* Meta Pixel — גינץ פתרונות קפה */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`

@@ -305,7 +305,7 @@ function buildCustomerEmailHtml(orderId: string, p: OrderPayload): string {
 
       <div style="margin-top: 24px; padding: 16px; background: #fff; border-radius: 8px; text-align: center;">
         <p style="margin: 0 0 8px; color: #5C3015; font-weight: bold;">שאלות? נשמח לעזור:</p>
-        <a href="tel:0399600550" style="display: inline-block; background: #5C3015; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;" dir="ltr">📞 03-9600550</a>
+        <a href="tel:039600550" style="display: inline-block; background: #5C3015; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;" dir="ltr">📞 03-9600550</a>
       </div>
 
       <p style="margin-top: 24px; font-size: 12px; color: #999; text-align: center;">

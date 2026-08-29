@@ -16,16 +16,26 @@ export default function OrderSuccessPage({
 }) {
   const paid = searchParams.paid === "1";
   const amount = Number(searchParams.amount);
-  const pixelParams =
-    Number.isFinite(amount) && amount > 0
-      ? { value: amount, currency: "ILS" }
-      : { currency: "ILS" };
+  const hasAmount = Number.isFinite(amount) && amount > 0;
+  const pixelParams = hasAmount
+    ? { value: amount, currency: "ILS" }
+    : { currency: "ILS" };
+  // GA4 purchase params — mark it up so it can be imported into Google Ads as a
+  // conversion (previously this page fired ONLY the Meta Pixel, so Google Ads
+  // never counted a completed order).
+  const gaPurchaseParams = hasAmount
+    ? { currency: "ILS", value: amount }
+    : { currency: "ILS" };
 
   return (
     <section className="py-20 bg-cream min-h-[60vh]">
       {/* Meta Pixel — Purchase event (order completed) */}
       <Script id="meta-purchase" strategy="afterInteractive">
         {`if (typeof fbq === 'function') { fbq('track', 'Purchase', ${JSON.stringify(pixelParams)}); }`}
+      </Script>
+      {/* GA4 / Google Ads — purchase event (order completed) */}
+      <Script id="ga-purchase" strategy="afterInteractive">
+        {`if (typeof gtag === 'function') { gtag('event', 'purchase', ${JSON.stringify(gaPurchaseParams)}); }`}
       </Script>
       <div className="max-w-2xl mx-auto px-4 text-center">
         <CheckCircle2
@@ -128,7 +138,7 @@ export default function OrderSuccessPage({
         <div className="bg-brown text-cream rounded-2xl p-6 mb-6">
           <p className="text-sm text-cream/80 mb-2">צריך לדבר איתנו עכשיו?</p>
           <a
-            href="tel:0399600550"
+            href="tel:039600550"
             className="inline-flex items-center gap-2 text-2xl font-bold text-gold hover:text-gold-light"
             dir="ltr"
           >

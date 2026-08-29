@@ -207,6 +207,22 @@ export default function RentalCoffeePage() {
             המכונה עלינו, אתם משלמים על הקפה. דמי שירות חודשיים קבועים כוללים
             מכונה, התקנה, הדרכה, שירות ופולים טריים - בלי שקל השקעה ראשונית.
           </p>
+          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center rounded-xl bg-gold px-8 py-3.5 font-bold text-brown-dark transition hover:bg-gold/90 w-full sm:w-auto"
+            >
+              קבלו הצעת מחיר
+            </a>
+            <a
+              href="https://wa.me/97239600550?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%9B%D7%A8%D7%AA%20%D7%9E%D7%9B%D7%95%D7%A0%D7%AA%20%D7%A7%D7%A4%D7%94%20%D7%9C%D7%A2%D7%A1%D7%A7"
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center justify-center rounded-xl border border-cream/40 px-8 py-3.5 font-bold text-cream transition hover:bg-cream/10 w-full sm:w-auto"
+            >
+              דברו איתנו בוואטסאפ
+            </a>
+          </div>
         </div>
       </section>
 

@@ -56,7 +56,7 @@ export default function TermsPage() {
               salesaspagil@gmail.com
             </a>{" "}
             או בטלפון{" "}
-            <a href="tel:0399600550" className="text-gold font-bold" dir="ltr">
+            <a href="tel:039600550" className="text-gold font-bold" dir="ltr">
               03-9600550
             </a>
             . במקרה של ביטול שלא עקב פגם, רשאית קפה גינץ לגבות דמי ביטול כפי
@@ -80,7 +80,7 @@ export default function TermsPage() {
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">7. יצירת קשר</h2>
           <p>
             לכל שאלה בנוגע לתקנון זה ניתן לפנות אלינו בטלפון{" "}
-            <a href="tel:0399600550" className="text-gold font-bold" dir="ltr">
+            <a href="tel:039600550" className="text-gold font-bold" dir="ltr">
               03-9600550
             </a>{" "}
             או בדוא&quot;ל{" "}

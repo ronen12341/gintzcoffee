@@ -163,7 +163,7 @@ export default function Navbar() {
                 קבלו הצעה
               </Link>
               <a
-                href="tel:0399600550"
+                href="tel:039600550"
                 className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-cream/65 transition-colors hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold xl:flex"
                 aria-label="התקשר אלינו: 03-9600550"
               >
@@ -253,7 +253,7 @@ export default function Navbar() {
             קבלו הצעת מחיר
           </Link>
           <a
-            href="tel:0399600550"
+            href="tel:039600550"
             className="flex items-center gap-3 text-cream/75 hover:text-gold transition-colors"
           >
             <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold/10 ring-1 ring-gold/25">

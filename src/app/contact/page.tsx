@@ -41,7 +41,7 @@ export default function ContactPage() {
               {/* Phone / WhatsApp */}
               <div className="space-y-4 mb-8">
                 <a
-                  href="tel:0399600550"
+                  href="tel:039600550"
                   className="flex items-center gap-4 bg-white rounded-xl p-4 shadow-sm hover:shadow-md transition-shadow group focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
                   aria-label="התקשר אלינו: 03-9600550"
                 >

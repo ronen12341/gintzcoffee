@@ -42,7 +42,7 @@ export default function AccessibilityPage() {
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">דיווח על בעיה</h2>
           <p>
             אם נתקלתם בקושי בגישה לאתר, אנא דווחו לנו בטלפון{" "}
-            <a href="tel:0399600550" className="text-gold font-bold" dir="ltr">
+            <a href="tel:039600550" className="text-gold font-bold" dir="ltr">
               03-9600550
             </a>{" "}
             או בדוא&quot;ל{" "}

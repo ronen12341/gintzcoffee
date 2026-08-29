@@ -148,7 +148,7 @@ export default function FaqPage() {
           <p className="text-cream/60 mb-4">לא מצאתם את התשובה שחיפשתם?</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
-              href="tel:0399600550"
+              href="tel:039600550"
               className="inline-flex items-center justify-center gap-2 bg-gold text-brown font-bold px-6 py-3 rounded-full hover:bg-gold/90 transition-colors"
             >
               התקשרו: 03-9600550

@@ -114,7 +114,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="tel:0399600550"
+                  href="tel:039600550"
                   className="flex items-center gap-2.5 text-brown/65 hover:text-gold-dark text-sm transition-colors group"
                   aria-label="התקשר: 03-9600550"
                 >

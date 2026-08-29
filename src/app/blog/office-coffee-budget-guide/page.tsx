@@ -170,7 +170,7 @@ export default function OfficeCoffeeBudgetGuidePost() {
                 קבלו הצעת מחיר
               </Link>
               <a
-                href="tel:0399600550"
+                href="tel:039600550"
                 className="inline-flex items-center justify-center gap-2 border border-brown/20 text-brown px-6 py-3 rounded-full hover:border-gold transition-colors"
               >
                 📞 03-9600550
