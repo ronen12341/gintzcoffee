@@ -1,23 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
-
-/** Client-side mirror of the server's price lookup (src/lib/server-pricing.ts) —
- *  used only to keep the cart's *displayed* total from drifting; the actual
- *  charge is always re-verified server-side regardless of this. */
-function currentCatalogPrice(category: string, id: string): number | undefined {
-  switch (category) {
-    case "bean":
-      return coffeeBeans.find((b) => b.id === id)?.priceNumeric;
-    case "machine":
-      return coffeeMachines.find((m) => m.id === id)?.priceNumeric;
-    case "used":
-      return usedMachines.find((m) => m.id === id)?.priceNumeric;
-    default:
-      return undefined;
-  }
-}
+import { getCatalogPrice } from "@/lib/server-pricing";
 
 export interface CartItem {
   id: string;
@@ -65,7 +49,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         const parsed = JSON.parse(raw);
         if (Array.isArray(parsed)) {
           const resynced = parsed.map((item) => {
-            const livePrice = currentCatalogPrice(item.category, item.id);
+            const livePrice = getCatalogPrice(item.category, item.id);
             return livePrice !== undefined ? { ...item, priceNumeric: livePrice } : item;
           });
           setItems(resynced);

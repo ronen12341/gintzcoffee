@@ -12,31 +12,42 @@ export const metadata: Metadata = {
 export default function OrderSuccessPage({
   searchParams,
 }: {
-  searchParams: { paid?: string; amount?: string };
+  searchParams: { paid?: string; amount?: string; oid?: string };
 }) {
   const paid = searchParams.paid === "1";
   const amount = Number(searchParams.amount);
   const hasAmount = Number.isFinite(amount) && amount > 0;
-  const pixelParams = hasAmount
-    ? { value: amount, currency: "ILS" }
-    : { currency: "ILS" };
+  // Only a Sumit-confirmed payment (paid=1) is an actual conversion — a
+  // phone-payment or quote-only order reaches this page too (no online
+  // charge happened yet), and used to fire this same "Purchase" event,
+  // corrupting the revenue Meta/Google Ads bidding is optimized against.
+  const shouldTrackPurchase = paid && hasAmount;
+  const pixelParams = { value: amount, currency: "ILS" };
   // GA4 purchase params — mark it up so it can be imported into Google Ads as a
   // conversion (previously this page fired ONLY the Meta Pixel, so Google Ads
   // never counted a completed order).
-  const gaPurchaseParams = hasAmount
-    ? { currency: "ILS", value: amount }
-    : { currency: "ILS" };
+  const gaPurchaseParams = { currency: "ILS", value: amount };
+  // Dedupe key so a back-button/refresh landing on this exact success URL
+  // doesn't re-fire the same Purchase event a second time.
+  const orderKey = searchParams.oid || (hasAmount ? `amount-${amount}` : "");
+  const dedupeGuard = orderKey
+    ? `var k = 'purchase-tracked-' + ${JSON.stringify(orderKey)}; if (sessionStorage.getItem(k)) { return; } sessionStorage.setItem(k, '1');`
+    : "";
 
   return (
     <section className="py-20 bg-cream min-h-[60vh]">
-      {/* Meta Pixel — Purchase event (order completed) */}
-      <Script id="meta-purchase" strategy="afterInteractive">
-        {`if (typeof fbq === 'function') { fbq('track', 'Purchase', ${JSON.stringify(pixelParams)}); }`}
-      </Script>
-      {/* GA4 / Google Ads — purchase event (order completed) */}
-      <Script id="ga-purchase" strategy="afterInteractive">
-        {`if (typeof gtag === 'function') { gtag('event', 'purchase', ${JSON.stringify(gaPurchaseParams)}); }`}
-      </Script>
+      {shouldTrackPurchase && (
+        <>
+          {/* Meta Pixel — Purchase event (order completed) */}
+          <Script id="meta-purchase" strategy="afterInteractive">
+            {`(function(){ ${dedupeGuard} if (typeof fbq === 'function') { fbq('track', 'Purchase', ${JSON.stringify(pixelParams)}); } })();`}
+          </Script>
+          {/* GA4 / Google Ads — purchase event (order completed) */}
+          <Script id="ga-purchase" strategy="afterInteractive">
+            {`(function(){ ${dedupeGuard} if (typeof gtag === 'function') { gtag('event', 'purchase', ${JSON.stringify(gaPurchaseParams)}); } })();`}
+          </Script>
+        </>
+      )}
       <div className="max-w-2xl mx-auto px-4 text-center">
         <CheckCircle2
           className="w-20 h-20 text-green-600 mx-auto mb-6"

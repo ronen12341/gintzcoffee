@@ -155,6 +155,14 @@ export default function CheckoutPage() {
         const orderRes = await res.json().catch(() => ({}));
         const orderId = orderRes.orderId || `ORD-${Date.now()}`;
 
+        // On any failure here (network error, or the server rejecting the
+        // request — e.g. a price it couldn't verify against the catalog) we
+        // do NOT fall back to a generic, unitemized Sumit payment link built
+        // from client-side numbers: that link bypasses every server-side
+        // price check /api/sumit-payment exists to enforce. The order
+        // notification email has already been sent above, so surface the
+        // failure and let the customer retry or the business follow up on
+        // the emailed order.
         try {
           const payRes = await fetch("/api/sumit-payment", {
             method: "POST",
@@ -162,6 +170,7 @@ export default function CheckoutPage() {
             body: JSON.stringify({
               amount: grandTotal,
               shippingFee,
+              deliveryMethod,
               items: items.map((i) => ({
                 id: i.id,
                 category: i.category,
@@ -179,7 +188,7 @@ export default function CheckoutPage() {
                 taxId: form.taxId,
                 invoiceName: form.invoiceName,
               },
-              successUrl: `${window.location.origin}/order/success?paid=1&amount=${grandTotal}`,
+              successUrl: `${window.location.origin}/order/success?paid=1&amount=${grandTotal}&oid=${encodeURIComponent(orderId)}`,
               failureUrl: `${window.location.origin}/checkout`,
             }),
           });
@@ -187,21 +196,7 @@ export default function CheckoutPage() {
           const payData = await payRes.json();
           if (!payRes.ok || !payData.ok || !payData.paymentUrl) {
             console.error("Sumit payment session failed:", payData);
-            // Fall back to the direct URL. Sumit's generic payment link does
-            // not reliably pre-fill the amount field from the query string,
-            // so warn the customer explicitly before sending them there.
-            const fallbackParams = new URLSearchParams();
-            fallbackParams.set("amount", String(grandTotal));
-            fallbackParams.set("name", form.name);
-            if (form.email) fallbackParams.set("email", form.email);
-            if (form.phone) fallbackParams.set("phone", form.phone);
-            const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
-            window.alert(
-              `לא הצלחנו ליצור עמוד תשלום מותאם אוטומטית. תועברו לדף תשלום כללי - אנא הזינו ידנית סכום של ${grandTotal.toLocaleString("he-IL")} ש"ח בשדה "סכום לתשלום".`
-            );
-            clear();
-            window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
-            return;
+            throw new Error(payData?.message || "Sumit payment session failed");
           }
 
           clear();
@@ -209,18 +204,10 @@ export default function CheckoutPage() {
           return;
         } catch (err) {
           console.error("Sumit session request failed:", err);
-          // Same fallback as above.
-          const fallbackParams = new URLSearchParams();
-          fallbackParams.set("amount", String(grandTotal));
-          fallbackParams.set("name", form.name);
-          if (form.email) fallbackParams.set("email", form.email);
-          if (form.phone) fallbackParams.set("phone", form.phone);
-          const separator = SUMIT_PAYMENT_URL.includes("?") ? "&" : "?";
-          window.alert(
-            `לא הצלחנו ליצור עמוד תשלום מותאם אוטומטית. תועברו לדף תשלום כללי - אנא הזינו ידנית סכום של ${grandTotal.toLocaleString("he-IL")} ש"ח בשדה "סכום לתשלום".`
+          setError(
+            `ההזמנה נקלטה (מספר הזמנה ${orderId}) אך אירעה תקלה ביצירת קישור התשלום. אנא נסו שוב או התקשרו אלינו להשלמת התשלום: 03-9600550.`
           );
-          clear();
-          window.location.href = `${SUMIT_PAYMENT_URL}${separator}${fallbackParams.toString()}`;
+          setSubmitting(false);
           return;
         }
       }

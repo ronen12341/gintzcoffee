@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getCatalogPrice } from "@/lib/server-pricing";
+import { getCatalogPrice, computeShippingFee } from "@/lib/server-pricing";
 
 /**
  * Sumit credentials. The API key is sensitive and must never be exposed to the
@@ -25,8 +25,15 @@ const SUMIT_BEGIN_REDIRECT_URL =
 interface SumitPaymentRequest {
   /** Grand total to charge (products + shipping), VAT included. */
   amount: number;
-  /** Shipping fee portion of `amount` (0 when free or self-pickup). */
+  /** Shipping fee portion of `amount` (0 when free or self-pickup). This is
+   *  only a client-side hint (used for the checkout page display) — the
+   *  actual charge always recomputes it server-side via
+   *  computeShippingFee(), see below. */
   shippingFee?: number;
+  /** "delivery" = ship to address; "pickup" = self-pickup by prior
+   *  arrangement (always free). Drives the server-side shipping-fee
+   *  recomputation below. */
+  deliveryMethod?: "delivery" | "pickup";
   /** Cart line items, itemized on the Sumit document (and eventually on the
    *  Hashavshevet invoice) instead of a single lump-sum line. `priceNumeric`
    *  here is only a client-side hint (used for the checkout page display) —
@@ -88,6 +95,17 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  if (
+    !Array.isArray(body.items) ||
+    body.items.length === 0 ||
+    body.items.some((line) => !Number.isInteger(line.qty) || line.qty <= 0)
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "invalid_quantity", message: "כמות פריט לא תקינה." },
+      { status: 400 }
+    );
+  }
+
   // Body shape per Sumit's beginredirect spec:
   //   { Customer, Items: [{ Item, Quantity, UnitPrice }], VATIncluded,
   //     RedirectURL, CancelRedirectURL, ExternalIdentifier, Credentials }
@@ -97,7 +115,6 @@ export async function POST(req: NextRequest) {
   // Each cart line becomes its own Sumit item (instead of one lump-sum line)
   // so the document — and the eventual Hashavshevet invoice — itemizes by
   // product, plus an optional shipping line.
-  const shippingFee = Math.max(0, Number(body.shippingFee) || 0);
 
   // Re-price every line from the catalog — never trust the client-supplied
   // priceNumeric for an actual charge. A stale cart (price changed after the
@@ -138,6 +155,13 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
+
+  // Recomputed from the re-priced item total server-side rather than
+  // trusting body.shippingFee, which is just a client-computed number that
+  // travels as plain JSON (e.g. a request could send shippingFee: 0 on a
+  // sub-threshold order).
+  const itemsTotal = items.reduce((sum, i) => sum + i.UnitPrice * i.Quantity, 0);
+  const shippingFee = computeShippingFee(body.deliveryMethod, itemsTotal);
 
   if (shippingFee > 0) {
     items.push({
