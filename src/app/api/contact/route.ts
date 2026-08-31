@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
           <td style="padding: 8px; color: #3B1F0A; white-space: pre-wrap;">${escapeHtml(message)}</td>
         </tr>` : ""}
       </table>
-      <p style="margin-top: 24px; font-size: 12px; color: #999; text-align: center;">נשלח מאתר קפה גינץ · gintzcoffee.co.il</p>
+      <p style="margin-top: 24px; font-size: 12px; color: #999; text-align: center;">נשלח מאתר קפה גינץ · gintz.co.il</p>
     </div>
   `;
 
