@@ -6,6 +6,11 @@ const nextConfig = {
       { source: "/About.html", destination: "/", permanent: true },
       { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.html", destination: "/business-solutions", permanent: true },
       { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D-1.html", destination: "/business-solutions", permanent: true },
+      // Distinct variant Google is still ranking for "קפה לעסקים" (950 impressions per
+      // Search Console) — a dot before the "1" instead of a hyphen, so it wasn't
+      // caught by the rule above and was falling through to the generic ".html"
+      // catch-all (redirecting to "/" instead of the topically-matching page).
+      { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.1.html", destination: "/business-solutions", permanent: true },
       { source: "/JURA-WE8.html", destination: "/machines", permanent: true },
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%95%D7%AA-%D7%A7%D7%A4%D7%94-%D7%A8%D7%90%D7%A9-%D7%90%D7%97%D7%93.html", destination: "/machines", permanent: true },
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%95%D7%AA-%D7%90%D7%A1%D7%A4%D7%A8%D7%A1%D7%95.html", destination: "/machines", permanent: true },
