@@ -135,8 +135,6 @@ const nextConfig = {
       { source: "/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%98%D7%99%D7%AA.html", destination: "/machines", permanent: true },
       // רשת ביטחון: כל עמוד .html ישן אחר מופנה לדף הבית במקום 404
       { source: "/:path((?!google).*\\.html)", destination: "/", permanent: true },
-      // אותו דבר לשרידי האתר הישן עוד יותר (ASP) — searchShop.asp, showAlbumOrImage.asp וכו'
-      { source: "/:path(.*\\.asp)", destination: "/", permanent: true },
       // --- שינויי slug למוצרים (מזהים אקראיים/שבורים -> slugs ידידותיים ל-SEO) ---
       { source: "/machines/machine-%20LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },
       { source: "/machines/machine-\\+LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },
