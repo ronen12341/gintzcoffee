@@ -133,9 +133,9 @@ export default function OfficeCoffeeBudgetGuidePost() {
             <li>
               <strong>מכונת יד שנייה.</strong> ראו את{" "}
               <Link href="/bargains" className="text-gold-dark font-bold underline">
-                המציאון
+                מכונות המחודשות
               </Link>{" "}
-              שלנו - מכונות עם אחריות במחיר נמוך משמעותית ממכונה חדשה.
+              שלנו - מכונות עם 3 חודשי אחריות במחיר נמוך משמעותית ממכונה חדשה.
             </li>
             <li>
               <strong>אספקה חודשית קבועה.</strong> חוסכת גם זמן ניהול וגם

@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const machine = usedMachines.find((m) => m.id === id);
   if (!machine) return { title: "מכונה לא נמצאה" };
   return {
-    title: `${machine.name} — מכונת יד2 | קפה גינץ`,
+    title: `${machine.name} — מכונה מחודשת | קפה גינץ`,
     description: machine.description.slice(0, 160),
     alternates: { canonical: `/bargains/${machine.id}` },
     openGraph: {
@@ -56,7 +56,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
             className="inline-flex items-center gap-1 text-sm text-brown/70 hover:text-brown transition-colors"
           >
             <ChevronLeft className="w-4 h-4" aria-hidden="true" />
-            חזרה לכל מכונות היד2
+            חזרה לכל המכונות המחודשות
           </Link>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
             {/* Product info */}
             <div className="flex flex-col">
               <span className="self-start bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full mb-3">
-                מכונות יד2
+                מכונות מחודשות
               </span>
 
               <h1 className="text-3xl sm:text-4xl font-bold text-brown mb-3 leading-tight">
@@ -89,10 +89,16 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* Condition */}
-              <div className="mb-5 inline-flex items-center gap-2 self-start bg-white rounded-lg px-4 py-2 shadow-sm">
-                <span className="text-brown/60 text-sm">מצב:</span>
-                <span className="text-brown font-semibold text-sm">{machine.condition}</span>
+              {/* Condition & warranty */}
+              <div className="mb-5 flex flex-wrap items-center gap-3">
+                <div className="inline-flex items-center gap-2 bg-white rounded-lg px-4 py-2 shadow-sm">
+                  <span className="text-brown/60 text-sm">מצב:</span>
+                  <span className="text-brown font-semibold text-sm">{machine.condition}</span>
+                </div>
+                <div className="inline-flex items-center gap-2 bg-white rounded-lg px-4 py-2 shadow-sm">
+                  <span className="text-brown/60 text-sm">אחריות:</span>
+                  <span className="text-brown font-semibold text-sm">3 חודשים</span>
+                </div>
               </div>
 
               {/* Short description */}
@@ -136,7 +142,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
 
               {/* Warranty note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">
-                כל מכונות היד2 עוברות בדיקה טכנית ומגיעות עם אחריות — תקופת האחריות לפריט הזה מפורטת למעלה תחת &quot;מצב&quot;.
+                כל המכונות המחודשות עוברות בדיקה טכנית ומגיעות עם 3 חודשי אחריות.
               </div>
 
               {/* Specs table */}

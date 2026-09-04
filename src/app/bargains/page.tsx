@@ -4,9 +4,9 @@ import { usedMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/bargains" },
-  title: "מכונות יד2 – מכונות קפה משומשות",
+  title: "מכונות קפה מחודשות - משומשות",
   description:
-    "מכונות קפה יד שנייה ומשופצות במחירים מיוחדים. מגיעות עם בדיקה ואחריות.",
+    "מכונות קפה מחודשות ומשומשות במחירים מיוחדים. מגיעות עם בדיקה טכנית ו-3 חודשי אחריות.",
 };
 
 export default function BargainsPage() {
@@ -20,14 +20,14 @@ export default function BargainsPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · מכונות יד2
+            Gintz Coffee · מכונות מחודשות
           </p>
           <h1 id="bargains-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות יד2 — מכונות משומשות
+            מכונות מחודשות — משומשות
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות קפה איכותיות יד שנייה, מבודקות ומשופצות. הזדמנות מצוינת לעסקים שרוצים
-            איכות במחיר שמשתלם.
+            מכונות קפה איכותיות מחודשות ומשומשות, מבודקות ומשופצות, עם 3 חודשי אחריות. הזדמנות
+            מצוינת לעסקים שרוצים איכות במחיר שמשתלם.
           </p>
         </div>
       </section>
@@ -36,9 +36,9 @@ export default function BargainsPage() {
       <div className="bg-gold/10 border-b border-gold/20 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 justify-center text-sm text-brown/70">
           <span className="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
-            מכונות יד2
+            מכונות מחודשות
           </span>
-          <span>כל המכונות עברו בדיקה טכנית ומגיעות עם אחריות — תקופת האחריות מצוינת בכרטיס כל פריט</span>
+          <span>כל המכונות עברו בדיקה טכנית ומגיעות עם 3 חודשי אחריות</span>
         </div>
       </div>
 
@@ -55,9 +55,9 @@ export default function BargainsPage() {
                 name={m.name}
                 description={m.description}
                 image={m.image}
-                badge="מכונות יד2"
+                badge="מכונות מחודשות"
                 detailHref={`/bargains/${m.id}`}
-                features={[`מצב: ${m.condition}`]}
+                features={[`מצב: ${m.condition}`, "אחריות: 3 חודשים"]}
                 priceRange={m.price}
                 originalPrice={m.originalPrice}
                 cartItem={{

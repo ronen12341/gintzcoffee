@@ -9,7 +9,7 @@ const links = [
   { href: "/roastery", label: "בית הקלייה" },
   { href: "/blog", label: "בלוג" },
   { href: "https://www.gilcups.com", label: "כוסות ממותגות" },
-  { href: "/bargains", label: "מכונות יד2" },
+  { href: "/bargains", label: "מכונות מחודשות - משומשות" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
 ];
