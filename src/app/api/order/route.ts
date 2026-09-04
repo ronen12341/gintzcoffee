@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { getCatalogPrice } from "@/lib/server-pricing";
+import { getCatalogPrice, computeShippingFee } from "@/lib/server-pricing";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -60,6 +60,19 @@ function toIsraeliE164(raw: string): string {
   return "972" + digits;
 }
 
+/** Escapes user-supplied text before it's interpolated into an HTML email
+ *  template — every customer-entered field (name, notes, address, etc.) goes
+ *  through this rather than being trusted as safe markup. Safe for both text
+ *  nodes and double-quoted attribute values (e.g. href="tel:${...}"). */
+function escapeHtml(str: unknown): string {
+  return String(str ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
 function categoryLabel(c: string): string {
   switch (c) {
     case "machine":
@@ -92,11 +105,11 @@ function buildItemRows(items: OrderItem[]): string {
       return `
         <tr style="border-bottom: 1px solid #E8DFD0;">
           <td style="padding: 10px 8px; color: #3B1F0A;">
-            <strong>${i.name}</strong>
-            <div style="font-size: 11px; color: #999;">${categoryLabel(i.category)}${i.note ? " · " + i.note : ""}</div>
+            <strong>${escapeHtml(i.name)}</strong>
+            <div style="font-size: 11px; color: #999;">${categoryLabel(i.category)}${i.note ? " · " + escapeHtml(i.note) : ""}</div>
           </td>
           <td style="padding: 10px 8px; color: #3B1F0A; text-align: center;">${i.qty}</td>
-          <td style="padding: 10px 8px; color: #3B1F0A; text-align: end;">${i.price ?? "—"}</td>
+          <td style="padding: 10px 8px; color: #3B1F0A; text-align: end;">${i.price ? escapeHtml(i.price) : "—"}</td>
           <td style="padding: 10px 8px; color: #3B1F0A; text-align: end; font-weight: bold;">${lineTotal}</td>
         </tr>`;
     })
@@ -129,12 +142,12 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
       <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold; width: 120px;">שם</td>
-          <td style="padding: 10px; color: #3B1F0A;">${p.customer.name}</td>
+          <td style="padding: 10px; color: #3B1F0A;">${escapeHtml(p.customer.name)}</td>
         </tr>
         <tr style="background: #FAF6F0;">
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">טלפון</td>
           <td style="padding: 10px; color: #3B1F0A; direction: ltr;">
-            <a href="tel:${p.customer.phone}" style="color: #C8922A; text-decoration: none;">${p.customer.phone}</a>
+            <a href="tel:${escapeHtml(p.customer.phone)}" style="color: #C8922A; text-decoration: none;">${escapeHtml(p.customer.phone)}</a>
             &nbsp;·&nbsp;
             <a href="${waLink}" style="color: #25D366; text-decoration: none;">וואטסאפ ↗</a>
           </td>
@@ -142,17 +155,17 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         ${p.customer.email ? `
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">אימייל</td>
-          <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${p.customer.email}</td>
+          <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${escapeHtml(p.customer.email)}</td>
         </tr>` : ""}
         ${p.customer.taxId ? `
         <tr style="background: #FAF6F0;">
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">ח.פ / ת.ז</td>
-          <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${p.customer.taxId}</td>
+          <td style="padding: 10px; color: #3B1F0A; direction: ltr;">${escapeHtml(p.customer.taxId)}</td>
         </tr>` : ""}
         ${p.customer.invoiceName ? `
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">שם לחשבונית</td>
-          <td style="padding: 10px; color: #3B1F0A;">${p.customer.invoiceName}</td>
+          <td style="padding: 10px; color: #3B1F0A;">${escapeHtml(p.customer.invoiceName)}</td>
         </tr>` : ""}
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">אופן קבלה</td>
@@ -165,12 +178,12 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         ${p.customer.address || p.customer.city ? `
         <tr style="background: #FAF6F0;">
           <td style="padding: 10px; color: #5C3015; font-weight: bold;">כתובת</td>
-          <td style="padding: 10px; color: #3B1F0A;">${[p.customer.address, p.customer.city].filter(Boolean).join(", ")}</td>
+          <td style="padding: 10px; color: #3B1F0A;">${escapeHtml([p.customer.address, p.customer.city].filter(Boolean).join(", "))}</td>
         </tr>` : ""}
         ${p.customer.notes ? `
         <tr>
           <td style="padding: 10px; color: #5C3015; font-weight: bold; vertical-align: top;">הערות</td>
-          <td style="padding: 10px; color: #3B1F0A; white-space: pre-wrap;">${p.customer.notes}</td>
+          <td style="padding: 10px; color: #3B1F0A; white-space: pre-wrap;">${escapeHtml(p.customer.notes)}</td>
         </tr>` : ""}
       </table>
 
@@ -221,7 +234,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
 
       <div style="margin-top: 24px; padding: 16px; background: #fff; border-radius: 8px; text-align: center;">
         <p style="margin: 0 0 8px; color: #5C3015; font-weight: bold;">פעולות מהירות:</p>
-        <a href="tel:${p.customer.phone}" style="display: inline-block; background: #5C3015; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;">📞 התקשר ללקוח</a>
+        <a href="tel:${escapeHtml(p.customer.phone)}" style="display: inline-block; background: #5C3015; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;">📞 התקשר ללקוח</a>
         <a href="${waLink}" style="display: inline-block; background: #25D366; color: #fff; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin: 4px;">💬 וואטסאפ</a>
       </div>
 
@@ -407,6 +420,9 @@ export async function POST(req: NextRequest) {
   if (!Array.isArray(body.items) || body.items.length === 0) {
     return NextResponse.json({ ok: false, error: "empty cart" }, { status: 400 });
   }
+  if (body.items.some((item) => !Number.isInteger(item.qty) || item.qty <= 0)) {
+    return NextResponse.json({ ok: false, error: "invalid quantity" }, { status: 400 });
+  }
 
   // Re-price from the catalog wherever possible — the cart's priceNumeric is
   // only a client-side snapshot (stale cache, or an edited request), and this
@@ -421,18 +437,24 @@ export async function POST(req: NextRequest) {
     (sum, i) => sum + (i.priceNumeric ? i.priceNumeric * i.qty : 0),
     0
   );
-  body.grandTotal = body.totalPrice + (body.shippingFee ?? 0);
+  // Recomputed from the re-priced total server-side rather than trusting
+  // body.shippingFee, which is just a client-computed number that travels
+  // as plain JSON (e.g. a request could send shippingFee: 0 or a negative
+  // value on a sub-threshold order).
+  body.shippingFee = computeShippingFee(body.deliveryMethod, body.totalPrice);
+  body.grandTotal = body.totalPrice + body.shippingFee;
 
   const orderId = generateOrderId();
   const html = buildEmailHtml(orderId, body);
   const waText = buildWhatsAppText(orderId, body);
   const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name}`;
 
-  // Primary recipient — known-verified address that works on Resend's free
-  // tier. Must succeed for the order to be considered submitted.
+  // Primary recipient — sent from the verified gilcups.com domain (the only
+  // domain verified in this Resend account). Must succeed for the order to
+  // be considered submitted.
   try {
     const { error } = await resend.emails.send({
-      from: "קפה גינץ <onboarding@resend.dev>",
+      from: "קפה גינץ <noreply@gilcups.com>",
       to: "ronen@aspagil.com",
       replyTo: body.customer.email || undefined,
       subject,
@@ -453,15 +475,15 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Customer-facing confirmation — sent from the verified gintz.co.il domain
-  // (unlike the shared onboarding@resend.dev sender above, which Resend only
-  // allows sending to the account's own verified address). Best-effort: the
-  // order is already submitted via the primary email above, so a failure
-  // here shouldn't fail the request — just log it.
+  // Customer-facing confirmation — also sent from the verified gilcups.com
+  // domain (gintz.co.il is not verified in this Resend account, so it can't
+  // be used as a "from" address yet). Best-effort: the order is already
+  // submitted via the primary email above, so a failure here shouldn't fail
+  // the request — just log it.
   if (body.customer.email) {
     try {
       const { error } = await resend.emails.send({
-        from: "קפה גינץ <orders@gintz.co.il>",
+        from: "קפה גינץ <orders@gilcups.com>",
         to: body.customer.email,
         replyTo: "ronen@aspagil.com",
         subject: `✅ ההזמנה שלך התקבלה ${orderId} — קפה גינץ`,

@@ -6,6 +6,11 @@ const nextConfig = {
       { source: "/About.html", destination: "/", permanent: true },
       { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.html", destination: "/business-solutions", permanent: true },
       { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D-1.html", destination: "/business-solutions", permanent: true },
+      // Distinct variant Google is still ranking for "קפה לעסקים" (950 impressions per
+      // Search Console) — a dot before the "1" instead of a hyphen, so it wasn't
+      // caught by the rule above and was falling through to the generic ".html"
+      // catch-all (redirecting to "/" instead of the topically-matching page).
+      { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.1.html", destination: "/business-solutions", permanent: true },
       { source: "/JURA-WE8.html", destination: "/machines", permanent: true },
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%95%D7%AA-%D7%A7%D7%A4%D7%94-%D7%A8%D7%90%D7%A9-%D7%90%D7%97%D7%93.html", destination: "/machines", permanent: true },
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%95%D7%AA-%D7%90%D7%A1%D7%A4%D7%A8%D7%A1%D7%95.html", destination: "/machines", permanent: true },
@@ -122,10 +127,14 @@ const nextConfig = {
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%AA-%D7%A7%D7%A4%D7%94-%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99%D7%AA-%D7%A2%D7%9D-%D7%9E%D7%98%D7%97%D7%A0%D7%94-Isomac-Zaffiro-Bis-%D7%A2%D7%A8%D7%9B%D7%AA-%D7%9E%D7%AA%D7%A0%D7%95%D7%AA.html", destination: "/machines", permanent: true },
       { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%AA-%D7%A7%D7%A4%D7%94-%D7%9E%D7%A7%D7%A6%D7%95%D7%A2%D7%99%D7%AA-BEZZERA-MATRIX-MN-MANUAL-DOSAGE-1-GR.html", destination: "/machines", permanent: true },
       { source: "/ECM-Casa-Coffee-Grinder-%D7%9E%D7%98%D7%97%D7%A0%D7%AA-%D7%A7%D7%A4%D7%94-%D7%90%D7%99-%D7%A1%D7%99-%D7%90%D7%9D-%D7%A7%D7%90%D7%A1%D7%94.html", destination: "/machines", permanent: true },
+      // --- הפניות נוספות ממפת ה-404 המלאה (135 כתובות, ייצוא 21.8.2026) ---
+      { source: "/%D7%9E%D7%9B%D7%95%D7%A0%D7%95%D7%AA-%D7%A7%D7%A4%D7%94-%D7%A9%D7%9C%D7%95%D7%A9%D7%94-%D7%A8%D7%90%D7%A9%D7%99%D7%9D.html", destination: "/machines", permanent: true },
+      { source: "/%D7%A7%D7%A4%D7%94-%D7%92%D7%99%D7%A0%D7%A5-HOUSE-BLEND.html", destination: "/beans/single-origin-ethiopia", permanent: true },
+      { source: "/%D7%A7%D7%A4%D7%94-House-Blend-%D7%9E%D7%A9%D7%A7%D7%9C-500-%D7%92%D7%A8%D7%9D.html", destination: "/beans/single-origin-ethiopia", permanent: true },
+      { source: "/%D7%A1%D7%98-50-%D7%A7%D7%A4%D7%A1%D7%95%D7%9C%D7%95%D7%AA-%D7%9B%D7%95%D7%9C%D7%9C-%D7%93%D7%9E%D7%99-%D7%9E%D7%A9%D7%9C%D7%95%D7%97-%D7%9E%D7%91%D7%A6%D7%A2.html", destination: "/beans", permanent: true },
+      { source: "/%D7%90%D7%95%D7%98%D7%95%D7%9E%D7%98%D7%99%D7%AA.html", destination: "/machines", permanent: true },
       // רשת ביטחון: כל עמוד .html ישן אחר מופנה לדף הבית במקום 404
       { source: "/:path((?!google).*\\.html)", destination: "/", permanent: true },
-      // אותו דבר לשרידי האתר הישן עוד יותר (ASP) — searchShop.asp, showAlbumOrImage.asp וכו'
-      { source: "/:path(.*\\.asp)", destination: "/", permanent: true },
       // --- שינויי slug למוצרים (מזהים אקראיים/שבורים -> slugs ידידותיים ל-SEO) ---
       { source: "/machines/machine-%20LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },
       { source: "/machines/machine-\\+LeLitPL042EMI", destination: "/machines/machine-lelit-pl042emi", permanent: true },

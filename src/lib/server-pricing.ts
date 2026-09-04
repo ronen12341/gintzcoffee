@@ -13,6 +13,29 @@ export const BEAN_250G_PRICE = 45;
  * edit it directly to pay any amount. Anything that touches money must look
  * the price up here instead of trusting the request.
  */
+/** Mirrors checkout/page.tsx's FREE_SHIPPING_THRESHOLD / SHIPPING_FEE. Keep in sync. */
+const FREE_SHIPPING_THRESHOLD = 400;
+const SHIPPING_FEE = 60;
+
+/**
+ * Server-side mirror of checkout/page.tsx's shipping-fee calculation.
+ * Like getCatalogPrice, this must be re-derived here rather than trusting
+ * the client-supplied shippingFee, which travels as plain JSON and could be
+ * edited directly (e.g. sending shippingFee: 0 on a sub-threshold order).
+ * `itemsTotal` must be the server re-priced total (getCatalogPrice sum), not
+ * the client-supplied totalPrice.
+ */
+export function computeShippingFee(
+  deliveryMethod: string | undefined,
+  itemsTotal: number
+): number {
+  return deliveryMethod === "delivery" &&
+    itemsTotal > 0 &&
+    itemsTotal < FREE_SHIPPING_THRESHOLD
+    ? SHIPPING_FEE
+    : 0;
+}
+
 export function getCatalogPrice(category: string, id: string): number | undefined {
   switch (category) {
     case "bean": {
