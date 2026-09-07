@@ -1,9 +1,17 @@
 import type { MetadataRoute } from "next";
 import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
 
+// Real modification dates instead of `new Date()` on every build. Stamping
+// "today" on every URL each deploy trains Google to ignore <lastmod> entirely.
+// Bump `lastContentUpdate` when catalogue / page content actually changes;
+// the legal pages get their own (rarely-changing) date.
+const lastContentUpdate = new Date("2026-09-07");
+const legalLastUpdate = new Date("2026-06-01");
+const blogLastUpdate = new Date("2026-08-15");
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.gintz.co.il";
-  const now = new Date();
+  const now = lastContentUpdate;
 
   return [
     {
@@ -116,49 +124,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${base}/blog`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "weekly",
       priority: 0.7,
     },
     {
       url: `${base}/blog/choosing-office-coffee-machine`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${base}/blog/office-coffee-budget-guide`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${base}/blog/beans-vs-capsules`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${base}/blog/how-much-coffee-does-an-office-need`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${base}/blog/matching-coffee-to-taste`,
-      lastModified: now,
+      lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${base}/terms`,
-      lastModified: now,
+      lastModified: legalLastUpdate,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
       url: `${base}/accessibility`,
-      lastModified: now,
+      lastModified: legalLastUpdate,
       changeFrequency: "yearly",
       priority: 0.3,
     },

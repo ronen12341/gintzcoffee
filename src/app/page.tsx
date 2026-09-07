@@ -6,8 +6,48 @@ import BusinessSolutionCard from "@/components/BusinessSolutionCard";
 import { businessSolutions } from "@/data/products";
 
 export default function HomePage() {
+  const site = "https://www.gintz.co.il";
+  const organizationLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "קפה גינץ",
+    alternateName: "Gintz Coffee",
+    url: site,
+    logo: `${site}/logo.png`,
+    description:
+      "בית קלייה בוטיק מאז 2005. פתרונות קפה למשרד ולעסק: מכונות קפה, פולי קפה טריים וכוסות ממותגות בהתאמה אישית.",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+97239600550",
+      contactType: "sales",
+      areaServed: "IL",
+      availableLanguage: ["he"],
+    },
+    sameAs: [
+      "https://wa.me/97239600550",
+      "https://www.facebook.com/gintzcoffee",
+      "https://www.instagram.com/gintzcoffee",
+    ],
+  };
+  const websiteLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "קפה גינץ",
+    url: site,
+    inLanguage: "he-IL",
+    publisher: { "@type": "Organization", name: "קפה גינץ" },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
       {/* ── Hero ── */}
       <section
         className="relative isolate min-h-[620px] overflow-hidden bg-brown-dark text-white sm:min-h-[680px]"
