@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/site/", "/image/users/*/ftp/"],
     },
     sitemap: "https://www.gintz.co.il/sitemap.xml",
   };
