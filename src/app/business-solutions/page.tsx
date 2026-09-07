@@ -18,7 +18,7 @@ import { businessSolutions } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions" },
-  title: "פתרונות קפה לעסקים",
+  title: "פתרונות קפה לעסקים ולמשרד — מכונה, פולים ושירות",
   description:
     "פתרונות קפה מקצה לקצה לעסקים — מכונת קפה מקצועית, פולים טריים מבית הקלייה שלנו, התקנה, הדרכה, שירות ותחזוקה. מותאם לפי מספר עובדים, מ-10 ועד 200+.",
   openGraph: {
@@ -194,7 +194,7 @@ export default function BusinessSolutionsPage() {
             id="business-heading"
             className="text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight"
           >
-            פתרונות קפה <span className="text-gold">לעסקים</span>
+            פתרונות קפה <span className="text-gold">לעסקים ולמשרד</span>
           </h1>
           <p className="text-cream/80 text-lg md:text-xl leading-relaxed max-w-2xl mx-auto">
             פתרון קפה איכותי למשרד מקצה לקצה — מכונה מקצועית, פולים טריים מבית
@@ -352,8 +352,11 @@ export default function BusinessSolutionsPage() {
               בית קלייה מול ספק גדול — ההבדל בפועל
             </h2>
             <p className="text-brown/65 max-w-2xl mx-auto">
-              רוב <strong>מכונות קפה לעסקים</strong> בשוק נראות דומות
-              בהצעת המחיר. הן לא דומות בכוס.
+              רוב{" "}
+              <Link href="/machines" className="text-gold-dark underline hover:no-underline">
+                מכונות הקפה לעסקים
+              </Link>{" "}
+              בשוק נראות דומות בהצעת המחיר. הן לא דומות בכוס.
             </p>
           </div>
 

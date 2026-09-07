@@ -84,8 +84,8 @@ export default function HomePage() {
             </h1>
             <p className="mb-8 max-w-2xl text-lg leading-relaxed text-cream/85 sm:text-xl">
               אנחנו לא מוכרים קפה מהמדף — אנחנו מתאימים את הטעם לעובדים שלכם,
-              וקולים אותו בעצמנו בבית הקלייה. מכונה מקצועית, פולים טריים,
-              התאמת תערובת, אספקה ושירות — הכול ממקור אחד.
+              וקולים אותו בעצמנו בבית הקלייה. פתרונות קפה לעסקים ולמשרד ממקור
+              אחד: מכונה מקצועית, פולים טריים, התאמת תערובת, אספקה ושירות.
             </p>
 
             <div className="mb-10 flex flex-col gap-3 sm:flex-row">
@@ -233,8 +233,8 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             <ServiceCard
               icon={<Coffee className="w-8 h-8" />}
-              title="מכונות קפה"
-              description="מכונות מקצועיות עם התקנה, הדרכה ושירות."
+              title="מכונות קפה לעסק ולמשרד"
+              description="מכונות אוטומטיות ומקצועיות עם התקנה, הדרכה ושירות."
               href="/machines"
             />
             <ServiceCard

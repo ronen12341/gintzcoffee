@@ -5,9 +5,9 @@ import { coffeeMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/machines" },
-  title: "מכונת קפה למשרד ולעסק | JURA ומכונות מקצועיות",
+  title: "מכונות קפה לעסקים ולמשרד — JURA, לליט ומקצועיות",
   description:
-    "מכונת קפה למשרד ולעסק — JURA, Melitta ועוד. פתרונות קפה לעסק כולל התקנה, הדרכה ותמיכה. קפה למשרד בהתאמה אישית מבית קלייה גינץ.",
+    "מכונות קפה לעסקים ולמשרד — אוטומטיות ומקצועיות מבית JURA, לליט ועוד. השכרה או רכישה, כולל התקנה חינם, הדרכה ותמיכה. מותאם לפי מספר עובדים.",
   keywords: [
     "מכונת קפה למשרד",
     "מכונות קפה לעסקים",
@@ -95,7 +95,7 @@ export default function MachinesPage() {
             Gintz Coffee · Machines
           </p>
           <h1 id="machines-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונת קפה למשרד ולעסק
+            מכונות קפה לעסקים ולמשרד
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
             מכונות אוטומטיות ומקצועיות לכל גודל עסק — משרד, מסעדה, מלון או קליניקה.
@@ -122,6 +122,14 @@ export default function MachinesPage() {
               אנחנו מספקים מכונות קפה למשרד ולעסק בכל הארץ — מבני ברק וגוש דן
               ועד תל אביב, ירושלים וחיפה — כולל התקנה, הדרכה לצוות ותמיכה
               טכנית שוטפת.
+            </p>
+            <p>
+              לא חייבים לקנות: רוב הלקוחות שלנו בוחרים במסלול{" "}
+              <Link href="/business-solutions/rental" className="text-gold underline hover:no-underline">
+                השכרת מכונת קפה לעסק
+              </Link>{" "}
+              — המכונה בהשאלה אצלכם בדמי שירות חודשיים, בלי השקעה ראשונית בציוד,
+              והתחזוקה כלולה.
             </p>
           </div>
         </div>

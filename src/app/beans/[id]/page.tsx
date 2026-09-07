@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const bean = coffeeBeans.find((b) => b.id === id);
   if (!bean) return { title: "פול קפה לא נמצא" };
   return {
-    title: `${bean.name} — פולי קפה | קפה גינץ`,
+    title: `${bean.name} — פולי קפה טריים לעסק`,
     description: bean.description.slice(0, 160),
     alternates: { canonical: `/beans/${bean.id}` },
     openGraph: {

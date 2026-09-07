@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const machine = coffeeMachines.find((m) => m.id === id);
   if (!machine) return { title: "מכונה לא נמצאה" };
   return {
-    title: `${machine.name} — קפה גינץ`,
+    title: `${machine.name} — מכונת קפה לעסק ולמשרד`,
     description: machine.description.slice(0, 160),
     alternates: { canonical: `/machines/${machine.id}` },
     openGraph: {
