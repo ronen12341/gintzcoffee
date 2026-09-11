@@ -40,6 +40,8 @@ interface OrderPayload {
   shippingFee?: number;
   /** Total to charge including shipping (totalPrice + shippingFee) */
   grandTotal?: number;
+  /** Google Ads click ID captured from the landing URL, if the visit came from a Google Ads click */
+  gclid?: string;
 }
 
 /**
@@ -137,6 +139,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}
       </p>
       <p style="margin: 12px 0;">${paymentBadge}</p>
+      ${p.gclid ? `<p style="color: #666; margin: 4px 0; font-size: 12px;">מקור: Google Ads (gclid: <span style="direction:ltr;display:inline-block;">${escapeHtml(p.gclid)}</span>)</p>` : ""}
 
       <h3 style="color: #5C3015; margin-top: 24px;">פרטי לקוח</h3>
       <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">

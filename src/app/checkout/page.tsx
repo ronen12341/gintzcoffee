@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
+import { getGclid } from "@/lib/gclid";
 
 /**
  * Sumit payment-page URL. Hard-coded fallback is the production page for
@@ -139,6 +140,7 @@ export default function CheckoutPage() {
           deliveryMethod,
           shippingFee,
           grandTotal,
+          gclid: getGclid(),
         }),
       });
 

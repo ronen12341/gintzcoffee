@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
+import { getGclid } from "@/lib/gclid";
 
 const BUSINESS_TYPES = [
   "משרד",
@@ -61,7 +62,7 @@ export default function LeadForm({
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, formType: "lead" }),
+        body: JSON.stringify({ ...form, formType: "lead", gclid: getGclid() }),
       });
       if (res.ok) {
         setSubmitted(true);
