@@ -17,7 +17,7 @@ function escapeHtml(str: unknown): string {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { name, phone, email, businessType, message, quantity, formType } = body;
+  const { name, phone, email, businessType, message, quantity, formType, gclid } = body;
 
   const subject =
     formType === "cups"
@@ -27,6 +27,7 @@ export async function POST(req: NextRequest) {
   const html = `
     <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #F5F0E8; padding: 24px; border-radius: 8px;">
       <h2 style="color: #3B1F0A; border-bottom: 2px solid #C8922A; padding-bottom: 8px;">${subject}</h2>
+      ${gclid ? `<p style="color: #666; margin: 4px 0 0; font-size: 12px;">מקור: Google Ads (gclid: <span style="direction:ltr;display:inline-block;">${escapeHtml(gclid)}</span>)</p>` : ""}
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
         <tr>
           <td style="padding: 8px; color: #5C3015; font-weight: bold; width: 140px;">שם מלא</td>

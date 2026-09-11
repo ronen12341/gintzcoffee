@@ -101,6 +101,23 @@ export default function RootLayout({
             gtag('config', '${GOOGLE_ADS_ID}');
           `}
         </Script>
+        {/* Captures ?gclid= from the landing URL into localStorage so a later
+            order/lead submission can carry it — the only way to link a real
+            order back to the ad click that produced it, since Google Ads
+            reporting is aggregate-only and never exposes who clicked. Runs
+            before the click can be lost to internal navigation. */}
+        <Script id="gclid-capture" strategy="afterInteractive">
+          {`
+            (function(){
+              try {
+                var gclid = new URLSearchParams(window.location.search).get('gclid');
+                if (gclid) {
+                  localStorage.setItem('gintz-gclid', JSON.stringify({ value: gclid, ts: Date.now() }));
+                }
+              } catch (e) {}
+            })();
+          `}
+        </Script>
         {/* Phone-click tracking — B2B visitors call instead of filling a form,
             and those conversions were completely invisible. Fires a GA4
             'phone_click' event on any tel: link; mark it as a conversion in

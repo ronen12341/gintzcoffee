@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
+import { getGclid } from "@/lib/gclid";
 
 const EMPLOYEE_RANGES = ["עד 15", "15–50", "50–100", "מעל 100"];
 
@@ -56,6 +57,7 @@ export default function X10LeadForm() {
           businessType: form.company,
           message: `מספר עובדים: ${form.employees}`,
           formType: "lead",
+          gclid: getGclid(),
         }),
       });
 
