@@ -31,7 +31,7 @@ export default function AddToCartButton({
     setTimeout(() => setAdded(false), 1800);
   };
 
-  const isQuote = !item.priceNumeric;
+  const isQuote = item.priceNumeric === undefined;
   const baseLabel = label ?? (isQuote ? "הוסף לבקשת הצעה" : "הוסף לסל");
 
   return (

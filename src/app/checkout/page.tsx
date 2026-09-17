@@ -95,8 +95,13 @@ export default function CheckoutPage() {
     // Honeypot — real visitors never see or fill this field, so a filled-in
     // value means a bot is driving the form. Pretend nothing happened; the
     // server-side check in /api/order is the one that actually matters,
-    // since a direct API POST skips this form entirely.
+    // since a direct API POST skips this form entirely. Tracked so we can
+    // tell a real bot apart from a desktop password-manager false positive
+    // (see the display:none fix on the field itself below).
     if (form.botcheck.trim()) {
+      if (typeof window !== "undefined" && typeof window.gtag === "function") {
+        window.gtag("event", "checkout_honeypot_blocked");
+      }
       return;
     }
 
@@ -144,8 +149,20 @@ export default function CheckoutPage() {
         }),
       });
 
+      // Parse the body once, even on failure — /api/order returns a
+      // specific, user-facing `message` on validation errors (e.g. bad
+      // phone format) that we want to show instead of a generic one.
+      const orderRes: { orderId?: string; message?: string } = await res
+        .json()
+        .catch(() => ({}));
+
       if (!res.ok) {
-        throw new Error("send failed");
+        setError(
+          orderRes?.message ||
+            "אירעה שגיאה בשליחת ההזמנה. אנא נסו שוב או התקשרו אלינו ב-03-9600550."
+        );
+        setSubmitting(false);
+        return;
       }
 
       // If the customer chose online payment AND Sumit is configured, ask our
@@ -154,7 +171,6 @@ export default function CheckoutPage() {
       // we send the browser there. This avoids the URL-query-param guessing
       // game and gives Sumit a proper itemized record per order.
       if (canPayOnline) {
-        const orderRes = await res.json().catch(() => ({}));
         const orderId = orderRes.orderId || `ORD-${Date.now()}`;
 
         // On any failure here (network error, or the server rejecting the
@@ -201,7 +217,13 @@ export default function CheckoutPage() {
             throw new Error(payData?.message || "Sumit payment session failed");
           }
 
-          clear();
+          // Cart is intentionally left intact here — it's only cleared once
+          // Sumit redirects back with a confirmed paid=1 (see
+          // ClearCartOnPaid on /order/success). Clearing it before the
+          // customer has actually paid meant a declined card, a closed tab,
+          // or hitting "back" from Sumit's page all landed them on an
+          // empty-cart /checkout with no way to retry without re-adding
+          // every item.
           window.location.href = payData.paymentUrl;
           return;
         } catch (err) {
@@ -239,16 +261,23 @@ export default function CheckoutPage() {
             className="lg:col-span-2 bg-white rounded-2xl shadow-md p-6 sm:p-8 space-y-4"
             noValidate
           >
-            <input
-              type="text"
-              name="botcheck"
-              value={form.botcheck}
-              onChange={handleChange}
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-              style={{ position: "absolute", left: "-9999px", width: 0, height: 0, opacity: 0 }}
-            />
+            {/* Hidden with display:none (not just off-screen positioning) —
+                password managers like LastPass/Dashlane and Chrome's own
+                autofill routinely fill absolutely-positioned "hidden" text
+                inputs since they're still part of the visible layout, which
+                silently tripped this honeypot for real desktop customers.
+                display:none is reliably skipped by autofill engines while
+                still catching bots, which fill every input blindly. */}
+            <div style={{ display: "none" }} aria-hidden="true">
+              <input
+                type="text"
+                name="botcheck"
+                value={form.botcheck}
+                onChange={handleChange}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-brown mb-1">

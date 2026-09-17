@@ -73,10 +73,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addItem: CartContextType["addItem"] = (item, qty = 1) => {
     setItems((prev) => {
-      const existing = prev.find((p) => p.id === item.id);
+      // Match on id + category, not id alone — two catalog entries in
+      // different categories could theoretically share an id, and matching
+      // by id alone would silently merge them into one line (dropping the
+      // second item's name/category/price from the cart and order).
+      const existing = prev.find(
+        (p) => p.id === item.id && p.category === item.category
+      );
       if (existing) {
         return prev.map((p) =>
-          p.id === item.id ? { ...p, qty: p.qty + qty } : p
+          p === existing ? { ...p, qty: p.qty + qty } : p
         );
       }
       return [...prev, { ...item, qty }];
@@ -106,7 +112,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     (sum, i) => sum + (i.priceNumeric ? i.priceNumeric * i.qty : 0),
     0
   );
-  const hasUnpricedItems = items.some((i) => !i.priceNumeric);
+  // Strictly "no catalog price", not "priced at 0" — a falsy check here
+  // would treat a legitimately free (₪0) item as unpriced and disable
+  // online payment for the whole cart.
+  const hasUnpricedItems = items.some((i) => i.priceNumeric === undefined);
 
   return (
     <CartContext.Provider

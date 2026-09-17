@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import { CheckCircle2, Phone } from "lucide-react";
+import ClearCartOnPaid from "@/components/ClearCartOnPaid";
 
 export const metadata: Metadata = {
   robots: { index: false, follow: false },
@@ -36,6 +37,7 @@ export default function OrderSuccessPage({
 
   return (
     <section className="py-20 bg-cream min-h-[60vh]">
+      <ClearCartOnPaid paid={paid} />
       {shouldTrackPurchase && (
         <>
           {/* Meta Pixel — Purchase event (order completed) */}
