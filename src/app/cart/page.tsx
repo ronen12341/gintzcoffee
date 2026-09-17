@@ -41,7 +41,7 @@ export default function CartPage() {
         <div className="bg-white rounded-2xl shadow-md overflow-hidden mb-6">
           <ul className="divide-y divide-cream-dark">
             {items.map((item) => (
-              <li key={item.id} className="p-4 sm:p-6 flex gap-4">
+              <li key={`${item.category}:${item.id}`} className="p-4 sm:p-6 flex gap-4">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 flex-shrink-0 bg-cream rounded-lg overflow-hidden relative">
                   {item.image && (
                     <SmartImage
@@ -69,7 +69,7 @@ export default function CartPage() {
                     <div className="flex items-center gap-2 border border-cream-dark rounded-lg">
                       <button
                         type="button"
-                        onClick={() => updateQty(item.id, item.qty - 1)}
+                        onClick={() => updateQty(item.id, item.category, item.qty - 1)}
                         className="p-1.5 text-brown hover:bg-cream rounded-r-lg transition-colors"
                         aria-label="הפחת כמות"
                       >
@@ -80,7 +80,7 @@ export default function CartPage() {
                       </span>
                       <button
                         type="button"
-                        onClick={() => updateQty(item.id, item.qty + 1)}
+                        onClick={() => updateQty(item.id, item.category, item.qty + 1)}
                         className="p-1.5 text-brown hover:bg-cream rounded-l-lg transition-colors"
                         aria-label="הוסף כמות"
                       >
@@ -90,7 +90,7 @@ export default function CartPage() {
 
                     <button
                       type="button"
-                      onClick={() => removeItem(item.id)}
+                      onClick={() => removeItem(item.id, item.category)}
                       className="text-red-600 hover:text-red-700 p-1.5 rounded-lg hover:bg-red-50 transition-colors flex items-center gap-1 text-sm"
                       aria-label={`הסר ${item.name}`}
                     >

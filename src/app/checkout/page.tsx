@@ -90,6 +90,11 @@ export default function CheckoutPage() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    // Re-entry guard — `disabled={submitting}` on the button only takes
+    // effect after React re-renders, which a fast double-click or an
+    // Enter-key-plus-click can race, firing two /api/order (and two Sumit
+    // payment session) requests for the same cart.
+    if (submitting) return;
     setError(null);
 
     // Honeypot — real visitors never see or fill this field, so a filled-in
@@ -505,13 +510,13 @@ export default function CheckoutPage() {
             <h2 className="text-lg font-bold text-brown mb-4">סיכום הזמנה</h2>
             <ul className="divide-y divide-cream-dark mb-4">
               {items.map((item) => (
-                <li key={item.id} className="py-3 flex justify-between text-sm">
+                <li key={`${item.category}:${item.id}`} className="py-3 flex justify-between text-sm">
                   <div className="flex-1 min-w-0">
                     <p className="text-brown font-medium truncate">{item.name}</p>
                     <p className="text-brown/55 text-xs">כמות: {item.qty}</p>
                   </div>
                   <p className="text-brown font-semibold ms-2 whitespace-nowrap">
-                    {item.priceNumeric
+                    {item.priceNumeric !== undefined
                       ? `${(item.priceNumeric * item.qty).toLocaleString("he-IL")} ש"ח`
                       : "לפי הצעה"}
                   </p>

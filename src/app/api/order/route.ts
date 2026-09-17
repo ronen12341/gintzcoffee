@@ -99,7 +99,7 @@ function generateOrderId() {
 function buildItemRows(items: OrderItem[]): string {
   return items
     .map((i) => {
-      const lineTotal = i.priceNumeric
+      const lineTotal = i.priceNumeric !== undefined
         ? `${(i.priceNumeric * i.qty).toLocaleString("he-IL")} ש"ח`
         : "לפי הצעה";
       return `
@@ -342,7 +342,7 @@ function buildWhatsAppText(orderId: string, p: OrderPayload): string {
   }
   lines.push(``, `*פריטים:*`);
   for (const i of p.items) {
-    const lineTotal = i.priceNumeric
+    const lineTotal = i.priceNumeric !== undefined
       ? `${(i.priceNumeric * i.qty).toLocaleString("he-IL")} ש"ח`
       : "לפי הצעה";
     lines.push(`• ${i.name} × ${i.qty} — ${lineTotal}`);
@@ -427,13 +427,17 @@ export async function POST(req: NextRequest) {
 
   // Re-price from the catalog wherever possible — the cart's priceNumeric is
   // only a client-side snapshot (stale cache, or an edited request), and this
-  // email is what Ronen actually acts on to fulfill/charge the order. Items
-  // whose id/category don't resolve (e.g. quote-based cups) keep whatever the
-  // client sent, since there's no catalog price to fall back to.
+  // email is what Ronen actually acts on to fulfill/charge the order. An
+  // unresolved id/category is never trusted with the client's number: it's
+  // either a genuinely quote-based item by design (e.g. cups) or a stale/
+  // removed catalog id — either way it's marked unpriced so it flows into
+  // the existing "needs a quote" path instead of carrying a possibly-stale
+  // or tampered price into the total and the email/WhatsApp message.
   body.items = body.items.map((item) => {
     const catalogPrice = getCatalogPrice(item.category, item.id);
-    return catalogPrice !== undefined ? { ...item, priceNumeric: catalogPrice } : item;
+    return { ...item, priceNumeric: catalogPrice };
   });
+  body.hasUnpricedItems = body.items.some((i) => i.priceNumeric === undefined);
   body.totalPrice = body.items.reduce(
     (sum, i) => sum + (i.priceNumeric ? i.priceNumeric * i.qty : 0),
     0
@@ -498,8 +502,10 @@ export async function POST(req: NextRequest) {
     }
   }
 
-  // Fire-and-forget WhatsApp
-  sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
+  // Awaited (not fire-and-forget) — on a serverless runtime the function can
+  // be frozen/torn down as soon as the response below is returned, which can
+  // cut this request off mid-flight before it ever reaches CallMeBot.
+  await sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
 
   return NextResponse.json({ ok: true, orderId });
 }
