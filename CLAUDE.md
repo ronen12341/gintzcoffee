@@ -2,9 +2,7 @@
 
 ## Overview
 
-A modern, RTL Hebrew B2B website for **קפה גינץ (Gintz Coffee)**, combining two existing businesses:
-- **Coffee machines for businesses** (formerly gintz.co.il)
-- **Branded paper cups** (formerly gilcups.com)
+A modern, RTL Hebrew B2B website for **קפה גינץ (Gintz Coffee)** — coffee machines and beans for businesses. Originally set out to combine two businesses (gintz.co.il and the branded-paper-cups site gilcups.com) into one site, but cups were later split back out: `/cups` on this site is now a permanent redirect to gilcups.com (a separate codebase/repo), which handles cups on its own.
 
 The site has a working cart/checkout/order flow (no database — orders are not persisted, only emailed). Lead forms remain client-side-only (validate + show a success state, no submission). Order flow: `/beans` etc. → add to cart (`src/lib/cart.tsx`, persisted to `localStorage`) → `/cart` → `/checkout` → `POST /api/order` (emails the order via Resend, optional WhatsApp via CallMeBot) → if all items are priced, `POST /api/sumit-payment` creates a Sumit hosted-payment session and redirects there → Sumit redirects back to `/order/success`. Unpriced ("quote") items skip payment and go straight to `/order/success` as a lead.
 
@@ -60,7 +58,7 @@ src/
 │   ├── page.tsx            Homepage (/)
 │   ├── machines/page.tsx   Coffee machines (/machines)
 │   ├── beans/page.tsx      Coffee beans (/beans), beans/[id]/page.tsx product detail
-│   ├── cups/page.tsx       Branded cups (/cups)
+│   ├── cups/page.tsx       Permanent redirect to gilcups.com — cups are no longer sold on this site
 │   ├── bargains/page.tsx   Used machines (/bargains)
 │   ├── contact/page.tsx    Contact page (/contact)
 │   ├── cart/page.tsx       Cart view — reads CartContext
@@ -78,7 +76,6 @@ src/
 │   │   ├── ImagePlaceholder.tsx   Gray placeholder with camera icon — server component
 │   │   └── WhatsAppButton.tsx     Fixed bottom-left WhatsApp CTA — client component
 │   ├── LeadForm.tsx        Lead capture form — "use client", validates name+phone, no submission
-│   ├── CupsQuoteForm.tsx   Cups quote form with quantity selector — "use client"
 │   ├── AddToCartButton.tsx Adds a priced product (machine/cup/used) to the cart
 │   ├── BeanPurchase.tsx    Weight + grind selector for beans, adds a cart line
 │   └── ProductCard.tsx     Product card (image/placeholder, features, CTA link) — server component
@@ -115,9 +112,9 @@ Order emails currently go only to `ronen@aspagil.com` (Resend free-tier restrict
 | `/` | Hero, Services (3 cards), Why Us (4 points), Featured Products, Cups Highlight, Lead Form |
 | `/machines` | Hero, Product grid (5 machines), Info strip, Lead Form |
 | `/beans` | Hero, Bean cards with origin/roast badges, Process steps, Lead Form |
-| `/cups` | Hero, Category grid (4), Process steps, CupsQuoteForm |
+| `/cups` | Permanent redirect to gilcups.com (query string forwarded, e.g. gclid) |
 | `/bargains` | Hero, Used machines grid (3), Info strip, Lead Form |
-| `/contact` | Contact cards (phone/WA/email/address/hours), Map placeholder, Lead Form |
+| `/contact` | Contact cards (phone/WA/email/address/hours), Google Maps embed, Lead Form |
 
 ---
 
@@ -197,7 +194,7 @@ npm run dev
 
 - [ ] Move images from `/publicimages/` → `/public/images/`
 - [ ] Map images to products in `src/data/products.ts`
-- [x] Wire forms to real backend — cart/checkout/order flow is live (Resend email + Sumit payment); `LeadForm`/`CupsQuoteForm` are still client-side-only
-- [ ] Embed real Google Maps iframe on `/contact`
+- [x] Wire forms to real backend — cart/checkout/order flow is live (Resend email + Sumit payment); `LeadForm` is still client-side-only
+- [x] Embed real Google Maps iframe on `/contact`
 - [x] Add Open Graph metadata — set in `src/app/layout.tsx`
 - [ ] Add more used machines to `/bargains`

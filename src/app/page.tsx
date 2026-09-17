@@ -317,9 +317,14 @@ function ServiceCard({
   description: string;
   href: string;
 }) {
+  // An external href (e.g. gilcups.com) should open in a new tab, same as
+  // the equivalent links in Navbar/Footer — otherwise it replaces this tab
+  // and the visitor loses whatever they were browsing on gintz.co.il.
+  const external = href.startsWith("http");
   return (
     <Link
       href={href}
+      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className="group rounded-2xl border border-brown/5 bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
     >
       <div className="text-gold mb-4 flex justify-center group-hover:scale-110 transition-transform">

@@ -145,10 +145,13 @@ const nextConfig = {
       { source: "/bargains/used-mrkgmn3g", destination: "/bargains/used-jura-x8", permanent: true },
       { source: "/bargains/used-mrkgrcrp", destination: "/bargains/used-jura-e8", permanent: true },
       { source: "/bargains/used-mrkgx716", destination: "/bargains/used-milk-fridge", permanent: true },
-      // אחידות סלאגים (אותיות גדולות -> קטנות)
-      { source: "/machines/machine-MaraX", destination: "/machines/machine-marax", permanent: true },
-      { source: "/machines/machine-PL41EM", destination: "/machines/machine-pl41em", permanent: true },
-      { source: "/bargains/used-B2016gr1", destination: "/bargains/used-b2016gr1", permanent: true },
+      // The 3 "slug uniformity" rules that used to live here (uppercase ->
+      // lowercase variants of machine-marax / machine-pl41em / used-b2016gr1)
+      // were removed: Next.js matches redirect sources case-insensitively,
+      // so each one also matched — and redirected to — its own already-
+      // lowercase destination, an infinite 308 loop (ERR_TOO_MANY_REDIRECTS)
+      // on these 3 real, currently-linked, currently-indexed product pages.
+      // Verified live with `next build && next start` + curl.
     ];
   },
   images: {

@@ -83,6 +83,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
+  // Cross-tab sync — the native "storage" event fires in OTHER tabs when
+  // localStorage changes here, never in the tab that made the change. A
+  // customer with the cart open in two tabs who pays in one has their cart
+  // cleared there (see the hydration effect above), but a second tab keeps
+  // its own stale in-memory `items` — the next time anything in that tab
+  // triggers the persist effect below, it would silently write the stale,
+  // already-paid-for cart back over the just-cleared localStorage. This
+  // keeps every open tab's state in sync with whichever tab last wrote it.
+  useEffect(() => {
+    const onStorage = (e: StorageEvent) => {
+      if (e.key !== STORAGE_KEY) return;
+      try {
+        if (!e.newValue) {
+          setItems([]);
+          return;
+        }
+        const parsed = JSON.parse(e.newValue);
+        if (Array.isArray(parsed)) setItems(parsed);
+      } catch {
+        // ignore corrupt storage
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, []);
+
   // Persist to localStorage on change (after initial hydration)
   useEffect(() => {
     if (!hydrated) return;
