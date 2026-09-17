@@ -14,8 +14,13 @@ interface MachineGalleryProps {
  * Falls back to a placeholder when no images are supplied. Single-image case
  * skips the thumbnail row entirely.
  */
-export default function MachineGallery({ images, alt }: MachineGalleryProps) {
+export default function MachineGallery({ images: rawImages, alt }: MachineGalleryProps) {
   const [selected, setSelected] = useState(0);
+  // Drop blank entries — next/image throws at render (crashing the whole
+  // page, since the app has no per-route error boundary of its own to
+  // contain it) if src is an empty string, which `?? images[0]` below does
+  // not catch since "" is neither null nor undefined.
+  const images = rawImages.filter((src) => !!src);
 
   if (images.length === 0) {
     return (

@@ -168,10 +168,14 @@ export default function RootLayout({
                 addressLocality: "בני ברק",
                 addressCountry: "IL",
               },
+              // Kept in sync with the Google Maps embed on /contact (the
+              // actual pin for this address) — these two had drifted ~1.5km
+              // apart, which could send a customer trusting the search-
+              // result map pin to the wrong location in Bnei Brak.
               geo: {
                 "@type": "GeoCoordinates",
-                latitude: 32.0853,
-                longitude: 34.8337,
+                latitude: 32.0968866,
+                longitude: 34.8281619,
               },
               openingHoursSpecification: [
                 {

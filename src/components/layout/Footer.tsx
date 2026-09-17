@@ -8,7 +8,7 @@ const links = [
   { href: "/beans", label: "פולי קפה" },
   { href: "/roastery", label: "בית הקלייה" },
   { href: "/blog", label: "בלוג" },
-  { href: "https://www.gilcups.com", label: "כוסות ממותגות" },
+  { href: "https://www.gilcups.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מכונות מחודשות - משומשות" },
   { href: "/faq", label: "שאלות נפוצות" },
   { href: "/contact", label: "צור קשר" },
@@ -96,11 +96,22 @@ export default function Footer() {
               קישורים מהירים
             </h3>
             <ul className="space-y-1">
-              {links.map(({ href, label }) => (
+              {links.map(({ href, label, external }) => (
                 <li key={href}>
-                  <Link href={href} className="footer-link">
-                    {label}
-                  </Link>
+                  {external ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer-link"
+                    >
+                      {label}
+                    </a>
+                  ) : (
+                    <Link href={href} className="footer-link">
+                      {label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
