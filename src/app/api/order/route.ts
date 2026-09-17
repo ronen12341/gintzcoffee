@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getCatalogPrice, computeShippingFee } from "@/lib/server-pricing";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface OrderItem {
   id: string;
   name: string;
@@ -455,7 +453,9 @@ export async function POST(req: NextRequest) {
   // Primary recipient — sent from the verified gilcups.com domain (the only
   // domain verified in this Resend account). Must succeed for the order to
   // be considered submitted.
+  let resend: Resend;
   try {
+    resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
       from: "קפה גינץ <noreply@gilcups.com>",
       to: "ronen@aspagil.com",
