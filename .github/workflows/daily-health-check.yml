@@ -1,0 +1,24 @@
+name: Daily Health Check
+
+on:
+  schedule:
+    # ~08:17 Israel time (UTC+3 during DST) — runs in GitHub's UTC clock.
+    - cron: "17 5 * * *"
+  workflow_dispatch: {}
+
+jobs:
+  build-and-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      # Deliberately run without RESEND_API_KEY / SUMIT_API_KEY secrets: a
+      # missing key must never crash the build (see the Sep 2026 incident
+      # where a module-level `new Resend()` did exactly that). Running the
+      # build without them here is what catches that class of bug again.
+      - run: npm run build
+      - run: npx tsc --noEmit
