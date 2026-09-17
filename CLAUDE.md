@@ -4,7 +4,7 @@
 
 A modern, RTL Hebrew B2B website for **קפה גינץ (Gintz Coffee)** — coffee machines and beans for businesses. Originally set out to combine two businesses (gintz.co.il and the branded-paper-cups site gilcups.com) into one site, but cups were later split back out: `/cups` on this site is now a permanent redirect to gilcups.com (a separate codebase/repo), which handles cups on its own.
 
-The site has a working cart/checkout/order flow (no database — orders are not persisted, only emailed). Lead forms remain client-side-only (validate + show a success state, no submission). Order flow: `/beans` etc. → add to cart (`src/lib/cart.tsx`, persisted to `localStorage`) → `/cart` → `/checkout` → `POST /api/order` (emails the order via Resend, optional WhatsApp via CallMeBot) → if all items are priced, `POST /api/sumit-payment` creates a Sumit hosted-payment session and redirects there → Sumit redirects back to `/order/success`. Unpriced ("quote") items skip payment and go straight to `/order/success` as a lead.
+The site has a working cart/checkout/order flow (no database — orders are not persisted, only emailed). `LeadForm` (used on 11 pages — homepage, `/contact`, `/lp`, and every `/business-solutions/*` page) validates client-side and then really does submit: `POST /api/contact` emails the lead via Resend, same as the order flow. Order flow: `/beans` etc. → add to cart (`src/lib/cart.tsx`, persisted to `localStorage`) → `/cart` → `/checkout` → `POST /api/order` (emails the order via Resend, optional WhatsApp via CallMeBot) → if all items are priced, `POST /api/sumit-payment` creates a Sumit hosted-payment session and redirects there → Sumit redirects back to `/order/success`. Unpriced ("quote") items skip payment and go straight to `/order/success` as a lead.
 
 ---
 
@@ -75,7 +75,7 @@ src/
 │   ├── ui/
 │   │   ├── ImagePlaceholder.tsx   Gray placeholder with camera icon — server component
 │   │   └── WhatsAppButton.tsx     Fixed bottom-left WhatsApp CTA — client component
-│   ├── LeadForm.tsx        Lead capture form — "use client", validates name+phone, no submission
+│   ├── LeadForm.tsx        Lead capture form — "use client", validates name+phone, POSTs /api/contact
 │   ├── AddToCartButton.tsx Adds a priced product (machine/cup/used) to the cart
 │   ├── BeanPurchase.tsx    Weight + grind selector for beans, adds a cart line
 │   └── ProductCard.tsx     Product card (image/placeholder, features, CTA link) — server component
@@ -194,7 +194,7 @@ npm run dev
 
 - [ ] Move images from `/publicimages/` → `/public/images/`
 - [ ] Map images to products in `src/data/products.ts`
-- [x] Wire forms to real backend — cart/checkout/order flow is live (Resend email + Sumit payment); `LeadForm` is still client-side-only
+- [x] Wire forms to real backend — cart/checkout/order flow is live (Resend email + Sumit payment); `LeadForm` posts to `/api/contact` (Resend email) too
 - [x] Embed real Google Maps iframe on `/contact`
 - [x] Add Open Graph metadata — set in `src/app/layout.tsx`
 - [ ] Add more used machines to `/bargains`

@@ -51,6 +51,11 @@ export default function LeadForm({
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    // Re-entry guard — `disabled={sending}` only takes effect after React
+    // re-renders, which a fast double-click can race, firing two /api/contact
+    // requests (two emails, and a doubled/corrupted Google Ads lead
+    // conversion count via trackLead below) for one submission.
+    if (sending) return;
     const errs = validate();
     if (Object.keys(errs).length) {
       setErrors(errs);
