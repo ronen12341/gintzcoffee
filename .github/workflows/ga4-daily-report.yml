@@ -1,0 +1,33 @@
+name: GA4 Daily Report
+
+on:
+  schedule:
+    # ~07:00 Israel time (UTC+3 during DST) — runs in GitHub's UTC clock.
+    - cron: "0 4 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: node scripts/ga4-daily-report.mjs
+        env:
+          GA4_SERVICE_ACCOUNT_JSON: ${{ secrets.GA4_SERVICE_ACCOUNT_JSON }}
+          GA4_PROPERTY_ID: "547100779"
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/ga4/
+          git diff --cached --quiet || git commit -m "chore: GA4 daily report $(date -u +%Y-%m-%d)"
+          git push
