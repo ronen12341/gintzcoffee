@@ -139,13 +139,13 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:salesaspagil@gmail.com"
+                  href="mailto:sales@aspagil.com"
                   className="flex items-center gap-2.5 text-brown/65 hover:text-gold-dark text-sm transition-colors group"
                 >
                   <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-gold/10 flex-shrink-0">
                     <Mail className="w-3.5 h-3.5 text-gold-dark" aria-hidden="true" />
                   </span>
-                  <span dir="ltr">salesaspagil@gmail.com</span>
+                  <span dir="ltr">sales@aspagil.com</span>
                 </a>
               </li>
               <li className="flex items-start gap-2.5 text-brown/65 text-sm">

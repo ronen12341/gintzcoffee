@@ -51,8 +51,8 @@ export default function TermsPage() {
           <p>
             ניתן לבטל עסקה בהתאם להוראות חוק הגנת הצרכן, התשמ&quot;א-1981
             ותקנותיו. ביטול הזמנה למוצר יעשה בכתב, בפנייה לדוא&quot;ל{" "}
-            <a href="mailto:salesaspagil@gmail.com" className="text-gold font-bold">
-              salesaspagil@gmail.com
+            <a href="mailto:sales@aspagil.com" className="text-gold font-bold">
+              sales@aspagil.com
             </a>{" "}
             או בטלפון{" "}
             <a href="tel:039600550" className="text-gold font-bold" dir="ltr">
@@ -83,8 +83,8 @@ export default function TermsPage() {
               03-9600550
             </a>{" "}
             או בדוא&quot;ל{" "}
-            <a href="mailto:salesaspagil@gmail.com" className="text-gold font-bold">
-              salesaspagil@gmail.com
+            <a href="mailto:sales@aspagil.com" className="text-gold font-bold">
+              sales@aspagil.com
             </a>
             .
           </p>

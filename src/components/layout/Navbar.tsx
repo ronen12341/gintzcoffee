@@ -264,13 +264,13 @@ export default function Navbar() {
             </span>
           </a>
           <a
-            href="mailto:salesaspagil@gmail.com"
+            href="mailto:sales@aspagil.com"
             className="flex items-center gap-3 text-cream/75 hover:text-gold transition-colors"
           >
             <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold/10 ring-1 ring-gold/25">
               <Mail className="w-4 h-4 text-gold" aria-hidden="true" />
             </span>
-            <span dir="ltr">salesaspagil@gmail.com</span>
+            <span dir="ltr">sales@aspagil.com</span>
           </a>
           <div className="flex items-start gap-3 text-cream/55 leading-snug">
             <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-gold/10 ring-1 ring-gold/25 flex-shrink-0">

@@ -45,8 +45,8 @@ export default function AccessibilityPage() {
               03-9600550
             </a>{" "}
             או בדוא&quot;ל{" "}
-            <a href="mailto:salesaspagil@gmail.com" className="text-gold font-bold">
-              salesaspagil@gmail.com
+            <a href="mailto:sales@aspagil.com" className="text-gold font-bold">
+              sales@aspagil.com
             </a>
             . אנחנו מתחייבים לטפל בכל פנייה תוך 5 ימי עסקים.
           </p>
