@@ -454,14 +454,14 @@ export async function POST(req: NextRequest) {
   const waText = buildWhatsAppText(orderId, body);
   const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name}`;
 
-  // Primary recipient — sent from the verified gilcups.com domain (the only
+  // Primary recipient — sent from the verified aspagil.com domain (the only
   // domain verified in this Resend account). Must succeed for the order to
   // be considered submitted.
   let resend: Resend;
   try {
     resend = new Resend(process.env.RESEND_API_KEY);
     const { error } = await resend.emails.send({
-      from: "קפה גינץ <noreply@gilcups.com>",
+      from: "קפה גינץ <noreply@aspagil.com>",
       to: "ronen@aspagil.com",
       replyTo: body.customer.email || undefined,
       subject,
@@ -482,7 +482,7 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Customer-facing confirmation — also sent from the verified gilcups.com
+  // Customer-facing confirmation — also sent from the verified aspagil.com
   // domain (gintz.co.il is not verified in this Resend account, so it can't
   // be used as a "from" address yet). Best-effort: the order is already
   // submitted via the primary email above, so a failure here shouldn't fail
@@ -490,7 +490,7 @@ export async function POST(req: NextRequest) {
   if (body.customer.email) {
     try {
       const { error } = await resend.emails.send({
-        from: "קפה גינץ <orders@gilcups.com>",
+        from: "קפה גינץ <orders@aspagil.com>",
         to: body.customer.email,
         replyTo: "ronen@aspagil.com",
         subject: `✅ ההזמנה שלך התקבלה ${orderId} — קפה גינץ`,
