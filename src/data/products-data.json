@@ -545,7 +545,7 @@
       "price": "8,500 ש\"ח",
       "priceNumeric": 8500,
       "originalPrice": "24,900 ש\"ח",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "used-b2016gr1",
@@ -556,7 +556,7 @@
       "price": "6,500",
       "priceNumeric": 6500,
       "originalPrice": "14,990",
-      "hidden": false
+      "hidden": true
     },
     {
       "id": "used-nivona-572",
