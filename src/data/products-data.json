@@ -365,6 +365,289 @@
       "priceNumeric": 14800,
       "featured": false,
       "hidden": false
+    },
+    {
+      "id": "kedma-philips-ep1200",
+      "name": "Philips 1200 Series EP1200",
+      "description": "מכונה אוטומטית טוחנת במחיר כניסה: 2 משקאות קפה, התאמת חוזק ונפח (My Coffee Choice), 12 דרגות טחינה, וחלקים שאפשר לשטוף במדיח.",
+      "features": [
+        "2 משקאות קפה",
+        "12 דרגות טחינה",
+        "חלקים למדיח"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/5302607/large/64331d8d69fd8fbf7b83641b82d2191a.jpg",
+      "price": "1,050 ש\"ח",
+      "priceNumeric": 1050,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-philips-ep2220",
+      "name": "Philips 2200 Series EP2220",
+      "description": "מכונה אוטומטית טוחנת עם מסך מגע: אספרסו קצר וארוך ומים חמים, 12 דרגות טחינה עם סכינים קרמיים, פילטר AquaClean, ו-3 דרגות ארומה וטמפרטורה.",
+      "features": [
+        "מסך מגע",
+        "12 דרגות טחינה",
+        "פילטר AquaClean"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/15416841/large/f91a3e761c76f172778e6f7ae344e32c.jpg",
+      "price": "1,390 ש\"ח",
+      "priceNumeric": 1390,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-melitta-ci-touch",
+      "name": "Melitta CI Touch – שחור",
+      "description": "מכונה אוטומטית שקטה במיוחד עם כ-10 משקאות. מכינה 2 כוסות בבת אחת, גם משקאות חלב, זרבובית מתכווננת עד 14 ס\"מ ושטיפה אוטומטית בלחיצת כפתור.",
+      "features": [
+        "כ-10 משקאות",
+        "2 כוסות בבת אחת",
+        "שקטה במיוחד"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/12068511/large/db6f9b62dc5dbf4ac54d357928dc286d.png",
+      "price": "6,390 ש\"ח",
+      "priceNumeric": 6390,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-pascale-coffee-tea-black",
+      "name": "Pascale Coffee & Tea – שחור",
+      "description": "מכונה אוטומטית קטנה ומינימליסטית עם מקשי מגע: קפה או תה בנגיעה אחת, הרטבה מוקדמת של הקפה לטעם מלא, חלקים נשלפים לניקוי וכיבוי אוטומטי.",
+      "features": [
+        "קפה ותה בנגיעה",
+        "קומפקטית",
+        "כיבוי אוטומטי"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/8822873/large/24eb836e26aa962f31cab9a065d4ffde.jpg",
+      "price": "1,190 ש\"ח",
+      "priceNumeric": 1190,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-pascale-coffee-tea-milk",
+      "name": "Pascale Coffee & Tea Milk – כסף",
+      "description": "גרסת ה-Coffee & Tea עם סטימר להקצפת חלב: מכונה אוטומטית קומפקטית עם מקשי מגע, הרטבה מוקדמת של הקפה, חלקים נשלפים לניקוי וכיבוי אוטומטי.",
+      "features": [
+        "סטימר להקצפת חלב",
+        "קפה ותה בנגיעה",
+        "קומפקטית"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/4817768/large/89bcaaa90ba2c31fe6d48fc9cd5437cd.png",
+      "price": "1,290 ש\"ח",
+      "priceNumeric": 1290,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-besana",
+      "name": "Gaggia Besana",
+      "description": "מכונה אוטומטית פשוטה וקומפקטית: כפתורים ייעודיים לאספרסו ולקפה, זיכרון להעדפות, מטחנה קרמית שקטה ומקציף Panarello לקפוצ'ינו ולאטה. מיכל מים 1 ליטר, 15 בר.",
+      "features": [
+        "מקציף Panarello",
+        "מטחנה קרמית",
+        "15 בר"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/5103382/large/7ac797dcfeaa8e8f60bf824552bd01bf.webp",
+      "price": "1,590 ש\"ח",
+      "priceNumeric": 1590,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-cadorna-style",
+      "name": "Gaggia Cadorna Style",
+      "description": "מכונה אוטומטית איטלקית, מיוצרת באיטליה. מיכל מים 1.5 ליטר, מיכל פולים 300 גרם, לחץ 15 בר, ומתאימה לכוסות בגובה 70–115 מ\"מ.",
+      "features": [
+        "מיוצרת באיטליה",
+        "מיכל מים 1.5 ליטר",
+        "מיכל פולים 300 גרם"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/10980079/large/a12cf93b576f954cf4c47b6ba910ab22.jpg",
+      "price": "1,890 ש\"ח",
+      "priceNumeric": 1890,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-anima-style",
+      "name": "Gaggia Anima Style – שחור",
+      "description": "מכונה אוטומטית מתוצרת איטליה עם מקציף Panarello שזז 180°, ו-OptiAroma להתאמת עוצמת הארומה וכמות הקפה לכל משקה.",
+      "features": [
+        "מקציף Panarello",
+        "OptiAroma",
+        "מיוצרת באיטליה"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/4817764/large/042cfd90d8f86274c94eb8cc82061c51.jpg",
+      "price": "1,890 ש\"ח",
+      "priceNumeric": 1890,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-magenta-plus",
+      "name": "Gaggia Magenta Plus – שחור",
+      "description": "מכונה אוטומטית טוחנת מסדרת Magenta של גאגיה, בעיצוב נקי ועם הפעלה פשוטה לקפה איכותי מפולים טריים.",
+      "features": [
+        "אוטומטית טוחנת",
+        "סדרת Magenta"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/6386522/large/d94b74c9163ce71d6d5734424e09cc85.webp",
+      "price": "2,390 ש\"ח",
+      "priceNumeric": 2390,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-cadorna-milk",
+      "name": "Gaggia Cadorna Milk",
+      "description": "מכונה אוטומטית עם 10 משקאות, כולל קפוצ'ינו, לאטה מקיאטו וקפה או-לה בלחיצת כפתור, עם מיכל חלב מובנה. מיוצרת באיטליה.",
+      "features": [
+        "10 משקאות",
+        "משקאות חלב בלחיצה",
+        "מיוצרת באיטליה"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/5244033/large/1e5021f9257b5b10d365a8587c5bdea2.webp",
+      "price": "2,490 ש\"ח",
+      "priceNumeric": 2490,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-cadorna-barista",
+      "name": "Gaggia Cadorna Barista – שחור",
+      "description": "מכונה אוטומטית מסדרת Cadorna עם מקציף חלב מקצועי, להקצפה ידנית בסגנון בריסטה.",
+      "features": [
+        "מקציף חלב מקצועי",
+        "סדרת Cadorna"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/9235535/large/5cc952bd59bfbf592d9da367d6223a20.jpg",
+      "price": "2,490 ש\"ח",
+      "priceNumeric": 2490,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-gaggia-eg2109",
+      "name": "Gaggia EG2109 – כתום",
+      "description": "מכונת אספרסו ידנית בעיצוב כתום בולט: משאבה של 15 בר לאספרסו עם קרמה, ופיית קיטור מובנית לקפוצ'ינו ולאטה.",
+      "features": [
+        "ידנית",
+        "15 בר",
+        "פיית קיטור"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/14233173/large/99155adf6007e3183fd407a6aa1e2a2b.png",
+      "price": "890 ש\"ח",
+      "priceNumeric": 890,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-delonghi-dedica-arte",
+      "name": "De'Longhi Dedica Arte EC885 – אפור",
+      "description": "מכונת אספרסו ידנית ברוחב 15 ס\"מ בלבד: משאבה של 15 בר, חימום Thermoblock מהיר, ופיית My LatteArt למיקרו-קצף ולאמנות לאטה.",
+      "features": [
+        "רוחב 15 ס\"מ",
+        "15 בר",
+        "פיית My LatteArt"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/15956591/large/e030d35ae46c7983a9181eec497999c8.jpg",
+      "price": "999 ש\"ח",
+      "priceNumeric": 999,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-delonghi-specialista-arte-yellow",
+      "name": "De'Longhi La Specialista Arte EC9155 – צהוב",
+      "description": "מכונת אספרסו ידנית עם מטחנה מובנית ב-15 דרגות, בקרת טמפרטורה אקטיבית, 3 תוכניות (אספרסו, אמריקנו ומים חמים) וזרוע My LatteArt להקצפה ידנית.",
+      "features": [
+        "מטחנה מובנית, 15 דרגות",
+        "בקרת טמפרטורה",
+        "זרוע My LatteArt"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/15427525/large/b35aa75ddff0ea6728915eeabbf5aaf4.jpg",
+      "price": "2,149 ש\"ח",
+      "priceNumeric": 2149,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-delonghi-specialista-arte-white",
+      "name": "De'Longhi La Specialista Arte EC9155 – לבן כסוף",
+      "description": "מכונת אספרסו ידנית עם מטחנה מובנית ב-15 דרגות, בקרת טמפרטורה אקטיבית, 3 תוכניות (אספרסו, אמריקנו ומים חמים) וזרוע My LatteArt להקצפה ידנית.",
+      "features": [
+        "מטחנה מובנית, 15 דרגות",
+        "בקרת טמפרטורה",
+        "זרוע My LatteArt"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/30624741/large/97773fa6d62e08d23bb9aea4c96cc883.webp",
+      "price": "2,281 ש\"ח",
+      "priceNumeric": 2281,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-delonghi-specialista-arte-green",
+      "name": "De'Longhi La Specialista Arte EC9155 – ירוק כסוף",
+      "description": "מכונת אספרסו ידנית עם מטחנה מובנית ב-15 דרגות, בקרת טמפרטורה אקטיבית, 3 תוכניות (אספרסו, אמריקנו ומים חמים) וזרוע My LatteArt להקצפה ידנית.",
+      "features": [
+        "מטחנה מובנית, 15 דרגות",
+        "בקרת טמפרטורה",
+        "זרוע My LatteArt"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/30625297/large/37f824f142b442d46f59383f044bb7ff.webp",
+      "price": "2,399 ש\"ח",
+      "priceNumeric": 2399,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-delonghi-specialista-arte-evo",
+      "name": "De'Longhi La Specialista Arte Evo EC9255",
+      "description": "מכונת אספרסו ידנית עם Cold Brew תוך פחות מ-5 דקות, 8 דרגות טחינה, 3 פרופילי טמפרטורה, וערכת בריסטה עם מדריך מינון ומזרן טמפינג.",
+      "features": [
+        "Cold Brew תוך 5 דקות",
+        "8 דרגות טחינה",
+        "ערכת בריסטה"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/30626385/large/4157cb6d02e89f810349b117c149b0f0.webp",
+      "price": "2,589 ש\"ח",
+      "priceNumeric": 2589,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-lapavoni-casa-bar",
+      "name": "La Pavoni Casa Bar – שחור",
+      "description": "מכונת אספרסו וקפוצ'ינו ידנית בגוף פלדה שחור ובעיצוב קומפקטי, עם מד לחץ ומתגים עם נוריות לכל פונקציה.",
+      "features": [
+        "גוף פלדה",
+        "מד לחץ",
+        "קומפקטית"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/14193493/large/0f92ca8623e0526d3effca32fa4673a6.jpg",
+      "price": "2,890 ש\"ח",
+      "priceNumeric": 2890,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "kedma-lapavoni-domus-bar",
+      "name": "La Pavoni Domus Bar – נירוסטה",
+      "description": "מכונת אספרסו חצי-מקצועית לבית בגוף נירוסטה: מטחנה מובנית ב-7 מצבים, מד לחץ, מחמם כוסות גדול ומיכל מים נשלף.",
+      "features": [
+        "מטחנה מובנית",
+        "גוף נירוסטה",
+        "מחמם כוסות"
+      ],
+      "image": "https://d3m9l0v76dty0.cloudfront.net/system/photos/14195931/large/ac9cb36f8bb6be0a1157705c3ae9ab61.jpg",
+      "price": "3,190 ש\"ח",
+      "priceNumeric": 3190,
+      "featured": false,
+      "hidden": false
     }
   ],
   "coffeeBeans": [

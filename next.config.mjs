@@ -181,6 +181,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "www.gilcups.com",
       },
+      {
+        // Kedma Coffee (espresso-center.co.il) product photos
+        protocol: "https",
+        hostname: "d3m9l0v76dty0.cloudfront.net",
+      },
     ],
   },
 };
