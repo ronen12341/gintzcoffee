@@ -10,6 +10,33 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+type Block =
+  | { kind: "p"; text: string }
+  | { kind: "heading"; text: string }
+  | { kind: "list"; items: string[] };
+
+/** Turn a plain-text description into display blocks. Lines starting with "•"
+ *  are grouped into one compact list; short lines without sentence
+ *  punctuation (e.g. "מאפיינים עיקריים") become subheadings. */
+function toBlocks(text: string): Block[] {
+  const lines = text.split(/\n+/).map((l) => l.trim()).filter(Boolean);
+  const blocks: Block[] = [];
+  for (const line of lines) {
+    if (line.startsWith("•")) {
+      const item = line.replace(/^•\s*/, "");
+      if (!item) continue;
+      const last = blocks[blocks.length - 1];
+      if (last?.kind === "list") last.items.push(item);
+      else blocks.push({ kind: "list", items: [item] });
+    } else if (line.length <= 45 && !/[.!?,:;]$/.test(line) && lines.length > 3) {
+      blocks.push({ kind: "heading", text: line });
+    } else {
+      blocks.push({ kind: "p", text: line });
+    }
+  }
+  return blocks;
+}
+
 export async function generateStaticParams() {
   return coffeeMachines.map((m) => ({ id: m.id }));
 }
@@ -41,10 +68,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
     ...(machine.images ?? []),
   ];
 
-  const paragraphs = (machine.longDescription ?? machine.description)
-    .split(/\n{2,}/)
-    .map((p) => p.trim())
-    .filter(Boolean);
+  const blocks = toBlocks(machine.longDescription ?? machine.description);
 
   // --- Structured data (Product + BreadcrumbList) for rich results ---
   const site = "https://www.gintz.co.il";
@@ -215,15 +239,28 @@ export default async function MachineDetailPage({ params }: PageProps) {
           </div>
 
           {/* Extended description */}
-          {paragraphs.length > 0 && (
+          {blocks.length > 0 && (
             <div className="mt-12 max-w-3xl mx-auto bg-white rounded-2xl shadow-md p-6 sm:p-8">
               <h2 className="text-2xl font-bold text-brown mb-4">
                 על המכונה
               </h2>
               <div className="space-y-4 text-brown/75 leading-relaxed">
-                {paragraphs.map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+                {blocks.map((b, i) =>
+                  b.kind === "list" ? (
+                    <ul key={i} className="space-y-1.5 text-[0.95rem]">
+                      {b.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2">
+                          <span className="mt-2.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-gold" aria-hidden="true" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : b.kind === "heading" ? (
+                    <h3 key={i} className="pt-2 font-bold text-brown">{b.text}</h3>
+                  ) : (
+                    <p key={i}>{b.text}</p>
+                  )
+                )}
               </div>
             </div>
           )}
