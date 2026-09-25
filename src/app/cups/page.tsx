@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
 
-// Branded cups are now sold on our separate site, gilcups.com.
+// Branded cups are now sold on our separate site, aspagil.com.
 // Keep this route as a permanent redirect so any old links/bookmarks still work
 // and no quote-only cup items can enter the gintz.co.il cart.
 export default function CupsRedirect({
@@ -10,7 +10,7 @@ export default function CupsRedirect({
 }) {
   // Forward the query string — old redirects/bookmarks/ads pointing at /cups
   // can still carry ?gclid=... or utm_* params, and dropping them here loses
-  // ad attribution the moment the visitor lands on gilcups.com.
+  // ad attribution the moment the visitor lands on aspagil.com.
   const qs = new URLSearchParams();
   for (const [key, value] of Object.entries(searchParams)) {
     if (typeof value === "string") qs.set(key, value);
@@ -18,6 +18,6 @@ export default function CupsRedirect({
   }
   const query = qs.toString();
   permanentRedirect(
-    query ? `https://www.gilcups.com?${query}` : "https://www.gilcups.com"
+    query ? `https://www.aspagil.com?${query}` : "https://www.aspagil.com"
   );
 }

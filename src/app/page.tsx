@@ -247,7 +247,7 @@ export default function HomePage() {
               icon={<CupIcon />}
               title="כוסות ממותגות"
               description="הדפסה אישית ואספקה מהירה לעסקים ואירועים."
-              href="https://www.gilcups.com"
+              href="https://www.aspagil.com"
             />
           </div>
         </div>
@@ -317,7 +317,7 @@ function ServiceCard({
   description: string;
   href: string;
 }) {
-  // An external href (e.g. gilcups.com) should open in a new tab, same as
+  // An external href (e.g. aspagil.com) should open in a new tab, same as
   // the equivalent links in Navbar/Footer — otherwise it replaces this tab
   // and the visitor loses whatever they were browsing on gintz.co.il.
   const external = href.startsWith("http");
