@@ -13,7 +13,8 @@
       "featured": true,
       "image": "https://www.jura.co.il/wp-content/uploads/2026/05/Z10_1.webp",
       "price": "11,200 ש\"ח",
-      "priceNumeric": 11200
+      "priceNumeric": 11200,
+      "machineType": "automatic"
     },
     {
       "id": "jura-x10",
@@ -29,7 +30,8 @@
       "featured": true,
       "image": "https://www.jura.co.il/wp-content/uploads/2024/06/X10Main.webp",
       "price": "11,250 ש\"ח",
-      "priceNumeric": 11250
+      "priceNumeric": 11250,
+      "machineType": "office"
     },
     {
       "id": "jura-e8",
@@ -45,7 +47,8 @@
       "featured": true,
       "image": "https://www.jura.co.il/wp-content/uploads/2026/05/E8_MS1.webp",
       "price": "5,700 ש\"ח",
-      "priceNumeric": 5700
+      "priceNumeric": 5700,
+      "machineType": "automatic"
     },
     {
       "id": "melitta-solo-silver",
@@ -61,7 +64,8 @@
       "featured": false,
       "image": "https://www.coffeeman.co.il/images/itempics/900602_05042025131742.jpg",
       "price": "1,880 ש\"ח",
-      "priceNumeric": 1880
+      "priceNumeric": 1880,
+      "machineType": "automatic"
     },
     {
       "id": "machine-ena8",
@@ -69,10 +73,11 @@
       "description": "מכונה קטנה עם ביצועים גדולים \nמחפשים את חווית הקפה המושלמת מבלי להזדקק להרבה מקום? ה- ENA 8  הקומפקטית מצוידת בטכנולוגיות מתקדמות כמו מטחנת ארומה מקצועית וטכנולוגיית קצף מעודן, כדי ליצור את הקפה המשובח ביותר.\n\nועכשיו, הודות לפונקציית שתי הכוסות, המכונה יכולה להכין שתי כוסות בו זמנית.\n\nהקווים הנקיים והמסוגננים שלה הופכים אותה לפריט עיצובי אלגנטי ונחשק במימדים נוחים.",
       "features": [],
       "image": "/images/products/machine-ena8.jpg",
-      "price": "4,700",
+      "price": "4,700 ש\"ח",
       "priceNumeric": 4700,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "machine-profitech400",
@@ -80,10 +85,11 @@
       "description": "מכונה בעלת דוד מחליף חום, ראש E61 ובקר לבחירת טמפרטורת עבודה מבין 3 מצבים שונים. בעלת דוד נירוסטה בנפח 1.6 ליטר אשר מאפשר הקצפה עוצמתית ויציבות טמפרטורה כוס אחר כוס. מצוידת בסטימר קיטור מקצועי וברז למים רותחים.",
       "features": [],
       "image": "/prifitech400.jpg",
-      "price": "6,290",
+      "price": "6,290 ש\"ח",
       "priceNumeric": 6290,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "machine-lelit-pl042emi",
@@ -91,10 +97,11 @@
       "description": "מכונה משולבת עם מטחנה מובנית איכותית בעלת סכינים קוניות 38 מ\"מ וברירת טחינה חסרת שלבים (‘Stepless’). דוד נחושת 250 מיליליטר. שסתום תלת כיווני לשחרור עודפי מים מידית החליטה לקבלת “עוגה” יבשה. גוף נירוסטה. ידית 57 לשימוש בקפה טחון או פודים. תרמוסטט ביטחון ושסתומי ביטחון לשליטה טובה יותר בלחץ. המכונה מוכנה לעבודה תוך 3 דקות. מד לחץ חליטה המאפשר בדיקת לחץ חליטה בזמן אמת. סטימר מקצועי נח לעבודה. שנתיים אחריות יבואן רשמי קופמה ישראל",
       "features": [],
       "image": "/images/products/machine-lelit-pl042emi.jpg",
-      "price": "3,490",
+      "price": "3,490 ש\"ח",
       "priceNumeric": 3490,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "machine-marax",
@@ -102,11 +109,12 @@
       "description": "הדגם החדש מסדרת Lelit Mara. בעלת הטכנולוגיה הטובה ביותר עם ראש ה-E61 ודוד מחליף חום בגוף מכונה קטן להפליא העשוי כולו מנירוסטה איכותית. התוצאה, מכונת קפה מקצועית בעלת גוף קטן ויפה – המייצרת אספרסו וקפוצ’ינו מדהימים",
       "features": [],
       "image": "/images/products/machine-MaraX.jpg",
-      "price": "6,100",
+      "price": "6,100 ש\"ח",
       "priceNumeric": 6100,
       "featured": false,
       "hidden": false,
-      "longDescription": "מערכת הבדיקה הכפולה החדשה, פטנט של לליט, שומרת על טמפרטורת חליטה קבועה כך שתייצר את הביצועים הטובים ביותר בכל מנה.\nבזכות כפתורי התצורה תוכלו לבחור גם את אופן השימוש וגם את טמפרטורת המיצוי המועדפת בין חם לחם במיוחד, כדי להשיג את המשקה המושלם.\n– פיית הקצפה הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– פיית מים חמים הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– ידית חליטה מקצועית בקוטר 58 מ\"מ מעלת סלסלות חליטה למנה מודדת ומנה כפולה. \n– מערכת כיבוי להגנה אוטומטית מפני שריפת גוף החימום מופעלת בשני מצבים: כאשר מיכל המים מוסר ממקומו / רמת המים נמוכה בדוד. \n– מיכל מים בקיבולת של 2.5 ליטר. \n– דוד 1.8 ליטר בשיטת מחליף חום. \n– ראש חליטה E61, מים חמים המועברים ממחליף החום לראש החליטה ובחזרה השומרים על מים חמים בטמפרטורה מדויקת וידית חליטה חמה ומוכנה לעבודה. \n-צינורות נחושת פנימים המבטיחם אורך חיים ארוך וטמפרטורה אחידה. \nגוף: נירוסטה מפולשת ומבריקה.\nשעון לחץ כפול: לחץ בדוד / לחץ משאבה.\nמנורות בקרה: מנורת בקרה המראה כשהמכונה דולקת ומנורת טרמוסטט.\nגוף חימום: 1300 W\nמשקל: 18 ק\"ג\nמידות המכונה: 22cm x 41cm x 35cm\nשנתיים אחריות יבואן רשמי קופמה ישראל"
+      "longDescription": "מערכת הבדיקה הכפולה החדשה, פטנט של לליט, שומרת על טמפרטורת חליטה קבועה כך שתייצר את הביצועים הטובים ביותר בכל מנה.\nבזכות כפתורי התצורה תוכלו לבחור גם את אופן השימוש וגם את טמפרטורת המיצוי המועדפת בין חם לחם במיוחד, כדי להשיג את המשקה המושלם.\n– פיית הקצפה הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– פיית מים חמים הניתנת להזזה 180 מעלות בעלת סיכוך כפול המונע כוויות. (no burn) \n– ידית חליטה מקצועית בקוטר 58 מ\"מ מעלת סלסלות חליטה למנה מודדת ומנה כפולה. \n– מערכת כיבוי להגנה אוטומטית מפני שריפת גוף החימום מופעלת בשני מצבים: כאשר מיכל המים מוסר ממקומו / רמת המים נמוכה בדוד. \n– מיכל מים בקיבולת של 2.5 ליטר. \n– דוד 1.8 ליטר בשיטת מחליף חום. \n– ראש חליטה E61, מים חמים המועברים ממחליף החום לראש החליטה ובחזרה השומרים על מים חמים בטמפרטורה מדויקת וידית חליטה חמה ומוכנה לעבודה. \n-צינורות נחושת פנימים המבטיחם אורך חיים ארוך וטמפרטורה אחידה. \nגוף: נירוסטה מפולשת ומבריקה.\nשעון לחץ כפול: לחץ בדוד / לחץ משאבה.\nמנורות בקרה: מנורת בקרה המראה כשהמכונה דולקת ומנורת טרמוסטט.\nגוף חימום: 1300 W\nמשקל: 18 ק\"ג\nמידות המכונה: 22cm x 41cm x 35cm\nשנתיים אחריות יבואן רשמי קופמה ישראל",
+      "machineType": "manual"
     },
     {
       "id": "machine-pl41em",
@@ -114,10 +122,11 @@
       "description": "דוד פליז 250 מיליליטר. שסתום תלת כיווני לשחרור עודפי מים מידית החליטה לקבלת “עוגה” יבשה. גוף נירוסטה. ידית 57 לשימוש בקפה טחון או פודים.",
       "features": [],
       "image": "/images/products/machine-PL41EM.jpg",
-      "price": "2,199",
+      "price": "2,199 ש\"ח",
       "priceNumeric": 2199,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "machine-wmf950s",
@@ -125,11 +134,12 @@
       "description": "היכנסו לעולם הקפה המקצועי קומפקטי, אמין, טעים\n•\tמיכל פולים גדול  \nבמיכל הפולים יש מקום ל-750 גרם פולי קפה וניתן להסירו לניקוי קל.\n•\tפעולה פשוטה ואינטואיטיבית\nפשוט גלול במבחר הגדול, הקש על צג המגע הצבעוני בגודל 7 אינץ' כדי לבחור את המשקה הרצוי והמכונה תתחיל לעבוד.",
       "features": [],
       "image": "/images/products/machine-wmf950s.jpg",
-      "price": "8,900",
+      "price": "8,900 ש\"ח",
       "priceNumeric": 8900,
       "featured": false,
       "hidden": false,
-      "longDescription": "היכנסו לעולם הקפה המקצועי קומפקטי, אמין, טעים\n•\tמיכל פולים גדול  \nבמיכל הפולים יש מקום ל-750 גרם פולי קפה וניתן להסירו לניקוי קל.\n•\tפעולה פשוטה ואינטואיטיבית\nפשוט גלול במבחר הגדול, הקש על צג המגע הצבעוני בגודל 7 אינץ' כדי לבחור את המשקה הרצוי והמכונה תתחיל לעבוד.\n•\tפעולה שקטה\nהמטחנה המקצועית ו מערכת החליטה  בעלת הקיבולת הגבוהה פועלות בשקט בצורה יוצאת דופן להכנת הקפה שלך.\n•\tהגנה מפני הצפת יתר\nמגש הטפטוף מפוקח כך שלא יוכל לעלות על גדותיו. מנגנון ההגנה המובנה עוצר את המכונה והתצוגה מציינת שצריך לרוקן את מגש הטפטוף.\n•\tקוֹמפָּקטִי ושימושי\nה-WMF 950 S כמעט ולא תופסת מקום, מה שהופך אותה למכונה המקצועית האידיאלית עבור משרדים ומטבחים קטנים.\n•\t איכות קפה גבוה  עבור העסק שלך\nה-WMF 950 S מציע את חווית הקפה המושלמת במחיר אטרקטיבי ומספק היכרות מעולה לעולם הקפה המקצועי של WMF. בין אם לעסקים קטנים, סטארט-אפים, חללי עבודה משותפים, דירות , מספרות או אולפני כושר - ה-WMF 950 S בטוח ישמח את הטעמים המתוחכמים של חובבי הקפה.\n•\tבחירה עילאית\nלאטה מקיאטו, קפוצ'ינו, אספרסו, ריסטרטו או קרם קפה? 21 משקאות כבר מוגדרים מראש למפרטי WMF. יצירות אישיות נוספות, כגון קפה נטול קפאין, קלות לאחסון באמצעות צג המגע הצבעוני בגודל 7 אינץ'. ופיית מים חמים לתה מרחיבה עוד יותר את מבחר המשקאות החמים הזמינים.\n•\tמשמח את הצוות והלקוחות כאחד\nעם תפוקה אמינה של 50 כוסות ביום בממוצע, ה-WMF 950 S הוא הבחירה הראשונה בכל הנוגע להגשת קפה בחברות קטנות ובינוניות, משרדים או בתי קפה. הודות לתפיסת התפעול הפשוטה שלה\n•\tחווה נוחות פרימיום\nה-WMF 950 S משמח את המשתמשים עם איכותו ועד כמה נוח לשימוש. לדוגמה, ניתן לגוון בנפרד את חוזק הקפה ונפח הכוס בלחיצת כפתור. אם מיכל המים זקוק למילוי מחדש, התצוגה מודיעה לך. והניקוי לא יכול להיות פשוט יותר הודות לפתרון Click+Clean המוגן בפטנט: פשוט חבר את צינור החלב לפית המים החמים באמצעות המתאם וכל מערכת החלב תשטוף בצורה היגיינית.\nנתונים טכניים\n 21 משקאות מוגדרות מראש \nמומלץ להכנה  יומית ממוצעת של 50 כוסות\nחלב חם / משקאות חלב מוקצף חמים\nסך תפוקת מים חמים/שעה 75 כוסות \nמידות חיצוניות (רוחב / גובה / עומק) 303/528/562 מ\"מ \nמשקל ריק : 20 ק\"ג \nמיכל מים של 1.8 ליטר / אספקת מים \n                 ** התפוקה נקבעת באמצעות מכונה עם אספקת מים קבועה ותלויה בגודל הכוס. הנתון שניתן הוא ממוצע ומיועד להנחה בלבד."
+      "longDescription": "היכנסו לעולם הקפה המקצועי קומפקטי, אמין, טעים\n•\tמיכל פולים גדול  \nבמיכל הפולים יש מקום ל-750 גרם פולי קפה וניתן להסירו לניקוי קל.\n•\tפעולה פשוטה ואינטואיטיבית\nפשוט גלול במבחר הגדול, הקש על צג המגע הצבעוני בגודל 7 אינץ' כדי לבחור את המשקה הרצוי והמכונה תתחיל לעבוד.\n•\tפעולה שקטה\nהמטחנה המקצועית ו מערכת החליטה  בעלת הקיבולת הגבוהה פועלות בשקט בצורה יוצאת דופן להכנת הקפה שלך.\n•\tהגנה מפני הצפת יתר\nמגש הטפטוף מפוקח כך שלא יוכל לעלות על גדותיו. מנגנון ההגנה המובנה עוצר את המכונה והתצוגה מציינת שצריך לרוקן את מגש הטפטוף.\n•\tקוֹמפָּקטִי ושימושי\nה-WMF 950 S כמעט ולא תופסת מקום, מה שהופך אותה למכונה המקצועית האידיאלית עבור משרדים ומטבחים קטנים.\n•\t איכות קפה גבוה  עבור העסק שלך\nה-WMF 950 S מציע את חווית הקפה המושלמת במחיר אטרקטיבי ומספק היכרות מעולה לעולם הקפה המקצועי של WMF. בין אם לעסקים קטנים, סטארט-אפים, חללי עבודה משותפים, דירות , מספרות או אולפני כושר - ה-WMF 950 S בטוח ישמח את הטעמים המתוחכמים של חובבי הקפה.\n•\tבחירה עילאית\nלאטה מקיאטו, קפוצ'ינו, אספרסו, ריסטרטו או קרם קפה? 21 משקאות כבר מוגדרים מראש למפרטי WMF. יצירות אישיות נוספות, כגון קפה נטול קפאין, קלות לאחסון באמצעות צג המגע הצבעוני בגודל 7 אינץ'. ופיית מים חמים לתה מרחיבה עוד יותר את מבחר המשקאות החמים הזמינים.\n•\tמשמח את הצוות והלקוחות כאחד\nעם תפוקה אמינה של 50 כוסות ביום בממוצע, ה-WMF 950 S הוא הבחירה הראשונה בכל הנוגע להגשת קפה בחברות קטנות ובינוניות, משרדים או בתי קפה. הודות לתפיסת התפעול הפשוטה שלה\n•\tחווה נוחות פרימיום\nה-WMF 950 S משמח את המשתמשים עם איכותו ועד כמה נוח לשימוש. לדוגמה, ניתן לגוון בנפרד את חוזק הקפה ונפח הכוס בלחיצת כפתור. אם מיכל המים זקוק למילוי מחדש, התצוגה מודיעה לך. והניקוי לא יכול להיות פשוט יותר הודות לפתרון Click+Clean המוגן בפטנט: פשוט חבר את צינור החלב לפית המים החמים באמצעות המתאם וכל מערכת החלב תשטוף בצורה היגיינית.\nנתונים טכניים\n 21 משקאות מוגדרות מראש \nמומלץ להכנה  יומית ממוצעת של 50 כוסות\nחלב חם / משקאות חלב מוקצף חמים\nסך תפוקת מים חמים/שעה 75 כוסות \nמידות חיצוניות (רוחב / גובה / עומק) 303/528/562 מ\"מ \nמשקל ריק : 20 ק\"ג \nמיכל מים של 1.8 ליטר / אספקת מים \n                 ** התפוקה נקבעת באמצעות מכונה עם אספקת מים קבועה ותלויה בגודל הכוס. הנתון שניתן הוא ממוצע ומיועד להנחה בלבד.",
+      "machineType": "office"
     },
     {
       "id": "jura-ono",
@@ -145,7 +155,8 @@
       "price": "1,190 ש\"ח",
       "priceNumeric": 1190,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "jura-c3",
@@ -161,7 +172,8 @@
       "price": "3,700 ש\"ח",
       "priceNumeric": 3700,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-c9",
@@ -176,7 +188,8 @@
       "price": "4,700 ש\"ח",
       "priceNumeric": 4700,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-e6-g4-black",
@@ -192,7 +205,8 @@
       "price": "5,300 ש\"ח",
       "priceNumeric": 5300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-e6-g4-inox",
@@ -208,7 +222,8 @@
       "price": "5,300 ש\"ח",
       "priceNumeric": 5300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-e6-g3",
@@ -223,7 +238,8 @@
       "price": "5,300 ש\"ח",
       "priceNumeric": 5300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-e8-g3-white",
@@ -239,7 +255,8 @@
       "price": "5,700 ש\"ח",
       "priceNumeric": 5700,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-s8",
@@ -254,7 +271,8 @@
       "price": "8,300 ש\"ח",
       "priceNumeric": 8300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-s8-platinum",
@@ -269,7 +287,8 @@
       "price": "7,500 ש\"ח",
       "priceNumeric": 7500,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-w8",
@@ -285,7 +304,8 @@
       "price": "8,400 ש\"ח",
       "priceNumeric": 8400,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "office"
     },
     {
       "id": "jura-j10",
@@ -301,7 +321,8 @@
       "price": "7,600 ש\"ח",
       "priceNumeric": 7600,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-j10-twin",
@@ -317,7 +338,8 @@
       "price": "9,500 ש\"ח",
       "priceNumeric": 9500,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-z10-diamond-black",
@@ -333,7 +355,8 @@
       "price": "11,300 ש\"ח",
       "priceNumeric": 11300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-z10-g1-white",
@@ -349,7 +372,8 @@
       "price": "11,300 ש\"ח",
       "priceNumeric": 11300,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "jura-giga10",
@@ -364,7 +388,8 @@
       "price": "14,800 ש\"ח",
       "priceNumeric": 14800,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-philips-ep1200",
@@ -379,7 +404,8 @@
       "price": "1,050 ש\"ח",
       "priceNumeric": 1050,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-philips-ep2220",
@@ -394,7 +420,8 @@
       "price": "1,390 ש\"ח",
       "priceNumeric": 1390,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-melitta-ci-touch",
@@ -409,7 +436,8 @@
       "price": "6,390 ש\"ח",
       "priceNumeric": 6390,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-pascale-coffee-tea-black",
@@ -424,7 +452,8 @@
       "price": "1,190 ש\"ח",
       "priceNumeric": 1190,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-pascale-coffee-tea-milk",
@@ -439,7 +468,8 @@
       "price": "1,290 ש\"ח",
       "priceNumeric": 1290,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-besana",
@@ -454,7 +484,8 @@
       "price": "1,590 ש\"ח",
       "priceNumeric": 1590,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-cadorna-style",
@@ -469,7 +500,8 @@
       "price": "1,890 ש\"ח",
       "priceNumeric": 1890,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-anima-style",
@@ -484,7 +516,8 @@
       "price": "1,890 ש\"ח",
       "priceNumeric": 1890,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-magenta-plus",
@@ -498,7 +531,8 @@
       "price": "2,390 ש\"ח",
       "priceNumeric": 2390,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-cadorna-milk",
@@ -513,7 +547,8 @@
       "price": "2,490 ש\"ח",
       "priceNumeric": 2490,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-cadorna-barista",
@@ -527,7 +562,8 @@
       "price": "2,490 ש\"ח",
       "priceNumeric": 2490,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "automatic"
     },
     {
       "id": "kedma-gaggia-eg2109",
@@ -542,7 +578,8 @@
       "price": "890 ש\"ח",
       "priceNumeric": 890,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-delonghi-dedica-arte",
@@ -557,7 +594,8 @@
       "price": "999 ש\"ח",
       "priceNumeric": 999,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-delonghi-specialista-arte-yellow",
@@ -572,7 +610,8 @@
       "price": "2,149 ש\"ח",
       "priceNumeric": 2149,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-delonghi-specialista-arte-white",
@@ -587,7 +626,8 @@
       "price": "2,281 ש\"ח",
       "priceNumeric": 2281,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-delonghi-specialista-arte-green",
@@ -602,7 +642,8 @@
       "price": "2,399 ש\"ח",
       "priceNumeric": 2399,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-delonghi-specialista-arte-evo",
@@ -617,7 +658,8 @@
       "price": "2,589 ש\"ח",
       "priceNumeric": 2589,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-lapavoni-casa-bar",
@@ -632,7 +674,8 @@
       "price": "2,890 ש\"ח",
       "priceNumeric": 2890,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     },
     {
       "id": "kedma-lapavoni-domus-bar",
@@ -647,7 +690,8 @@
       "price": "3,190 ש\"ח",
       "priceNumeric": 3190,
       "featured": false,
-      "hidden": false
+      "hidden": false,
+      "machineType": "manual"
     }
   ],
   "coffeeBeans": [

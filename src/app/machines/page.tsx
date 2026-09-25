@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import ProductCard from "@/components/ProductCard";
+import MachinesShop from "@/components/MachinesShop";
 import { coffeeMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/machines" },
   title: "מכונות קפה לעסקים ולמשרד — JURA, לליט ומקצועיות",
   description:
-    "מכונות קפה לעסקים ולמשרד — אוטומטיות ומקצועיות מבית JURA, לליט ועוד. השכרה או רכישה, כולל התקנה חינם, הדרכה ותמיכה. מותאם לפי מספר עובדים.",
+    "מכונות קפה לעסקים ולמשרד — אוטומטיות ומקצועיות מבית JURA, לליט ועוד. אוטומטיות וידניות, במשלוח עם שליח עד הבית.",
   keywords: [
     "מכונת קפה למשרד",
     "מכונות קפה לעסקים",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "מכונת קפה למשרד ולעסק | קפה גינץ",
     description:
-      "מכונות קפה מקצועיות לעסק — JURA, Melitta ועוד, כולל התקנה, הדרכה ותמיכה. פתרונות קפה למשרד מבית גינץ.",
+      "מכונות קפה אוטומטיות וידניות — JURA, Gaggia, De'Longhi, Melitta ועוד, במשלוח עד הבית.",
     url: "https://www.gintz.co.il/machines",
   },
 };
@@ -62,7 +62,7 @@ const MACHINES_FAQ = [
   },
   {
     q: "האם צריך תחזוקה שוטפת למכונת קפה במשרד?",
-    a: "כן — ניקוי יומי קצר על ידי הצוות, וטיפול תקופתי (הסרת אבנית, החלפת מסננים) שאנחנו מבצעים במסגרת השירות. מכונה שמתוחזקת כמו שצריך שומרת על טעם הקפה ומאריכה משמעותית את חיי הציוד.",
+    a: "כן — ניקוי יומי קצר על ידי הצוות, וטיפול תקופתי (הסרת אבנית, החלפת מסננים) לפי הוראות היצרן. מכונה שמתוחזקת כמו שצריך שומרת על טעם הקפה ומאריכה משמעותית את חיי הציוד.",
   },
 ];
 
@@ -94,60 +94,18 @@ export default function MachinesPage() {
             מכונות קפה לעסקים ולמשרד
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות אוטומטיות ומקצועיות לכל גודל עסק — משרד, מסעדה, מלון או קליניקה.
-            אספקה, התקנה והדרכה כלולים.
+            מכונות אוטומטיות וידניות לבית ולמשרד, במשלוח עם שליח עד הדלת.
           </p>
         </div>
       </section>
 
       {/* Products grid */}
-      <section className="py-14 bg-cream" aria-labelledby="machines-grid-heading">
+      <section className="pt-8 pb-14 bg-cream" aria-labelledby="machines-grid-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="machines-grid-heading" className="text-2xl font-bold text-brown mb-8">
+          <h2 id="machines-grid-heading" className="sr-only">
             כל המכונות שלנו
           </h2>
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-            {coffeeMachines.map((m) => (
-              <ProductCard
-                key={m.id}
-                name={m.name}
-                description={m.description}
-                features={m.features}
-                image={m.image}
-                priceRange={m.price}
-                ctaHref={`/machines/${m.id}`}
-                ctaLabel="פרטים מלאים ←"
-                detailHref={`/machines/${m.id}`}
-                imageContain={m.id === "melitta-solo-silver"}
-                cartItem={{
-                  id: m.id,
-                  name: m.name,
-                  price: m.price,
-                  priceNumeric: m.priceNumeric,
-                  category: "machine",
-                  image: m.image,
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Info strip */}
-      <section className="py-10 bg-gold/10 border-y border-gold/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            {[
-              { title: "התקנה חינם", desc: "מגיעים אליכם ומתקינים בלי תוספת" },
-              { title: "הדרכה מקצועית", desc: "מדריכים את הצוות לפני שעוזבים" },
-              { title: "תמיכה שוטפת", desc: "טכנאי מוסמך זמין לכל תקלה" },
-            ].map(({ title, desc }) => (
-              <div key={title}>
-                <h3 className="text-brown font-bold text-lg mb-1">{title}</h3>
-                <p className="text-brown/65 text-sm">{desc}</p>
-              </div>
-            ))}
-          </div>
+          <MachinesShop machines={coffeeMachines} />
         </div>
       </section>
 
@@ -166,9 +124,8 @@ export default function MachinesPage() {
               למשרד קטן היא בזבוז מיותר.
             </p>
             <p>
-              אנחנו מספקים מכונות קפה למשרד ולעסק בכל הארץ — מבני ברק וגוש דן
-              ועד תל אביב, ירושלים וחיפה — כולל התקנה, הדרכה לצוות ותמיכה
-              טכנית שוטפת.
+              אנחנו שולחים מכונות קפה בכל הארץ — מבני ברק וגוש דן ועד תל אביב,
+              ירושלים וחיפה — עם שליח עד הדלת.
             </p>
             <p>
               לא חייבים לקנות: רוב הלקוחות שלנו בוחרים במסלול{" "}

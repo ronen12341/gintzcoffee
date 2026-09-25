@@ -352,6 +352,7 @@ const SCHEMAS = {
       { key: 'image', label: 'כתובת תמונה (URL או /path)', type: 'text' },
       { key: 'price', label: 'מחיר (להצגה)', type: 'text', hint: 'לדוגמה: 11,200 ש"ח' },
       { key: 'priceNumeric', label: 'מחיר (מספר לחישובי סל)', type: 'number', hint: 'לדוגמה: 11200' },
+      { key: 'machineType', label: 'סוג מכונה (לסינון בדף המכונות)', type: 'select', options: [['automatic', 'אוטומטית'], ['manual', 'ידנית'], ['office', 'למשרד']] },
       { key: 'featured', label: 'מוצר מומלץ (יופיע בעמוד הבית)', type: 'checkbox' },
       { key: 'hidden', label: '🙈 הסתר באתר (נשמר בקובץ אבל לא מוצג ללקוחות)', type: 'checkbox' },
       { key: 'longDescription', label: 'תיאור מורחב (אופציונלי)', type: 'textarea', hint: 'שורה ריקה = פסקה חדשה' },
@@ -581,6 +582,9 @@ function openModal(idx) {
       input = `<textarea name="${f.key}" placeholder="תכונה אחת בכל שורה">${escapeHtml((value ?? []).join('\n'))}</textarea>`;
     } else if (f.type === 'checkbox') {
       return `<div class="field checkbox-field"><input type="checkbox" id="f-${f.key}" name="${f.key}"${value ? ' checked' : ''}><label for="f-${f.key}">${escapeHtml(f.label)}</label></div>`;
+    } else if (f.type === 'select') {
+      const current = value ?? f.options[0][0];
+      input = `<select name="${f.key}">${f.options.map(([v, l]) => `<option value="${escapeAttr(v)}"${v === current ? ' selected' : ''}>${escapeHtml(l)}</option>`).join('')}</select>`;
     } else if (f.type === 'number') {
       input = `<input type="number" name="${f.key}"${required} value="${value ?? ''}"${readonly}>`;
     } else {

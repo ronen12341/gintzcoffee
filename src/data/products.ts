@@ -18,6 +18,8 @@ export interface Machine {
   images?: string[];
   /** Optional spec table shown on the detail page. */
   specs?: { label: string; value: string }[];
+  /** Filter group on /machines. Missing → treated as "automatic". */
+  machineType?: "automatic" | "manual" | "office";
   /** When true, the product is kept in data but hidden from all public pages
    *  (listings, featured, detail page). Useful for out-of-stock or unreleased
    *  items the owner wants to bring back later without re-typing them. */
