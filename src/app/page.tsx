@@ -1,6 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Coffee, Package, Award, Zap, HeartHandshake, Briefcase } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import BusinessSolutionCard from "@/components/BusinessSolutionCard";
 import ProductCard from "@/components/ProductCard";
@@ -58,7 +57,7 @@ export default function HomePage() {
       />
       {/* ── Hero ── */}
       <section
-        className="relative isolate min-h-[620px] overflow-hidden bg-brown-dark text-white sm:min-h-[680px]"
+        className="relative isolate overflow-hidden bg-brown-dark text-white"
         aria-label="פתרונות קפה לעסקים"
       >
         <Image
@@ -76,17 +75,9 @@ export default function HomePage() {
           aria-hidden="true"
         />
 
-        <div className="mx-auto flex min-h-[620px] max-w-7xl items-center px-4 py-20 sm:min-h-[680px] sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
           <div className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/45 bg-black/20 px-4 py-2 text-sm font-semibold text-cream backdrop-blur-sm">
-              <Award className="h-4 w-4 text-gold" aria-hidden="true" />
-              בית קלייה בוטיק · ניסיון של עשרות שנים
-            </div>
-
-            <p className="mb-4 font-montserrat text-xs font-semibold uppercase tracking-[0.3em] text-gold sm:text-sm">
-              Gintz Coffee · Coffee Solutions
-            </p>
-            <h1 className="mb-6 text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="mb-5 text-4xl font-bold leading-[1.08] text-white sm:text-5xl md:text-6xl">
               קפה טרי לעסק שלכם{" "}
               <span className="mt-2 block text-gold">קלוי במיוחד בשבילכם</span>
             </h1>
@@ -192,27 +183,21 @@ export default function HomePage() {
 
       {/* ── Business Solutions — the headline pitch ── */}
       <section
-        className="relative overflow-hidden bg-cream py-20 sm:py-24"
+        className="bg-cream-dark py-16 sm:py-20"
         id="business-solutions"
         aria-labelledby="home-solutions-heading"
       >
-        <div className="absolute -end-32 top-12 h-80 w-80 rounded-full bg-gold/[0.08] blur-3xl" aria-hidden="true" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-            <div className="max-w-3xl">
-              <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-gold/15 px-4 py-1.5 text-sm font-bold text-gold-dark">
-              <Briefcase className="w-4 h-4" aria-hidden="true" />
-                פתרון שמתאים לעסק שלכם
-              </div>
+          <div className="mb-8 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <div>
               <h2
                 id="home-solutions-heading"
-                className="mb-4 text-3xl font-bold leading-tight text-brown sm:text-4xl md:text-5xl"
+                className="mb-2 text-3xl font-bold text-brown sm:text-4xl"
               >
-                קפה מצוין, בכל גודל של <span className="text-gold-dark">עסק</span>
+                פתרונות קפה למשרד
               </h2>
-              <p className="max-w-2xl text-lg leading-relaxed text-brown/70">
-                בחרו את גודל המשרד וקבלו מעטפת מלאה: מכונה מקצועית, פולים טריים,
-                התקנה, הדרכה ושירות שוטף ממקור אחד.
+              <p className="text-brown/70">
+                מכונה, פולים, התקנה ושירות, לפי גודל המשרד.
               </p>
             </div>
             <Link
@@ -224,7 +209,7 @@ export default function HomePage() {
           </div>
 
           {businessSolutions.length > 0 && (
-            <div className="relative grid grid-cols-1 gap-6 md:grid-cols-3 lg:gap-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
               {businessSolutions.slice(0, 3).map((s) => (
                 <BusinessSolutionCard key={s.id} solution={s} variant="home" />
               ))}
@@ -240,11 +225,11 @@ export default function HomePage() {
           {/* Quote form — for office coffee solutions only */}
           <div
             id="contact"
-            className="mx-auto mt-16 max-w-2xl scroll-mt-24"
+            className="mx-auto mt-12 max-w-2xl scroll-mt-24"
             aria-labelledby="contact-heading"
           >
             <div className="text-center mb-8">
-              <h2 id="contact-heading" className="text-3xl font-bold text-brown mb-3">
+              <h2 id="contact-heading" className="text-2xl font-bold text-brown mb-2">
                 פתרון קפה למשרד? קבלו הצעת מחיר
               </h2>
               <p className="text-brown/65">השאירו פרטים ונחזור אליכם תוך שעות ספורות</p>
@@ -256,173 +241,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── How it works ── */}
-      <section className="bg-brown-dark py-16" aria-labelledby="how-it-works-heading">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            id="how-it-works-heading"
-            className="mb-10 text-center text-3xl font-bold text-cream sm:text-4xl"
-          >
-            איך זה עובד
-          </h2>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-5">
-            {[
-              { step: "1", title: "טעימה", desc: "בודקים איזה קפה הצוות שלכם אוהב" },
-              { step: "2", title: "התאמת תערובת", desc: "בוחרים רמת קלייה ובלנד מתאימים" },
-              { step: "3", title: "קלייה טרייה", desc: "קולים אצלנו, לפי הזמנה" },
-              { step: "4", title: "מכונה מתאימה", desc: "לפי גודל הצוות והצריכה" },
-              { step: "5", title: "אספקה ושירות", desc: "מתמשכים, לא חד-פעמיים" },
-            ].map(({ step, title, desc }) => (
-              <div key={step} className="text-center">
-                <span className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-gold/15 font-bold text-gold">
-                  {step}
-                </span>
-                <h3 className="mb-1 font-bold text-cream">{title}</h3>
-                <p className="text-sm text-cream/60">{desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Main categories ── */}
-      <section className="bg-cream-dark py-14" aria-labelledby="services-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-9 text-center">
-            <h2
-              id="services-heading"
-              className="mb-3 text-3xl font-bold text-brown"
-            >
-              כל מה שצריך לקפה מצוין
-            </h2>
-            <p className="mx-auto max-w-xl text-base text-brown/60">
-              שלושה תחומים, מעטפת אחת מקצועית לעסק שלכם.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-            <ServiceCard
-              icon={<Coffee className="w-8 h-8" />}
-              title="מכונות קפה לעסק ולמשרד"
-              description="מכונות אוטומטיות ומקצועיות עם התקנה, הדרכה ושירות."
-              href="/machines"
-            />
-            <ServiceCard
-              icon={<Package className="w-8 h-8" />}
-              title="פולי קפה טריים"
-              description="קלייה מקומית ומבחר תערובות לכל סגנון וטעם."
-              href="/beans"
-            />
-            <ServiceCard
-              icon={<CupIcon />}
-              title="כוסות ממותגות"
-              description="הדפסה אישית ואספקה מהירה לעסקים ואירועים."
-              href="https://www.aspagil.com"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* ── Trust strip ── */}
-      <section className="border-y border-gold/15 bg-brown-dark py-8" aria-label="למה לבחור בקפה גינץ">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-            <WhyCard
-              icon={<Award className="w-8 h-8" />}
-              title="30+ שנות ניסיון"
-              description="ידע מקצועי שעובר בכל כוס"
-            />
-            <WhyCard
-              icon={<Zap className="w-8 h-8" />}
-              title="אספקה מהירה"
-              description="שירות יעיל בכל רחבי הארץ"
-            />
-            <WhyCard
-              icon={<Coffee className="w-8 h-8" />}
-              title="קלייה טרייה"
-              description="קפה שנקלה אצלנו באהבה"
-            />
-            <WhyCard
-              icon={<HeartHandshake className="w-8 h-8" />}
-              title="שירות אישי"
-              description="ליווי אמיתי מהבחירה ועד המזיגה"
-            />
-          </div>
-        </div>
-      </section>
-
     </>
-  );
-}
-
-function ServiceCard({
-  icon,
-  title,
-  description,
-  href,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  href: string;
-}) {
-  // An external href (e.g. aspagil.com) should open in a new tab, same as
-  // the equivalent links in Navbar/Footer — otherwise it replaces this tab
-  // and the visitor loses whatever they were browsing on gintz.co.il.
-  const external = href.startsWith("http");
-  return (
-    <Link
-      href={href}
-      {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="group rounded-2xl border border-brown/5 bg-white p-6 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2"
-    >
-      <div className="text-gold mb-4 flex justify-center group-hover:scale-110 transition-transform">
-        {icon}
-      </div>
-      <h3 className="text-brown font-bold text-xl mb-2">{title}</h3>
-      <p className="text-brown/60 text-sm leading-relaxed">{description}</p>
-      <span className="inline-block mt-4 text-gold text-sm font-medium group-hover:underline">
-        למידע נוסף ←
-      </span>
-    </Link>
-  );
-}
-
-function WhyCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="text-center text-cream">
-      <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gold/15 text-gold">
-        {icon}
-      </div>
-      <h3 className="mb-1 font-bold text-cream">{title}</h3>
-      <p className="text-xs leading-relaxed text-cream/55 sm:text-sm">{description}</p>
-    </div>
-  );
-}
-
-function CupIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="w-8 h-8"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.5}
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M6 2h12l-1.5 14a2 2 0 01-2 1.8H9.5a2 2 0 01-2-1.8L6 2z"
-      />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M4 22h16" />
-    </svg>
   );
 }
