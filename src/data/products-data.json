@@ -44,8 +44,8 @@
       ],
       "featured": true,
       "image": "https://www.jura.co.il/wp-content/uploads/2026/05/E8_MS1.webp",
-      "price": "6,300 ש\"ח",
-      "priceNumeric": 6300
+      "price": "5,700 ש\"ח",
+      "priceNumeric": 5700
     },
     {
       "id": "melitta-solo-silver",
@@ -130,6 +130,241 @@
       "featured": false,
       "hidden": false,
       "longDescription": "היכנסו לעולם הקפה המקצועי קומפקטי, אמין, טעים\n•\tמיכל פולים גדול  \nבמיכל הפולים יש מקום ל-750 גרם פולי קפה וניתן להסירו לניקוי קל.\n•\tפעולה פשוטה ואינטואיטיבית\nפשוט גלול במבחר הגדול, הקש על צג המגע הצבעוני בגודל 7 אינץ' כדי לבחור את המשקה הרצוי והמכונה תתחיל לעבוד.\n•\tפעולה שקטה\nהמטחנה המקצועית ו מערכת החליטה  בעלת הקיבולת הגבוהה פועלות בשקט בצורה יוצאת דופן להכנת הקפה שלך.\n•\tהגנה מפני הצפת יתר\nמגש הטפטוף מפוקח כך שלא יוכל לעלות על גדותיו. מנגנון ההגנה המובנה עוצר את המכונה והתצוגה מציינת שצריך לרוקן את מגש הטפטוף.\n•\tקוֹמפָּקטִי ושימושי\nה-WMF 950 S כמעט ולא תופסת מקום, מה שהופך אותה למכונה המקצועית האידיאלית עבור משרדים ומטבחים קטנים.\n•\t איכות קפה גבוה  עבור העסק שלך\nה-WMF 950 S מציע את חווית הקפה המושלמת במחיר אטרקטיבי ומספק היכרות מעולה לעולם הקפה המקצועי של WMF. בין אם לעסקים קטנים, סטארט-אפים, חללי עבודה משותפים, דירות , מספרות או אולפני כושר - ה-WMF 950 S בטוח ישמח את הטעמים המתוחכמים של חובבי הקפה.\n•\tבחירה עילאית\nלאטה מקיאטו, קפוצ'ינו, אספרסו, ריסטרטו או קרם קפה? 21 משקאות כבר מוגדרים מראש למפרטי WMF. יצירות אישיות נוספות, כגון קפה נטול קפאין, קלות לאחסון באמצעות צג המגע הצבעוני בגודל 7 אינץ'. ופיית מים חמים לתה מרחיבה עוד יותר את מבחר המשקאות החמים הזמינים.\n•\tמשמח את הצוות והלקוחות כאחד\nעם תפוקה אמינה של 50 כוסות ביום בממוצע, ה-WMF 950 S הוא הבחירה הראשונה בכל הנוגע להגשת קפה בחברות קטנות ובינוניות, משרדים או בתי קפה. הודות לתפיסת התפעול הפשוטה שלה\n•\tחווה נוחות פרימיום\nה-WMF 950 S משמח את המשתמשים עם איכותו ועד כמה נוח לשימוש. לדוגמה, ניתן לגוון בנפרד את חוזק הקפה ונפח הכוס בלחיצת כפתור. אם מיכל המים זקוק למילוי מחדש, התצוגה מודיעה לך. והניקוי לא יכול להיות פשוט יותר הודות לפתרון Click+Clean המוגן בפטנט: פשוט חבר את צינור החלב לפית המים החמים באמצעות המתאם וכל מערכת החלב תשטוף בצורה היגיינית.\nנתונים טכניים\n 21 משקאות מוגדרות מראש \nמומלץ להכנה  יומית ממוצעת של 50 כוסות\nחלב חם / משקאות חלב מוקצף חמים\nסך תפוקת מים חמים/שעה 75 כוסות \nמידות חיצוניות (רוחב / גובה / עומק) 303/528/562 מ\"מ \nמשקל ריק : 20 ק\"ג \nמיכל מים של 1.8 ליטר / אספקת מים \n                 ** התפוקה נקבעת באמצעות מכונה עם אספקת מים קבועה ותלויה בגודל הכוס. הנתון שניתן הוא ממוצע ומיועד להנחה בלבד."
+    },
+    {
+      "id": "jura-ono",
+      "name": "JURA ONO",
+      "description": "מכונת קפה ידנית וקומפקטית לכוס אחת, בלי קפסולות. עובדת עם קפה טחון בהפעלה ידנית של ידית ומנוף, ומכינה קפה שחור בלבד: אספרסו ואמריקנו. לשימוש של עד 5 ספלים ביום.",
+      "features": [
+        "קפה שחור בלבד",
+        "עובדת עם קפה טחון",
+        "הפעלה ידנית",
+        "עד 5 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/ONO.webp",
+      "price": "1,190 ש\"ח",
+      "priceNumeric": 1190,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-c3",
+      "name": "JURA C3",
+      "description": "מכונה אוטומטית קומפקטית לקפה שחור (ללא חלב). מטחנת P.A.G. ויחידת חליטה בגודל מלא, מיצוי בפעימה (P.E.P.) לאספרסו עם קרמה צפופה, ולוח בקרה פשוט של 4 כפתורים. עד 40 ספלים ביום.",
+      "features": [
+        "קפה שחור בלבד",
+        "מטחנת P.A.G.",
+        "4 כפתורים, הפעלה פשוטה",
+        "עד 40 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/C3.webp",
+      "price": "3,700 ש\"ח",
+      "priceNumeric": 3700,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-c9",
+      "name": "JURA C9",
+      "description": "מכונת פרימיום קומפקטית במחיר נוח: 17 משקאות, כולל פלאט וייט, קורטאדו ואספרסו מקיאטו. חליטה חמה (Hot Brew) וחליטה קלה (Light Brew), ומטחנת Professional Aroma Grinder. עד 20 ספלים ביום.",
+      "features": [
+        "17 משקאות",
+        "Hot Brew + Light Brew",
+        "עד 20 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/04/C9_1.webp",
+      "price": "4,700 ש\"ח",
+      "priceNumeric": 4700,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-e6-g4-black",
+      "name": "JURA E6 דור 4 – Piano Black",
+      "description": "הדור הרביעי של ה-E6: חליטה חמה וחליטה קלה, Easy Cappuccino למשקאות חלב, ומטחנת Professional Aroma Grinder G2. פתח לקפה טחון (למשל נטול קפאין), מסך צבעוני 3.5 אינץ' ותמיכה באפליקציית J.O.E. עד 40 ספלים ביום.",
+      "features": [
+        "Easy Cappuccino",
+        "Hot Brew + Light Brew",
+        "מסך צבעוני 3.5 אינץ'",
+        "עד 40 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/09/E6B_main.jpg",
+      "price": "5,300 ש\"ח",
+      "priceNumeric": 5300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-e6-g4-inox",
+      "name": "JURA E6 דור 4 – Dark Inox",
+      "description": "הדור הרביעי של ה-E6 בגימור כסוף-מט: חליטה חמה וחליטה קלה, Easy Cappuccino למשקאות חלב, ומטחנת Professional Aroma Grinder G2. פתח לקפה טחון, מסך צבעוני 3.5 אינץ' ותמיכה באפליקציית J.O.E. עד 40 ספלים ביום.",
+      "features": [
+        "Easy Cappuccino",
+        "Hot Brew + Light Brew",
+        "מסך צבעוני 3.5 אינץ'",
+        "עד 40 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/09/E6DI_main.webp",
+      "price": "5,300 ש\"ח",
+      "priceNumeric": 5300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-e6-g3",
+      "name": "JURA E6 דור 3",
+      "description": "קפה שחור קלאסי וקפוצ'ינו בלחיצת כפתור אחת בזכות Easy Cappuccino. מטחנת Aroma מקצועית לטחינה עקבית, ותצוגה צבעונית עם כפתורים. זמינה בשחור או בלבן. עד 40 ספלים ביום.",
+      "features": [
+        "Easy Cappuccino",
+        "מטחנת Aroma מקצועית",
+        "עד 40 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2024/01/e6_ec_pianoblack_image2.jpg",
+      "price": "5,300 ש\"ח",
+      "priceNumeric": 5300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-e8-g3-white",
+      "name": "JURA E8 דור 3 – לבן",
+      "description": "הדור השלישי של ה-E8 בלבן: 17 משקאות בלחיצת כפתור, כולל Extra Shot לקפוצ'ינו מחוזק. מטחנת P.A.G.2 ומסך 3.5 אינץ' עם סמלים גדולים. עד 40 ספלים ביום.",
+      "features": [
+        "17 משקאות",
+        "מטחנת P.A.G.2",
+        "Extra Shot",
+        "עד 40 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/E8_W.webp",
+      "price": "5,700 ש\"ח",
+      "priceNumeric": 5700,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-s8",
+      "name": "JURA S8 דור 2",
+      "description": "עיצוב פיסולי וחומרים איכותיים. מסך מגע 4.3 אינץ', פונקציית Sweet Foam לקצף חלב ממותק, ניקוי אוטומטי של מערכת החלב בלחיצת כפתור, ו-Wi-Fi להפעלה מהסמארטפון דרך אפליקציית J.O.E.",
+      "features": [
+        "מסך מגע 4.3 אינץ'",
+        "Sweet Foam",
+        "Wi-Fi + אפליקציית J.O.E."
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2024/09/s8_chrome_eb_image1.webp",
+      "price": "8,300 ש\"ח",
+      "priceNumeric": 8300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-s8-platinum",
+      "name": "JURA S8 Platinum",
+      "description": "ה-S8 דור 2 בגימור Platinum. מסך מגע 4.3 אינץ', פונקציית Sweet Foam לקצף חלב ממותק, ניקוי אוטומטי של מערכת החלב, ו-Wi-Fi להפעלה מהסמארטפון דרך אפליקציית J.O.E.",
+      "features": [
+        "מסך מגע 4.3 אינץ'",
+        "Sweet Foam",
+        "Wi-Fi + אפליקציית J.O.E."
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/08/s8_platin_eb_image1.webp",
+      "price": "7,500 ש\"ח",
+      "priceNumeric": 7500,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-w8",
+      "name": "JURA W8 – למשרדים",
+      "description": "מכונה מקצועית וקומפקטית למשרדים ועסקים: 17 משקאות, מטחנת P.A.G.2, חיישן כוסות Coffee Eye, ניקוי אוטומטי של מערכת החלב, נעילת מיכלי הפולים והמים, ואפשרות חיבור למערכת חיוב. עד 80 ספלים ביום.",
+      "features": [
+        "17 משקאות",
+        "עד 80 ספלים ביום",
+        "נעילת מיכלים",
+        "חיבור למערכת חיוב"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/W8_1.webp",
+      "price": "8,400 ש\"ח",
+      "priceNumeric": 8400,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-j10",
+      "name": "JURA J10",
+      "description": "כל משקאות הקפה הקלאסיים, וגם משקאות בחליטה קרה (Cold Brew). קצף חלב ממותק בסירופ, מטחנת P.A.G.2+, Coffee Eye שמזהה את מיקום הספל, וניקוי מערכת החלב בנגיעה. עד 50 ספלים ביום.",
+      "features": [
+        "חליטה קרה (Cold Brew)",
+        "מטחנת P.A.G.2+",
+        "Coffee Eye",
+        "עד 50 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2025/03/J101.webp",
+      "price": "7,600 ש\"ח",
+      "priceNumeric": 7600,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-j10-twin",
+      "name": "JURA J10 twin",
+      "description": "שתי מטחנות P.A.G.3+ לשני סוגי קפה שונים, ו-46 משקאות: חליטה חמה, קלה וקרה, עם אפשרות לקצף חלב ממותק. עד 50 ספלים ביום.",
+      "features": [
+        "2 מטחנות, 2 סוגי קפה",
+        "46 משקאות",
+        "חליטה חמה, קלה וקרה",
+        "עד 50 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/J10TW_2.webp",
+      "price": "9,500 ש\"ח",
+      "priceNumeric": 9500,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-z10-diamond-black",
+      "name": "JURA Z10 דור 2 – Diamond Black",
+      "description": "ה-Z10 דור 2 בגימור Diamond Black: 51 התמחויות – חם, קל, קר ומתוק. מטחנת P.R.G.2+ שמתאימה את הטחינה אוטומטית לכל משקה. עד 50 ספלים ביום.",
+      "features": [
+        "51 התמחויות",
+        "מטחנת P.R.G.2+",
+        "עד 50 ספלים ביום",
+        "Wi-Fi + אפליקציית J.O.E."
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/07/Z10_eb_sb_ab_image1Z101.webp",
+      "price": "11,300 ש\"ח",
+      "priceNumeric": 11300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-z10-g1-white",
+      "name": "JURA Z10 דור 1 – Diamond White",
+      "description": "הדור הראשון של ה-Z10 בלבן: 32 משקאות, כולל קפה בחליטה קרה. מטחנת P.R.G. שמזהה את המשקה שנבחר ומתאימה לו את דרגת הטחינה. עד 50 ספלים ביום.",
+      "features": [
+        "32 משקאות",
+        "חליטה קרה",
+        "מטחנת P.R.G.",
+        "עד 50 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2023/07/Z10_Diamond_White_EA_15410_packshot_GDA_GIA.jpg",
+      "price": "11,300 ש\"ח",
+      "priceNumeric": 11300,
+      "featured": false,
+      "hidden": false
+    },
+    {
+      "id": "jura-giga10",
+      "name": "JURA GIGA 10",
+      "description": "מכונת הפרימיום של JURA: שני מיכלי פולים, לכל אחד מטחנה משלו, חליטה קרה ופאנל הפעלה פנורמי. מבחר משקאות רחב במיוחד, כמו בר קפה. עד 60 ספלים ביום.",
+      "features": [
+        "2 מיכלי פולים + 2 מטחנות",
+        "חליטה קרה",
+        "עד 60 ספלים ביום"
+      ],
+      "image": "https://www.jura.co.il/wp-content/uploads/2026/05/GIGA10_1.webp",
+      "price": "14,800 ש\"ח",
+      "priceNumeric": 14800,
+      "featured": false,
+      "hidden": false
     }
   ],
   "coffeeBeans": [
