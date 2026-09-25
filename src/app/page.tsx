@@ -3,7 +3,15 @@ import Image from "next/image";
 import { Coffee, Package, Award, Zap, HeartHandshake, Briefcase } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import BusinessSolutionCard from "@/components/BusinessSolutionCard";
-import { businessSolutions } from "@/data/products";
+import ProductCard from "@/components/ProductCard";
+import { businessSolutions, coffeeBeans, coffeeMachines } from "@/data/products";
+
+// Products shown in the homepage "הנמכרים שלנו" strip. Hidden products drop out
+// automatically (coffeeBeans/coffeeMachines already filter them).
+const SHOP_BEAN_IDS = ["espresso-blend", "single-origin-ethiopia"];
+const SHOP_MACHINE_IDS = ["jura-e8", "melitta-solo-silver"];
+const shopBeans = coffeeBeans.filter((b) => SHOP_BEAN_IDS.includes(b.id));
+const shopMachines = coffeeMachines.filter((m) => SHOP_MACHINE_IDS.includes(m.id));
 
 export default function HomePage() {
   const site = "https://www.gintz.co.il";
@@ -83,17 +91,15 @@ export default function HomePage() {
               <span className="mt-2 block text-gold">קלוי במיוחד בשבילכם</span>
             </h1>
             <p className="mb-8 max-w-2xl text-lg leading-relaxed text-cream/85 sm:text-xl">
-              אנחנו לא מוכרים קפה מהמדף — אנחנו מתאימים את הטעם לעובדים שלכם,
-              וקולים אותו בעצמנו בבית הקלייה. פתרונות קפה לעסקים ולמשרד ממקור
-              אחד: מכונה מקצועית, פולים טריים, התאמת תערובת, אספקה ושירות.
+              פולים טריים ומכונות קפה, ישירות מבית הקלייה שלנו.
             </p>
 
             <div className="mb-10 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#contact"
+                href="#shop"
                 className="inline-flex min-h-12 items-center justify-center rounded-full bg-gold px-7 py-3 font-bold text-white shadow-lg shadow-black/20 transition duration-300 hover:-translate-y-0.5 hover:bg-gold-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
               >
-                קבלו הצעת מחיר
+                לרכישה באתר
               </a>
               <a
                 href="https://wa.me/97239600550"
@@ -134,6 +140,52 @@ export default function HomePage() {
             <Image src="/lp/logos/amazon.svg" alt="Amazon" width={90} height={30} className="h-4 w-auto object-contain" />
             <Image src="/lp/logos/aws.svg" alt="AWS" width={80} height={30} className="h-5 w-auto object-contain" />
             <Image src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={100} height={34} className="h-6 w-auto object-contain" />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Shop — direct purchase ── */}
+      <section className="scroll-mt-20 bg-cream py-16 sm:py-20" id="shop" aria-labelledby="shop-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+            <h2 id="shop-heading" className="text-3xl font-bold text-brown sm:text-4xl">
+              הנמכרים שלנו
+            </h2>
+            <div className="flex gap-3">
+              <Link href="/beans" className="btn btn-secondary btn-sm">כל הפולים ←</Link>
+              <Link href="/machines" className="btn btn-secondary btn-sm">כל המכונות ←</Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {shopBeans.map((b) => (
+              <ProductCard
+                key={b.id}
+                name={b.name}
+                description={b.description}
+                image={b.image}
+                priceRange={b.price}
+                ctaHref={`/beans/${b.id}`}
+                ctaLabel="בחירת טחינה וקנייה ←"
+              />
+            ))}
+            {shopMachines.map((m) => (
+              <ProductCard
+                key={m.id}
+                name={m.name}
+                description={m.description}
+                image={m.image}
+                priceRange={m.price}
+                detailHref={`/machines/${m.id}`}
+                cartItem={{
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  priceNumeric: m.priceNumeric,
+                  category: "machine",
+                  image: m.image,
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
@@ -183,6 +235,23 @@ export default function HomePage() {
             <Link href="/business-solutions" className="btn btn-secondary btn-lg">
               כל הפתרונות לעסקים ←
             </Link>
+          </div>
+
+          {/* Quote form — for office coffee solutions only */}
+          <div
+            id="contact"
+            className="mx-auto mt-16 max-w-2xl scroll-mt-24"
+            aria-labelledby="contact-heading"
+          >
+            <div className="text-center mb-8">
+              <h2 id="contact-heading" className="text-3xl font-bold text-brown mb-3">
+                פתרון קפה למשרד? קבלו הצעת מחיר
+              </h2>
+              <p className="text-brown/65">השאירו פרטים ונחזור אליכם תוך שעות ספורות</p>
+            </div>
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <LeadForm title="" />
+            </div>
           </div>
         </div>
       </section>
@@ -281,27 +350,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── Contact / Lead form ── */}
-      <section
-        className="py-16 bg-cream-dark"
-        id="contact"
-        aria-labelledby="contact-heading"
-      >
-        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2
-              id="contact-heading"
-              className="text-3xl font-bold text-brown mb-3"
-            >
-              קבל הצעת מחיר מותאמת
-            </h2>
-            <p className="text-brown/65">מלא את הטופס ונחזור אליך תוך שעות ספורות</p>
-          </div>
-          <div className="bg-white rounded-2xl shadow-lg p-8">
-            <LeadForm title="" />
-          </div>
-        </div>
-      </section>
     </>
   );
 }

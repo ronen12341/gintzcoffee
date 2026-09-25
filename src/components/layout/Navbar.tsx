@@ -157,10 +157,10 @@ export default function Navbar() {
             {/* Left side (in RTL): quote CTA + phone + cart */}
             <div className="flex items-center gap-2">
               <Link
-                href="/contact"
+                href="/#shop"
                 className="hidden min-h-11 items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-bold text-white shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-gold-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-white md:inline-flex"
               >
-                קבלו הצעה
+                לחנות
               </Link>
               <a
                 href="tel:039600550"
@@ -246,11 +246,11 @@ export default function Navbar() {
         {/* Contact strip at the bottom of the drawer */}
         <div className="space-y-3 border-t border-white/10 px-5 py-5 text-sm">
           <Link
-            href="/contact"
+            href="/#shop"
             onClick={() => setDrawerOpen(false)}
             className="mb-4 inline-flex min-h-11 w-full items-center justify-center rounded-full bg-gold px-5 py-2.5 font-bold text-white transition hover:bg-gold-dark"
           >
-            קבלו הצעת מחיר
+            לרכישה באתר
           </Link>
           <a
             href="tel:039600550"
