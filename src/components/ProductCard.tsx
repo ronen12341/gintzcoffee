@@ -50,7 +50,7 @@ export default function ProductCard({
         src={image}
         alt={name}
         fill
-        className="object-contain p-5 sm:p-7"
+        className="object-contain p-3 sm:p-7"
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       />
     </div>
@@ -79,33 +79,33 @@ export default function ProductCard({
         )}
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-3 sm:p-6">
         {detailHref ? (
           <Link
             href={detailHref}
-            className="mb-3 rounded text-xl font-bold leading-snug text-brown transition-colors hover:text-gold focus:outline-none focus:ring-2 focus:ring-gold"
+            className="mb-2 rounded text-base font-bold leading-snug text-brown transition-colors hover:text-gold sm:mb-3 sm:text-xl focus:outline-none focus:ring-2 focus:ring-gold"
           >
             {name}
           </Link>
         ) : (
-          <h3 className="mb-3 text-xl font-bold leading-snug text-brown">{name}</h3>
+          <h3 className="mb-2 text-base font-bold leading-snug text-brown sm:mb-3 sm:text-xl">{name}</h3>
         )}
-        <p className="content-summary mb-5 flex-1 text-[0.95rem] leading-7 text-brown/65">{description}</p>
+        <p className="content-summary mobile-hide mb-5 flex-1 text-[0.95rem] leading-7 text-brown/65">{description}</p>
 
         {priceRange && (
-          <div className="mb-5 flex flex-wrap items-baseline gap-2 border-t border-brown/[0.06] pt-4">
-            <span className="text-gold font-bold text-xl">{priceRange}</span>
+          <div className="mb-3 mt-auto flex flex-wrap items-baseline gap-x-2 border-t border-brown/[0.06] pt-3 sm:mb-5 sm:mt-0 sm:pt-4">
+            <span className="text-gold font-bold text-lg sm:text-xl">{priceRange}</span>
             {originalPrice && (
               <span className="text-brown/50 text-sm line-through decoration-red-500 decoration-2">
                 {originalPrice}
               </span>
             )}
-            <span className="text-brown/50 text-xs">מחיר לקנייה</span>
+            <span className="hidden text-brown/50 text-xs sm:inline">מחיר לקנייה</span>
           </div>
         )}
 
         {features && features.length > 0 && (
-          <ul className="mb-5 space-y-2">
+          <ul className="mb-5 hidden space-y-2 sm:block">
             {features.slice(0, 3).map((f) => (
               <li key={f} className="flex items-start gap-2 text-sm leading-6 text-brown/70">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" aria-hidden="true" />
@@ -115,7 +115,7 @@ export default function ProductCard({
           </ul>
         )}
 
-        <div className="flex flex-col gap-2 mt-auto">
+        <div className="flex flex-col gap-2 sm:mt-auto">
           {cartItem && <AddToCartButton item={cartItem} />}
           {/* The standalone CTA is only shown when there's no detail page —
               when detailHref is set, the image and title already link there,

@@ -101,6 +101,25 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
                 </div>
               </div>
 
+              {/* CTAs — rendered unconditionally, same as the /bargains
+                  listing. AddToCartButton already falls back to a "request
+                  a quote" label when priceNumeric is unset, so gating it
+                  here only removed the entire CTA (no button at all) for a
+                  quote-only used machine on its own detail page while the
+                  listing page still showed it. */}
+              <div className="flex flex-col gap-2 mb-6">
+                <AddToCartButton
+                  item={{
+                    id: machine.id,
+                    name: machine.name,
+                    price: machine.price,
+                    priceNumeric: machine.priceNumeric,
+                    category: "used",
+                    image: machine.image,
+                  }}
+                />
+              </div>
+
               {/* Short description */}
               <p className="text-brown/75 text-base leading-relaxed mb-5">
                 {machine.description}
@@ -123,25 +142,6 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
                   ))}
                 </ul>
               )}
-
-              {/* CTAs — rendered unconditionally, same as the /bargains
-                  listing. AddToCartButton already falls back to a "request
-                  a quote" label when priceNumeric is unset, so gating it
-                  here only removed the entire CTA (no button at all) for a
-                  quote-only used machine on its own detail page while the
-                  listing page still showed it. */}
-              <div className="flex flex-col gap-2 mb-6">
-                <AddToCartButton
-                  item={{
-                    id: machine.id,
-                    name: machine.name,
-                    price: machine.price,
-                    priceNumeric: machine.priceNumeric,
-                    category: "used",
-                    image: machine.image,
-                  }}
-                />
-              </div>
 
               {/* Warranty note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">

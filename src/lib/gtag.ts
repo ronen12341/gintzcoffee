@@ -8,8 +8,52 @@ type GtagFn = (...args: unknown[]) => void;
 declare global {
   interface Window {
     gtag?: GtagFn;
+    fbq?: GtagFn;
     dataLayer?: unknown[];
   }
+}
+
+type TrackedItem = { id: string; name: string; category: string; priceNumeric?: number; qty: number };
+
+function toGaItems(items: TrackedItem[]) {
+  return items.map((i) => ({
+    item_id: i.id,
+    item_name: i.name,
+    item_category: i.category,
+    price: i.priceNumeric,
+    quantity: i.qty,
+  }));
+}
+
+function sumValue(items: TrackedItem[]) {
+  return items.reduce((sum, i) => sum + (i.priceNumeric ?? 0) * i.qty, 0);
+}
+
+/** Funnel step 1 — GA4 `add_to_cart` + Meta Pixel `AddToCart`. */
+export function trackAddToCart(item: TrackedItem): void {
+  if (typeof window === "undefined") return;
+  const value = sumValue([item]);
+  window.gtag?.("event", "add_to_cart", { currency: "ILS", value, items: toGaItems([item]) });
+  window.fbq?.("track", "AddToCart", {
+    content_ids: [item.id],
+    content_name: item.name,
+    content_type: "product",
+    value,
+    currency: "ILS",
+  });
+}
+
+/** Funnel step 2 — GA4 `begin_checkout` + Meta Pixel `InitiateCheckout`. */
+export function trackBeginCheckout(items: TrackedItem[]): void {
+  if (typeof window === "undefined" || items.length === 0) return;
+  const value = sumValue(items);
+  window.gtag?.("event", "begin_checkout", { currency: "ILS", value, items: toGaItems(items) });
+  window.fbq?.("track", "InitiateCheckout", {
+    content_ids: items.map((i) => i.id),
+    num_items: items.reduce((n, i) => n + i.qty, 0),
+    value,
+    currency: "ILS",
+  });
 }
 
 // Google Ads conversion "send_to" labels (from Google Ads → Goals → Conversions)

@@ -127,7 +127,7 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
           לא נמצאו פולים בסינון הזה. נסו לשנות את הבחירה.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {visible.map((bean) => (
             <article
               key={bean.id}
@@ -139,7 +139,7 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                 className="block focus:outline-none focus:ring-2 focus:ring-gold"
               >
                 {bean.image ? (
-                  <div className="relative aspect-[4/3] w-full bg-cream/30">
+                  <div className="relative aspect-[16/9] w-full bg-cream/30 sm:aspect-[4/3]">
                     <SmartImage
                       src={bean.image}
                       alt={bean.name}
@@ -152,7 +152,7 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                   <ImagePlaceholder label="הוסף תמונה" width={400} height={300} />
                 )}
               </Link>
-              <div className="p-6 flex flex-col flex-1">
+              <div className="p-4 sm:p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-2 mb-3 flex-wrap">
                   <span className="text-xs bg-gold/15 text-gold-dark font-semibold px-2.5 py-1 rounded-full">
                     {bean.roast}
@@ -169,12 +169,12 @@ export default function BeansShop({ beans }: { beans: Bean[] }) {
                 >
                   {bean.name}
                 </Link>
-                <p className="content-summary flex-1 text-[0.95rem] leading-7 text-brown/65">
+                <p className="content-summary mobile-hide flex-1 text-[0.95rem] leading-7 text-brown/65">
                   {bean.description}
                 </p>
 
                 {bean.features && bean.features.length > 0 && (
-                  <p className="mt-3 text-xs text-brown/55 leading-relaxed">
+                  <p className="mt-1 text-xs text-brown/55 leading-relaxed sm:mt-3">
                     {bean.features[0]}
                   </p>
                 )}

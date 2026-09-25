@@ -153,6 +153,24 @@ export default async function BeanDetailPage({ params }: PageProps) {
                 {bean.name}
               </h1>
 
+              {/* Purchase: weight + grind. Rendered unconditionally, same as
+                  the /beans listing (BeansShop) — BeanPurchase already
+                  handles a missing 1kg price gracefully (the flat-rate 250g
+                  option still works), so gating it here only hid the entire
+                  purchase widget for a quote-only bean on its own detail
+                  page while the listing page still showed it. */}
+              <div className="mb-6">
+                <BeanPurchase
+                  bean={{
+                    id: bean.id,
+                    name: bean.name,
+                    price: bean.price,
+                    priceNumeric: bean.priceNumeric,
+                    image: bean.image,
+                  }}
+                />
+              </div>
+
               {/* Short description */}
               <p className="text-brown/75 text-base leading-relaxed mb-5">
                 {bean.description}
@@ -175,24 +193,6 @@ export default async function BeanDetailPage({ params }: PageProps) {
                   ))}
                 </ul>
               )}
-
-              {/* Purchase: weight + grind. Rendered unconditionally, same as
-                  the /beans listing (BeansShop) — BeanPurchase already
-                  handles a missing 1kg price gracefully (the flat-rate 250g
-                  option still works), so gating it here only hid the entire
-                  purchase widget for a quote-only bean on its own detail
-                  page while the listing page still showed it. */}
-              <div className="mb-6">
-                <BeanPurchase
-                  bean={{
-                    id: bean.id,
-                    name: bean.name,
-                    price: bean.price,
-                    priceNumeric: bean.priceNumeric,
-                    image: bean.image,
-                  }}
-                />
-              </div>
 
               {/* Freshness note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">

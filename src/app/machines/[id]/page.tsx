@@ -155,6 +155,20 @@ export default async function MachineDetailPage({ params }: PageProps) {
                 </div>
               )}
 
+              {/* CTAs */}
+              <div className="flex flex-col gap-2 mb-6">
+                <AddToCartButton
+                  item={{
+                    id: machine.id,
+                    name: machine.name,
+                    price: machine.price,
+                    priceNumeric: machine.priceNumeric,
+                    category: "machine",
+                    image: machine.image,
+                  }}
+                />
+              </div>
+
               {/* Short description */}
               <p className="text-brown/75 text-base leading-relaxed mb-5">
                 {machine.description}
@@ -177,20 +191,6 @@ export default async function MachineDetailPage({ params }: PageProps) {
                   ))}
                 </ul>
               )}
-
-              {/* CTAs */}
-              <div className="flex flex-col gap-2 mb-6">
-                <AddToCartButton
-                  item={{
-                    id: machine.id,
-                    name: machine.name,
-                    price: machine.price,
-                    priceNumeric: machine.priceNumeric,
-                    category: "machine",
-                    image: machine.image,
-                  }}
-                />
-              </div>
 
               {/* Specs table */}
               {machine.specs && machine.specs.length > 0 && (

@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, FormEvent } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { getGclid } from "@/lib/gclid";
+import { trackBeginCheckout } from "@/lib/gtag";
 
 /**
  * Sumit payment-page URL. Hard-coded fallback is the production page for
@@ -31,6 +32,19 @@ export default function CheckoutPage() {
   const { items, totalPrice, hasUnpricedItems, clear } = useCart();
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Tax-ID / invoice-name fields are collapsed below the legal threshold —
+  // most orders don't need them, and every visible field costs conversions.
+  const [showInvoiceFields, setShowInvoiceFields] = useState(false);
+
+  // Fire begin_checkout once, after the cart hydrates from localStorage
+  // (items start empty on first render).
+  const checkoutTracked = useRef(false);
+  useEffect(() => {
+    if (checkoutTracked.current || items.length === 0) return;
+    checkoutTracked.current = true;
+    trackBeginCheckout(items);
+  }, [items]);
 
   // Delivery vs. self-pickup (by prior arrangement). Default to delivery.
   const [deliveryMethod, setDeliveryMethod] = useState<DeliveryMethod>("delivery");
@@ -334,6 +348,15 @@ export default function CheckoutPage() {
               />
             </div>
 
+            {!taxIdRequired && !showInvoiceFields ? (
+              <button
+                type="button"
+                onClick={() => setShowInvoiceFields(true)}
+                className="text-sm font-medium text-gold-dark underline hover:no-underline"
+              >
+                + צריכים חשבונית על שם עסק (ח.פ)?
+              </button>
+            ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="taxId" className="block text-sm font-medium text-brown mb-1">
@@ -369,6 +392,7 @@ export default function CheckoutPage() {
                 />
               </div>
             </div>
+            )}
 
             {/* Delivery method selector */}
             <fieldset className="border border-cream-dark rounded-lg p-4">

@@ -44,7 +44,7 @@ export default function BargainsPage() {
           <h2 id="bargains-grid-heading" className="text-2xl font-bold text-brown mb-8">
             המלאי הנוכחי
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
             {usedMachines.map((m) => (
               <ProductCard
                 key={m.id}

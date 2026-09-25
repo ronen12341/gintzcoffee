@@ -119,7 +119,7 @@ export default function HomePage() {
               <Link href="/machines" className="btn btn-secondary btn-sm">כל המכונות ←</Link>
             </div>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4">
             {shopBeans.map((b) => (
               <ProductCard
                 key={b.id}
@@ -128,7 +128,7 @@ export default function HomePage() {
                 image={b.image}
                 priceRange={b.price}
                 ctaHref={`/beans/${b.id}`}
-                ctaLabel="בחירת טחינה וקנייה ←"
+                ctaLabel="לקנייה ←"
               />
             ))}
             {shopMachines.map((m) => (

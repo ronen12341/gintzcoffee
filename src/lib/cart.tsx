@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { getCatalogPrice } from "@/lib/server-pricing";
+import { trackAddToCart } from "@/lib/gtag";
 
 export interface CartItem {
   id: string;
@@ -120,6 +121,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, hydrated]);
 
   const addItem: CartContextType["addItem"] = (item, qty = 1) => {
+    trackAddToCart({ ...item, qty });
     setItems((prev) => {
       // Match on id + category, not id alone — two catalog entries in
       // different categories could theoretically share an id, and matching

@@ -81,7 +81,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setDrawerOpen(true)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-cream transition-all hover:border-gold/40 hover:bg-white/[0.08] focus:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brown/10 bg-cream text-brown transition-all hover:border-gold/50 hover:bg-cream-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-gold lg:hidden"
                 aria-label="פתח תפריט"
                 aria-expanded={drawerOpen}
                 aria-controls="side-drawer"
@@ -104,18 +104,18 @@ export default function Navbar() {
                     alt="לוגו קפה גינץ"
                     width={46}
                     height={46}
-                    className="relative rounded-full bg-white object-contain ring-1 ring-white/20 transition-all group-hover:ring-gold/60"
+                    className="relative rounded-full bg-white object-contain ring-1 ring-brown/10 transition-all group-hover:ring-gold/60"
                     priority
                   />
                 </div>
                 <div className="flex flex-col leading-none">
                   <span
-                    className="text-xl font-bold tracking-wide text-gold"
+                    className="text-xl font-bold tracking-wide text-gold-dark"
                     style={{ fontFamily: "var(--font-playfair), serif" }}
                   >
                     Gintz
                   </span>
-                  <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-cream/55 sm:text-[10px]">
+                  <span className="mt-1 text-[9px] font-semibold uppercase tracking-[0.28em] text-brown/50 sm:text-[10px]">
                     Coffee Roastery
                   </span>
                 </div>
@@ -164,7 +164,7 @@ export default function Navbar() {
               </Link>
               <a
                 href="tel:039600550"
-                className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-cream/65 transition-colors hover:text-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold xl:flex"
+                className="hidden items-center gap-1.5 rounded-full px-3 py-2 text-sm font-medium text-brown/70 transition-colors hover:text-gold-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-gold xl:flex"
                 aria-label="התקשר אלינו: 03-9600550"
               >
                 <Phone className="w-4 h-4 text-gold" aria-hidden="true" />
