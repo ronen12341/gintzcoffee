@@ -38,14 +38,10 @@ export default function OfficeCoffeeBudgetGuidePost() {
       />
 
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="post-heading"
       >
         <div className="max-w-2xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            תקציב ועלויות
-          </p>
           <h1 id="post-heading" className="text-3xl md:text-4xl font-bold text-cream mb-4">
             כמה עולה קפה למשרד? מדריך תקציב מלא
           </h1>

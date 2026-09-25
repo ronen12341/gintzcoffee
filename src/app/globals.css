@@ -53,6 +53,26 @@
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
+   Page header — light, compact band at the top of every inner page.
+   The page markup still carries its old dark-hero text utilities
+   (text-cream, text-4xl…), so colours/sizes are overridden here.
+   ────────────────────────────────────────────────────────────────────────── */
+.page-hero {
+  @apply bg-cream-dark py-8 text-center sm:py-10;
+}
+.page-hero h1 {
+  @apply mb-2 text-3xl leading-tight sm:text-4xl !important;
+  color: theme("colors.brown.DEFAULT") !important;
+}
+.page-hero h1 .text-gold {
+  color: theme("colors.gold.dark") !important;
+}
+.page-hero p {
+  @apply mx-auto max-w-2xl text-base leading-relaxed sm:text-lg !important;
+  color: rgb(59 31 10 / 0.7) !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
    3D Button system
    ────────────────────────────────────────────────────────────────────────── */
 @layer components {

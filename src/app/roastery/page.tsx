@@ -60,14 +60,10 @@ export default function RoasteryPage() {
     <>
       {/* Hero */}
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="roastery-heading"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · Roastery
-          </p>
           <h1 id="roastery-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             בית קלייה לקפה
           </h1>

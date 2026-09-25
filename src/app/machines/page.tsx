@@ -86,14 +86,10 @@ export default function MachinesPage() {
 
       {/* Hero */}
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="machines-heading"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · Machines
-          </p>
           <h1 id="machines-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             מכונות קפה לעסקים ולמשרד
           </h1>
@@ -101,6 +97,57 @@ export default function MachinesPage() {
             מכונות אוטומטיות ומקצועיות לכל גודל עסק — משרד, מסעדה, מלון או קליניקה.
             אספקה, התקנה והדרכה כלולים.
           </p>
+        </div>
+      </section>
+
+      {/* Products grid */}
+      <section className="py-14 bg-cream" aria-labelledby="machines-grid-heading">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="machines-grid-heading" className="text-2xl font-bold text-brown mb-8">
+            כל המכונות שלנו
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coffeeMachines.map((m) => (
+              <ProductCard
+                key={m.id}
+                name={m.name}
+                description={m.description}
+                features={m.features}
+                image={m.image}
+                priceRange={m.price}
+                ctaHref={`/machines/${m.id}`}
+                ctaLabel="פרטים מלאים ←"
+                detailHref={`/machines/${m.id}`}
+                imageContain={m.id === "melitta-solo-silver"}
+                cartItem={{
+                  id: m.id,
+                  name: m.name,
+                  price: m.price,
+                  priceNumeric: m.priceNumeric,
+                  category: "machine",
+                  image: m.image,
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Info strip */}
+      <section className="py-10 bg-gold/10 border-y border-gold/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+            {[
+              { title: "התקנה חינם", desc: "מגיעים אליכם ומתקינים בלי תוספת" },
+              { title: "הדרכה מקצועית", desc: "מדריכים את הצוות לפני שעוזבים" },
+              { title: "תמיכה שוטפת", desc: "טכנאי מוסמך זמין לכל תקלה" },
+            ].map(({ title, desc }) => (
+              <div key={title}>
+                <h3 className="text-brown font-bold text-lg mb-1">{title}</h3>
+                <p className="text-brown/65 text-sm">{desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -157,57 +204,6 @@ export default function MachinesPage() {
                   <span className="font-semibold text-brown">מתאים ל: </span>
                   {fit}
                 </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Products grid */}
-      <section className="py-14 bg-cream" aria-labelledby="machines-grid-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="machines-grid-heading" className="text-2xl font-bold text-brown mb-8">
-            כל המכונות שלנו
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coffeeMachines.map((m) => (
-              <ProductCard
-                key={m.id}
-                name={m.name}
-                description={m.description}
-                features={m.features}
-                image={m.image}
-                priceRange={m.price}
-                ctaHref={`/machines/${m.id}`}
-                ctaLabel="פרטים מלאים ←"
-                detailHref={`/machines/${m.id}`}
-                imageContain={m.id === "melitta-solo-silver"}
-                cartItem={{
-                  id: m.id,
-                  name: m.name,
-                  price: m.price,
-                  priceNumeric: m.priceNumeric,
-                  category: "machine",
-                  image: m.image,
-                }}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Info strip */}
-      <section className="py-10 bg-gold/10 border-y border-gold/20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
-            {[
-              { title: "התקנה חינם", desc: "מגיעים אליכם ומתקינים בלי תוספת" },
-              { title: "הדרכה מקצועית", desc: "מדריכים את הצוות לפני שעוזבים" },
-              { title: "תמיכה שוטפת", desc: "טכנאי מוסמך זמין לכל תקלה" },
-            ].map(({ title, desc }) => (
-              <div key={title}>
-                <h3 className="text-brown font-bold text-lg mb-1">{title}</h3>
-                <p className="text-brown/65 text-sm">{desc}</p>
               </div>
             ))}
           </div>

@@ -181,22 +181,10 @@ export default function RentalCoffeePage() {
 
       {/* Hero */}
       <section
-        className="relative py-24 text-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 60%, #6B3A18 100%)" }}
+        className="page-hero"
         aria-labelledby="rental-heading"
       >
-        <div
-          className="absolute inset-0 opacity-15 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 30%, #C8922A 0%, transparent 35%), radial-gradient(circle at 70% 70%, #C8922A 0%, transparent 30%)",
-          }}
-          aria-hidden="true"
-        />
         <div className="relative max-w-3xl mx-auto px-4">
-          <p className="text-gold/90 text-sm font-montserrat tracking-widest uppercase mb-4">
-            פתרונות קפה לעסקים
-          </p>
           <h1
             id="rental-heading"
             className="text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight"
@@ -207,20 +195,12 @@ export default function RentalCoffeePage() {
             המכונה עלינו, אתם משלמים על הקפה. דמי שירות חודשיים קבועים כוללים
             מכונה, התקנה, הדרכה, שירות ופולים טריים - בלי שקל השקעה ראשונית.
           </p>
-          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+          <div className="mt-6 flex justify-center">
             <a
               href="#contact"
-              className="inline-flex items-center justify-center rounded-xl bg-gold px-8 py-3.5 font-bold text-brown-dark transition hover:bg-gold/90 w-full sm:w-auto"
+              className="inline-flex items-center justify-center rounded-full bg-gold px-8 py-3 font-bold text-white transition hover:bg-gold-dark w-full sm:w-auto"
             >
               קבלו הצעת מחיר
-            </a>
-            <a
-              href="https://wa.me/97239600550?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%94%D7%A9%D7%9B%D7%A8%D7%AA%20%D7%9E%D7%9B%D7%95%D7%A0%D7%AA%20%D7%A7%D7%A4%D7%94%20%D7%9C%D7%A2%D7%A1%D7%A7"
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center justify-center rounded-xl border border-cream/40 px-8 py-3.5 font-bold text-cream transition hover:bg-cream/10 w-full sm:w-auto"
-            >
-              דברו איתנו בוואטסאפ
             </a>
           </div>
         </div>

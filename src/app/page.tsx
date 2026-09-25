@@ -13,10 +13,10 @@ const shopBeans = coffeeBeans.filter((b) => SHOP_BEAN_IDS.includes(b.id));
 const shopMachines = coffeeMachines.filter((m) => SHOP_MACHINE_IDS.includes(m.id));
 
 const CATEGORIES = [
-  { href: "/beans", title: "פולי קפה", sub: "קלויים טרי אצלנו", image: "/coffee-bag.jpg" },
-  { href: "/business-solutions", title: "פתרונות קפה למשרד", sub: "מכונה, פולים ושירות", image: "/images/jura-x10.jpg", badge: "הצעת מחיר" },
-  { href: "/machines", title: "מכונות קפה חדשות", sub: "JURA, Lelit ועוד", image: "/images/products/machine-ena8.jpg" },
-  { href: "/bargains", title: "מכונות מחודשות", sub: "עם 3 חודשי אחריות", image: "/images/products/used-jura-x8.jpg", badge: "מציאון" },
+  { href: "/beans", title: "פולי קפה", sub: "קלויים טרי אצלנו", image: "/coffee-bag.jpg", cta: "לקנייה" },
+  { href: "/business-solutions", title: "קפה למשרד", sub: "מכונה, פולים ושירות", image: "/images/jura-x10.jpg", badge: "הצעת מחיר", cta: "לפרטים" },
+  { href: "/machines", title: "מכונות חדשות", sub: "JURA, Lelit ועוד", image: "/images/products/machine-ena8.jpg", cta: "לקנייה" },
+  { href: "/bargains", title: "מכונות מחודשות", sub: "3 חודשי אחריות", image: "/images/products/used-jura-x8.jpg", badge: "מציאון", cta: "לקנייה" },
 ];
 
 export default function HomePage() {
@@ -79,52 +79,30 @@ export default function HomePage() {
               <Link
                 key={c.href}
                 href={c.href}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-brown/10 bg-white transition duration-300 hover:-translate-y-0.5 hover:border-gold/60 hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
+                className="group relative flex flex-col items-center overflow-hidden rounded-3xl bg-gradient-to-b from-cream to-cream-dark px-3 pb-5 pt-4 text-center shadow-sm ring-1 ring-brown/[0.06] transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-gold/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold sm:px-5 sm:pb-7 sm:pt-6"
               >
                 {c.badge && (
-                  <span className="absolute start-2.5 top-2.5 z-10 rounded-full bg-gold px-2.5 py-0.5 text-[11px] font-bold text-white sm:text-xs">
+                  <span className="absolute start-3 top-3 z-10 rounded-full bg-gold px-3 py-1 text-xs font-bold text-white shadow-sm sm:text-sm">
                     {c.badge}
                   </span>
                 )}
-                <div className="relative aspect-square w-full bg-white">
+                <div className="relative aspect-square w-full">
                   <Image
                     src={c.image}
                     alt=""
                     fill
                     priority
-                    className="object-contain p-5 transition duration-500 group-hover:scale-105 sm:p-7"
+                    className="object-contain p-2 mix-blend-multiply transition duration-500 group-hover:scale-105 sm:p-4"
                     sizes="(max-width: 1024px) 50vw, 25vw"
                   />
                 </div>
-                <div className="flex flex-1 items-center justify-between gap-2 border-t border-brown/[0.06] px-3 py-3 sm:px-5 sm:py-4">
-                  <div>
-                    <h2 className="text-sm font-bold leading-snug text-brown sm:text-lg">{c.title}</h2>
-                    <p className="mt-0.5 text-xs text-brown/55 sm:text-sm">{c.sub}</p>
-                  </div>
-                  <span
-                    className="hidden h-8 w-8 flex-shrink-0 items-center sm:flex justify-center rounded-full bg-cream text-brown transition group-hover:bg-gold group-hover:text-white"
-                    aria-hidden="true"
-                  >
-                    ←
-                  </span>
-                </div>
+                <h2 className="mt-2 text-lg font-bold leading-tight text-brown sm:mt-4 sm:text-2xl">{c.title}</h2>
+                <p className="mt-1 text-sm text-brown/65 sm:text-base">{c.sub}</p>
+                <span className="mt-3 inline-flex items-center gap-1 rounded-full bg-brown px-4 py-1.5 text-sm font-bold text-cream transition group-hover:bg-gold sm:mt-4 sm:px-6 sm:py-2 sm:text-base">
+                  {c.cta} ←
+                </span>
               </Link>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Client logos ── */}
-      <section className="bg-cream-dark py-6" aria-labelledby="clients-heading">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p id="clients-heading" className="mb-4 text-center text-xs font-semibold text-brown/40">
-            בין הלקוחות שלנו
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-50 grayscale">
-            <Image src="/lp/logos/electra.png" alt="Electra" width={90} height={30} className="h-5 w-auto object-contain" />
-            <Image src="/lp/logos/amazon.svg" alt="Amazon" width={90} height={30} className="h-4 w-auto object-contain" />
-            <Image src="/lp/logos/aws.svg" alt="AWS" width={80} height={30} className="h-5 w-auto object-contain" />
-            <Image src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={100} height={34} className="h-6 w-auto object-contain" />
           </div>
         </div>
       </section>

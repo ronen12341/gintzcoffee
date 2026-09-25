@@ -66,14 +66,10 @@ export default function BlogPage() {
   return (
     <>
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="blog-heading"
       >
         <div className="max-w-2xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · Blog
-          </p>
           <h1 id="blog-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             הבלוג של קפה גינץ
           </h1>

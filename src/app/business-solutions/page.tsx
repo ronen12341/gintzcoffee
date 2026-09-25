@@ -1,17 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Coffee,
-  Wrench,
-  HeartHandshake,
-  Truck,
-  Building2,
-  Users,
-  Factory,
-  Flame,
-  ClipboardCheck,
-  PhoneCall,
-} from "lucide-react";
+import Image from "next/image";
+import { Truck, Flame, ClipboardCheck, PhoneCall } from "lucide-react";
 import BusinessSolutionCard from "@/components/BusinessSolutionCard";
 import LeadForm from "@/components/LeadForm";
 import { businessSolutions } from "@/data/products";
@@ -37,56 +27,6 @@ export const metadata: Metadata = {
     "עמדת קפה לעסק",
   ],
 };
-
-const PERKS = [
-  {
-    icon: Coffee,
-    title: "פולים טריים מהקלייה שלנו",
-    body: "אספקה שוטפת של פולים שנקלו במיוחד לעסק שלכם.",
-  },
-  {
-    icon: Wrench,
-    title: "התקנה והדרכה כלולות",
-    body: "מגיעים אליכם, מתקינים, ומדריכים את הצוות לפני שעוזבים.",
-  },
-  {
-    icon: HeartHandshake,
-    title: "שירות אישי שוטף",
-    body: "מנהל לקוח ייעודי שזמין בכל עת — שיחה אחת והכל מטופל.",
-  },
-  {
-    icon: Truck,
-    title: "אספקה והחלפה מהירה",
-    body: "תקלה? מחליפים מכונה תוך 24 שעות. מלאי חירום זמין תמיד.",
-  },
-];
-
-const SIZES = [
-  {
-    icon: Building2,
-    range: "10–30 עובדים",
-    cups: "כ-20–50 כוסות ביום",
-    machine: "מכונה אוטומטית קומפקטית",
-    body: "משרד קטן או סטארט-אפ. מכונה אוטומטית על בסיס פולים, טוחנת בכל כוס, עם מיכל מים פנימי — בלי צורך בתשתית מים. תופסת מקום של מיקרוגל.",
-    consumption: "כ-5–10 ק\"ג פולים בחודש",
-  },
-  {
-    icon: Users,
-    range: "30–80 עובדים",
-    cups: "כ-50–130 כוסות ביום",
-    machine: "מכונה אוטומטית מקצועית",
-    body: "החלק הגדול של הלקוחות שלנו. מכונה עם מערכת הקצפת חלב, מגוון משקאות בלחיצת כפתור, וחיבור קבוע למים. עומדת בעומס של שעות השיא בבוקר.",
-    consumption: "כ-10–15 ק\"ג פולים בחודש",
-  },
-  {
-    icon: Factory,
-    range: "80+ עובדים",
-    cups: "100+ כוסות ביום",
-    machine: "מכונה מקצועית בעומס גבוה",
-    body: "חברות, מפעלים, חדרי אוכל ומוסדות. מכונה שבנויה לעבודה רציפה, לעיתים יותר מעמדה אחת. כולל תכנון פריסה של עמדות הקפה בבניין.",
-    consumption: "15+ ק\"ג פולים בחודש",
-  },
-];
 
 const STEPS = [
   {
@@ -174,22 +114,10 @@ export default function BusinessSolutionsPage() {
 
       {/* Hero */}
       <section
-        className="relative py-24 text-center overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 60%, #6B3A18 100%)" }}
+        className="page-hero"
         aria-labelledby="business-heading"
       >
-        <div
-          className="absolute inset-0 opacity-15 pointer-events-none"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 30%, #C8922A 0%, transparent 35%), radial-gradient(circle at 70% 70%, #C8922A 0%, transparent 30%)",
-          }}
-          aria-hidden="true"
-        />
         <div className="relative max-w-4xl mx-auto px-4">
-          <p className="text-gold/90 text-sm font-montserrat tracking-widest uppercase mb-4">
-            Coffee Solutions · For Business
-          </p>
           <h1
             id="business-heading"
             className="text-4xl md:text-6xl font-bold text-cream mb-6 leading-tight"
@@ -203,84 +131,17 @@ export default function BusinessSolutionsPage() {
         </div>
       </section>
 
-      {/* Intro — topical depth */}
-      <section className="py-14 bg-cream" aria-labelledby="intro-heading">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 id="intro-heading" className="text-2xl md:text-3xl font-bold text-brown mb-5">
-            קפה במשרד הוא לא מוצר. זו מערכת.
-          </h2>
-          <div className="space-y-4 text-brown/75 leading-relaxed">
-            <p>
-              רוב העסקים חושבים שהם צריכים לקנות מכונת קפה. בפועל הם צריכים משהו
-              אחר: שהקפה יהיה שם כל בוקר, שהוא יהיה טעים, שמישהו יטפל במכונה
-              כשהיא נתקעת, ושהפולים לא ייגמרו באמצע השבוע. מכונה היא רק רכיב אחד
-              מתוך ארבעה.
-            </p>
-            <p>
-              לכן כשמחפשים <strong>קפה לעסקים</strong>, כדאי לחפש לא רק
-              מכונה אלא בדיוק את זה. אנחנו לא מוכרים מכונות. אנחנו מציבים
-              אצלכם פתרון שלם: מכונה מקצועית מותאמת לגודל העסק, אספקה שוטפת
-              של פולים שנקלו{" "}
-              <Link href="/roastery" className="text-gold underline hover:no-underline">
-                בבית הקלייה שלנו
-              </Link>
-              , התקנה והדרכה, ושירות ותחזוקה שוטפים — בדמי שירות חודשיים קבועים,
-              בלי השקעה ראשונית בציוד. כלומר מכונת קפה מקצועית לעסק בלי עלות
-              רכישה מראש — רק מחיר חודשי קבוע שכולל הכל.
-            </p>
-            <p>
-              המשמעות המעשית: מנהל המשרד מקבל מספר אחד בחודש ושיחת טלפון אחת
-              כשמשהו צריך טיפול. זהו. אין רכש, אין חוזי שירות נפרדים, אין
-              התלבטות איזה קפה לקנות.
-            </p>
-            <p>
-              המודל הזה נקרא{" "}
-              <Link href="/business-solutions/rental" className="text-gold underline hover:no-underline">
-                השכרת מכונת קפה לעסק
-              </Link>
-              : המכונה עלינו, אתם משלמים על הקפה - בלי השקעה ראשונית בציוד.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Size segmentation */}
-      <section className="py-16 bg-cream-dark border-y border-cream" aria-labelledby="sizes-heading">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 id="sizes-heading" className="text-3xl md:text-4xl font-bold text-brown mb-3">
-              מה מתאים לעסק שלכם, לפי מספר עובדים
-            </h2>
-            <p className="text-brown/65 max-w-2xl mx-auto">
-              הפרמטר שקובע הכל הוא כמה כוסות ביום. משרד של 20 איש ומשרד של 100
-              צריכים מכונות שונות לגמרי — וזו הטעות הכי נפוצה שאנחנו רואים.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {SIZES.map(({ icon: Icon, range, cups, machine, body, consumption }) => (
-              <div
-                key={range}
-                className="bg-white rounded-2xl p-7 shadow-sm border border-cream flex flex-col"
-              >
-                <div className="w-12 h-12 mb-4 bg-gold/15 text-gold rounded-xl flex items-center justify-center">
-                  <Icon className="w-6 h-6" aria-hidden="true" />
-                </div>
-                <h3 className="text-xl font-bold text-brown mb-1">{range}</h3>
-                <p className="text-gold text-sm font-semibold mb-3">{cups}</p>
-                <p className="text-brown/70 text-sm leading-relaxed mb-4 flex-1">{body}</p>
-                <div className="pt-4 border-t border-cream space-y-1.5 text-sm">
-                  <p className="text-brown/60">
-                    <span className="font-semibold text-brown">מכונה: </span>
-                    {machine}
-                  </p>
-                  <p className="text-brown/60">
-                    <span className="font-semibold text-brown">צריכה: </span>
-                    {consumption}
-                  </p>
-                </div>
-              </div>
-            ))}
+      {/* ── Client logos ── */}
+      <section className="bg-cream-dark py-6" aria-labelledby="clients-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p id="clients-heading" className="mb-4 text-center text-xs font-semibold text-brown/40">
+            בין הלקוחות שלנו
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 opacity-50 grayscale">
+            <Image src="/lp/logos/electra.png" alt="Electra" width={90} height={30} className="h-5 w-auto object-contain" />
+            <Image src="/lp/logos/amazon.svg" alt="Amazon" width={90} height={30} className="h-4 w-auto object-contain" />
+            <Image src="/lp/logos/aws.svg" alt="AWS" width={80} height={30} className="h-5 w-auto object-contain" />
+            <Image src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={100} height={34} className="h-6 w-auto object-contain" />
           </div>
         </div>
       </section>
@@ -344,73 +205,6 @@ export default function BusinessSolutionsPage() {
         </div>
       </section>
 
-      {/* Differentiator — roastery vs big supplier */}
-      <section className="py-16 bg-cream" aria-labelledby="diff-heading">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 id="diff-heading" className="text-3xl md:text-4xl font-bold text-brown mb-3">
-              בית קלייה מול ספק גדול — ההבדל בפועל
-            </h2>
-            <p className="text-brown/65 max-w-2xl mx-auto">
-              רוב{" "}
-              <Link href="/machines" className="text-gold-dark underline hover:no-underline">
-                מכונות הקפה לעסקים
-              </Link>{" "}
-              בשוק נראות דומות בהצעת המחיר. הן לא דומות בכוס.
-            </p>
-          </div>
-
-          <div className="overflow-hidden rounded-2xl border border-cream bg-white">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="bg-cream-dark">
-                  <th className="text-right p-4 text-brown font-bold"> </th>
-                  <th className="text-right p-4 text-gold font-bold">קפה גינץ</th>
-                  <th className="text-right p-4 text-brown/60 font-bold">ספק גדול טיפוסי</th>
-                </tr>
-              </thead>
-              <tbody className="text-brown/75">
-                {[
-                  ["מקור הפולים", "נקלים אצלנו, בבית הקלייה שלנו", "נקנים מקולה חיצוני או מיובאים ארוזים"],
-                  ["טריות", "ימים ספורים מהקלייה", "שבועות עד חודשים"],
-                  ["התאמת תערובת", "מתאימים לטעם של המשרד שלכם", "קטלוג קבוע, בחירה מתוך רשימה"],
-                  ["מי עונה לכם", "אדם שמכיר את העסק שלכם", "מוקד שירות"],
-                  ["גמישות", "משנים תערובת או מכונה לפי צורך", "תהליך דרך מחלקות"],
-                ].map(([label, us, them]) => (
-                  <tr key={label} className="border-t border-cream">
-                    <td className="p-4 font-semibold text-brown">{label}</td>
-                    <td className="p-4">{us}</td>
-                    <td className="p-4 text-brown/55">{them}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          <p className="text-brown/65 text-sm leading-relaxed mt-6 text-center max-w-2xl mx-auto">
-            זו הסיבה שלקוחות עוברים אלינו מספקים גדולים — ונשארים. אם אתם כבר
-            עובדים עם ספק, שווה לטעום ולהשוות לפני שמחדשים חוזה.
-          </p>
-        </div>
-      </section>
-
-      {/* Perks strip */}
-      <section className="py-12 bg-cream-dark border-y border-cream" aria-label="יתרונות">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PERKS.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="text-center">
-                <div className="w-14 h-14 mx-auto mb-3 bg-gold/15 text-gold rounded-full flex items-center justify-center">
-                  <Icon className="w-7 h-7" aria-hidden="true" />
-                </div>
-                <h3 className="text-brown font-bold mb-1">{title}</h3>
-                <p className="text-brown/65 text-sm leading-relaxed">{body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-16 bg-cream" aria-labelledby="faq-heading">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -464,21 +258,6 @@ export default function BusinessSolutionsPage() {
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* Related guide */}
-      <section className="py-10 bg-cream-dark" aria-labelledby="business-guide-heading">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p id="business-guide-heading" className="text-brown/70">
-            רוצים לתכנן תקציב מדויק?{" "}
-            <Link
-              href="/blog/office-coffee-budget-guide"
-              className="text-gold-dark font-bold underline"
-            >
-              קראו את מדריך התקציב המלא לקפה למשרד
-            </Link>
-          </p>
         </div>
       </section>
 

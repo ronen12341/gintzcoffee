@@ -62,14 +62,10 @@ export default function LargeOfficeCoffeePage() {
 
       {/* Hero */}
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="large-office-heading"
       >
         <div className="max-w-2xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            פתרונות קפה לעסקים · מעל 20 עובדים
-          </p>
           <h1 id="large-office-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             מכונת קפה למשרד גדול
           </h1>

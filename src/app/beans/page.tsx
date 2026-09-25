@@ -29,14 +29,10 @@ export default function BeansPage() {
     <>
       {/* Hero */}
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="beans-heading"
       >
         <div className="max-w-3xl mx-auto px-4">
-          <p className="text-gold/80 text-sm font-montserrat tracking-widest uppercase mb-3">
-            Gintz Coffee · Beans
-          </p>
           <h1 id="beans-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
             פולי קפה פרימיום
           </h1>
@@ -47,25 +43,8 @@ export default function BeansPage() {
         </div>
       </section>
 
-      {/* Quality manifesto */}
-      <section className="py-14 bg-cream" aria-labelledby="beans-intro-heading">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2
-            id="beans-intro-heading"
-            className="text-2xl sm:text-3xl font-bold text-brown mb-4"
-          >
-            הזמן שאנחנו מחכים לו כל היום
-          </h2>
-          <p className="text-brown/70 text-base sm:text-lg leading-relaxed">
-            קפה של בוקר, אספרסו קצר לפני פגישה, הפסקת התרעננות בעבודה, לאטה מפנק בבית
-            אחרי יום ארוך. להתמכר לריח של קפה טוב וללגום בעונג. בדיוק בשביל הרגעים האלה —
-            אנחנו מלקטים את פולי הקפה הטובים בעולם, בשבילך.
-          </p>
-        </div>
-      </section>
-
       {/* Shop grid with filters */}
-      <section className="pb-16 bg-cream" aria-labelledby="beans-grid-heading">
+      <section className="pt-8 pb-16 bg-cream" aria-labelledby="beans-grid-heading">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 id="beans-grid-heading" className="sr-only">
             הפולים שלנו

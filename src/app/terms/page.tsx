@@ -10,8 +10,7 @@ export default function TermsPage() {
   return (
     <>
       <section
-        className="py-20 text-center"
-        style={{ background: "linear-gradient(135deg, #3B1F0A 0%, #5C3015 100%)" }}
+        className="page-hero"
         aria-labelledby="terms-heading"
       >
         <div className="max-w-2xl mx-auto px-4">
