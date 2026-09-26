@@ -44,11 +44,11 @@ export default function ErrorBoundary({
           </Link>
         </div>
 
-        <div className="bg-brown text-cream rounded-2xl p-6">
-          <p className="text-sm text-cream/80 mb-2">צריך עזרה עכשיו?</p>
+        <div className="bg-gradient-to-b from-cream to-cream-dark text-brown rounded-3xl p-6 shadow-sm ring-1 ring-brown/[0.06]">
+          <p className="text-sm text-brown/70 mb-2">צריך עזרה עכשיו?</p>
           <a
             href="tel:039600550"
-            className="inline-flex items-center gap-2 text-2xl font-bold text-gold hover:text-gold-light"
+            className="inline-flex items-center gap-2 text-2xl font-bold text-gold-dark hover:text-gold"
             dir="ltr"
           >
             <Phone className="w-6 h-6" aria-hidden="true" />
