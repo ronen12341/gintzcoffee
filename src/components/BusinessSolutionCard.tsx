@@ -19,21 +19,21 @@ export default function BusinessSolutionCard({
 }: BusinessSolutionCardProps) {
   if (variant === "home") {
     return (
-      <article className="flex flex-col overflow-hidden rounded-2xl bg-brown-dark shadow-md transition duration-300 hover:-translate-y-1 hover:shadow-lg">
-        <div className="flex w-full flex-1 flex-col p-6 text-white">
-          <div className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-gold/40 bg-black/25 px-3 py-1.5 text-xs font-bold text-cream backdrop-blur-sm">
+      <article className="flex flex-col overflow-hidden rounded-3xl bg-gradient-to-b from-cream to-cream-dark shadow-sm ring-1 ring-brown/[0.06] transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:ring-gold/50">
+        <div className="flex w-full flex-1 flex-col p-6 text-brown">
+          <div className="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full border border-gold/40 bg-white/70 px-3 py-1.5 text-xs font-bold text-brown">
             <Users className="h-3.5 w-3.5 text-gold" aria-hidden="true" />
             {solution.employeeRange}
           </div>
-          <h3 className="mb-2 text-2xl font-bold leading-tight">{solution.name}</h3>
+          <h3 className="mb-2 text-2xl font-bold leading-tight text-brown">{solution.name}</h3>
           {solution.tagline && (
-            <p className="mb-4 text-sm font-medium leading-relaxed text-gold">
+            <p className="mb-4 text-sm font-medium leading-relaxed text-gold-dark">
               {solution.tagline}
             </p>
           )}
-          <ul className="mb-6 space-y-2 border-t border-white/15 pt-4">
+          <ul className="mb-6 space-y-2 border-t border-brown/10 pt-4">
             {(solution.features ?? []).slice(0, 3).map((feature) => (
-              <li key={feature} className="flex items-start gap-2 text-sm text-cream/85">
+              <li key={feature} className="flex items-start gap-2 text-sm text-brown/80">
                 <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-gold" aria-hidden="true" />
                 {feature}
               </li>
@@ -41,7 +41,7 @@ export default function BusinessSolutionCard({
           </ul>
           <a
             href="#contact"
-            className="inline-flex min-h-11 items-center justify-center rounded-full bg-gold px-5 py-2.5 text-sm font-bold text-white transition duration-300 hover:bg-white hover:text-brown focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="inline-flex min-h-11 items-center justify-center mt-auto rounded-full bg-brown px-5 py-2.5 text-sm font-bold text-cream transition duration-300 hover:bg-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-gold"
           >
             התאימו לי פתרון
           </a>
