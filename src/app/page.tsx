@@ -155,7 +155,7 @@ export default function HomePage() {
 
       {/* ── Business Solutions — the headline pitch ── */}
       <section
-        className="bg-cream-dark py-16 sm:py-20"
+        className="bg-white py-16 sm:py-20"
         id="business-solutions"
         aria-labelledby="home-solutions-heading"
       >
