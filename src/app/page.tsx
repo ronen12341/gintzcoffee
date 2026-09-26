@@ -14,7 +14,7 @@ const shopMachines = coffeeMachines.filter((m) => SHOP_MACHINE_IDS.includes(m.id
 
 const CATEGORIES = [
   { href: "/beans", title: "פולי קפה", sub: "קלויים טרי אצלנו", image: "/coffee-bag.jpg", cta: "לקנייה" },
-  { href: "/business-solutions", title: "קפה למשרד", sub: "מכונה, פולים ושירות", image: "/images/jura-x10.jpg", badge: "הצעת מחיר", cta: "לפרטים" },
+  { href: "/business-solutions", title: "פתרונות קפה לעסקים", sub: "מכונה, פולים ושירות", image: "/images/jura-x10.jpg", badge: "הצעת מחיר", cta: "לפרטים" },
   { href: "/machines", title: "מכונות חדשות", sub: "JURA, Lelit ועוד", image: "/images/products/machine-ena8.jpg", cta: "לקנייה" },
   { href: "/bargains", title: "מכונות מחודשות", sub: "3 חודשי אחריות", image: "/images/products/used-jura-x8.jpg", badge: "מציאון", cta: "לקנייה" },
 ];
