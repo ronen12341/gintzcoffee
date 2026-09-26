@@ -87,9 +87,9 @@ const faqs = [
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-gold/10 last:border-0">
+    <div className="border-b border-brown/10 last:border-0">
       <button
-        className="w-full text-right flex items-center justify-between gap-4 py-4 text-cream hover:text-gold transition-colors focus:outline-none focus-visible:text-gold"
+        className="w-full text-right flex items-center justify-between gap-4 py-4 text-brown hover:text-gold-dark transition-colors focus:outline-none focus-visible:text-gold-dark"
         onClick={() => setOpen(!open)}
         aria-expanded={open}
       >
@@ -103,7 +103,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         />
       </button>
       {open && (
-        <p className="pb-4 text-cream/70 text-sm leading-relaxed">{a}</p>
+        <p className="pb-4 text-brown/70 text-sm leading-relaxed">{a}</p>
       )}
     </div>
   );
@@ -112,18 +112,17 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function FaqPage() {
   return (
     <div
-      className="min-h-screen"
-      style={{ background: "linear-gradient(180deg, #2A1506 0%, #1F0F03 100%)" }}
+      className="min-h-screen bg-white"
     >
       {/* Hero */}
       <section className="py-16 px-4 text-center">
-        <p className="text-gold/70 text-xs font-montserrat tracking-[0.25em] uppercase mb-3">
+        <p className="text-gold-dark text-xs font-montserrat tracking-[0.25em] uppercase mb-3">
           שאלות נפוצות
         </p>
-        <h1 className="text-cream text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>
+        <h1 className="text-brown text-4xl font-bold mb-4" style={{ fontFamily: "var(--font-playfair), serif" }}>
           כל מה שרציתם לדעת על קפה לעסקים
         </h1>
-        <p className="text-cream/60 max-w-xl mx-auto text-base">
+        <p className="text-brown/65 max-w-xl mx-auto text-base">
           מכונות קפה, פולים, אספקה וכוסות ממותגות — כאן תמצאו תשובות לשאלות הנפוצות ביותר.
         </p>
       </section>
@@ -132,10 +131,10 @@ export default function FaqPage() {
       <section className="max-w-3xl mx-auto px-4 pb-20 space-y-10">
         {faqs.map(({ category, questions }) => (
           <div key={category}>
-            <h2 className="text-gold font-semibold text-xs uppercase tracking-[0.2em] mb-4">
+            <h2 className="text-gold-dark font-semibold text-xs uppercase tracking-[0.2em] mb-4">
               {category}
             </h2>
-            <div className="bg-white/5 rounded-2xl ring-1 ring-white/10 px-6">
+            <div className="bg-gradient-to-b from-cream to-cream-dark rounded-3xl shadow-sm ring-1 ring-brown/[0.06] px-6">
               {questions.map(({ q, a }) => (
                 <FaqItem key={q} q={q} a={a} />
               ))}
@@ -145,7 +144,7 @@ export default function FaqPage() {
 
         {/* CTA */}
         <div className="text-center pt-6">
-          <p className="text-cream/60 mb-4">לא מצאתם את התשובה שחיפשתם?</p>
+          <p className="text-brown/65 mb-4">לא מצאתם את התשובה שחיפשתם?</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="tel:039600550"
@@ -155,7 +154,7 @@ export default function FaqPage() {
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 border border-gold/40 text-cream px-6 py-3 rounded-full hover:border-gold hover:text-gold transition-colors"
+              className="inline-flex items-center justify-center gap-2 border border-brown/20 text-brown px-6 py-3 rounded-full hover:border-gold hover:text-gold-dark transition-colors"
             >
               שלחו פנייה
             </Link>
