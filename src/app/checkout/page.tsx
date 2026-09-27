@@ -511,6 +511,14 @@ export default function CheckoutPage() {
                   </li>
                 </ol>
               )}
+              {canPayOnline && (
+                <div className="mt-3 flex items-start gap-2 rounded-lg bg-white border border-cream-dark p-3 text-brown/80 leading-relaxed">
+                  <span className="shrink-0 w-5 h-5 mt-0.5 rounded-full bg-brown text-cream text-xs font-bold italic font-serif flex items-center justify-center">i</span>
+                  <span>
+                    שימו לב: <b className="text-brown">לא ניתן לשלם בכרטיס דיינרס (Diners).</b> ניתן לשלם בכל כרטיס אשראי אחר.
+                  </span>
+                </div>
+              )}
             </div>
 
 
