@@ -65,7 +65,7 @@ export const ADS_CONVERSION = {
   // "רכישה באתר גינץ" — website order placed. Fill in the send_to label from
   // Google Ads → Goals → Conversions once the action is created; until then
   // only GA4 + Meta fire.
-  purchase: "",
+  purchase: "AW-766413183/FmGLCJ2hqYkdEP-Suu0C",
 } as const;
 
 /**
