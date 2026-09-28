@@ -21,7 +21,9 @@ export default function OrderSuccessPage({
   // phone-payment or quote-only order reaches this page too (no online
   // charge happened yet), and used to fire this same "Purchase" event,
   // corrupting the revenue Meta/Google Ads bidding is optimized against.
-  const shouldTrackPurchase = paid && hasAmount;
+  // Conversions now fire at checkout the moment the order is placed
+  // (trackOrderPlaced), so this page no longer fires them.
+  const shouldTrackPurchase = false;
   const pixelParams = { value: amount, currency: "ILS" };
   // GA4 purchase params — mark it up so it can be imported into Google Ads as a
   // conversion (previously this page fired ONLY the Meta Pixel, so Google Ads

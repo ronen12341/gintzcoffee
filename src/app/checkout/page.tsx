@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { getGclid } from "@/lib/gclid";
-import { trackBeginCheckout } from "@/lib/gtag";
+import { trackBeginCheckout, trackOrderPlaced } from "@/lib/gtag";
 
 /**
  * Sumit payment-page URL. Hard-coded fallback is the production page for
@@ -189,8 +189,13 @@ export default function CheckoutPage() {
       // The server returns a one-time payment URL with the exact amount, and
       // we send the browser there. This avoids the URL-query-param guessing
       // game and gives Sumit a proper itemized record per order.
+      // Order received — count the conversion now (see trackOrderPlaced),
+      // then give the beacons a moment before navigating away.
+      const orderId = orderRes.orderId || `ORD-${Date.now()}`;
+      trackOrderPlaced(orderId, grandTotal, items);
+      await new Promise((r) => setTimeout(r, 600));
+
       if (canPayOnline) {
-        const orderId = orderRes.orderId || `ORD-${Date.now()}`;
 
         // On any failure here (network error, or the server rejecting the
         // request — e.g. a price it couldn't verify against the catalog) we

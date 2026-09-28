@@ -62,6 +62,10 @@ export const ADS_CONVERSION = {
   machines: "AW-766413183/guAjCMn7yqcBEP-Suu0C",
   // "ליד כוסות הגעה לדף תודה" — printed cups lead
   cups: "AW-766413183/57OGCOyn0KcBEP-Suu0C",
+  // "רכישה באתר גינץ" — website order placed. Fill in the send_to label from
+  // Google Ads → Goals → Conversions once the action is created; until then
+  // only GA4 + Meta fire.
+  purchase: "",
 } as const;
 
 /**
@@ -88,4 +92,34 @@ export function trackLead(
   window.gtag("event", "conversion", {
     send_to: sendTo,
   });
+}
+
+/**
+ * Fires the purchase conversion the moment an order is PLACED (the /api/order
+ * call succeeded) — for every order, whether paid online via Sumit or by
+ * phone. Deliberately not tied to payment: the business wants every received
+ * order counted, and customers who pay at Sumit often never return to
+ * /order/success, which previously lost the conversion.
+ * orderId is sent as transaction_id / eventID so a double fire is deduped.
+ */
+export function trackOrderPlaced(orderId: string, value: number, items: TrackedItem[]): void {
+  if (typeof window === "undefined") return;
+  const v = Number.isFinite(value) && value > 0 ? value : undefined;
+  window.gtag?.("event", "purchase", {
+    transaction_id: orderId,
+    currency: "ILS",
+    value: v,
+    items: toGaItems(items),
+    transport_type: "beacon",
+  });
+  if (ADS_CONVERSION.purchase) {
+    window.gtag?.("event", "conversion", {
+      send_to: ADS_CONVERSION.purchase,
+      transaction_id: orderId,
+      currency: "ILS",
+      value: v,
+      transport_type: "beacon",
+    });
+  }
+  window.fbq?.("track", "Purchase", { value: v, currency: "ILS" }, { eventID: orderId });
 }
