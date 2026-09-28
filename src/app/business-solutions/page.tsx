@@ -8,12 +8,12 @@ import { businessSolutions } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions" },
-  title: "פתרונות קפה לעסקים ולמשרד — מכונה, פולים ושירות",
+  title: "מכונות קפה למשרד ולעסקים — פתרון קפה מלא: מכונה, פולים ושירות",
   description:
     "פתרונות קפה מקצה לקצה לעסקים — מכונת קפה מקצועית, פולים טריים מבית הקלייה שלנו, התקנה, הדרכה, שירות ותחזוקה. מותאם לפי מספר עובדים, מ-10 ועד 200+.",
   openGraph: {
     url: "https://www.gintz.co.il/business-solutions",
-    title: "פתרונות קפה לעסקים | קפה גינץ",
+    title: "מכונות קפה למשרד ופתרונות קפה לעסקים | קפה גינץ",
     description:
       "פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה, התקנה, הדרכה ותמיכה שוטפת.",
   },

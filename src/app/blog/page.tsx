@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Coffee, Wallet, Scale, Calculator, Heart } from "lucide-react";
+import { Coffee, Wallet, Scale, Calculator, Heart, Gift, Leaf, Settings } from "lucide-react";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
@@ -15,6 +15,33 @@ export const metadata: Metadata = {
 };
 
 const posts = [
+  {
+    slug: "free-office-coffee-machine",
+    icon: Gift,
+    category: "מכונות קפה",
+    title: "מכונת קפה חינם למשרד — איך זה עובד ומה חשוב לבדוק",
+    excerpt:
+      "המכונה על הספק ומשלמים רק על הקפה: מה כלול בעסקה טובה, איפה בכל זאת משלמים, ומתי עדיף לקנות.",
+    readTime: "6 דקות קריאה",
+  },
+  {
+    slug: "automatic-vs-professional-coffee-machine",
+    icon: Settings,
+    category: "מכונות קפה",
+    title: "מכונת קפה אוטומטית או מקצועית לעסק — מה מתאים לכם?",
+    excerpt:
+      "לחיצת כפתור מול מכונת אספרסו ידנית: טעם, עלות, תפעול ולאיזה עסק כל אחת מתאימה.",
+    readTime: "6 דקות קריאה",
+  },
+  {
+    slug: "fresh-coffee-beans",
+    icon: Leaf,
+    category: "פולי קפה",
+    title: "פולי קפה טריים — איך יודעים שהקפה באמת טרי?",
+    excerpt:
+      "תאריך קלייה מול תאריך תפוגה, כמה זמן פולים נשארים טריים ואיך לאחסן אותם נכון.",
+    readTime: "5 דקות קריאה",
+  },
   {
     slug: "choosing-office-coffee-machine",
     icon: Coffee,

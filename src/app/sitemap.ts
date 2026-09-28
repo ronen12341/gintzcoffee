@@ -124,7 +124,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${base}/blog`,
-      lastModified: blogLastUpdate,
+      lastModified: new Date("2026-09-28"),
       changeFrequency: "weekly",
       priority: 0.7,
     },
@@ -157,6 +157,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: blogLastUpdate,
       changeFrequency: "monthly",
       priority: 0.6,
+    },
+    {
+      url: `${base}/blog/free-office-coffee-machine`,
+      lastModified: new Date("2026-09-28"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/blog/automatic-vs-professional-coffee-machine`,
+      lastModified: new Date("2026-09-28"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/blog/fresh-coffee-beans`,
+      lastModified: new Date("2026-09-28"),
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${base}/terms`,

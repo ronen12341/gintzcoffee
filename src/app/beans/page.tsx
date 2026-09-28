@@ -82,6 +82,10 @@ export default function BeansPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p id="beans-guide-heading" className="text-brown/70">
             רוצים לדעת עוד?{" "}
+            <Link href="/blog/fresh-coffee-beans" className="text-gold-dark font-bold underline">
+              איך יודעים שפולי הקפה באמת טריים
+            </Link>{" "}
+            ·{" "}
             <Link href="/blog/matching-coffee-to-taste" className="text-gold-dark font-bold underline">
               איך מתאימים קפה לטעם של העובדים
             </Link>{" "}

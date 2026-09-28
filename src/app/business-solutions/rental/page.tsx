@@ -264,6 +264,12 @@ export default function RentalCoffeePage() {
               </tbody>
             </table>
           </div>
+          <p className="text-center text-brown/65 text-sm mt-6">
+            מה חשוב לבדוק לפני שחותמים על מכונה בהשאלה?{" "}
+            <Link href="/blog/free-office-coffee-machine" className="text-gold-dark font-bold underline">
+              מכונת קפה חינם למשרד — איך זה עובד באמת
+            </Link>
+          </p>
         </div>
       </section>
 

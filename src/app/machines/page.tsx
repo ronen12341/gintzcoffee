@@ -5,7 +5,7 @@ import { coffeeMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/machines" },
-  title: "מכונות קפה לעסקים ולמשרד — JURA, לליט ומקצועיות",
+  title: "מכונות קפה למכירה — JURA, לליט ומכונות אספרסו מקצועיות",
   description:
     "מכונות קפה לעסקים ולמשרד — אוטומטיות ומקצועיות מבית JURA, לליט ועוד. אוטומטיות וידניות, במשלוח עם שליח עד הבית.",
   keywords: [
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "מכונת קפה קפסולות לעומת פולים",
   ],
   openGraph: {
-    title: "מכונת קפה למשרד ולעסק | קפה גינץ",
+    title: "מכונות קפה למכירה | קפה גינץ",
     description:
       "מכונות קפה אוטומטיות וידניות — JURA, Gaggia, De'Longhi, Melitta ועוד, במשלוח עד הבית.",
     url: "https://www.gintz.co.il/machines",
@@ -91,7 +91,7 @@ export default function MachinesPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <h1 id="machines-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות קפה לעסקים ולמשרד
+            מכונות קפה לעסק ולבית
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
             מכונות אוטומטיות וידניות לבית ולמשרד, במשלוח עם שליח עד הדלת.
@@ -126,6 +126,17 @@ export default function MachinesPage() {
             <p>
               אנחנו שולחים מכונות קפה בכל הארץ — מבני ברק וגוש דן ועד תל אביב,
               ירושלים וחיפה — עם שליח עד הדלת.
+            </p>
+            <p>
+              מחפשים פתרון מלא למשרד — מכונה, פולים ושירות במקום אחד? ראו{" "}
+              <Link href="/business-solutions" className="text-gold underline hover:no-underline">
+                מכונות קפה למשרד ופתרונות קפה לעסקים
+              </Link>
+              . מתלבטים בין סוגי מכונות?{" "}
+              <Link href="/blog/automatic-vs-professional-coffee-machine" className="text-gold underline hover:no-underline">
+                מכונה אוטומטית או מקצועית לעסק
+              </Link>
+              .
             </p>
             <p>
               לא חייבים לקנות: רוב הלקוחות שלנו בוחרים במסלול{" "}
