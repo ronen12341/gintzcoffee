@@ -1197,14 +1197,28 @@
     },
     {
       "id": "used-jura-e8",
-      "name": "JURA E8",
+      "name": "JURA E8 כסופה (Chrome)",
       "description": "ה-Jura E8 היא מכונת קפה אוטומטית (טוחנת) יוקרתית ופופולרית במיוחד, הנחשבת לדגם הנמכר ביותר של המותג השוויצרי עבור משתמשים ביתיים ומשרדים קטנים. המכונה מאפשרת הכנה של 17 עד 27 סוגי משקאות שונים בלחיצת כפתור אחת (One-Touch), כולל אספרסו, קפוצ'ינו, לאטה מקיאטו ופלאט וייט, תוך שימוש בפולי קפה טריים ובחלב טרי",
       "condition": "מצב מצויין",
-      "image": "/images/products/used-jura-e8.jpg",
+      "image": "/images/products/used-jura-e8-silver.jpg",
       "price": "2900",
       "priceNumeric": 2900,
       "originalPrice": "6400",
       "hidden": false
+    },
+    {
+      "id": "used-jura-e8-white",
+      "name": "JURA E8 לבנה (Piano White)",
+      "description": "ה-Jura E8 היא מכונת קפה אוטומטית (טוחנת) יוקרתית ופופולרית במיוחד, הנחשבת לדגם הנמכר ביותר של המותג השוויצרי עבור משתמשים ביתיים ומשרדים קטנים. המכונה מאפשרת הכנה של 17 עד 27 סוגי משקאות שונים בלחיצת כפתור אחת (One-Touch), כולל אספרסו, קפוצ'ינו, לאטה מקיאטו ופלאט וייט, תוך שימוש בפולי קפה טריים ובחלב טרי",
+      "condition": "מצב מצויין",
+      "image": "/images/products/used-jura-e8-white.jpg",
+      "price": "2900",
+      "priceNumeric": 2900,
+      "originalPrice": "6400",
+      "hidden": false,
+      "images": [
+        "/images/products/used-jura-e8-white-2.jpg"
+      ]
     },
     {
       "id": "used-milk-fridge",
