@@ -80,15 +80,25 @@ export default async function MachineDetailPage({ params }: PageProps) {
       ? machine.image
       : `${site}${machine.image}`
     : undefined;
-  const brandName = /jura/i.test(machine.name)
-    ? "JURA"
-    : /melitta/i.test(machine.name)
-    ? "Melitta"
-    : /lelit/i.test(machine.name)
-    ? "LeLit"
-    : /profitec/i.test(machine.name)
-    ? "Profitec"
-    : undefined;
+  // Brand is Google's fallback "global identifier" when no GTIN exists.
+  // Matched on Latin AND Hebrew spellings — e.g. "יורה ENA 8" carries no
+  // Latin "JURA", so the old regex shipped it (and every WMF / Gaggia /
+  // Philips / De'Longhi / La Pavoni / Pascale page) with no brand at all.
+  const BRANDS: [RegExp, string][] = [
+    [/jura|יורה/i, "JURA"],
+    [/melitta|מליטה/i, "Melitta"],
+    [/lelit|ללית/i, "LeLit"],
+    [/profitec|פרופיטק/i, "Profitec"],
+    [/wmf/i, "WMF"],
+    [/philips|פיליפס/i, "Philips"],
+    [/gaggia|גאג/i, "Gaggia"],
+    [/de'?\s?longhi|דלונגי/i, "De'Longhi"],
+    [/la\s?pavoni|לה פבוני/i, "La Pavoni"],
+    [/pascale|פסקל/i, "Pascale"],
+    [/bezzera|בזרה/i, "Bezzera"],
+    [/nivona|ניבונה/i, "Nivona"],
+  ];
+  const brandName = BRANDS.find(([re]) => re.test(machine.name))?.[1];
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -97,6 +107,7 @@ export default async function MachineDetailPage({ params }: PageProps) {
     category: "Home & Garden > Kitchen & Dining > Kitchen Appliances > Coffee Makers & Espresso Machines",
     ...(productImage ? { image: productImage } : {}),
     ...(brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
+    sku: machine.id,
     ...(machine.priceNumeric
       ? {
           offers: {

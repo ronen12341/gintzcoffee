@@ -65,6 +65,8 @@ export default async function BeanDetailPage({ params }: PageProps) {
     // an arbitrary category string as an invalid value.
     category: "Food, Beverages & Tobacco > Beverages > Coffee",
     brand: { "@type": "Brand", name: "קפה גינץ" },
+    // Own-roasted product — no GTIN exists; brand + sku are the identifiers.
+    sku: bean.id,
     ...(productImage ? { image: productImage } : {}),
     ...(bean.priceNumeric
       ? {
