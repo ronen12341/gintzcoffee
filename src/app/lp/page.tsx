@@ -51,6 +51,7 @@ export default function LandingPage() {
         <div className="hero-inner">
           <div className="hero-copy">
             <div className="wordmark">GINTZ COFFEE<small>COFFEE ROASTERS</small></div>
+            <p style={{ display: "inline-block", background: "var(--gold)", color: "#111", fontWeight: 800, fontSize: "clamp(17px,1.6vw,22px)", padding: "8px 18px", borderRadius: 4, margin: "0 0 18px" }}>השכרת מכונת קפה למשרד</p>
             <h1>קפה שנקלה <strong>במיוחד לעסק שלכם.</strong><br />מותאם לטעם העובדים שלכם.</h1>
             <p className="hero-description">מכונה מקצועית, פולים טריים ושירות מלא במקום אחד. פתרון אישי שמתאים בדיוק לגודל העסק שלכם.</p>
             <p className="machine-offer">אתם לא משלמים על המכונה — רק על הקפה ועל דמי טיפול ואחזקה.</p>
