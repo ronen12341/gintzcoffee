@@ -23,7 +23,7 @@ const CLIENT_LOGOS = [
 const FEATURE_CSS = `
 .business-lp{--gold:#cc984c;--gold-light:#e5bb74;--ink:#0a0a09;--soft:#f5f3ef;background:#fff;color:var(--ink);font-family:var(--font-heebo),'Heebo',sans-serif;overflow-x:hidden}
 .business-lp *{box-sizing:border-box}.business-lp a{text-decoration:none;color:inherit}
-.business-lp .hero{min-height:720px;background:linear-gradient(90deg,rgba(0,0,0,.14),rgba(0,0,0,.14)),url('/lp/hero.png') center/cover no-repeat;color:#fff;display:flex;align-items:center;padding:52px 6vw}
+.business-lp .hero{min-height:720px;background:linear-gradient(90deg,rgba(0,0,0,.14),rgba(0,0,0,.14)),url('/lp/hero.webp') center/cover no-repeat;color:#fff;display:flex;align-items:center;padding:52px 6vw}
 .business-lp .hero-inner{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.1fr .78fr;gap:7vw;align-items:center;direction:ltr}
 .business-lp .hero-copy,.business-lp .lead-card{direction:rtl}.business-lp .wordmark{display:inline-block;color:var(--gold-light);font-family:var(--font-montserrat),Arial,sans-serif;font-size:34px;font-weight:800;letter-spacing:3px;line-height:1;margin-bottom:45px;direction:ltr}
 .business-lp .wordmark small{display:block;font-size:9px;letter-spacing:4px;margin-top:10px}
@@ -54,6 +54,7 @@ export default function LandingPage() {
             <p style={{ display: "inline-block", background: "var(--gold)", color: "#111", fontWeight: 800, fontSize: "clamp(17px,1.6vw,22px)", padding: "8px 18px", borderRadius: 4, margin: "0 0 18px" }}>השכרת מכונת קפה למשרד</p>
             <h1>קפה שנקלה <strong>במיוחד לעסק שלכם.</strong><br />מותאם לטעם העובדים שלכם.</h1>
             <p className="hero-description">מכונה מקצועית, פולים טריים ושירות מלא במקום אחד. פתרון אישי שמתאים בדיוק לגודל העסק שלכם.</p>
+            <p className="hero-description">מכונת קפה למשרד ולעסק – אוטומטית, עם מטחנה ופולים טריים מבית הקלייה. מתאימה למשרד קטן, בינוני או גדול, כולל השכרת מכונת קפה בתשלום חודשי על הקפה בלבד.</p>
             <p className="machine-offer">אתם לא משלמים על המכונה — רק על הקפה ועל דמי טיפול ואחזקה.</p>
             <div className="quick-benefits" aria-label="יתרונות מרכזיים">
               <div className="quick-benefit"><Heart aria-hidden="true" />עובדים מרוצים</div>

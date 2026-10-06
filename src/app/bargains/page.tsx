@@ -4,9 +4,9 @@ import { usedMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/bargains" },
-  title: "מכונות קפה מחודשות - משומשות",
+  title: "מכונות קפה יד 2 – מחודשות ומשומשות",
   description:
-    "מכונות קפה מחודשות ומשומשות במחירים מיוחדים. מגיעות עם בדיקה טכנית ו-3 חודשי אחריות.",
+    "מכונות קפה יד 2 מחודשות ומשומשות במחירים מיוחדים. מגיעות עם בדיקה טכנית ו-3 חודשי אחריות.",
 };
 
 export default function BargainsPage() {
@@ -19,10 +19,10 @@ export default function BargainsPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <h1 id="bargains-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות מחודשות — משומשות
+            מכונות קפה יד 2 — מחודשות ומשומשות
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות קפה איכותיות מחודשות ומשומשות, מבודקות ומשופצות, עם 3 חודשי אחריות. הזדמנות
+            מכונות קפה יד 2 איכותיות – מחודשות ומשומשות, מבודקות ומשופצות, עם 3 חודשי אחריות. הזדמנות
             מצוינת לעסקים שרוצים איכות במחיר שמשתלם.
           </p>
         </div>
