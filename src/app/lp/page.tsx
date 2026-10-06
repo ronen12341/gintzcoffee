@@ -54,7 +54,7 @@ export default function LandingPage() {
             <p style={{ display: "inline-block", background: "var(--gold)", color: "#111", fontWeight: 800, fontSize: "clamp(17px,1.6vw,22px)", padding: "8px 18px", borderRadius: 4, margin: "0 0 18px" }}>השכרת מכונת קפה למשרד</p>
             <h1>קפה שנקלה <strong>במיוחד לעסק שלכם.</strong><br />מותאם לטעם העובדים שלכם.</h1>
             <p className="hero-description">מכונה מקצועית, פולים טריים ושירות מלא במקום אחד. פתרון אישי שמתאים בדיוק לגודל העסק שלכם.</p>
-            <p className="hero-description">מכונת קפה למשרד ולעסק – אוטומטית, עם מטחנה ופולים טריים מבית הקלייה. מתאימה למשרד קטן, בינוני או גדול, כולל השכרת מכונת קפה בתשלום חודשי על הקפה בלבד.</p>
+            <p className="hero-description">מכונת קפה למשרד ולעסק – אוטומטית, עם מטחנה ופולים טריים מבית הקלייה. מתאימה למשרד קטן, בינוני או גדול, בלי לשלם על המכונה – רק על הקפה ודמי טיפול ואחזקה.</p>
             <p className="machine-offer">אתם לא משלמים על המכונה — רק על הקפה ועל דמי טיפול ואחזקה.</p>
             <div className="quick-benefits" aria-label="יתרונות מרכזיים">
               <div className="quick-benefit"><Heart aria-hidden="true" />עובדים מרוצים</div>
