@@ -4,15 +4,7 @@ import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
 import { getGclid } from "@/lib/gclid";
 
-const BUSINESS_TYPES = [
-  "משרד",
-  "מסעדה / בית קפה",
-  "מלון",
-  "חנות",
-  "מוסד חינוכי",
-  "מרפאה / קליניקה",
-  "אחר",
-];
+const BUSINESS_TYPES = ["משרד", "בית קפה", "מסעדה", "אחר"];
 
 interface LeadFormProps {
   title?: string;
@@ -28,6 +20,7 @@ export default function LeadForm({
     phone: "",
     email: "",
     businessType: "",
+    city: "",
     message: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -208,6 +201,21 @@ export default function LeadForm({
             ))}
           </select>
         </div>
+      </div>
+
+      <div>
+        <label htmlFor="lf-city" className={labelClass}>
+          עיר
+        </label>
+        <input
+          id="lf-city"
+          type="text"
+          autoComplete="address-level2"
+          value={form.city}
+          onChange={(e) => setForm({ ...form, city: e.target.value })}
+          className={fieldClass("city")}
+          placeholder="עיר"
+        />
       </div>
 
       <div>

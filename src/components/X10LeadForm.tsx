@@ -5,6 +5,7 @@ import { trackLead } from "@/lib/gtag";
 import { getGclid } from "@/lib/gclid";
 
 const EMPLOYEE_RANGES = ["עד 15", "15–50", "50–100", "מעל 100"];
+const BUSINESS_TYPES = ["משרד", "בית קפה", "מסעדה", "אחר"];
 
 export default function X10LeadForm() {
   const [form, setForm] = useState({
@@ -13,6 +14,8 @@ export default function X10LeadForm() {
     phone: "",
     email: "",
     employees: "",
+    businessType: "",
+    city: "",
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
@@ -31,7 +34,9 @@ export default function X10LeadForm() {
     if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
       nextErrors.email = "כתובת האימייל אינה תקינה";
     }
+    if (!form.businessType) nextErrors.businessType = "יש לבחור סוג עסק";
     if (!form.employees) nextErrors.employees = "יש לבחור מספר עובדים";
+    if (!form.city.trim()) nextErrors.city = "יש להזין עיר";
     return nextErrors;
   }
 
@@ -54,8 +59,10 @@ export default function X10LeadForm() {
           name: form.name,
           phone: form.phone,
           email: form.email,
-          businessType: form.company,
-          message: `מספר עובדים: ${form.employees}`,
+          company: form.company,
+          businessType: form.businessType,
+          employees: form.employees,
+          city: form.city,
           formType: "lead",
           gclid: getGclid(),
         }),
@@ -147,6 +154,22 @@ export default function X10LeadForm() {
       </div>
 
       <div className="field">
+        <label htmlFor="lp-biz">סוג עסק</label>
+        <select
+          id="lp-biz"
+          value={form.businessType}
+          onChange={(event) => setForm({ ...form, businessType: event.target.value })}
+          aria-invalid={Boolean(errors.businessType)}
+        >
+          <option value="">סוג עסק</option>
+          {BUSINESS_TYPES.map((type) => (
+            <option key={type} value={type}>{type}</option>
+          ))}
+        </select>
+        {errors.businessType && <p className="field-error">{errors.businessType}</p>}
+      </div>
+
+      <div className="field">
         <label htmlFor="lp-employees">מספר עובדים</label>
         <select
           id="lp-employees"
@@ -160,6 +183,20 @@ export default function X10LeadForm() {
           ))}
         </select>
         {errors.employees && <p className="field-error">{errors.employees}</p>}
+      </div>
+
+      <div className="field">
+        <label htmlFor="lp-city">עיר</label>
+        <input
+          id="lp-city"
+          type="text"
+          autoComplete="address-level2"
+          value={form.city}
+          onChange={(event) => setForm({ ...form, city: event.target.value })}
+          placeholder="עיר"
+          aria-invalid={Boolean(errors.city)}
+        />
+        {errors.city && <p className="field-error">{errors.city}</p>}
       </div>
 
       {serverError && <p className="server-error" role="alert">{serverError}</p>}

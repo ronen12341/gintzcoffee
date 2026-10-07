@@ -15,7 +15,7 @@ function escapeHtml(str: unknown): string {
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { name, phone, email, businessType, message, quantity, formType, gclid } = body;
+  const { name, phone, email, company, businessType, employees, city, message, quantity, formType, gclid } = body;
 
   const subject =
     formType === "cups"
@@ -39,10 +39,25 @@ export async function POST(req: NextRequest) {
           <td style="padding: 8px; color: #5C3015; font-weight: bold;">אימייל</td>
           <td style="padding: 8px; color: #3B1F0A; direction: ltr;">${email ? escapeHtml(email) : "—"}</td>
         </tr>
+        ${company ? `
+        <tr style="background: #fff;">
+          <td style="padding: 8px; color: #5C3015; font-weight: bold;">שם החברה</td>
+          <td style="padding: 8px; color: #3B1F0A;">${escapeHtml(company)}</td>
+        </tr>` : ""}
         ${businessType ? `
         <tr style="background: #fff;">
           <td style="padding: 8px; color: #5C3015; font-weight: bold;">סוג עסק</td>
           <td style="padding: 8px; color: #3B1F0A;">${escapeHtml(businessType)}</td>
+        </tr>` : ""}
+        ${employees ? `
+        <tr style="background: #fff;">
+          <td style="padding: 8px; color: #5C3015; font-weight: bold;">מספר עובדים</td>
+          <td style="padding: 8px; color: #3B1F0A;">${escapeHtml(employees)}</td>
+        </tr>` : ""}
+        ${city ? `
+        <tr style="background: #fff;">
+          <td style="padding: 8px; color: #5C3015; font-weight: bold;">עיר</td>
+          <td style="padding: 8px; color: #3B1F0A;">${escapeHtml(city)}</td>
         </tr>` : ""}
         ${quantity ? `
         <tr style="background: #fff;">
