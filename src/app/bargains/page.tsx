@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/bargains" },
   title: "מכונות קפה יד 2 – מחודשות ומשומשות",
   description:
-    "מכונות קפה יד 2 מחודשות ומשומשות במחירים מיוחדים. מגיעות עם בדיקה טכנית ו-3 חודשי אחריות.",
+    "מכונות קפה יד 2 מחודשות ומשומשות במחירים מיוחדים. כל מכונה עוברת בדיקה טכנית מלאה.",
 };
 
 export default function BargainsPage() {
@@ -22,7 +22,7 @@ export default function BargainsPage() {
             מכונות קפה יד 2 — מחודשות ומשומשות
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות קפה יד 2 איכותיות – מחודשות ומשומשות, מבודקות ומשופצות, עם 3 חודשי אחריות. הזדמנות
+            מכונות קפה יד 2 איכותיות – מחודשות ומשומשות, מבודקות ומשופצות. הזדמנות
             מצוינת לעסקים שרוצים איכות במחיר שמשתלם.
           </p>
         </div>
@@ -34,7 +34,7 @@ export default function BargainsPage() {
           <span className="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
             מכונות מחודשות
           </span>
-          <span>כל המכונות עברו בדיקה טכנית ומגיעות עם 3 חודשי אחריות</span>
+          <span>כל המכונות עברו בדיקה טכנית מלאה</span>
         </div>
       </div>
 
@@ -53,7 +53,7 @@ export default function BargainsPage() {
                 image={m.image}
                 badge="מכונות מחודשות"
                 detailHref={`/bargains/${m.id}`}
-                features={[`מצב: ${m.condition}`, "אחריות: 3 חודשים"]}
+                features={[`מצב: ${m.condition}`, "עברה בדיקה טכנית"]}
                 priceRange={m.price}
                 originalPrice={m.originalPrice}
                 cartItem={{

@@ -138,7 +138,7 @@ export default function ChoosingOfficeCoffeeMachinePost() {
             <Link href="/bargains" className="text-gold-dark font-bold underline">
               מכונות היד השנייה
             </Link>{" "}
-            שלנו - כולן עם אחריות ובמחיר נמוך משמעותית ממכונה חדשה.
+            שלנו - כולן אחרי בדיקה טכנית ובמחיר נמוך משמעותית ממכונה חדשה.
           </div>
 
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">קנייה, השכרה או מימון?</h2>

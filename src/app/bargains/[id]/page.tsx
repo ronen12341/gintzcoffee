@@ -89,15 +89,11 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
                 </div>
               )}
 
-              {/* Condition & warranty */}
+              {/* Condition */}
               <div className="mb-5 flex flex-wrap items-center gap-3">
                 <div className="inline-flex items-center gap-2 bg-white rounded-lg px-4 py-2 shadow-sm">
                   <span className="text-brown/60 text-sm">מצב:</span>
                   <span className="text-brown font-semibold text-sm">{machine.condition}</span>
-                </div>
-                <div className="inline-flex items-center gap-2 bg-white rounded-lg px-4 py-2 shadow-sm">
-                  <span className="text-brown/60 text-sm">אחריות:</span>
-                  <span className="text-brown font-semibold text-sm">3 חודשים</span>
                 </div>
               </div>
 
@@ -143,9 +139,9 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
                 </ul>
               )}
 
-              {/* Warranty note */}
+              {/* Inspection note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">
-                כל המכונות המחודשות עוברות בדיקה טכנית ומגיעות עם 3 חודשי אחריות.
+                כל המכונות המחודשות עוברות בדיקה טכנית מלאה לפני המכירה.
               </div>
 
               {/* Specs table */}
