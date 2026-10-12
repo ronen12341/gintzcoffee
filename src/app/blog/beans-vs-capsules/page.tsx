@@ -146,6 +146,11 @@ export default function BeansVsCapsulesPost() {
           <h2 className="text-xl font-bold text-brown mt-10 mb-3">פוסטים קשורים</h2>
           <ul className="list-disc list-inside space-y-2">
             <li>
+              <Link href="/business-solutions" className="text-gold-dark font-bold underline">
+                פתרונות קפה לעסקים — מכונה, פולים ושירות בדמי שירות חודשיים
+              </Link>
+            </li>
+            <li>
               <Link href="/blog/office-coffee-budget-guide" className="text-gold-dark font-bold underline">
                 כמה עולה קפה למשרד? מדריך תקציב מלא
               </Link>

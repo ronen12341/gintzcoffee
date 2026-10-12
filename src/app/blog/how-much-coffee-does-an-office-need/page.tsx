@@ -3,11 +3,11 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/how-much-coffee-does-an-office-need" },
-  title: "כמה קפה (פולים) צריך למשרד בחודש?",
+  title: "כמה קפה צריך משרד בחודש? טבלה לפי מספר עובדים",
   description:
-    "מדריך כמויות פולי קפה למשרד - כמה קילוגרם בחודש לפי מספר עובדים, וכמה זה עולה בפועל. מחשבון פשוט לתכנון נכון.",
+    "כמה ק\"ג פולי קפה צורך משרד של 10, 20, 50 או 100 עובדים? טבלת כמויות לפי מספר עובדים ונוסחה פשוטה לחישוב הצריכה החודשית.",
   openGraph: {
-    title: "כמה קפה צריך למשרד בחודש? | קפה גינץ",
+    title: "כמה קפה צריך משרד בחודש? טבלה לפי מספר עובדים | קפה גינץ",
     description: "מדריך כמויות פולי קפה למשרד לפי מספר עובדים.",
     url: "https://www.gintz.co.il/blog/how-much-coffee-does-an-office-need",
     type: "article",
@@ -149,6 +149,11 @@ export default function HowMuchCoffeePost() {
 
           <h2 className="text-xl font-bold text-brown mt-10 mb-3">פוסטים קשורים</h2>
           <ul className="list-disc list-inside space-y-2">
+            <li>
+              <Link href="/business-solutions" className="text-gold-dark font-bold underline">
+                פתרונות קפה לעסקים — מכונה, פולים ושירות בדמי שירות חודשיים
+              </Link>
+            </li>
             <li>
               <Link href="/blog/beans-vs-capsules" className="text-gold-dark font-bold underline">
                 פולים או קפסולות? מה עדיף לקפה במשרד

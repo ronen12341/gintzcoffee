@@ -5,9 +5,9 @@ import { coffeeMachines, coffeeBeans, usedMachines } from "@/data/products";
 // "today" on every URL each deploy trains Google to ignore <lastmod> entirely.
 // Bump `lastContentUpdate` when catalogue / page content actually changes;
 // the legal pages get their own (rarely-changing) date.
-const lastContentUpdate = new Date("2026-09-07");
+const lastContentUpdate = new Date("2026-10-12");
 const legalLastUpdate = new Date("2026-06-01");
-const blogLastUpdate = new Date("2026-08-15");
+const blogLastUpdate = new Date("2026-10-12");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.gintz.co.il";
