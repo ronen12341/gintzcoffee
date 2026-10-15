@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const machine = usedMachines.find((m) => m.id === id);
   if (!machine) return { title: "מכונה לא נמצאה" };
   return {
-    title: `${machine.name} — מכונת קפה יד שנייה מחודשת`,
+    title: `${machine.name} — מכונת קפה יד שנייה משומשת`,
     description: machine.description.slice(0, 160),
     alternates: { canonical: `/bargains/${machine.id}` },
     openGraph: {
@@ -56,7 +56,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
             className="inline-flex items-center gap-1 text-sm text-brown/70 hover:text-brown transition-colors"
           >
             <ChevronLeft className="w-4 h-4" aria-hidden="true" />
-            חזרה לכל המכונות המחודשות
+            חזרה לכל המכונות המשומשות
           </Link>
         </div>
       </div>
@@ -70,7 +70,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
             {/* Product info */}
             <div className="flex flex-col">
               <span className="self-start bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full mb-3">
-                מכונות מחודשות
+                מכונות משומשות
               </span>
 
               <h1 className="text-3xl sm:text-4xl font-bold text-brown mb-3 leading-tight">
@@ -141,7 +141,7 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
 
               {/* Inspection note */}
               <div className="bg-gold/10 border border-gold/20 rounded-xl p-4 mb-6 text-sm text-brown/75">
-                כל המכונות המחודשות עוברות בדיקה טכנית מלאה לפני המכירה.
+                כל המכונות המשומשות עוברות בדיקה טכנית מלאה לפני המכירה.
               </div>
 
               {/* Specs table */}

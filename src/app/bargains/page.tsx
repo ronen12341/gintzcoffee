@@ -5,8 +5,8 @@ import { usedMachines } from "@/data/products";
 
 const FAQ = [
   {
-    q: "מה ההבדל בין מכונת קפה מחודשת למכונה משומשת?",
-    a: "מכונה משומשת היא מכונה שהייתה בשימוש ונמכרת כמו שהיא. אצלנו כל מכונת יד 2 עוברת קודם בדיקה טכנית מלאה, ורק מכונות שעובדות כמו שצריך עולות למכירה.",
+    q: "באיזה מצב מכונות הקפה יד 2?",
+    a: "המכונות משומשות ונמכרות כמו שהן. כל מכונת יד 2 עוברת קודם בדיקה טכנית מלאה, ורק מכונות תקינות שעובדות כמו שצריך עולות למכירה.",
   },
   {
     q: "למי מתאימה מכונת קפה יד 2?",
@@ -30,9 +30,9 @@ const faqSchema = {
 
 export const metadata: Metadata = {
   alternates: { canonical: "/bargains" },
-  title: "מכונות קפה יד 2 – מכונות מחודשות ומשומשות במחיר מוזל",
+  title: "מכונות קפה יד 2 – מכונות משומשות ותקינות במחיר מוזל",
   description:
-    "מכונות קפה יד 2: Jura E8, Jura X8, Nivona ו-Melitta מחודשות ומשומשות במחירים מוזלים. כל מכונה עוברת בדיקה טכנית מלאה לפני המכירה. מלאי מתעדכן.",
+    "מכונות קפה יד 2: Jura E8, Jura X8, Nivona ו-Melitta משומשות ותקינות במחירים מוזלים. כל מכונה עוברת בדיקה טכנית מלאה לפני המכירה. מלאי מתעדכן.",
 };
 
 export default function BargainsPage() {
@@ -45,10 +45,10 @@ export default function BargainsPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <h1 id="bargains-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות קפה יד 2 — מחודשות ומשומשות
+            מכונות קפה יד 2 — משומשות ותקינות
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות קפה יד 2 איכותיות – מחודשות ומשומשות, מבודקות ומשופצות. הזדמנות
+            מכונות קפה יד 2 איכותיות – משומשות ותקינות, אחרי בדיקה טכנית. הזדמנות
             מצוינת לעסקים שרוצים איכות במחיר שמשתלם.
           </p>
         </div>
@@ -58,7 +58,7 @@ export default function BargainsPage() {
       <div className="bg-gold/10 border-b border-gold/20 py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-3 justify-center text-sm text-brown/70">
           <span className="bg-gold text-white text-xs font-bold px-2.5 py-1 rounded-full">
-            מכונות מחודשות
+            מכונות משומשות
           </span>
           <span>כל המכונות עברו בדיקה טכנית מלאה</span>
         </div>
@@ -77,7 +77,7 @@ export default function BargainsPage() {
                 name={m.name}
                 description={m.description}
                 image={m.image}
-                badge="מכונות מחודשות"
+                badge="מכונות משומשות"
                 detailHref={`/bargains/${m.id}`}
                 features={[`מצב: ${m.condition}`, "עברה בדיקה טכנית"]}
                 priceRange={m.price}
@@ -114,7 +114,7 @@ export default function BargainsPage() {
           </h2>
           <p>
             מכונת קפה יד שניה היא הדרך הכי משתלמת להחזיק מכונה אוטומטית איכותית.
-            אנחנו מוכרים מכונות קפה מחודשות ומשומשות של Jura, Nivona ו-Melitta,
+            אנחנו מוכרים מכונות קפה משומשות ותקינות של Jura, Nivona ו-Melitta,
             ולפעמים גם מכונות מקצועיות. כל מכונה עוברת בדיקה טכנית מלאה לפני
             שהיא עולה למכירה.
           </p>

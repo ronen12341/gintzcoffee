@@ -129,7 +129,7 @@ export default function OfficeCoffeeBudgetGuidePost() {
             <li>
               <strong>מכונת יד שנייה.</strong> ראו את{" "}
               <Link href="/bargains" className="text-gold-dark font-bold underline">
-                מכונות המחודשות
+                המכונות המשומשות
               </Link>{" "}
               שלנו - מכונות אחרי בדיקה טכנית במחיר נמוך משמעותית ממכונה חדשה.
             </li>
