@@ -5,6 +5,9 @@ import { trackLead } from "@/lib/gtag";
 import { getGclid } from "@/lib/gclid";
 
 const BUSINESS_TYPES = ["משרד", "בית קפה", "מסעדה", "אחר"];
+// Gintz places machines in offices/workplaces only. Cafés and restaurants
+// are offered beans, not machine placements.
+const BEANS_ONLY_TYPES = ["בית קפה", "מסעדה"];
 
 interface LeadFormProps {
   title?: string;
@@ -95,7 +98,11 @@ export default function LeadForm({
           </svg>
         </div>
         <h3 className="text-2xl font-bold text-brown mb-2">תודה!</h3>
-        <p className="text-brown/70">נחזור אליך בהקדם האפשרי.</p>
+        <p className="text-brown/70">
+          {BEANS_ONLY_TYPES.includes(form.businessType)
+            ? "נחזור אליך בהקדם עם הצעה לפולי קפה טריים מהקלייה."
+            : "נחזור אליך בהקדם האפשרי."}
+        </p>
       </div>
     );
   }
@@ -202,6 +209,17 @@ export default function LeadForm({
           </select>
         </div>
       </div>
+
+      {BEANS_ONLY_TYPES.includes(form.businessType) && (
+        <div className="rounded-xl border border-gold/40 bg-gold/10 px-4 py-3 text-sm text-brown" role="status">
+          <p className="font-semibold mb-1">שימו לב: מכונות קפה אנחנו מציבים במשרדים ובמקומות עבודה בלבד.</p>
+          <p className="text-brown/80">
+            לבתי קפה ומסעדות אנחנו מספקים פולי קפה טריים מבית הקלייה.{" "}
+            <a href="/beans" className="underline font-semibold">לצפייה בפולים</a>
+            {" "}או השאירו פרטים ונחזור עם הצעה לפולים.
+          </p>
+        </div>
+      )}
 
       <div>
         <label htmlFor="lf-city" className={labelClass}>
