@@ -43,6 +43,31 @@ export default function HomePage() {
       "https://www.instagram.com/gintzcoffee",
     ],
   };
+  const localBusinessLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${site}/#localbusiness`,
+    name: "קפה גינץ",
+    alternateName: "Gintz Coffee",
+    url: site,
+    logo: `${site}/logo.png`,
+    image: `${site}/logo.png`,
+    telephone: "+97239600550",
+    email: "sales@aspagil.com",
+    description:
+      "בית קלייה בוטיק מאז 2005 בבני ברק. פתרונות קפה למשרדים ולארגונים: מכונות קפה, פולי קפה טריים קלויים אצלנו, מכונות קפה חדשות ומשומשות, והשכרת מכונות לאירועים.",
+    foundingDate: "2005",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "הירקון 39, קומה 3",
+      addressLocality: "בני ברק",
+      addressCountry: "IL",
+    },
+    sameAs: [
+      "https://www.facebook.com/gintzcoffee",
+      "https://www.instagram.com/gintzcoffee",
+    ],
+  };
   const websiteLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -61,6 +86,10 @@ export default function HomePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessLd) }}
       />
       {/* ── Hero — category tiles ── */}
       <section className="bg-white pb-10 pt-8 sm:pb-14 sm:pt-12" aria-labelledby="home-heading">

@@ -102,9 +102,12 @@ function FaqItem({ q, a }: { q: string; a: string }) {
           aria-hidden="true"
         />
       </button>
-      {open && (
-        <p className="pb-4 text-brown/70 text-sm leading-relaxed">{a}</p>
-      )}
+      {/* Answer always in the HTML (for crawlers); hidden via CSS until opened */}
+      <p
+        className={cn("pb-4 text-brown/70 text-sm leading-relaxed", !open && "hidden")}
+      >
+        {a}
+      </p>
     </div>
   );
 }
