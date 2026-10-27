@@ -118,18 +118,25 @@ export default function RootLayout({
             })();
           `}
         </Script>
-        {/* Phone-click tracking — B2B visitors call instead of filling a form,
-            and those conversions were completely invisible. Fires a GA4
-            'phone_click' event on any tel: link; mark it as a conversion in
-            GA4 / import it into Google Ads to have it count. */}
+        {/* Phone + WhatsApp click tracking — B2B visitors call or WhatsApp
+            instead of filling a form, and those leads were invisible in
+            Google Ads. Fires a GA4 event AND the Google Ads conversion
+            "קליק וואטסאפ/טלפון באתר" on any tel: or WhatsApp link.
+            Capture phase + beacon so it survives the app/tab switch. */}
         <Script id="phone-click-tracking" strategy="afterInteractive">
           {`
             document.addEventListener('click', function (e) {
-              var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"]');
+              var a = e.target && e.target.closest && e.target.closest('a[href^="tel:"], a[href*="wa.me/"], a[href*="api.whatsapp.com"], a[href*="whatsapp://"]');
               if (!a || typeof gtag !== 'function') return;
-              gtag('event', 'phone_click', {
-                link_url: a.getAttribute('href'),
+              var href = a.getAttribute('href') || '';
+              var isTel = href.indexOf('tel:') === 0;
+              gtag('event', isTel ? 'phone_click' : 'whatsapp_click', {
+                link_url: href.slice(0, 100),
                 link_text: (a.textContent || '').trim().slice(0, 100)
+              });
+              gtag('event', 'conversion', {
+                send_to: 'AW-766413183/wQNKCLTq5qsdEP-Suu0C',
+                transport_type: 'beacon'
               });
             }, true);
           `}
