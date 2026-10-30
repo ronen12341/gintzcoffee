@@ -109,10 +109,10 @@ export interface UsedMachine {
 // — the owner can take a product off the site by toggling that flag in the
 // admin without losing the entry. The raw `allXxx` arrays remain available
 // for internal use that needs every entry regardless of visibility.
-const allCoffeeMachines = data.coffeeMachines as Machine[];
-const allCoffeeBeans = data.coffeeBeans as Bean[];
+export const allCoffeeMachines = data.coffeeMachines as Machine[];
+export const allCoffeeBeans = data.coffeeBeans as Bean[];
 const allCupCategories = data.cupCategories as CupCategory[];
-const allUsedMachines = data.usedMachines as UsedMachine[];
+export const allUsedMachines = data.usedMachines as UsedMachine[];
 const allBusinessSolutions = ((data as unknown as { businessSolutions?: BusinessSolution[] }).businessSolutions ?? []) as BusinessSolution[];
 
 export const coffeeMachines: Machine[] = allCoffeeMachines.filter((m) => !m.hidden);

@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ChevronLeft, Check } from "lucide-react";
 import BeanPurchase from "@/components/BeanPurchase";
 import MachineGallery from "@/components/MachineGallery";
-import { coffeeBeans } from "@/data/products";
+import { coffeeBeans, allCoffeeBeans } from "@/data/products";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -33,7 +33,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function BeanDetailPage({ params }: PageProps) {
   const { id } = await params;
   const bean = coffeeBeans.find((b) => b.id === id);
-  if (!bean) notFound();
+  if (!bean) {
+    // Old/wrong-case URL of a live product (e.g. /machines/machine-MaraX) -> 308
+    // to the canonical lowercase slug. Done here, not in next.config.mjs,
+    // because Next.js redirect sources match case-insensitively and would loop.
+    const key = decodeURIComponent(id).toLowerCase();
+    const live = coffeeBeans.find((x) => x.id.toLowerCase() === key);
+    if (live) permanentRedirect(`/beans/${live.id}`);
+    // Product taken off the site (hidden in admin) -> 308 to the listing page
+    // instead of a 404, so Google drops the old URL cleanly.
+    if (allCoffeeBeans.some((x) => x.id.toLowerCase() === key)) permanentRedirect("/beans");
+    notFound();
+  }
 
   // Combine main image with extras for the gallery
   const galleryImages = [
