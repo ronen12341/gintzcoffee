@@ -16,6 +16,15 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "jura-e8-vs-z10",
+    icon: Scale,
+    category: "מכונות קפה",
+    title: "JURA E8 או JURA Z10? השוואה, מחירים ולמי כל אחת מתאימה",
+    excerpt:
+      "פי שניים במחיר — אבל מה באמת מקבלים? משקאות, מטחנה, נפח יומי, ואיזו מתאימה למשרד שלכם.",
+    readTime: "5 דקות קריאה",
+  },
+  {
     slug: "free-office-coffee-machine",
     icon: Gift,
     category: "מכונות קפה",

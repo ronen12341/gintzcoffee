@@ -46,7 +46,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const machine = coffeeMachines.find((m) => m.id === id);
   if (!machine) return { title: "מכונה לא נמצאה" };
   return {
-    title: `${machine.name} — מכונת קפה לעסק ולמשרד`,
+    title: machine.price
+      ? `${machine.name} — ${machine.price.replace(/ש"ח/, "ש״ח")} | מכונת קפה לעסק ולמשרד`
+      : `${machine.name} — מכונת קפה לעסק ולמשרד`,
     description: machine.description.slice(0, 160),
     alternates: { canonical: `/machines/${machine.id}` },
     openGraph: {
@@ -220,6 +222,13 @@ export default async function MachineDetailPage({ params }: PageProps) {
                 {machine.description}
               </p>
 
+              {/^jura-(e8|z10)/.test(machine.id) && (
+                <p className="mb-4 text-sm">
+                  <Link href="/blog/jura-e8-vs-z10" className="text-gold-dark font-bold underline">
+                    מתלבטים בין JURA E8 ל-Z10? השוואה מלאה
+                  </Link>
+                </p>
+              )}
               {/* Feature highlights */}
               {machine.features && machine.features.length > 0 && (
                 <ul className="mb-6 space-y-2">

@@ -5,9 +5,9 @@ import { coffeeMachines } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/machines" },
-  title: "מכונות קפה למכירה — JURA, לליט ומכונות אספרסו מקצועיות",
+  title: "מכונות קפה לעסקים ולמשרד — JURA, לליט ומכונות מקצועיות",
   description:
-    "מכונות קפה לעסקים ולמשרד — אוטומטיות ומקצועיות מבית JURA, לליט ועוד. אוטומטיות וידניות, במשלוח עם שליח עד הבית.",
+    "מכונות קפה לעסקים, למשרדים ולבית — אוטומטיות ומקצועיות מבית JURA, לליט ועוד, עם מחירים באתר. רוצים מכונה למשרד בלי לקנות? גם בהשאלה בדמי שירות חודשיים.",
   keywords: [
     "מכונת קפה למשרד",
     "מכונות קפה לעסקים",
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     "מכונת קפה קפסולות לעומת פולים",
   ],
   openGraph: {
-    title: "מכונות קפה למכירה | קפה גינץ",
+    title: "מכונות קפה לעסקים ולמשרד | קפה גינץ",
     description:
       "מכונות קפה אוטומטיות וידניות — JURA, Gaggia, De'Longhi, Melitta ועוד, במשלוח עד הבית.",
     url: "https://www.gintz.co.il/machines",
@@ -91,10 +91,17 @@ export default function MachinesPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <h1 id="machines-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            מכונות קפה לעסק ולבית
+            מכונות קפה לעסקים, למשרד ולבית
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            מכונות אוטומטיות וידניות לבית ולמשרד, במשלוח עם שליח עד הדלת.
+            מכונות אוטומטיות וידניות למשרד, לעסק ולבית, במשלוח עם שליח עד הדלת.
+          </p>
+          <p className="text-cream/80 mt-3">
+            מכונה למשרד בלי לקנות?{" "}
+            <Link href="/business-solutions" className="text-gold underline hover:no-underline font-bold">
+              פתרונות קפה לעסקים
+            </Link>{" "}
+            — מכונה, פולים ושירות בדמי שירות חודשיים.
           </p>
         </div>
       </section>

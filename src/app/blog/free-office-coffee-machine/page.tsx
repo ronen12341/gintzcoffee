@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { machinePrice } from "@/lib/price";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/free-office-coffee-machine" },
@@ -93,7 +94,7 @@ export default function FreeOfficeCoffeeMachinePost() {
                 <tr className="bg-brown text-cream"><th className="p-3 text-right"></th><th className="p-3 text-right">מכונה בהשאלה</th><th className="p-3 text-right">קניית מכונה</th></tr>
               </thead>
               <tbody>
-                <tr className="border-b border-brown/10"><td className="p-3">השקעה ראשונית</td><td className="p-3">אין</td><td className="p-3">אלפי שקלים (לדוגמה JURA E8 — 5,700 ש״ח, JURA X10 — 11,250 ש״ח)</td></tr>
+                <tr className="border-b border-brown/10"><td className="p-3">השקעה ראשונית</td><td className="p-3">אין</td><td className="p-3">אלפי שקלים (לדוגמה JURA E8 — {machinePrice("jura-e8")}, JURA X10 — {machinePrice("jura-x10")})</td></tr>
                 <tr className="border-b border-brown/10 bg-white/50"><td className="p-3">תחזוקה ותיקונים</td><td className="p-3">כלולים</td><td className="p-3">על חשבונכם</td></tr>
                 <tr className="border-b border-brown/10"><td className="p-3">גמישות</td><td className="p-3">מחליפים מכונה לפי הצורך</td><td className="p-3">המכונה נשארת גם אם לא מתאימה</td></tr>
                 <tr className="border-b border-brown/10 bg-white/50"><td className="p-3">עלות לאורך שנים</td><td className="p-3">תלויה בצריכת הקפה</td><td className="p-3">משתלמת יותר כשהצריכה גבוהה והיציבה</td></tr>

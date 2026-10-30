@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/choosing-office-coffee-machine" },
-  title: "איך לבחור מכונת קפה למשרד — המדריך המלא",
+  title: "איך לבחור מכונת קפה למשרד — לפי מספר עובדים, תקציב וסוג מכונה",
   description:
     "מכונה אוטומטית או מחצה-אוטומטית? כמה עובדים מצדיקים איזה דגם? מדריך מלא לבחירת מכונת קפה למשרד ולעסק.",
   openGraph: {

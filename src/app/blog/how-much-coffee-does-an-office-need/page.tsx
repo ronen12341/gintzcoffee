@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/how-much-coffee-does-an-office-need" },
-  title: "כמה קפה צריך משרד בחודש? טבלה לפי מספר עובדים",
+  title: "כמה ק״ג קפה צריך משרד בחודש? טבלה לפי מספר עובדים (10–100)",
   description:
     "כמה ק\"ג פולי קפה צורך משרד של 10, 20, 50 או 100 עובדים? טבלת כמויות לפי מספר עובדים ונוסחה פשוטה לחישוב הצריכה החודשית.",
   openGraph: {

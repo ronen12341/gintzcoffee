@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/fresh-coffee-beans" },
-  title: "פולי קפה טריים — איך יודעים שהקפה באמת טרי?",
+  title: "פולי קפה טריים: 4 סימנים שהקפה באמת טרי (ומה לבדוק על השקית)",
   description:
     "איך מזהים פולי קפה טריים: תאריך קלייה מול תאריך תפוגה, כמה זמן פולים קלויים נשארים טריים, איך לאחסן אותם ולמה קפה טרי מבית קלייה טעים יותר.",
   openGraph: {

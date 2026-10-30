@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { machinePrice } from "@/lib/price";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog/automatic-vs-professional-coffee-machine" },
   title: "מכונת קפה אוטומטית או מקצועית לעסק? השוואה ומחירים",
   description:
-    "איזו מכונת קפה לעסק לבחור? השוואה בין מכונה אוטומטית מפולים למכונת אספרסו מקצועית — טעם, תפעול ומחירים: מכונות אוטומטיות לעסק מכ-4,700 ש״ח, או מכונה בהשאלה בדמי שירות חודשיים.",
+    `איזו מכונת קפה לעסק לבחור? השוואה בין מכונה אוטומטית מפולים למכונת אספרסו מקצועית — טעם, תפעול ומחירים: מכונות אוטומטיות לעסק מכ-${machinePrice("machine-ena8")}, או מכונה בהשאלה בדמי שירות חודשיים.`,
   openGraph: {
     title: "מכונת קפה אוטומטית או מקצועית לעסק? השוואה ומחירים | קפה גינץ",
     description: "השוואה בין מכונת קפה אוטומטית למכונת אספרסו מקצועית לעסק — טעם, תפעול ומחירים.",
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 
 const ARTICLE_LD = {"@context": "https://schema.org", "@type": "Article", "headline": "מכונת קפה אוטומטית או מקצועית לעסק — מה מתאים לכם?", "author": {"@type": "Organization", "name": "קפה גינץ"}, "publisher": {"@type": "Organization", "name": "קפה גינץ"}, "datePublished": "2026-09-28", "dateModified": "2026-09-28", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.gintz.co.il/blog/automatic-vs-professional-coffee-machine"}, "inLanguage": "he"};
 
-const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "מה ההבדל בין מכונת קפה אוטומטית למקצועית?", "acceptedAnswer": {"@type": "Answer", "text": "מכונה אוטומטית טוחנת ומכינה קפה בלחיצת כפתור, בלי ידע מוקדם. מכונת אספרסו מקצועית ידנית דורשת מישהו שיודע להכין, ונותנת שליטה מלאה בכל כוס."}}, {"@type": "Question", "name": "איזו מכונת קפה מתאימה למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "ברוב המשרדים — מכונה אוטומטית מפולים, כי כל עובד יכול להפעיל אותה והטעם עקבי. הגודל נקבע לפי מספר העובדים והעומס בבוקר."}}, {"@type": "Question", "name": "כמה עולה מכונת קפה אוטומטית לעסק?", "acceptedAnswer": {"@type": "Answer", "text": "אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-4,700 ש״ח (ENA 8) ועד כ-11,250 ש״ח לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית."}}]};
+const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "מה ההבדל בין מכונת קפה אוטומטית למקצועית?", "acceptedAnswer": {"@type": "Answer", "text": "מכונה אוטומטית טוחנת ומכינה קפה בלחיצת כפתור, בלי ידע מוקדם. מכונת אספרסו מקצועית ידנית דורשת מישהו שיודע להכין, ונותנת שליטה מלאה בכל כוס."}}, {"@type": "Question", "name": "איזו מכונת קפה מתאימה למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "ברוב המשרדים — מכונה אוטומטית מפולים, כי כל עובד יכול להפעיל אותה והטעם עקבי. הגודל נקבע לפי מספר העובדים והעומס בבוקר."}}, {"@type": "Question", "name": "כמה עולה מכונת קפה אוטומטית לעסק?", "acceptedAnswer": {"@type": "Answer", "text": `אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-${machinePrice("machine-ena8")} (ENA 8) ועד כ-${machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית.`}}]};
 
 export default function AutomaticVsProfessionalPost() {
   return (
@@ -70,11 +71,11 @@ export default function AutomaticVsProfessionalPost() {
 
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">מתי לבחור מכונה אוטומטית</h2>
 
-          <p>ברוב המשרדים אין מי שיעמוד ליד המכונה — ולכן מכונה אוטומטית מפולים היא הבחירה הטבעית. היא טוחנת טרי לכל כוס, מכינה אספרסו, הפוך ואמריקנו בלחיצה, ושומרת על טעם אחיד לאורך כל היום. לעומס גבוה בוחרים דגם מקצועי עם נפח גדול, כמו JURA X10 (11,250 ש״ח) או JURA Z10 (11,200 ש״ח); למשרד קטן יותר מספיקה מכונה כמו JURA E8 (5,700 ש״ח) או ENA 8 (4,700 ש״ח).</p>
+          <p>ברוב המשרדים אין מי שיעמוד ליד המכונה — ולכן מכונה אוטומטית מפולים היא הבחירה הטבעית. היא טוחנת טרי לכל כוס, מכינה אספרסו, הפוך ואמריקנו בלחיצה, ושומרת על טעם אחיד לאורך כל היום. לעומס גבוה בוחרים דגם מקצועי עם נפח גדול, כמו JURA X10 ({machinePrice("jura-x10")}) או JURA Z10 ({machinePrice("jura-z10")}); למשרד קטן יותר מספיקה מכונה כמו JURA E8 ({machinePrice("jura-e8")}) או ENA 8 ({machinePrice("machine-ena8")}). מתלבטים בין השתיים של JURA? <Link href="/blog/jura-e8-vs-z10" className="text-gold-dark font-bold underline">JURA E8 או Z10 — השוואה</Link>.</p>
 
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">מתי לבחור מכונת אספרסו מקצועית</h2>
 
-          <p>אם הקפה הוא חלק מהמוצר שאתם מוכרים — בית קפה, מסעדה, בר — מכונה ידנית נותנת שליטה מלאה בטחינה, במיצוי ובהקצפה. דגמים כמו Lelit MaraX (6,100 ש״ח) או Profitec PRO 400 (6,290 ש״ח) מתאימים לעסק קטן שרוצה איכות של בית קפה. לנפחים גדולים יותר יש מכונות תעשייתיות רב-ראשיות.</p>
+          <p>אם הקפה הוא חלק מהמוצר שאתם מוכרים — בית קפה, מסעדה, בר — מכונה ידנית נותנת שליטה מלאה בטחינה, במיצוי ובהקצפה. דגמים כמו Lelit MaraX ({machinePrice("machine-marax")}) או Profitec PRO 400 ({machinePrice("machine-profitech400")}) מתאימים לעסק קטן שרוצה איכות של בית קפה. לנפחים גדולים יותר יש מכונות תעשייתיות רב-ראשיות.</p>
 
           <div className="bg-gold/10 border-r-4 border-gold rounded-xl p-5 my-6">
             <strong className="block mb-1">💡 לא בטוחים?</strong>
@@ -106,7 +107,7 @@ export default function AutomaticVsProfessionalPost() {
 
           <h3 className="text-xl font-bold text-brown mt-6 mb-2">כמה עולה מכונת קפה אוטומטית לעסק?</h3>
 
-          <p>אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-4,700 ש״ח (ENA 8) ועד כ-11,250 ש״ח לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית.</p>
+          <p>אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-{machinePrice("machine-ena8")} (ENA 8) ועד כ-{machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית.</p>
 
           <div className="bg-white rounded-2xl shadow-sm p-6 text-center mt-10">
             <h3 className="text-xl font-bold text-brown mb-2">עזרה בבחירת מכונה?</h3>

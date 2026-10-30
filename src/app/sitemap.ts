@@ -129,6 +129,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${base}/blog/jura-e8-vs-z10`,
+      lastModified: new Date("2026-10-30"),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${base}/blog/choosing-office-coffee-machine`,
       lastModified: blogLastUpdate,
       changeFrequency: "monthly",
