@@ -13,7 +13,7 @@ import {
 
 export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions/rental" },
-  title: "השכרת מכונת קפה לעסק",
+  title: "השכרת מכונת קפה לעסק ולמשרד — בלי השקעה ראשונית",
   description:
     "השכרת מכונת קפה לעסק - מכונה עלינו, משלמים על הקפה. דמי שירות חודשיים קבועים כוללים מכונה, התקנה, הדרכה, שירות ופולים טריים מבית הקלייה שלנו. בלי השקעה ראשונית.",
   keywords: [
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     "אספקת קפה לעסקים",
   ],
   openGraph: {
-    title: "השכרת מכונת קפה לעסק | קפה גינץ",
+    title: "השכרת מכונת קפה לעסק ולמשרד — בלי השקעה ראשונית | קפה גינץ",
     description:
       "מכונה עלינו, משלמים על הקפה. השכרת מכונת קפה לעסק בדמי שירות חודשיים קבועים - בלי השקעה ראשונית.",
     url: "https://www.gintz.co.il/business-solutions/rental",
