@@ -123,7 +123,7 @@ export default function BargainsPage() {
             האוטומטיות העמידות לעבודה בהיקף גבוה. למי שמחפש פתרון מלא עם שירות
             ותחזוקה, יש גם{" "}
             <Link href="/business-solutions" className="text-gold-dark font-bold underline">
-              פתרונות קפה לעסקים בדמי שירות חודשיים
+              פתרונות קפה לעסקים עם מכונה בהשאלה ללא עלות
             </Link>
             , ולמי שמעדיף מכונה חדשה, כל הדגמים נמצאים ב
             <Link href="/machines" className="text-gold-dark font-bold underline">
