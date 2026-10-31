@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions" },
   title: "פתרונות קפה לעסקים — מכונת קפה למשרד בלי לקנות מכונה",
   description:
-    "פתרונות קפה לעסקים: מכונת קפה מקצועית למשרד בדמי שירות חודשיים — כולל התקנה, הדרכה ותחזוקה, בלי השקעה בציוד. פולים טריים מבית הקלייה שלנו. מ-5 עובדים ועד ארגונים של אלפי עובדים. תאמו טעימה.",
+    "פתרונות קפה לעסקים: מכונת קפה מקצועית למשרד בדמי שירות חודשיים — כולל התקנה, הדרכה ותחזוקה, בלי השקעה בציוד. מענה לתקלה תוך 3 שעות, מכונה חלופית ומקרר חלב. פולים טריים מבית הקלייה שלנו. לקוחות: אלקטרה, אמזון, מיתר.",
   openGraph: {
     url: "https://www.gintz.co.il/business-solutions",
     title: "פתרונות קפה לעסקים — מכונת קפה למשרד בלי לקנות מכונה | קפה גינץ",
@@ -143,6 +143,37 @@ export default function BusinessSolutionsPage() {
             <Image src="/lp/logos/aws.svg" alt="AWS" width={80} height={30} className="h-5 w-auto object-contain" />
             <Image src="/lp/logos/meitar.png" alt="Meitar Law Offices" width={100} height={34} className="h-6 w-auto object-contain" />
           </div>
+        </div>
+      </section>
+
+      {/* Key facts — plain text so search engines and AI assistants can read them */}
+      <section className="py-8 bg-cream border-b border-brown/10" aria-labelledby="service-facts-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="service-facts-heading" className="text-xl font-bold text-brown text-center mb-5">
+            מה כלול בשירות
+          </h2>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-brown">
+            <li>
+              <p className="font-bold">מענה לתקלה תוך 3 שעות</p>
+              <p className="text-sm text-brown/65">טיפול בתקלה עד 24 שעות</p>
+            </li>
+            <li>
+              <p className="font-bold">מכונה חלופית</p>
+              <p className="text-sm text-brown/65">כשהתיקון לוקח זמן — המשרד לא נשאר בלי קפה</p>
+            </li>
+            <li>
+              <p className="font-bold">מקרר חלב ותחזוקה שוטפת</p>
+              <p className="text-sm text-brown/65">התקנה, הדרכה וביקורי טכנאי כלולים</p>
+            </li>
+            <li>
+              <p className="font-bold">פולים טריים מבית הקלייה</p>
+              <p className="text-sm text-brown/65">קולים מדי יום בבני ברק, מאז 2005</p>
+            </li>
+          </ul>
+          <p className="text-center text-sm text-brown/70 mt-5">
+            משרדים מ-5 עובדים ועד ארגונים של אלפי עובדים. בין לקוחותינו: אלקטרה, אמזון, AWS ומשרד עורכי הדין מיתר.
+            {" "}טלפון: <a href="tel:039600550" className="font-bold underline">03-9600550</a>
+          </p>
         </div>
       </section>
 
