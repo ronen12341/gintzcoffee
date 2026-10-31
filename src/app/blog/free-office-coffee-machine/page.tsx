@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const ARTICLE_LD = {"@context": "https://schema.org", "@type": "Article", "headline": "מכונת קפה חינם למשרד — איך זה עובד ומה חשוב לבדוק", "author": {"@type": "Organization", "name": "קפה גינץ"}, "publisher": {"@type": "Organization", "name": "קפה גינץ"}, "datePublished": "2026-09-28", "dateModified": "2026-09-28", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.gintz.co.il/blog/free-office-coffee-machine"}, "inLanguage": "he"};
 
-const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "האם באמת אפשר לקבל מכונת קפה חינם למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים רק על הקפה. אין תשלום על המכונה עצמה, והשירות כלול."}}, {"@type": "Question", "name": "מה כלול בשירות?", "acceptedAnswer": {"@type": "Answer", "text": "אצלנו: המכונה, התקנה והדרכה, שירות ותחזוקה ללא חיוב נפרד, ואספקה שוטפת של פולים טריים מבית הקלייה שלנו."}}, {"@type": "Question", "name": "מה קורה אם המכונה מתקלקלת?", "acceptedAnswer": {"@type": "Answer", "text": "מתקשרים ואנחנו מטפלים. אם התקלה דורשת טיפול ממושך — מחליפים מכונה תוך 24 שעות."}}, {"@type": "Question", "name": "כמה זה עולה?", "acceptedAnswer": {"@type": "Answer", "text": "המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק"ג פולים. המכונה בהשאלה ללא עלות."}}]};
+const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "האם באמת אפשר לקבל מכונת קפה חינם למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים רק על הקפה. אין תשלום על המכונה עצמה, והשירות כלול."}}, {"@type": "Question", "name": "מה כלול בשירות?", "acceptedAnswer": {"@type": "Answer", "text": "אצלנו: המכונה, התקנה והדרכה, שירות ותחזוקה ללא חיוב נפרד, ואספקה שוטפת של פולים טריים מבית הקלייה שלנו."}}, {"@type": "Question", "name": "מה קורה אם המכונה מתקלקלת?", "acceptedAnswer": {"@type": "Answer", "text": "מתקשרים ואנחנו מטפלים. אם התקלה דורשת טיפול ממושך — מחליפים מכונה תוך 24 שעות."}}, {"@type": "Question", "name": "כמה זה עולה?", "acceptedAnswer": {"@type": "Answer", "text": "המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק״ג פולים. המכונה בהשאלה ללא עלות."}}]};
 
 export default function FreeOfficeCoffeeMachinePost() {
   return (
@@ -128,11 +128,11 @@ export default function FreeOfficeCoffeeMachinePost() {
 
           <h3 className="text-xl font-bold text-brown mt-6 mb-2">כמה זה עולה?</h3>
 
-          <p>המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק"ג פולים. המכונה בהשאלה ללא עלות.</p>
+          <p>המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק״ג פולים. המכונה בהשאלה ללא עלות.</p>
 
           <div className="bg-white rounded-2xl shadow-sm p-6 text-center mt-10">
             <h3 className="text-xl font-bold text-brown mb-2">רוצים מכונה בהשאלה למשרד?</h3>
-            <p className="text-brown/65 mb-4">ספרו לנו כמה עובדים יש אצלכם — נחזור עם דגם מכונה ומחיר לק"ג פולים. המכונה בהשאלה ללא עלות.</p>
+            <p className="text-brown/65 mb-4">ספרו לנו כמה עובדים יש אצלכם — נחזור עם דגם מכונה ומחיר לק״ג פולים. המכונה בהשאלה ללא עלות.</p>
             <div className="flex gap-3 justify-center flex-wrap">
               <Link
                 href="/contact"
