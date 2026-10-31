@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const ARTICLE_LD = {"@context": "https://schema.org", "@type": "Article", "headline": "מכונת קפה חינם למשרד — איך זה עובד ומה חשוב לבדוק", "author": {"@type": "Organization", "name": "קפה גינץ"}, "publisher": {"@type": "Organization", "name": "קפה גינץ"}, "datePublished": "2026-09-28", "dateModified": "2026-09-28", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.gintz.co.il/blog/free-office-coffee-machine"}, "inLanguage": "he"};
 
-const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "האם באמת אפשר לקבל מכונת קפה חינם למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים על הקפה ועל השירות, בדמי שירות חודשיים. אין תשלום על המכונה עצמה."}}, {"@type": "Question", "name": "מה כלול בדמי השירות החודשיים?", "acceptedAnswer": {"@type": "Answer", "text": "אצלנו: המכונה, התקנה והדרכה, שירות ותחזוקה ללא חיוב נפרד, ואספקה שוטפת של פולים טריים מבית הקלייה שלנו."}}, {"@type": "Question", "name": "מה קורה אם המכונה מתקלקלת?", "acceptedAnswer": {"@type": "Answer", "text": "מתקשרים ואנחנו מטפלים. אם התקלה דורשת טיפול ממושך — מחליפים מכונה תוך 24 שעות."}}, {"@type": "Question", "name": "כמה זה עולה?", "acceptedAnswer": {"@type": "Answer", "text": "המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מספר חודשי אחד ומדויק."}}]};
+const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "האם באמת אפשר לקבל מכונת קפה חינם למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים רק על הקפה. אין תשלום על המכונה עצמה, והשירות כלול."}}, {"@type": "Question", "name": "מה כלול בשירות?", "acceptedAnswer": {"@type": "Answer", "text": "אצלנו: המכונה, התקנה והדרכה, שירות ותחזוקה ללא חיוב נפרד, ואספקה שוטפת של פולים טריים מבית הקלייה שלנו."}}, {"@type": "Question", "name": "מה קורה אם המכונה מתקלקלת?", "acceptedAnswer": {"@type": "Answer", "text": "מתקשרים ואנחנו מטפלים. אם התקלה דורשת טיפול ממושך — מחליפים מכונה תוך 24 שעות."}}, {"@type": "Question", "name": "כמה זה עולה?", "acceptedAnswer": {"@type": "Answer", "text": "המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק"ג פולים. המכונה בהשאלה ללא עלות."}}]};
 
 export default function FreeOfficeCoffeeMachinePost() {
   return (
@@ -46,9 +46,9 @@ export default function FreeOfficeCoffeeMachinePost() {
 
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">איך המודל עובד</h2>
 
-          <p>הספק מתקין אצלכם מכונה מקצועית שנשארת בבעלותו — מכונת קפה בהשאלה. אתם לא משלמים על המכונה עצמה, אלא על הקפה שאתם צורכים, בדרך כלל כחלק מדמי שירות חודשיים. הרווח של הספק מגיע מאספקת הפולים לאורך זמן, ולכן משתלם לו לתת מכונה טובה ולשמור עליכם מרוצים.</p>
+          <p>הספק מתקין אצלכם מכונה מקצועית שנשארת בבעלותו — מכונת קפה בהשאלה. אתם לא משלמים על המכונה עצמה, אלא על הקפה שאתם צורכים. הרווח של הספק מגיע מאספקת הפולים לאורך זמן, ולכן משתלם לו לתת מכונה טובה ולשמור עליכם מרוצים.</p>
 
-          <p>אצלנו זה נקרא <Link href="/business-solutions/rental" className="text-gold-dark font-bold underline">השכרת מכונת קפה לעסק</Link>: המכונה עלינו, אתם משלמים על הקפה. דמי השירות החודשיים כוללים מכונה, התקנה, הדרכה, שירות ותחזוקה, ופולים טריים מבית הקלייה שלנו.</p>
+          <p>אצלנו זה נקרא <Link href="/business-solutions/rental" className="text-gold-dark font-bold underline">השכרת מכונת קפה לעסק</Link>: המכונה עלינו, אתם משלמים על הקפה. המכונה, ההתקנה, ההדרכה, השירות והתחזוקה כלולים, ואתם משלמים רק על הפולים הטריים מבית הקלייה שלנו.</p>
 
           <h2 className="text-2xl font-bold text-brown mt-8 mb-3">מה צריך להיות כלול בעסקה טובה</h2>
 
@@ -116,9 +116,9 @@ export default function FreeOfficeCoffeeMachinePost() {
 
           <h3 className="text-xl font-bold text-brown mt-6 mb-2">האם באמת אפשר לקבל מכונת קפה חינם למשרד?</h3>
 
-          <p>כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים על הקפה ועל השירות, בדמי שירות חודשיים. אין תשלום על המכונה עצמה.</p>
+          <p>כן, במודל השאלה: המכונה נשארת בבעלות הספק ואתם משלמים רק על הקפה. אין תשלום על המכונה עצמה, והשירות כלול.</p>
 
-          <h3 className="text-xl font-bold text-brown mt-6 mb-2">מה כלול בדמי השירות החודשיים?</h3>
+          <h3 className="text-xl font-bold text-brown mt-6 mb-2">מה כלול בשירות?</h3>
 
           <p>אצלנו: המכונה, התקנה והדרכה, שירות ותחזוקה ללא חיוב נפרד, ואספקה שוטפת של פולים טריים מבית הקלייה שלנו.</p>
 
@@ -128,11 +128,11 @@ export default function FreeOfficeCoffeeMachinePost() {
 
           <h3 className="text-xl font-bold text-brown mt-6 mb-2">כמה זה עולה?</h3>
 
-          <p>המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מספר חודשי אחד ומדויק.</p>
+          <p>המחיר נקבע לפי גודל המכונה וכמות הפולים שהמשרד צורך. אחרי שיחת אפיון קצרה אנחנו חוזרים עם מחיר מדויק לק"ג פולים. המכונה בהשאלה ללא עלות.</p>
 
           <div className="bg-white rounded-2xl shadow-sm p-6 text-center mt-10">
             <h3 className="text-xl font-bold text-brown mb-2">רוצים מכונה בהשאלה למשרד?</h3>
-            <p className="text-brown/65 mb-4">ספרו לנו כמה עובדים יש אצלכם — נחזור עם דגם מכונה ומחיר חודשי קבוע.</p>
+            <p className="text-brown/65 mb-4">ספרו לנו כמה עובדים יש אצלכם — נחזור עם דגם מכונה ומחיר לק"ג פולים. המכונה בהשאלה ללא עלות.</p>
             <div className="flex gap-3 justify-center flex-wrap">
               <Link
                 href="/contact"
