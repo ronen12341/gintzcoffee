@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog/automatic-vs-professional-coffee-machine" },
   title: "מכונת קפה אוטומטית או מקצועית לעסק? השוואה ומחירים",
   description:
-    `איזו מכונת קפה לעסק לבחור? השוואה בין מכונה אוטומטית מפולים למכונת אספרסו מקצועית — טעם, תפעול ומחירים: מכונות אוטומטיות לעסק מכ-${machinePrice("machine-ena8")}, או מכונה בהשאלה בדמי שירות חודשיים.`,
+    `איזו מכונת קפה לעסק לבחור? השוואה בין מכונה אוטומטית מפולים למכונת אספרסו מקצועית — טעם, תפעול ומחירים: מכונות אוטומטיות לעסק מכ-${machinePrice("machine-ena8")}, או מכונה בהשאלה ללא עלות, כשמשלמים רק על הקפה.`,
   openGraph: {
     title: "מכונת קפה אוטומטית או מקצועית לעסק? השוואה ומחירים | קפה גינץ",
     description: "השוואה בין מכונת קפה אוטומטית למכונת אספרסו מקצועית לעסק — טעם, תפעול ומחירים.",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const ARTICLE_LD = {"@context": "https://schema.org", "@type": "Article", "headline": "מכונת קפה אוטומטית או מקצועית לעסק — מה מתאים לכם?", "author": {"@type": "Organization", "name": "קפה גינץ"}, "publisher": {"@type": "Organization", "name": "קפה גינץ"}, "datePublished": "2026-09-28", "dateModified": "2026-09-28", "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.gintz.co.il/blog/automatic-vs-professional-coffee-machine"}, "inLanguage": "he"};
 
-const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "מה ההבדל בין מכונת קפה אוטומטית למקצועית?", "acceptedAnswer": {"@type": "Answer", "text": "מכונה אוטומטית טוחנת ומכינה קפה בלחיצת כפתור, בלי ידע מוקדם. מכונת אספרסו מקצועית ידנית דורשת מישהו שיודע להכין, ונותנת שליטה מלאה בכל כוס."}}, {"@type": "Question", "name": "איזו מכונת קפה מתאימה למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "ברוב המשרדים — מכונה אוטומטית מפולים, כי כל עובד יכול להפעיל אותה והטעם עקבי. הגודל נקבע לפי מספר העובדים והעומס בבוקר."}}, {"@type": "Question", "name": "כמה עולה מכונת קפה אוטומטית לעסק?", "acceptedAnswer": {"@type": "Answer", "text": `אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-${machinePrice("machine-ena8")} (ENA 8) ועד כ-${machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית.`}}]};
+const FAQ_LD = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "מה ההבדל בין מכונת קפה אוטומטית למקצועית?", "acceptedAnswer": {"@type": "Answer", "text": "מכונה אוטומטית טוחנת ומכינה קפה בלחיצת כפתור, בלי ידע מוקדם. מכונת אספרסו מקצועית ידנית דורשת מישהו שיודע להכין, ונותנת שליטה מלאה בכל כוס."}}, {"@type": "Question", "name": "איזו מכונת קפה מתאימה למשרד?", "acceptedAnswer": {"@type": "Answer", "text": "ברוב המשרדים — מכונה אוטומטית מפולים, כי כל עובד יכול להפעיל אותה והטעם עקבי. הגודל נקבע לפי מספר העובדים והעומס בבוקר."}}, {"@type": "Question", "name": "כמה עולה מכונת קפה אוטומטית לעסק?", "acceptedAnswer": {"@type": "Answer", "text": `אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-${machinePrice("machine-ena8")} (ENA 8) ועד כ-${machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה ללא עלות ולשלם רק על הקפה, בלי השקעה ראשונית.`}}]};
 
 export default function AutomaticVsProfessionalPost() {
   return (
@@ -107,7 +107,7 @@ export default function AutomaticVsProfessionalPost() {
 
           <h3 className="text-xl font-bold text-brown mt-6 mb-2">כמה עולה מכונת קפה אוטומטית לעסק?</h3>
 
-          <p>אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-{machinePrice("machine-ena8")} (ENA 8) ועד כ-{machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה בדמי שירות חודשיים, בלי השקעה ראשונית.</p>
+          <p>אצלנו, מכונות אוטומטיות לעסק מתחילות מכ-{machinePrice("machine-ena8")} (ENA 8) ועד כ-{machinePrice("jura-x10")} לדגם מקצועי בנפח גבוה (JURA X10). אפשר גם לקבל מכונה בהשאלה ללא עלות ולשלם רק על הקפה, בלי השקעה ראשונית.</p>
 
           <div className="bg-white rounded-2xl shadow-sm p-6 text-center mt-10">
             <h3 className="text-xl font-bold text-brown mb-2">עזרה בבחירת מכונה?</h3>
