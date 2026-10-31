@@ -5,7 +5,7 @@ import { Flame, Leaf, SlidersVertical, Truck, Coffee, HeartHandshake } from "luc
 export const metadata: Metadata = {
   title: "בית קלייה לקפה | קליית פולי קפה טריים בהתאמה אישית",
   description:
-    "קפה גינץ — בית קלייה לקפה מאז 2005. קליית פולי קפה בוטיק בהתאמה אישית: בחירת מוצא, רמת קלייה ובלנד. הקפה מגיע לעסק טרי, עד 10 ימים מיום הקלייה. בית קלייה בבני ברק.",
+    "קפה גינץ — בית קלייה לקפה מאז 2005, הירקון 39 בני ברק. קולים מדי יום במכונת קלייה Probat, תערובות וחד-זני בהתאמה אישית. פולים טריים במשלוח עד הבית ולעסקים בכל הארץ.",
   keywords: [
     "בית קלייה לקפה",
     "בית קלייה",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "בית קלייה לקפה | קפה גינץ",
     description:
-      "בית קלייה בוטיק מאז 2005. קליית פולי קפה בהתאמה אישית — טרי עד 10 ימים מהקלייה.",
+      "בית קלייה מאז 2005 בבני ברק. קולים מדי יום במכונת Probat — פולים טריים עד הבית ולעסקים.",
     url: "https://www.gintz.co.il/roastery",
   },
 };
@@ -69,8 +69,35 @@ export default function RoasteryPage() {
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
             מאז 2005 אנחנו קולים פולי קפה בבני ברק — באצוות קטנות, בהתאמה אישית,
-            ומספקים אותם טריים לעסקים בכל הארץ. לא מפיצים. יצרנים.
+            ומספקים אותם טריים עד הבית ולעסקים בכל הארץ. לא מפיצים. יצרנים.
           </p>
+        </div>
+      </section>
+
+      {/* Key facts — plain text so search engines and AI assistants can read them */}
+      <section className="py-6 bg-cream border-b border-brown/10" aria-labelledby="roastery-facts-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="roastery-facts-heading" className="sr-only">
+            עובדות על בית הקלייה
+          </h2>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-brown">
+            <li>
+              <p className="font-bold">בית קלייה מאז 2005</p>
+              <p className="text-sm text-brown/65">קולים בעצמנו, לא מפיצים</p>
+            </li>
+            <li>
+              <p className="font-bold">קלייה מדי יום</p>
+              <p className="text-sm text-brown/65">באצוות קטנות</p>
+            </li>
+            <li>
+              <p className="font-bold">מכונת קלייה Probat</p>
+              <p className="text-sm text-brown/65">תוצרת גרמניה</p>
+            </li>
+            <li>
+              <p className="font-bold">הירקון 39, בני ברק</p>
+              <p className="text-sm text-brown/65">משלוח עד הבית ולעסקים בכל הארץ</p>
+            </li>
+          </ul>
         </div>
       </section>
 
