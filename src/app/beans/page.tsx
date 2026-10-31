@@ -5,10 +5,15 @@ import { coffeeBeans } from "@/data/products";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/beans" },
-  title: "פולי קפה טריים לעסק ולמשרד | בית קלייה בוטיק",
+  title: "פולי קפה טריים עם משלוח עד הבית | בית קלייה גינץ",
   description:
-    "פולי קפה טריים לעסק ולמשרד מבית קלייה גינץ. קלייה בוטיק בהתאמה אישית לפי הטעם שלכם. קפה לעסק שמגיע טרי עד 10 ימים מהקלייה.",
+    "פולי קפה טריים מבית הקלייה גינץ במשלוח עד הבית ולעסק. החל מ-120 ש\"ח לק\"ג, תערובות וחד-זני בקלייה עצמית. משלוח חינם מעל 400 ש\"ח, אספקה עד 7 ימי עסקים.",
   keywords: [
+    "פולי קפה טריים",
+    "פולי קפה משלוח עד הבית",
+    "בית קלייה לקפה",
+    "קניית פולי קפה אונליין",
+    "פולי קפה לבית",
     "פולי קפה לעסק",
     "קפה למשרד",
     "פתרונות קפה למשרד",
@@ -17,9 +22,9 @@ export const metadata: Metadata = {
     "קלייה בהתאמה אישית",
   ],
   openGraph: {
-    title: "פולי קפה טריים לעסק ולמשרד | קפה גינץ",
+    title: "פולי קפה טריים עם משלוח עד הבית | קפה גינץ",
     description:
-      "פולי קפה טריים מבית קלייה גינץ — תערובות וחד-זני בקלייה בוטיק, טרי עד 10 ימים מהקלייה.",
+      "פולי קפה טריים מבית הקלייה גינץ — תערובות וחד-זני בקלייה עצמית, החל מ-120 ש\"ח לק\"ג, במשלוח עד הבית ולעסק.",
     url: "https://www.gintz.co.il/beans",
   },
 };
@@ -34,12 +39,40 @@ export default function BeansPage() {
       >
         <div className="max-w-3xl mx-auto px-4">
           <h1 id="beans-heading" className="text-4xl md:text-5xl font-bold text-cream mb-4">
-            פולי קפה פרימיום
+            פולי קפה טריים מבית הקלייה
           </h1>
           <p className="text-cream/70 text-lg leading-relaxed">
-            קפה שנקלה במיוחד בשבילכם ומסופק טרי לעסק. תערובות מאוזנות, ממוצא יחיד, לכל
-            גודל הזמנה.
+            קפה שאנחנו קולים בעצמנו בבית הקלייה גינץ בבני ברק, ונשלח טרי עד הבית או לעסק.
+            תערובות מאוזנות וקפה ממוצא יחיד, מ-250 גרם ועד הזמנות גדולות.
           </p>
+        </div>
+      </section>
+
+      {/* Key facts — price, shipping, delivery (plain text so search engines and AI assistants can read it).
+          Shipping numbers mirror FREE_SHIPPING_THRESHOLD / SHIPPING_FEE in checkout/page.tsx and lib/server-pricing.ts — keep in sync. */}
+      <section className="py-6 bg-cream border-b border-brown/10" aria-labelledby="beans-facts-heading">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="beans-facts-heading" className="sr-only">
+            מחירים, משלוח ואספקה
+          </h2>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center text-brown">
+            <li>
+              <p className="font-bold">החל מ-120 ש&quot;ח לק&quot;ג</p>
+              <p className="text-sm text-brown/65">אריזת 250 גרם ב-45 ש&quot;ח</p>
+            </li>
+            <li>
+              <p className="font-bold">משלוח עד הבית</p>
+              <p className="text-sm text-brown/65">חינם מעל 400 ש&quot;ח, אחרת 60 ש&quot;ח</p>
+            </li>
+            <li>
+              <p className="font-bold">אספקה עד 7 ימי עסקים</p>
+              <p className="text-sm text-brown/65">או איסוף עצמי בבני ברק בתיאום</p>
+            </li>
+            <li>
+              <p className="font-bold">קלייה עצמית</p>
+              <p className="text-sm text-brown/65">ב-250 גרם: פולים שלמים או טחונים</p>
+            </li>
+          </ul>
         </div>
       </section>
 
