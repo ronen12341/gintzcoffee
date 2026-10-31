@@ -178,7 +178,7 @@ export default function OfficeCoffeeBudgetGuidePost() {
           <ul className="list-disc list-inside space-y-2">
             <li>
               <Link href="/business-solutions" className="text-gold-dark font-bold underline">
-                פתרונות קפה לעסקים — מכונה, פולים ושירות בדמי שירות חודשיים
+                פתרונות קפה לעסקים — מכונה בהשאלה ללא עלות, משלמים רק על הקפה
               </Link>
             </li>
             <li>
