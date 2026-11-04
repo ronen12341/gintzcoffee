@@ -1,0 +1,45 @@
+name: Weekly Supplier Sync (JURA + Kedma)
+
+on:
+  schedule:
+    # Sunday ~09:00 Israel time (06:00 UTC)
+    - cron: "0 6 * * 0"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: supplier-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compare site prices/stock with suppliers
+        id: sync
+        run: |
+          python scripts/supplier-sync.py | tee sync.log
+          grep -E '^(CHANGED|PROBLEMS)=' sync.log >> "$GITHUB_OUTPUT"
+      - name: Commit updated prices (deploys the site)
+        if: steps.sync.outputs.CHANGED == '1'
+        run: |
+          git config user.name "Gintz Supplier Sync"
+          git config user.email "ronen12341@gmail.com"
+          git add src/data/products-data.json
+          git commit -m "Weekly supplier sync: prices/stock from JURA + Kedma"
+          git pull --rebase
+          git push
+      - name: Report to the owner (GitHub issue → email notification)
+        if: steps.sync.outputs.CHANGED == '1' || steps.sync.outputs.PROBLEMS == '1'
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue create --title "סנכרון ספקים $(date +%d.%m.%Y)" --body-file sync-report.md --assignee ronen12341

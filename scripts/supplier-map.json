@@ -1,0 +1,158 @@
+{
+  "jura-z10": {
+    "supplier": "jura",
+    "id": 12844
+  },
+  "jura-x10": {
+    "supplier": "jura",
+    "id": 7639
+  },
+  "jura-e8": {
+    "supplier": "jura",
+    "id": 12791
+  },
+  "jura-ono": {
+    "supplier": "jura",
+    "id": 5723
+  },
+  "jura-c3": {
+    "supplier": "jura",
+    "id": 11220
+  },
+  "jura-c9": {
+    "supplier": "jura",
+    "id": 13419
+  },
+  "jura-e6-g4-black": {
+    "supplier": "jura",
+    "id": 14615
+  },
+  "jura-e6-g4-inox": {
+    "supplier": "jura",
+    "id": 14725
+  },
+  "jura-e6-g3": {
+    "supplier": "jura",
+    "id": 6486
+  },
+  "jura-e8-g3-white": {
+    "supplier": "jura",
+    "id": 917
+  },
+  "jura-s8": {
+    "supplier": "jura",
+    "id": 8060
+  },
+  "jura-s8-platinum": {
+    "supplier": "jura",
+    "id": 14527
+  },
+  "jura-w8": {
+    "supplier": "jura",
+    "id": 8214
+  },
+  "jura-j10": {
+    "supplier": "jura",
+    "id": 9839
+  },
+  "jura-j10-twin": {
+    "supplier": "jura",
+    "id": 13052
+  },
+  "jura-z10-diamond-black": {
+    "supplier": "jura",
+    "id": 14377
+  },
+  "jura-z10-g1-white": {
+    "supplier": "jura",
+    "id": 5392
+  },
+  "jura-giga10": {
+    "supplier": "jura",
+    "id": 4922
+  },
+  "kedma-lapavoni-casa-bar": {
+    "supplier": "kedma",
+    "id": "6751630"
+  },
+  "kedma-gaggia-eg2109": {
+    "supplier": "kedma",
+    "id": "6772264"
+  },
+  "kedma-delonghi-dedica-arte": {
+    "supplier": "kedma",
+    "id": "7634485"
+  },
+  "kedma-delonghi-specialista-arte-yellow": {
+    "supplier": "kedma",
+    "id": "7406333"
+  },
+  "kedma-delonghi-specialista-arte-white": {
+    "supplier": "kedma",
+    "id": "9565853"
+  },
+  "kedma-delonghi-specialista-arte-green": {
+    "supplier": "kedma",
+    "id": "9565874"
+  },
+  "kedma-delonghi-specialista-arte-evo": {
+    "supplier": "kedma",
+    "id": "9565922"
+  },
+  "kedma-lapavoni-domus-bar": {
+    "supplier": "kedma",
+    "id": "6752715"
+  },
+  "kedma-pascale-coffee-tea-black": {
+    "supplier": "kedma",
+    "id": "4220417"
+  },
+  "kedma-pascale-coffee-tea-milk": {
+    "supplier": "kedma",
+    "id": "2853130"
+  },
+  "kedma-gaggia-cadorna-style": {
+    "supplier": "kedma",
+    "id": "3073797"
+  },
+  "kedma-gaggia-magenta-plus": {
+    "supplier": "kedma",
+    "id": "3640437"
+  },
+  "kedma-gaggia-cadorna-milk": {
+    "supplier": "kedma",
+    "id": "3074059"
+  },
+  "kedma-melitta-ci-touch": {
+    "supplier": "kedma",
+    "id": "3094538"
+  },
+  "kedma-gaggia-anima-style": {
+    "supplier": "kedma",
+    "id": "2853126"
+  },
+  "kedma-philips-ep2220": {
+    "supplier": "kedma",
+    "id": "7403099"
+  },
+  "kedma-gaggia-besana": {
+    "supplier": "kedma",
+    "id": "2853128"
+  },
+  "kedma-philips-ep1200": {
+    "supplier": "kedma",
+    "id": "3095102"
+  },
+  "kedma-gaggia-cadorna-barista": {
+    "supplier": "kedma",
+    "id": "4812085"
+  },
+  "kedma-lamarzocco-linea-micra": {
+    "supplier": "kedma",
+    "id": "7469394"
+  },
+  "kedma-lamarzocco-linea-mini": {
+    "supplier": "kedma",
+    "id": "7476456"
+  }
+}
