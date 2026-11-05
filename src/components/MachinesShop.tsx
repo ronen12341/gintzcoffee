@@ -24,6 +24,7 @@ const BRANDS: { label: string; re: RegExp }[] = [
   { label: "Melitta", re: /melitta|מליטה/i },
   { label: "Pascale", re: /pascale|פסקל/i },
   { label: "La Pavoni", re: /la pavoni/i },
+  { label: "La Marzocco", re: /la marzocco|מרזוקו/i },
   { label: "Lelit", re: /lelit/i },
   { label: "Profitec", re: /profitec|פרופיטק/i },
   { label: "WMF", re: /wmf/i },
