@@ -118,7 +118,8 @@ export default function ContactPage() {
                 </span>
                 <div>
                   <p className="text-xs text-brown/50 mb-2">שעות פעילות</p>
-                  <p className="text-xs text-gold font-medium mt-1">* יש לתאם הגעה מראש</p>
+                  <p className="text-brown font-semibold">א׳–ה׳ 09:00–16:00</p>
+                  <p className="text-xs text-gold font-medium mt-1">* הגעה בתיאום מראש בלבד</p>
                 </div>
               </div>
 

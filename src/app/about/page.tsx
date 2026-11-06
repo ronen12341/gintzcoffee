@@ -117,7 +117,7 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto px-4 text-center text-brown">
           <h2 id="about-contact-heading" className="text-2xl font-bold mb-3">יצירת קשר</h2>
           <p className="text-brown/75 leading-relaxed">
-            הירקון 39, קומה 3, בני ברק · טלפון ו-WhatsApp:{" "}
+            הירקון 39, קומה 3, בני ברק · א׳–ה׳ 09:00–16:00, בתיאום מראש בלבד · טלפון ו-WhatsApp:{" "}
             <a href="tel:039600550" className="text-gold-dark hover:underline">03-9600550</a> ·{" "}
             <a href="mailto:sales@aspagil.com" className="text-gold-dark hover:underline">sales@aspagil.com</a>
           </p>
