@@ -7,6 +7,7 @@ const links = [
   { href: "/machines", label: "רכישת מכונות" },
   { href: "/beans", label: "פולי קפה" },
   { href: "/roastery", label: "בית הקלייה" },
+  { href: "/about", label: "אודות" },
   { href: "/blog", label: "בלוג" },
   { href: "https://www.aspagil.com", label: "כוסות ממותגות", external: true },
   { href: "/bargains", label: "מכונות משומשות" },

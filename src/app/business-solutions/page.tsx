@@ -18,6 +18,10 @@ export const metadata: Metadata = {
       "פתרון קפה מלא מקצה לקצה — מכונה מקצועית, פולים טריים מבית הקלייה, התקנה, הדרכה ותמיכה שוטפת.",
   },
   keywords: [
+    "קפה לעסקים",
+    "מכונת קפה למשרד",
+    "קפה למשרד",
+    "פולי קפה לעסקים",
     "פתרונות קפה לעסקים",
     "פתרון קפה משרדי",
     "אספקת קפה לעסק",
@@ -232,6 +236,51 @@ export default function BusinessSolutionsPage() {
                 <p className="text-brown/65 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── קפה לעסקים — מדריך קצר (תוכן טקסטואלי לגוגל ולעוזרי AI) ── */}
+      <section className="py-16 bg-cream-dark" aria-labelledby="b2b-guide-heading">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 id="b2b-guide-heading" className="text-3xl font-bold text-brown mb-6 text-center">
+            קפה לעסקים: מה מקבלים ואיך בוחרים
+          </h2>
+          <div className="space-y-5 text-brown/75 text-base leading-relaxed">
+            <p>
+              <strong className="text-brown">קפה לעסקים</strong> אצלנו הוא פתרון מלא: אנחנו מציבים{" "}
+              <strong className="text-brown">מכונת קפה למשרד</strong> בהשאלה, מספקים פולי קפה טריים
+              שנקלים בבית הקלייה שלנו בבני ברק, ודואגים להתקנה, להדרכה ולתחזוקה השוטפת. אתם משלמים רק על
+              הקפה — בלי לקנות מכונה ובלי השקעה בציוד.
+            </p>
+            <h3 className="text-xl font-bold text-brown pt-2">איזו מכונת קפה מתאימה למשרד שלכם?</h3>
+            <p>
+              הבחירה תלויה בעיקר במספר העובדים ובמשקאות שאוהבים אצלכם. למשרד קטן מתאימה מכונה אוטומטית
+              קומפקטית; למשרד בינוני או גדול — מכונה מקצועית שעומדת בעומס גבוה, עם מקרר חלב. ראו את
+              ההמלצות שלנו ל<Link href="/business-solutions/small-office" className="text-gold-dark hover:underline">משרד קטן</Link>,{" "}
+              <Link href="/business-solutions/medium-office" className="text-gold-dark hover:underline">משרד בינוני</Link>{" "}
+              ו<Link href="/business-solutions/large-office" className="text-gold-dark hover:underline">משרד גדול</Link>,
+              או לפי סוג העסק:{" "}
+              <Link href="/business-solutions/hightech" className="text-gold-dark hover:underline">חברות הייטק</Link>,{" "}
+              <Link href="/business-solutions/factories" className="text-gold-dark hover:underline">מפעלים</Link>{" "}
+              ו<Link href="/business-solutions/clinics" className="text-gold-dark hover:underline">מרפאות</Link>.
+            </p>
+            <h3 className="text-xl font-bold text-brown pt-2">פולי קפה לעסקים — ישירות מבית הקלייה</h3>
+            <p>
+              אנחנו לא מפיצים, אנחנו קולים. ה<strong className="text-brown">פולי קפה לעסקים</strong> נקלים אצלנו
+              באצוות קטנות ויוצאים טריים למשרד, עם אספקה קבועה. אפשר גם לבנות יחד בלנד שמתאים לטעם של העובדים
+              — קראו עוד על{" "}
+              <Link href="/roastery" className="text-gold-dark hover:underline">בית הקלייה שלנו</Link>.
+            </p>
+            <h3 className="text-xl font-bold text-brown pt-2">כמה עולה קפה למשרד?</h3>
+            <p>
+              העלות נקבעת לפי כמות הקפה שהמשרד צורך, ולא לפי מחיר המכונה. כדי להעריך תקציב, קראו את{" "}
+              <Link href="/blog/office-coffee-budget-guide" className="text-gold-dark hover:underline">מדריך תקציב הקפה למשרד</Link>{" "}
+              ואת{" "}
+              <Link href="/blog/how-much-coffee-does-an-office-need" className="text-gold-dark hover:underline">כמה קפה משרד צריך</Link>
+              . לאירועים ולתקופות קצרות יש גם{" "}
+              <Link href="/business-solutions/rental" className="text-gold-dark hover:underline">השכרת מכונת קפה</Link>.
+            </p>
           </div>
         </div>
       </section>

@@ -99,8 +99,16 @@ export default function HomePage() {
               בית קלייה בוטיק · מאז 2005
             </p>
             <h1 id="home-heading" className="text-2xl font-bold text-brown sm:text-3xl">
-              מה תרצו להזמין היום?
+              קפה לעסקים ולמשרד, פולי קפה טריים ומכונות קפה
             </h1>
+            <p className="mx-auto mt-3 max-w-2xl text-sm leading-relaxed text-brown/70 sm:text-base">
+              בית קלייה בבני ברק מאז 2005.{" "}
+              <Link href="/business-solutions" className="font-semibold text-gold-dark underline-offset-2 hover:underline">
+                מכונת קפה למשרד בהשאלה
+              </Link>
+              , פולים שנקלים אצלנו ושירות מלא — לעסקים קטנים ועד ארגונים של אלפי עובדים.
+              מה תרצו להזמין היום?
+            </p>
           </div>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
@@ -118,7 +126,7 @@ export default function HomePage() {
                 <div className="relative aspect-square w-full">
                   <Image
                     src={c.image}
-                    alt=""
+                    alt={c.title}
                     fill
                     priority
                     className="object-contain p-2 mix-blend-multiply transition duration-500 group-hover:scale-105 sm:p-4"

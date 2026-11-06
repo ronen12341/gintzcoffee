@@ -9,6 +9,7 @@
 - אתר: https://www.gintz.co.il
 
 ## עמודים מרכזיים
+- [אודות קפה גינץ](https://www.gintz.co.il/about): מי אנחנו, בית קלייה מאז 2005, לקוחות ופרטי קשר
 - [פתרונות קפה לעסקים](https://www.gintz.co.il/business-solutions): מכונת קפה, פולים ושירות למשרדים וארגונים, הצעת מחיר
 - [השכרת מכונת קפה](https://www.gintz.co.il/business-solutions/rental): השכרת מכונה אוטומטית עם מקרר חלב לאירועים
 - [פולי קפה](https://www.gintz.co.il/beans): פולי קפה טריים מבית הקלייה, הזמנה באתר
