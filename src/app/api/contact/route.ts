@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { attributionHtml, shortSource, type Attribution } from "@/lib/attribution";
 
 /** Escapes user-supplied text before it's interpolated into an HTML email
  *  template — every form field goes through this rather than being trusted
@@ -16,16 +17,19 @@ function escapeHtml(str: unknown): string {
 export async function POST(req: NextRequest) {
   const body = await req.json();
   const { name, phone, email, company, businessType, employees, city, message, quantity, formType, gclid } = body;
+  const attribution: Attribution | undefined =
+    body.attribution && typeof body.attribution === "object" ? body.attribution : gclid ? { last: { gclid } } : undefined;
 
   const subject =
     formType === "cups"
       ? "בקשת הצעת מחיר לכוסות – קפה גינץ"
       : "פנייה חדשה מהאתר – קפה גינץ";
+  const subjectWithSource = `${subject} [${shortSource(attribution)}]`;
 
   const html = `
     <div dir="rtl" style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #F5F0E8; padding: 24px; border-radius: 8px;">
       <h2 style="color: #3B1F0A; border-bottom: 2px solid #C8922A; padding-bottom: 8px;">${subject}</h2>
-      ${gclid ? `<p style="color: #666; margin: 4px 0 0; font-size: 12px;">מקור: Google Ads (gclid: <span style="direction:ltr;display:inline-block;">${escapeHtml(gclid)}</span>)</p>` : ""}
+      ${attributionHtml(attribution, escapeHtml)}
       <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
         <tr>
           <td style="padding: 8px; color: #5C3015; font-weight: bold; width: 140px;">שם מלא</td>
@@ -80,7 +84,7 @@ export async function POST(req: NextRequest) {
       from: "קפה גינץ <noreply@aspagil.com>",
       to: "ronen@aspagil.com",
       replyTo: email || undefined,
-      subject,
+      subject: subjectWithSource,
       html,
     });
 

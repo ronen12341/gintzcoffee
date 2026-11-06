@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { getCatalogPrice, computeShippingFee } from "@/lib/server-pricing";
+import { attributionHtml, shortSource, type Attribution } from "@/lib/attribution";
 
 interface OrderItem {
   id: string;
@@ -40,6 +41,8 @@ interface OrderPayload {
   grandTotal?: number;
   /** Google Ads click ID captured from the landing URL, if the visit came from a Google Ads click */
   gclid?: string;
+  /** First/last traffic-source visit captured client-side (see src/lib/attribution.ts) */
+  attribution?: Attribution;
 }
 
 /**
@@ -137,7 +140,7 @@ function buildEmailHtml(orderId: string, p: OrderPayload): string {
         ${new Date().toLocaleString("he-IL", { timeZone: "Asia/Jerusalem" })}
       </p>
       <p style="margin: 12px 0;">${paymentBadge}</p>
-      ${p.gclid ? `<p style="color: #666; margin: 4px 0; font-size: 12px;">מקור: Google Ads (gclid: <span style="direction:ltr;display:inline-block;">${escapeHtml(p.gclid)}</span>)</p>` : ""}
+      ${attributionHtml(p.attribution ?? (p.gclid ? { last: { gclid: p.gclid } } : undefined), escapeHtml)}
 
       <h3 style="color: #5C3015; margin-top: 24px;">פרטי לקוח</h3>
       <table style="width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden;">
@@ -452,7 +455,7 @@ export async function POST(req: NextRequest) {
   const orderId = generateOrderId();
   const html = buildEmailHtml(orderId, body);
   const waText = buildWhatsAppText(orderId, body);
-  const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name}`;
+  const subject = `🛒 הזמנה חדשה ${orderId} — ${body.customer.name} [${shortSource(body.attribution ?? (body.gclid ? { last: { gclid: body.gclid } } : undefined))}]`;
 
   // Primary recipient — sent from the verified aspagil.com domain (the only
   // domain verified in this Resend account). Must succeed for the order to

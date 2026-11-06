@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
 import { getGclid } from "@/lib/gclid";
+import { getAttribution } from "@/lib/attribution";
 
 const BUSINESS_TYPES = ["משרד", "בית קפה", "מסעדה", "אחר"];
 // Gintz places machines in offices/workplaces only. Cafés and restaurants
@@ -63,7 +64,7 @@ export default function LeadForm({
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, formType: "lead", gclid: getGclid() }),
+        body: JSON.stringify({ ...form, formType: "lead", gclid: getGclid(), attribution: getAttribution() }),
       });
       if (res.ok) {
         setSubmitted(true);

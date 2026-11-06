@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useCart } from "@/lib/cart";
 import { getGclid } from "@/lib/gclid";
+import { getAttribution } from "@/lib/attribution";
 import { trackBeginCheckout, trackOrderPlaced } from "@/lib/gtag";
 
 /**
@@ -165,6 +166,7 @@ export default function CheckoutPage() {
           shippingFee,
           grandTotal,
           gclid: getGclid(),
+          attribution: getAttribution(),
         }),
       });
 

@@ -118,6 +118,41 @@ export default function RootLayout({
             })();
           `}
         </Script>
+        {/* Traffic-source capture (Google Ads / Meta / organic / AI / referral)
+            — first + last landing kept 90 days; sent with orders and leads.
+            See src/lib/attribution.ts. */}
+        <Script id="attribution-capture" strategy="afterInteractive">
+          {`(function(){
+  var KEY = 'gintz-attribution';
+  var MAX_AGE = 90 * 24 * 60 * 60 * 1000;
+  var OWN = ["gintz.co.il","sumit.co.il","myofficeguy.com"];
+  var PARAMS = ['gclid','gbraid','wbraid','fbclid','msclkid','ttclid','utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id'];
+  function host(u){ try { return new URL(u).hostname.replace(/^www\\./,'').toLowerCase(); } catch(e){ return ''; } }
+  function isOwn(h){ if(!h) return false; for (var i=0;i<OWN.length;i++){ if (h===OWN[i] || h.slice(-(OWN[i].length+1))==='.'+OWN[i]) return true; } return false; }
+  try {
+    var q = new URLSearchParams(window.location.search), t = {}, has = false;
+    for (var i=0;i<PARAMS.length;i++){ var v = q.get(PARAMS[i]); if (v){ t[PARAMS[i]] = v.slice(0,300); has = true; } }
+    var ref = document.referrer || '';
+    var rh = host(ref);
+    if (ref && rh !== window.location.hostname.replace(/^www\\./,'') && !isOwn(rh)) { t.referrer = ref.slice(0,300); has = true; }
+    if (has) {
+      t.landing = (window.location.pathname + window.location.search).slice(0,300);
+      t.ts = Date.now();
+      var s = {}; try { s = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch(e) { s = {}; }
+      if (!s.first || !s.first.ts || Date.now() - s.first.ts > MAX_AGE) s.first = t;
+      s.last = t;
+      localStorage.setItem(KEY, JSON.stringify(s));
+    }
+  } catch(e) {}
+  window.getAttribution = function(){
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (!s || !s.last || Date.now() - s.last.ts > MAX_AGE) return undefined;
+      return s;
+    } catch(e) { return undefined; }
+  };
+})();`}
+        </Script>
         {/* Phone + WhatsApp click tracking — B2B visitors call or WhatsApp
             instead of filling a form, and those leads were invisible in
             Google Ads. Fires a GA4 event AND the Google Ads conversion

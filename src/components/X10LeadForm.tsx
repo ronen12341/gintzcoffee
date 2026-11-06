@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackLead } from "@/lib/gtag";
 import { getGclid } from "@/lib/gclid";
+import { getAttribution } from "@/lib/attribution";
 
 const EMPLOYEE_RANGES = ["עד 15", "15–50", "50–100", "מעל 100"];
 const BUSINESS_TYPES = ["משרד", "בית קפה", "מסעדה", "אחר"];
@@ -65,6 +66,7 @@ export default function X10LeadForm() {
           city: form.city,
           formType: "lead",
           gclid: getGclid(),
+          attribution: getAttribution(),
         }),
       });
 
