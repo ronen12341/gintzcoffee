@@ -56,6 +56,25 @@ export function trackBeginCheckout(items: TrackedItem[]): void {
   });
 }
 
+/** Funnel step 0 — GA4 `view_item` + Meta Pixel `ViewContent` (product page view). */
+export function trackViewContent(item: { id: string; name: string; category: string; priceNumeric?: number }): void {
+  if (typeof window === "undefined") return;
+  const value = item.priceNumeric;
+  window.gtag?.("event", "view_item", {
+    currency: "ILS",
+    value,
+    items: [{ item_id: item.id, item_name: item.name, item_category: item.category, price: value, quantity: 1 }],
+  });
+  window.fbq?.("track", "ViewContent", {
+    content_ids: [item.id],
+    content_name: item.name,
+    content_category: item.category,
+    content_type: "product",
+    value,
+    currency: "ILS",
+  });
+}
+
 // Google Ads conversion "send_to" labels (from Google Ads → Goals → Conversions)
 export const ADS_CONVERSION = {
   // "ליד מכונות קפה" — office coffee machines lead (business-solutions)

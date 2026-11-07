@@ -4,6 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import { ChevronLeft, Check } from "lucide-react";
 import BeanPurchase from "@/components/BeanPurchase";
 import MachineGallery from "@/components/MachineGallery";
+import TrackViewContent from "@/components/TrackViewContent";
 import { coffeeBeans, allCoffeeBeans } from "@/data/products";
 
 interface PageProps {
@@ -121,6 +122,7 @@ export default async function BeanDetailPage({ params }: PageProps) {
 
   return (
     <>
+      <TrackViewContent id={bean.id} name={bean.name} category="bean" priceNumeric={bean.priceNumeric} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
