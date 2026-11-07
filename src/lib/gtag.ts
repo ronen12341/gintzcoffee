@@ -94,6 +94,26 @@ export function trackLead(
   });
 }
 
+type OrderCustomer = { name?: string; phone?: string; email?: string; city?: string };
+
+const META_PIXEL_ID = "2239208016131254";
+const LAST_ORDER_KEY = "gintz-last-order-ts";
+const REORDER_WINDOW_MS = 15 * 60 * 1000;
+
+/** Israeli phone → E.164 digits (972...) for Meta advanced matching. */
+function toE164(raw?: string): string | undefined {
+  const d = (raw ?? "").replace(/\D/g, "");
+  if (!d) return undefined;
+  if (d.startsWith("972")) return d;
+  if (d.startsWith("0")) return "972" + d.slice(1);
+  return d;
+}
+
+/** Test orders (name contains "בדיקה"/"test") are never reported as purchases. */
+function isTestOrder(c?: OrderCustomer): boolean {
+  return /בדיקה|test/i.test(c?.name ?? "");
+}
+
 /**
  * Fires the purchase conversion the moment an order is PLACED (the /api/order
  * call succeeded) — for every order, whether paid online via Sumit or by
@@ -101,9 +121,31 @@ export function trackLead(
  * order counted, and customers who pay at Sumit often never return to
  * /order/success, which previously lost the conversion.
  * orderId is sent as transaction_id / eventID so a double fire is deduped.
+ *
+ * Not counted: test orders, and a second order from the same browser within
+ * 15 minutes (a customer correcting and resubmitting their cart — seen on
+ * 17.10.26, which the pixel had counted as two purchases).
+ *
+ * The customer's email/phone/name/city are passed to the Meta Pixel as
+ * advanced-matching data (the pixel SHA-256 hashes them in the browser before
+ * sending), so Meta can match more purchases to the people who saw the ads.
  */
-export function trackOrderPlaced(orderId: string, value: number, items: TrackedItem[]): void {
+export function trackOrderPlaced(
+  orderId: string,
+  value: number,
+  items: TrackedItem[],
+  customer?: OrderCustomer,
+): void {
   if (typeof window === "undefined") return;
+  if (isTestOrder(customer)) return;
+  try {
+    const last = Number(localStorage.getItem(LAST_ORDER_KEY) || 0);
+    localStorage.setItem(LAST_ORDER_KEY, String(Date.now()));
+    if (last && Date.now() - last < REORDER_WINDOW_MS) return;
+  } catch {
+    /* storage unavailable — count the order */
+  }
+
   const v = Number.isFinite(value) && value > 0 ? value : undefined;
   window.gtag?.("event", "purchase", {
     transaction_id: orderId,
@@ -121,5 +163,30 @@ export function trackOrderPlaced(orderId: string, value: number, items: TrackedI
       transport_type: "beacon",
     });
   }
-  window.fbq?.("track", "Purchase", { value: v, currency: "ILS" }, { eventID: orderId });
+
+  if (window.fbq) {
+    const nameParts = (customer?.name ?? "").trim().split(/\s+/).filter(Boolean);
+    const userData: Record<string, string> = { country: "il" };
+    if (customer?.email?.trim()) userData.em = customer.email.trim().toLowerCase();
+    const ph = toE164(customer?.phone);
+    if (ph) userData.ph = ph;
+    if (nameParts[0]) userData.fn = nameParts[0];
+    if (nameParts.length > 1) userData.ln = nameParts.slice(1).join(" ");
+    if (customer?.city?.trim()) userData.ct = customer.city.trim();
+    // Re-init with the same pixel ID attaches the user data to this and later events.
+    window.fbq("init", META_PIXEL_ID, userData);
+    window.fbq(
+      "track",
+      "Purchase",
+      {
+        value: v,
+        currency: "ILS",
+        content_type: "product",
+        content_ids: items.map((i) => i.id),
+        contents: items.map((i) => ({ id: i.id, quantity: i.qty, item_price: i.priceNumeric })),
+        num_items: items.reduce((n, i) => n + i.qty, 0),
+      },
+      { eventID: orderId },
+    );
+  }
 }

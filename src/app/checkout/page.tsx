@@ -194,7 +194,7 @@ export default function CheckoutPage() {
       // Order received — count the conversion now (see trackOrderPlaced),
       // then give the beacons a moment before navigating away.
       const orderId = orderRes.orderId || `ORD-${Date.now()}`;
-      trackOrderPlaced(orderId, grandTotal, items);
+      trackOrderPlaced(orderId, grandTotal, items, form);
       await new Promise((r) => setTimeout(r, 600));
 
       if (canPayOnline) {
