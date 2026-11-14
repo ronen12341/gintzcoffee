@@ -1,8 +1,9 @@
 name: Daily Health Check
 
 on:
-  # Daily schedule turned off at Ronen's request (Nov 14 2026) — it was emailing him every day.
-  # Run manually from the Actions tab when needed.
+  schedule:
+    # ~08:17 Israel time (UTC+3 during DST) — runs in GitHub's UTC clock.
+    - cron: "17 5 * * *"
   workflow_dispatch: {}
 
 jobs:
