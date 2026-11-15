@@ -46,8 +46,8 @@
       ],
       "featured": true,
       "image": "https://www.jura.co.il/wp-content/uploads/2026/05/E8_MS1.webp",
-      "price": "6,300 ש\"ח",
-      "priceNumeric": 6300,
+      "price": "5,700 ש\"ח",
+      "priceNumeric": 5700,
       "machineType": "automatic"
     },
     {
@@ -328,8 +328,8 @@
         "עד 50 ספלים ביום"
       ],
       "image": "https://www.jura.co.il/wp-content/uploads/2025/03/J101.webp",
-      "price": "8,500 ש\"ח",
-      "priceNumeric": 8500,
+      "price": "7,600 ש\"ח",
+      "priceNumeric": 7600,
       "featured": false,
       "hidden": false,
       "machineType": "automatic",
