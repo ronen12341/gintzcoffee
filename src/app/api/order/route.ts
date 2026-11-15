@@ -377,6 +377,35 @@ function buildWhatsAppText(orderId: string, p: OrderPayload): string {
  *   - CALLMEBOT_APIKEY: API key from CallMeBot (one-time setup)
  * Falls back silently if not configured.
  */
+async function sendWhatsApp(text: string): Promise<void> {
+  // Preferred: WhatsMCP (linked device). Needs WHATSMCP_KEY, WHATSMCP_ACCOUNT_ID, WHATSMCP_TO.
+  const key = process.env.WHATSMCP_KEY;
+  const account = process.env.WHATSMCP_ACCOUNT_ID;
+  const to = process.env.WHATSMCP_TO;
+  if (key && account && to) {
+    try {
+      await fetch("https://api.whatsmcp.com/mcp", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+          Accept: "application/json, text/event-stream",
+        },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: 1,
+          method: "tools/call",
+          params: { name: "wa_send_message", arguments: { account_id: account, to, text } },
+        }),
+      });
+      return;
+    } catch (err) {
+      console.error("WhatsMCP send failed:", err);
+    }
+  }
+  await sendWhatsAppViaCallMeBot(text);
+}
+
 async function sendWhatsAppViaCallMeBot(text: string): Promise<void> {
   const phone = process.env.CALLMEBOT_PHONE;
   const apikey = process.env.CALLMEBOT_APIKEY;
@@ -508,7 +537,7 @@ export async function POST(req: NextRequest) {
   // Awaited (not fire-and-forget) — on a serverless runtime the function can
   // be frozen/torn down as soon as the response below is returned, which can
   // cut this request off mid-flight before it ever reaches CallMeBot.
-  await sendWhatsAppViaCallMeBot(waText).catch((err) => console.error(err));
+  await sendWhatsApp(waText).catch((err) => console.error(err));
 
   return NextResponse.json({ ok: true, orderId });
 }
