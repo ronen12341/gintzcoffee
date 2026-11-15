@@ -182,6 +182,11 @@ const nextConfig = {
         hostname: "www.gilcups.com",
       },
       {
+        // Stern's (sterns.co.il) product photos — Expobar EX3
+        protocol: "https",
+        hostname: "www.sterns.co.il",
+      },
+      {
         // Kedma Coffee (espresso-center.co.il) product photos
         protocol: "https",
         hostname: "d3m9l0v76dty0.cloudfront.net",
