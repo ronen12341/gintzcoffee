@@ -76,12 +76,28 @@ const machinesFaqSchema = {
   })),
 };
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "מכונות קפה לעסקים ולמשרד",
+  itemListElement: coffeeMachines.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.name,
+    url: `https://www.gintz.co.il/machines/${p.id}`,
+  })),
+};
+
 export default function MachinesPage() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(machinesFaqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
       />
 
       {/* Hero */}

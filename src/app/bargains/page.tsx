@@ -35,6 +35,18 @@ export const metadata: Metadata = {
     "מכונות קפה יד 2: Jura E8, Jura X8, Nivona ו-Melitta משומשות ותקינות במחירים מוזלים. כל מכונה עוברת בדיקה טכנית מלאה לפני המכירה. מלאי מתעדכן.",
 };
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "מכונות קפה משומשות",
+  itemListElement: usedMachines.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.name,
+    url: `https://www.gintz.co.il/bargains/${p.id}`,
+  })),
+};
+
 export default function BargainsPage() {
   return (
     <>
@@ -107,6 +119,10 @@ export default function BargainsPage() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
         <div className="max-w-3xl mx-auto px-4 text-brown/80 leading-relaxed space-y-4">
           <h2 id="bargains-about-heading" className="text-2xl font-bold text-brown">

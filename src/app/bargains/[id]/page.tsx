@@ -59,8 +59,81 @@ export default async function UsedMachineDetailPage({ params }: PageProps) {
     .map((p) => p.trim())
     .filter(Boolean);
 
+  // --- Structured data (Product + BreadcrumbList) for rich results ---
+  const site = "https://www.gintz.co.il";
+  const productImage = machine.image
+    ? machine.image.startsWith("http")
+      ? machine.image
+      : `${site}${machine.image}`
+    : undefined;
+  const BRANDS: [RegExp, string][] = [
+    [/jura|יורה/i, "JURA"],
+    [/melitta|מליטה/i, "Melitta"],
+    [/nivona|ניבונה/i, "Nivona"],
+    [/wmf/i, "WMF"],
+    [/philips|פיליפס/i, "Philips"],
+    [/gaggia|גאג/i, "Gaggia"],
+    [/de'?\s?longhi|דלונגי/i, "De'Longhi"],
+  ];
+  const brandName = BRANDS.find(([re]) => re.test(machine.name))?.[1];
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: machine.name,
+    description: (machine.longDescription ?? machine.description).slice(0, 500),
+    category: "Home & Garden > Kitchen & Dining > Kitchen Appliances > Coffee Makers & Espresso Machines",
+    ...(productImage ? { image: productImage } : {}),
+    ...(brandName ? { brand: { "@type": "Brand", name: brandName } } : {}),
+    sku: machine.id,
+    itemCondition: "https://schema.org/UsedCondition",
+    ...(machine.priceNumeric
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "ILS",
+            price: machine.priceNumeric,
+            availability: "https://schema.org/InStock",
+            itemCondition: "https://schema.org/UsedCondition",
+            url: `${site}/bargains/${machine.id}`,
+            shippingDetails: {
+              "@type": "OfferShippingDetails",
+              shippingRate: { "@type": "MonetaryAmount", value: 60, currency: "ILS" },
+              shippingDestination: { "@type": "DefinedRegion", addressCountry: "IL" },
+              deliveryTime: {
+                "@type": "ShippingDeliveryTime",
+                transitTime: { "@type": "QuantitativeValue", minValue: 1, maxValue: 7, unitCode: "d" },
+              },
+            },
+            hasMerchantReturnPolicy: {
+              "@type": "MerchantReturnPolicy",
+              applicableCountry: "IL",
+              returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+              merchantReturnDays: 14,
+            },
+          },
+        }
+      : {}),
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "דף הבית", item: site },
+      { "@type": "ListItem", position: 2, name: "מכונות משומשות", item: `${site}/bargains` },
+      { "@type": "ListItem", position: 3, name: machine.name, item: `${site}/bargains/${machine.id}` },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
+      />
       {/* Breadcrumb / back link */}
       <div className="bg-cream-dark border-b border-cream py-3">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

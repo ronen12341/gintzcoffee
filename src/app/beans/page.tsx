@@ -29,9 +29,25 @@ export const metadata: Metadata = {
   },
 };
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "פולי קפה טריים מבית הקלייה גינץ",
+  itemListElement: coffeeBeans.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: p.name,
+    url: `https://www.gintz.co.il/beans/${p.id}`,
+  })),
+};
+
 export default function BeansPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       {/* Hero */}
       <section
         className="page-hero"
