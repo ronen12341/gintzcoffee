@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   alternates: { canonical: "/terms" },
   title: "תקנון האתר",
-  description: "תקנון השימוש באתר קפה גינץ - תנאי הזמנה, תשלום, משלוח וביטול עסקה.",
+  description: "תקנון השימוש באתר קפה גינץ: תנאי הזמנה, תשלום, משלוח, החזרות וביטול עסקה, בהתאם לחוק הגנת הצרכן.",
 };
 
 export default function TermsPage() {

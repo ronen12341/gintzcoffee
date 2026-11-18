@@ -5,7 +5,7 @@ import { Flame, Leaf, SlidersVertical, Truck, Coffee, HeartHandshake } from "luc
 export const metadata: Metadata = {
   title: "בית קלייה לקפה | קליית פולי קפה טריים בהתאמה אישית",
   description:
-    "קפה גינץ — בית קלייה לקפה מאז 2005, הירקון 39 בני ברק. קולים מדי יום במכונת קלייה Probat, תערובות וחד-זני בהתאמה אישית. פולים טריים במשלוח עד הבית ולעסקים בכל הארץ.",
+    "קפה גינץ — בית קלייה לקפה מאז 2005, הירקון 39 בני ברק. קולים מדי יום, תערובות וחד-זני בהתאמה אישית. פולים טריים במשלוח עד הבית ולעסקים בכל הארץ.",
   keywords: [
     "בית קלייה לקפה",
     "בית קלייה",
@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     description:
       "בית קלייה מאז 2005 בבני ברק. קולים מדי יום במכונת Probat — פולים טריים עד הבית ולעסקים.",
     url: "https://www.gintz.co.il/roastery",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

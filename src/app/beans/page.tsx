@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     description:
       "פולי קפה טריים מבית הקלייה גינץ — תערובות וחד-זני בקלייה עצמית, החל מ-120 ש\"ח לק\"ג, במשלוח עד הבית ולעסק.",
     url: "https://www.gintz.co.il/beans",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

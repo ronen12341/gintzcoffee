@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: "השוואה בין JURA E8 ל-JURA Z10 — משקאות, מטחנה, נפח יומי ומחיר.",
     url: "https://www.gintz.co.il/blog/jura-e8-vs-z10",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

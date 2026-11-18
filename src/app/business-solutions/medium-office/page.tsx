@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description:
       "מכונה אוטומטית מקצועית עם הקצפת חלב וחיבור מים קבוע - עומדת בעומס שעות השיא של משרד בינוני.",
     url: "https://www.gintz.co.il/business-solutions/medium-office",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

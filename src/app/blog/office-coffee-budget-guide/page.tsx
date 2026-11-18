@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "עלות מכונה, פולים חודשית ותחזוקה - תקציב הקפה השנתי למשרד לפי גודל הצוות.",
     url: "https://www.gintz.co.il/blog/office-coffee-budget-guide",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

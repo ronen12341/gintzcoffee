@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: "השוואה בין מכונת קפה אוטומטית למכונת אספרסו מקצועית לעסק — טעם, תפעול ומחירים.",
     url: "https://www.gintz.co.il/blog/automatic-vs-professional-coffee-machine",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

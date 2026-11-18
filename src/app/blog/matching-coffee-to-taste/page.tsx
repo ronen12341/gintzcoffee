@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "תהליך התאמת רמת קלייה ובלנד לטעם הספציפי של הצוות שלכם.",
     url: "https://www.gintz.co.il/blog/matching-coffee-to-taste",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

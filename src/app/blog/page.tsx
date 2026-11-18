@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "בלוג קפה גינץ | מדריכים לקפה למשרד ולעסק",
     description: "מדריכים מקצועיים על מכונות קפה, פולי קפה ותקציב קפה לעסקים.",
     url: "https://www.gintz.co.il/blog",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

@@ -26,8 +26,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: bean.name,
       description: bean.description.slice(0, 160),
-      images: bean.image ? [bean.image] : undefined,
-    },
+      url: `https://www.gintz.co.il/beans/${bean.id}`,
+      images: bean.image ? [bean.image] : [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
+   type: "website", siteName: "קפה גינץ", locale: "he_IL",
+  },
   };
 }
 

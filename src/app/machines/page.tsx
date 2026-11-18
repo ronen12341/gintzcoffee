@@ -23,6 +23,7 @@ export const metadata: Metadata = {
     description:
       "מכונות קפה אוטומטיות וידניות — JURA, Gaggia, De'Longhi, Melitta ועוד, במשלוח עד הבית.",
     url: "https://www.gintz.co.il/machines",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

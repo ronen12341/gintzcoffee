@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "תאריך קלייה, אחסון ומה ההבדל בכוס — המדריך לפולי קפה טריים.",
     url: "https://www.gintz.co.il/blog/fresh-coffee-beans",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

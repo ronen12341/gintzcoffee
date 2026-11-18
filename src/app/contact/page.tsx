@@ -5,7 +5,7 @@ import LeadForm from "@/components/LeadForm";
 export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   title: "צור קשר",
-  description: "צרו קשר עם קפה גינץ. טלפון, וואטסאפ, אימייל ואפשרות לקבלת הצעת מחיר.",
+  description: "צרו קשר עם קפה גינץ: טלפון 03-9600550, וואטסאפ ואימייל. מכונת קפה למשרד, פולי קפה טריים והצעת מחיר מהירה לעסקים.",
 };
 
 const WHATSAPP_URL =

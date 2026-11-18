@@ -27,8 +27,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: machine.name,
       description: machine.description.slice(0, 160),
-      images: machine.image ? [machine.image] : undefined,
-    },
+      url: `https://www.gintz.co.il/bargains/${machine.id}`,
+      images: machine.image ? [machine.image] : [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
+   type: "website", siteName: "קפה גינץ", locale: "he_IL",
+  },
   };
 }
 

@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "קפה למפעלים | קפה גינץ",
     description: "פתרון קפה למפעלים ולמתקני ייצור - מכונות עמידות ושירות טכני זמין.",
     url: "https://www.gintz.co.il/business-solutions/factories",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

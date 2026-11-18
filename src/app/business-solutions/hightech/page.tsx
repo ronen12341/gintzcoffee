@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     title: "קפה לחברות הייטק | קפה גינץ",
     description: "פתרון קפה לחברות הייטק - מכונות בנפח גבוה, פולים טריים ושירות מהיר.",
     url: "https://www.gintz.co.il/business-solutions/hightech",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

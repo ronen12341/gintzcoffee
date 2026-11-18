@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description: "מדריך כמויות פולי קפה למשרד לפי מספר עובדים.",
     url: "https://www.gintz.co.il/blog/how-much-coffee-does-an-office-need",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

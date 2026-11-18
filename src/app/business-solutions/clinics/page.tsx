@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     title: "קפה למרפאות | קפה גינץ",
     description: "פתרון קפה למרפאות וקליניקות - מכונה קומפקטית, קפה איכותי ושירות אמין.",
     url: "https://www.gintz.co.il/business-solutions/clinics",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

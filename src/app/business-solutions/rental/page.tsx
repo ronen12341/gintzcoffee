@@ -31,6 +31,7 @@ export const metadata: Metadata = {
     description:
       "מכונה עלינו, משלמים על הקפה. מכונת קפה לעסק בהשאלה ללא עלות - בלי השקעה ראשונית.",
     url: "https://www.gintz.co.il/business-solutions/rental",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

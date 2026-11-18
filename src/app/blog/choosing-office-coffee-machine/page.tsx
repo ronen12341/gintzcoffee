@@ -12,6 +12,7 @@ export const metadata: Metadata = {
       "מכונה אוטומטית או מחצה-אוטומטית? כמה עובדים מצדיקים איזה דגם? מדריך מלא לבחירת מכונת קפה למשרד.",
     url: "https://www.gintz.co.il/blog/choosing-office-coffee-machine",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

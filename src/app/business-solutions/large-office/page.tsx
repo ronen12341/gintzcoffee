@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions/large-office" },
   title: "מכונת קפה למשרד גדול (מעל 20 עובדים)",
   description:
-    "מכונת קפה למשרד גדול מעל 20 עובדים - מכונה מקצועית בעומס גבוה, אפשרות ליותר מעמדת קפה אחת ותכנון פריסה. פולים טריים מבית הקלייה שלנו, מכונה בהשאלה ללא עלות — משלמים רק על הקפה.",
+    "מכונת קפה למשרד גדול מעל 20 עובדים - מכונה מקצועית בעומס גבוה ותכנון פריסה. פולים טריים מבית הקלייה שלנו, מכונה בהשאלה ללא עלות — משלמים רק על הקפה.",
   keywords: [
     "מכונת קפה למשרד גדול",
     "מכונת קפה בעומס גבוה",
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description:
       "מכונה מקצועית בעומס גבוה, אפשרות ליותר מעמדת קפה אחת ותכנון פריסה למשרד גדול.",
     url: "https://www.gintz.co.il/business-solutions/large-office",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

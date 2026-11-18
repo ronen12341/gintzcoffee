@@ -12,6 +12,7 @@ export const metadata: Metadata = {
     description: "איך עובד מודל מכונת הקפה בהשאלה למשרד, ומה חשוב לבדוק לפני שחותמים.",
     url: "https://www.gintz.co.il/blog/free-office-coffee-machine",
     type: "article",
+   siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

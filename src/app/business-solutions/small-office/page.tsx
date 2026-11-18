@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/business-solutions/small-office" },
   title: "מכונת קפה למשרד קטן (עד 10 עובדים)",
   description:
-    "מכונת קפה למשרד קטן עד 10 עובדים - מכונה אוטומטית קומפקטית עם מיכל מים פנימי, בלי צורך בתשתית. פולים טריים מבית הקלייה שלנו, מכונה בהשאלה ללא עלות — משלמים רק על הקפה.",
+    "מכונת קפה למשרד קטן עד 10 עובדים - מכונה אוטומטית קומפקטית, בלי צורך בתשתית. פולים טריים מבית הקלייה שלנו, מכונה בהשאלה ללא עלות — משלמים רק על הקפה.",
   keywords: [
     "מכונת קפה למשרד קטן",
     "מכונת קפה קומפקטית למשרד",
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     description:
       "מכונה אוטומטית קומפקטית עם מיכל מים פנימי, בלי צורך בתשתית מים - מותאמת למשרד קטן.",
     url: "https://www.gintz.co.il/business-solutions/small-office",
+   type: "website", siteName: "קפה גינץ", locale: "he_IL", images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 
