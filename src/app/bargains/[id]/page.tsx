@@ -14,14 +14,23 @@ export async function generateStaticParams() {
   return usedMachines.map((m) => ({ id: m.id }));
 }
 
+// Keep <title> (plus the " | גינץ" suffix) within ~60 chars.
+function fitTitle(...parts: string[]): string {
+  const MAX = 53;
+  for (const p of parts) if (p.length <= MAX) return p;
+  const last = parts[parts.length - 1];
+  const cut = last.slice(0, MAX);
+  return cut.slice(0, cut.lastIndexOf(" ") > 20 ? cut.lastIndexOf(" ") : MAX).trim();
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const machine = usedMachines.find((m) => m.id === id);
   if (!machine) return { title: "מכונה לא נמצאה" };
   return {
     title: machine.price
-      ? `${machine.name} — יד 2 ב-${machine.price.replace(/\s*ש"ח/, "")} ש״ח | מכונת קפה משומשת`
-      : `${machine.name} — מכונת קפה יד שנייה משומשת`,
+      ? fitTitle(`${machine.name} — יד 2 ב-${machine.price.replace(/\s*ש"ח/, "")} ש״ח`, `${machine.name} — יד 2`, machine.name)
+      : fitTitle(`${machine.name} — יד 2`, machine.name),
     description: machine.description.slice(0, 160),
     alternates: { canonical: `/bargains/${machine.id}` },
     openGraph: {
