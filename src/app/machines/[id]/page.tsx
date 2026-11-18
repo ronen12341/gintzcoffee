@@ -50,6 +50,12 @@ function fitTitle(...parts: string[]): string {
   return cut.slice(0, cut.lastIndexOf(" ") > 20 ? cut.lastIndexOf(" ") : MAX).trim();
 }
 
+// Meta descriptions shorter than ~110 chars are flagged; pad with a real, factual tail.
+function fitDescription(text: string, tail: string): string {
+  const t = text.trim();
+  return (t.length >= 110 ? t : `${t} ${tail}`).slice(0, 160);
+}
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const machine = coffeeMachines.find((m) => m.id === id);
@@ -58,7 +64,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: machine.price
       ? fitTitle(`${machine.name} — ${machine.price.replace(/ש"ח/, "ש״ח")}`, machine.name)
       : fitTitle(machine.name),
-    description: machine.description.slice(0, 160),
+    description: fitDescription(machine.description, "מכונת קפה לעסק ולמשרד, במשלוח עד הבית. קפה גינץ, בני ברק."),
     alternates: { canonical: `/machines/${machine.id}` },
     openGraph: {
       title: machine.name,
