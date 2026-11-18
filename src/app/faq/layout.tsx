@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     description:
       "כל התשובות על פתרונות קפה למשרד: מכונות קפה, פולי קפה טריים, אספקה, תחזוקה ושירות מבית קלייה גינץ.",
     url: "https://www.gintz.co.il/faq",
+    type: "website",
+    siteName: "קפה גינץ",
+    locale: "he_IL",
+    images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
   },
 };
 

@@ -6,6 +6,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
   title: "צור קשר",
   description: "צרו קשר עם קפה גינץ: טלפון 03-9600550, וואטסאפ ואימייל. מכונת קפה למשרד, פולי קפה טריים והצעת מחיר מהירה לעסקים.",
+  openGraph: {
+    type: "website",
+    siteName: "קפה גינץ",
+    locale: "he_IL",
+    url: "https://www.gintz.co.il/contact",
+    title: "צור קשר | קפה גינץ",
+    description:
+      "צרו קשר עם קפה גינץ: טלפון 03-9600550, וואטסאפ ואימייל. מכונת קפה למשרד, פולי קפה טריים והצעת מחיר מהירה לעסקים.",
+    images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
+  },
 };
 
 const WHATSAPP_URL =

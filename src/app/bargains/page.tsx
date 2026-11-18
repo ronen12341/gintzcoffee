@@ -33,6 +33,16 @@ export const metadata: Metadata = {
   title: "מכונות קפה יד 2 – מכונות משומשות ותקינות במחיר מוזל",
   description:
     "מכונות קפה יד 2: Jura E8, Jura X8, Nivona ו-Melitta משומשות ותקינות במחירים מוזלים. כל מכונה עוברת בדיקה טכנית מלאה לפני המכירה. מלאי מתעדכן.",
+  openGraph: {
+    type: "website",
+    siteName: "קפה גינץ",
+    locale: "he_IL",
+    url: "https://www.gintz.co.il/bargains",
+    title: "מכונות קפה יד 2 – משומשות ותקינות | קפה גינץ",
+    description:
+      "מכונות קפה יד 2: Jura E8, Jura X8, Nivona ו-Melitta משומשות ותקינות במחירים מוזלים. כל מכונה עוברת בדיקה טכנית מלאה לפני המכירה. מלאי מתעדכן.",
+    images: [{ url: "/logo.png", width: 1079, height: 1080, alt: "קפה גינץ" }],
+  },
 };
 
 const itemListSchema = {
