@@ -2,6 +2,7 @@
 const nextConfig = {
   async redirects() {
     return [
+      { source: "/review", destination: "https://search.google.com/local/writereview?placeid=ChIJf9wewde0AhURFRrLScMmlmQ", permanent: false },
       // --- הפניות 301 מהאתר הישן (עמודי .html שעדיין מאונדקסים בגוגל) ---
       { source: "/About.html", destination: "/", permanent: true },
       { source: "/%D7%A7%D7%A4%D7%94%D7%9C%D7%A2%D7%A1%D7%A7%D7%99%D7%9D.html", destination: "/business-solutions", permanent: true },
