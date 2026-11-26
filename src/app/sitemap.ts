@@ -189,6 +189,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${base}/blog/rent-or-buy-office-coffee-machine`,
+      lastModified: new Date("2026-11-26"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${base}/blog/choosing-office-coffee-supplier`,
+      lastModified: new Date("2026-11-26"),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${base}/terms`,
       lastModified: legalLastUpdate,
       changeFrequency: "yearly",

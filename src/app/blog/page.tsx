@@ -17,6 +17,24 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "rent-or-buy-office-coffee-machine",
+    icon: Scale,
+    category: "מכונות קפה",
+    title: "קנייה, שכירות או הצבה: איזה מודל מכונת קפה למשרד מתאים לכם?",
+    excerpt:
+      "מי מטפל בתקלות, מה כלול בחוזה, ואיך מחליטים לפי גודל המשרד.",
+    readTime: "5 דקות קריאה",
+  },
+  {
+    slug: "choosing-office-coffee-supplier",
+    icon: Coffee,
+    category: "מכונות קפה",
+    title: "איך בוחרים ספק קפה למשרד: 7 שאלות שכדאי לשאול לפני שחותמים",
+    excerpt:
+      "טריות, זמן תגובה לתקלה, מכונה חלופית וחוזה: מה לבדוק מראש.",
+    readTime: "5 דקות קריאה",
+  },
+  {
     slug: "jura-e8-vs-z10",
     icon: Scale,
     category: "מכונות קפה",
