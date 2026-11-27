@@ -4,7 +4,7 @@ with the two suppliers.
 
 Rules (set by the owner):
   * JURA (jura.co.il, Y. Pepper)      -> site price = supplier price - 200
-  * Kedma Coffee (espresso-center)    -> site price = supplier price - 100
+  * Kedma Coffee (espresso-center)    -> site price = supplier price - 50
   * Out of stock at the supplier      -> hidden: true  (back in stock -> hidden: false)
 
 Only products listed in scripts/supplier-map.json are touched. Anything that
@@ -91,7 +91,7 @@ def main():
                 margin = 200
             else:
                 sup_price, in_stock = kedma_item(src["id"])
-                margin = 100
+                margin = 50
                 time.sleep(1)
             reads_ok += 1
         except Exception as e:  # noqa: BLE001
