@@ -17,6 +17,33 @@ export const metadata: Metadata = {
 
 const posts = [
   {
+    slug: "where-to-buy-fresh-coffee-beans",
+    icon: Leaf,
+    category: "פולי קפה",
+    title: "איפה לקנות פולי קפה טריים בישראל? המדריך המלא",
+    excerpt:
+      "סופר, רשתות או בית קלייה — מה לבדוק על השקית וכמה זה עולה.",
+    readTime: "6 דקות קריאה",
+  },
+  {
+    slug: "coffee-beans-for-automatic-machine",
+    icon: Settings,
+    category: "פולי קפה",
+    title: "אילו פולי קפה מתאימים למכונה אוטומטית?",
+    excerpt:
+      "למה קלייה בינונית, אילו פולים לא כדאי, והמלצות ל-JURA ודלונגי.",
+    readTime: "5 דקות קריאה",
+  },
+  {
+    slug: "coffee-beans-by-taste",
+    icon: Heart,
+    category: "פולי קפה",
+    title: "פולי קפה לפי טעם — איזה פולים לבחור?",
+    excerpt:
+      "שוקולדי, אגוזי, פירותי או חזק — טבלה של כל הפולים לפי טעם.",
+    readTime: "5 דקות קריאה",
+  },
+  {
     slug: "rent-or-buy-office-coffee-machine",
     icon: Scale,
     category: "מכונות קפה",

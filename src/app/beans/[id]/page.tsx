@@ -81,6 +81,16 @@ export default async function BeanDetailPage({ params }: PageProps) {
     brand: { "@type": "Brand", name: "קפה גינץ" },
     // Own-roasted product — no GTIN exists; brand + sku are the identifiers.
     sku: bean.id,
+    // Machine-readable attributes so search engines and AI assistants can
+    // answer "medium-roast beans with chocolate notes under ₪130" style asks.
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "רמת קלייה", value: bean.roast },
+      ...(bean.origin ? [{ "@type": "PropertyValue", name: "מקור", value: bean.origin }] : []),
+      ...(bean.features?.[0] ? [{ "@type": "PropertyValue", name: "טעמים", value: bean.features[0] }] : []),
+      ...(bean.features?.[2] ? [{ "@type": "PropertyValue", name: "מומלץ ל", value: bean.features[2].replace(/^מומלץ\s*/, "") }] : []),
+      ...(bean.specs ?? []).map((sp) => ({ "@type": "PropertyValue", name: sp.label, value: sp.value })),
+    ],
+    weight: { "@type": "QuantitativeValue", value: 1, unitCode: "KGM" },
     ...(productImage ? { image: productImage } : {}),
     ...(bean.priceNumeric
       ? {

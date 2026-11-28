@@ -37,8 +37,16 @@ const itemListSchema = {
   itemListElement: coffeeBeans.map((p, i) => ({
     "@type": "ListItem",
     position: i + 1,
-    name: p.name,
-    url: `https://www.gintz.co.il/beans/${p.id}`,
+    item: {
+      "@type": "Product",
+      name: `${p.name} — פולי קפה`,
+      url: `https://www.gintz.co.il/beans/${p.id}`,
+      description: [p.roast, p.origin, p.features?.[0]].filter(Boolean).join(" · "),
+      brand: { "@type": "Brand", name: "קפה גינץ" },
+      ...(p.priceNumeric
+        ? { offers: { "@type": "Offer", price: p.priceNumeric, priceCurrency: "ILS", availability: "https://schema.org/InStock" } }
+        : {}),
+    },
   })),
 };
 
